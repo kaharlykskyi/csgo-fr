@@ -1,4 +1,4 @@
-##About project
+## About project
 CS-GO site
 
 ## Contributing
