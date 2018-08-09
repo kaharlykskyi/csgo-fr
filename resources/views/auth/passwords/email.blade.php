@@ -1,47 +1,51 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
+<div class="nk-modal modal" tabindex="100" style="display: block;position: initial;">
+    <div class="modal-dialog modal-sm" role="document" style="margin-top: 20px;margin-bottom: 40px;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4 class="mb-0"><span class="text-main-1">Password </span> Reset</h4>
+                <div class="nk-gap-1"></div>
+                <form action="{{route('password.email')}}" id="loginFrom" class="nk-form text-white" method="post" aria-label="{{ __('Reset Password') }}">
+                    @csrf
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+                    <div class="row vertical-gap">
+                        <div class="col-12">
+                            {{ __('Write email. We send password reset link') }}
+                            <div class="nk-gap"></div>
+                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' nk-error' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required>
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
+                            @endif
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <div class="nk-gap-1"></div>
+                    <div class="row vertical-gap">
+                        <div class="col-12">
+                            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block">
+                                {{ __('Send Password Reset Link') }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- START: Page Background -->
+
+<img class="nk-page-background-top" src="{{ asset('images/bg-top.png') }}" alt="">
+<img class="nk-page-background-bottom" src="{{ asset('images/bg-bottom.png') }}" alt="">
+
+<!-- END: Page Background -->
 @endsection

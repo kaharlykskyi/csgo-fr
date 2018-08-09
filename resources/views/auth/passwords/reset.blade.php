@@ -1,65 +1,62 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<div class="nk-modal modal" tabindex="100" style="display: block;position: initial;">
+    <div class="modal-dialog modal-sm" role="document" style="margin-top: 20px;margin-bottom: 40px;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4 class="mb-0"><span class="text-main-1">Reset </span> Password</h4>
+                <div class="nk-gap-1"></div>
+                <form action="{{route('password.request')}}" class="nk-form text-white" method="post" aria-label="{{ __('Reset Password') }}">
+                    @csrf
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.request') }}" aria-label="{{ __('Reset Password') }}">
-                        @csrf
+                    <input type="hidden" name="token" value="{{ $token }}">
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+                    <div class="row vertical-gap">
+                        <div class="col-12">
+                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' nk-error' : '' }}" name="email" value="{{ $email ?? old('email') }}" placeholder="Email"  required autofocus>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
+                            @endif
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <div class="nk-gap"></div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' nk-error' : '' }}" placeholder="Password"  name="password" required>
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
+                            @endif
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <div class="nk-gap"></div>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Password Confirmation"  required>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <div class="nk-gap-1"></div>
+                    <div class="row vertical-gap">
+                        <div class="col-12">
+                            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block">
+                                {{ __('Reset Password') }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- START: Page Background -->
+
+<img class="nk-page-background-top" src="{{ asset('images/bg-top.png') }}" alt="">
+<img class="nk-page-background-bottom" src="{{ asset('images/bg-bottom.png') }}" alt="">
+
+<!-- END: Page Background -->
 @endsection

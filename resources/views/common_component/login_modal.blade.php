@@ -9,7 +9,8 @@
                 <h4 class="mb-0"><span class="text-main-1">Sign</span> In</h4>
 
                 <div class="nk-gap-1"></div>
-                <form action="{{route('login')}}" class="nk-form text-white" method="post">
+                <form action="{{route('login')}}" id="loginFrom" class="nk-form text-white" method="post">
+                    @csrf
                     <div class="row vertical-gap">
                         <div class="col-md-6">
                             Use email and password:
@@ -50,7 +51,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mnt-5">
-                                <small><a href="#">Forgot your password?</a></small>
+                                <small><a href="{{route('password.request')}}">Forgot your password?</a></small>
                             </div>
                             <div class="mnt-5">
                                 <small><a href="{{route('register')}}">Not a member? Sign up</a></small>
@@ -58,6 +59,29 @@
                         </div>
                     </div>
                 </form>
+
+                <script>
+                    $("#loginFrom").submit(function (e) {
+
+
+                        var form = $(this);
+                        var url = form.attr('action');
+
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: form.serialize(), // serializes the form's elements.
+                            success: function (data) {
+                                location.reload();
+                            },
+                            error: function (data) {
+                                alert(data);
+                            }
+                        });
+
+                        e.preventDefault(); // avoid to execute the actual submit of the form.
+                    });
+                </script>
             </div>
         </div>
     </div>
