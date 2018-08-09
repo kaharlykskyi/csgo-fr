@@ -1,7 +1,7 @@
 <div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
     <div class="nano">
         <div class="nano-content">
-            <a href="index.html" class="nk-nav-logo">
+            <a href="{{route('home')}}" class="nk-nav-logo">
                 <img src="{{ asset('images/logo.png') }}" alt="" width="120">
             </a>
             <div class="nk-navbar-mobile-content">

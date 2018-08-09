@@ -9,16 +9,26 @@
                 <h4 class="mb-0"><span class="text-main-1">Sign</span> In</h4>
 
                 <div class="nk-gap-1"></div>
-                <form action="#" class="nk-form text-white">
+                <form action="{{route('login')}}" class="nk-form text-white" method="post">
                     <div class="row vertical-gap">
                         <div class="col-md-6">
                             Use email and password:
 
                             <div class="nk-gap"></div>
-                            <input type="email" value="" name="email" class=" form-control" placeholder="Email">
+                            <input type="email" value="" name="email" class=" form-control" placeholder="Email" required>
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
 
                             <div class="nk-gap"></div>
-                            <input type="password" value="" name="password" class="required form-control" placeholder="Password">
+                            <input type="password" value="" name="password" class="required form-control" placeholder="Password" required>
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                         <div class="col-md-6">
                             Or social account:
@@ -36,14 +46,14 @@
                     <div class="nk-gap-1"></div>
                     <div class="row vertical-gap">
                         <div class="col-md-6">
-                            <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block">Sign In</a>
+                            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block">Sign In</button>
                         </div>
                         <div class="col-md-6">
                             <div class="mnt-5">
                                 <small><a href="#">Forgot your password?</a></small>
                             </div>
                             <div class="mnt-5">
-                                <small><a href="#">Not a member? Sign up</a></small>
+                                <small><a href="{{route('register')}}">Not a member? Sign up</a></small>
                             </div>
                         </div>
                     </div>
