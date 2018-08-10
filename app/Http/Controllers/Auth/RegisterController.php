@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'city' => 'required|string',
             'date_birth' => 'required|date',
             'role' => ['required',Rule::in(['user'])],
-            'sex' => ['required',Rule::in(['man', 'woman'])]
+            'sex' => ['required',Rule::in(['male', 'female'])]
         ]);
     }
 
@@ -69,7 +69,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        dump($data);
         return User::create([
             'name' => $data['name'],
             'country_id' => $data['country_id'],

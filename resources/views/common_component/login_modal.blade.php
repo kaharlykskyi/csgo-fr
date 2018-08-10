@@ -12,7 +12,7 @@
                 <form action="{{route('login')}}" id="loginFrom" class="nk-form text-white" method="post">
                     @csrf
                     <div class="row vertical-gap">
-                        <div class="col-md-6">
+                        <div class="col-12">
                             Use email and password:
 
                             <div class="nk-gap"></div>
@@ -30,17 +30,6 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                             @endif
-                        </div>
-                        <div class="col-md-6">
-                            Or social account:
-
-                            <div class="nk-gap"></div>
-
-                            <ul class="nk-social-links-2">
-                                <li><a class="nk-social-facebook" href="#"><span class="fab fa-facebook"></span></a></li>
-                                <li><a class="nk-social-google-plus" href="#"><span class="fab fa-google-plus"></span></a></li>
-                                <li><a class="nk-social-twitter" href="#"><span class="fab fa-twitter"></span></a></li>
-                            </ul>
                         </div>
                     </div>
 

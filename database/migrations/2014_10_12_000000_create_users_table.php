@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->text('logo_user')->nullable();
             $table->string('city');
             $table->date('date_birth');
-            $table->enum('sex',['man','woman']);
+            $table->enum('sex',['male','female']);
             $table->enum('role',['user','admin']);
             $table->rememberToken();
             $table->timestamps();

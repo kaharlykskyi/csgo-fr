@@ -64,6 +64,30 @@
     <!-- jQuery -->
     <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <style>
+        #flags-button{
+            width: 100%;
+            background: transparent;
+            border-radius: 0;
+            border: 1px solid #303e47;
+            padding: 9.5px 10px;
+            font-size: 1em;
+            font-weight: 400;
+            color: #fff;
+        }
+
+        .ui-widget-content{
+            height: 300px;
+        }
+
+        .nk-form .invalid-feedback{
+            display: block;
+        }
+    </style>
 
 </head>
 

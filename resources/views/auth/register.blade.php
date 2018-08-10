@@ -16,7 +16,7 @@
                                 <input type="hidden" name="role" value="user">
 
                                 <div class="nk-gap"></div>
-                                <input type="text" value="" name="name" class="form-control {{ $errors->has('name') ? ' nk-error' : '' }}" placeholder="User Name" required>
+                                <input type="text" name="name" value="{{ old('name') }}" class="form-control {{ $errors->has('name') ? ' nk-error' : '' }}" placeholder="User Name" required>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -24,7 +24,7 @@
                                 @endif
 
                                 <div class="nk-gap"></div>
-                                <input type="email" value="" name="email" class=" form-control {{ $errors->has('email') ? ' nk-error' : '' }}" placeholder="Email" required>
+                                <input type="email" name="email" value="{{ old('email') }}" class=" form-control {{ $errors->has('email') ? ' nk-error' : '' }}" placeholder="Email" required>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -32,10 +32,10 @@
                                 @endif
 
                                 <div class="nk-gap"></div>
-                                <select name="country_id" class="form-control {{ $errors->has('country_id') ? ' nk-error' : '' }}">
+                                <select id="flags" name="country_id" class="form-control {{ $errors->has('country_id') ? ' nk-error' : '' }}">
                                     @if(isset($countries))
                                         @foreach($countries as $country)
-                                            <option value="{{$country->country}}">{{$country->country}}<img src="{{asset('images/flag/'.$country->flag)}}" alt="{{$country->country}}"></option>
+                                            <option value="{{$country->country}}" data-class="avatar" data-style="background-image: url({!! asset('images/flag/'.$country->flag) !!});">{{$country->country}}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -47,7 +47,7 @@
 
 
                                 <div class="nk-gap"></div>
-                                <input type="text" value="" name="city" class=" form-control {{ $errors->has('city') ? ' nk-error' : '' }}" placeholder="City" required>
+                                <input type="text" value="{{ old('city') }}" name="city" class=" form-control {{ $errors->has('city') ? ' nk-error' : '' }}" placeholder="City" required>
                                 @if ($errors->has('city'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('city') }}</strong>
@@ -55,7 +55,7 @@
                                 @endif
 
                                 <div class="nk-gap"></div>
-                                <input type="date" value="" name="date_birth" class=" form-control {{ $errors->has('date_birth') ? ' nk-error' : '' }}" placeholder="Date of birth" required>
+                                <input type="date" value="{{ old('date_birth') }}" name="date_birth" class=" form-control {{ $errors->has('date_birth') ? ' nk-error' : '' }}" placeholder="Date of birth" required>
                                 @if ($errors->has('date_birth'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('date_birth') }}</strong>
@@ -64,8 +64,8 @@
 
                                 <div class="nk-gap"></div>
                                 <select name="sex" class="form-control {{ $errors->has('sex') ? ' nk-error' : '' }}">
-                                    <option value="man">man</option>
-                                    <option value="woman">woman</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
                                 </select>
                                 @if ($errors->has('sex'))
                                     <span class="invalid-feedback" role="alert">
@@ -74,7 +74,12 @@
                                 @endif
 
                                 <div class="nk-gap"></div>
-                                <input type="password" value="" name="password" class="required form-control" placeholder="Password" required>
+                                <input type="password" value="" name="password" class="required form-control {{ $errors->has('password') ? ' nk-error' : '' }}" placeholder="Password" required>
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
 
                                 <div class="nk-gap"></div>
                                 <input type="password" class="form-control" name="password_confirmation" placeholder="Password Confirmation" required>
@@ -94,6 +99,35 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $( function() {
+            $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+                _renderItem: function( ul, item ) {
+                    var li = $( "<li>" ),
+                        wrapper = $( "<div>", { text: item.label } );
+
+                    if ( item.disabled ) {
+                        li.addClass( "ui-state-disabled" );
+                    }
+
+                    $( "<span>", {
+                        style: item.element.attr( "data-style" ),
+                        "class": "ui-icon " + item.element.attr( "data-class" )
+                    })
+                        .appendTo( wrapper );
+
+                    return li.append( wrapper ).appendTo( ul );
+                }
+            });
+
+            $( "#flags" )
+                .iconselectmenu()
+                .iconselectmenu( "menuWidget")
+                .addClass( "ui-menu-icons avatar" );
+        } );
+    </script>
+
     <!-- END: Register -->
 
     <!-- START: Page Background -->
