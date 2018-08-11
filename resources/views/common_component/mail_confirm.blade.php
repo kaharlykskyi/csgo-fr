@@ -1,0 +1,1 @@
+<a href="{{route('confirm_email') . "?email={$email}&token={$token}"}}">Confirm your email</a>
