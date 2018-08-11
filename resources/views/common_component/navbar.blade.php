@@ -150,50 +150,13 @@
                         </li>
                     </ul>
                 </li>
-                <li class=" nk-drop-item">
-                    <a href="store.html">
-                        Store
-
-                    </a><ul class="dropdown">
-
-                        <li>
-                            <a href="store.html">
-                                Store
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store-product.html">
-                                Product
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store-catalog.html">
-                                Catalog
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store-catalog-alt.html">
-                                Catalog Alt
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store-checkout.html">
-                                Checkout
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store-cart.html">
-                                Cart
-
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @guest
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#modalLogin">
+                            {{ __('Login') }}
+                        </a>
+                    </li>
+                @endguest
             </ul>
             <ul class="nk-nav nk-nav-right nk-nav-icons">
 

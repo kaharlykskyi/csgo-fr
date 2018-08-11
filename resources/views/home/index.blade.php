@@ -2,17 +2,17 @@
 
 @section('content')
 
+            <!-- START: Image Slider -->
+            @component('home.components.image_slider')
+
+            @endcomponent
+            <!-- END: Image Slider -->
+
             <!-- START: Latest News -->
                 @component('home.components.latest_news')
 
                 @endcomponent
             <!-- END: Latest News -->
-
-            <!-- START: Image Slider -->
-                @component('home.components.image_slider')
-
-                @endcomponent
-            <!-- END: Image Slider -->
 
             <div class="nk-gap-2"></div>
             <div class="row vertical-gap">

@@ -10,6 +10,67 @@
         </div>
     </div>
     <div class="nk-widget nk-widget-highlighted">
+        <h4 class="nk-widget-title"><span><span class="text-main-1">Live</span> Matches</span></h4>
+        <div class="nk-widget-content">
+            <div class="nk-widget-match">
+                <a href="#">
+                <span class="nk-widget-match-left">
+                    <span class="nk-widget-match-teams">
+                        <span class="nk-widget-match-team-logo">
+                            <figure class="figure">
+                               <img src="{{ asset('images/team-1.jpg') }}" alt="">
+                              <figcaption class="figure-caption">team1</figcaption>
+                            </figure>
+                        </span>
+                        <span class="nk-widget-match-vs">VS</span>
+                        <span class="nk-widget-match-team-logo">
+                            <figure class="figure">
+                               <img src="{{ asset('images/team-2.jpg') }}" alt="">
+                              <figcaption class="figure-caption">team2</figcaption>
+                            </figure>
+                        </span>
+                    </span>
+                </span>
+                    <span class="nk-widget-match-right">
+                        <span class="nk-match-score bg-dark-1">
+                            0 : 0
+                        </span>
+                    </span>
+                    <a href="#" class="btn-side-bar nk-btn nk-btn-rounded nk-btn-color-main-1">Match Details</a>
+                </a>
+            </div>
+
+            <div class="nk-widget-match">
+                <a href="#">
+                <span class="nk-widget-match-left">
+                    <span class="nk-widget-match-teams">
+                        <span class="nk-widget-match-team-logo">
+                            <figure class="figure">
+                               <img src="{{ asset('images/team-1.jpg') }}" alt="">
+                              <figcaption class="figure-caption">team1</figcaption>
+                            </figure>
+                        </span>
+                        <span class="nk-widget-match-vs">VS</span>
+                        <span class="nk-widget-match-team-logo">
+                            <figure class="figure">
+                               <img src="{{ asset('images/team-2.jpg') }}" alt="">
+                              <figcaption class="figure-caption">team2</figcaption>
+                            </figure>
+                        </span>
+                    </span>
+                    </span>
+                        <span class="nk-widget-match-right">
+                        <span class="nk-match-score bg-dark-1">
+                            0 : 0
+                        </span>
+                    </span>
+                    <a href="#" class="btn-side-bar nk-btn nk-btn-rounded nk-btn-color-main-1">Match Details</a>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="nk-widget nk-widget-highlighted">
         <h4 class="nk-widget-title"><span><span class="text-main-1">Next</span> Matches</span></h4>
         <div class="nk-widget-content">
             <div class="nk-widget-match">
@@ -79,38 +140,95 @@
             </div>
         </div>
     </div>
+
     <div class="nk-widget nk-widget-highlighted">
-        <h4 class="nk-widget-title"><span><span class="text-main-1">Most</span> Popular</span></h4>
+        <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Matches</span></h4>
         <div class="nk-widget-content">
-
-            <div class="nk-widget-post">
-                <a href="store-product.html" class="nk-post-image">
-                    <img src="{{ asset('images/product-1-xs.jpg') }}" alt="So saying he unbuckled">
+            <div class="nk-widget-match">
+                <a href="#">
+                <span class="nk-widget-match-left">
+                    <span class="nk-widget-match-teams">
+                        <span class="nk-widget-match-team-logo">
+                            <img src="{{ asset('images/team-1.jpg') }}" alt="">
+                        </span>
+                        <span class="nk-widget-match-vs">VS</span>
+                        <span class="nk-widget-match-team-logo">
+                            <img src="{{ asset('images/team-2.jpg') }}" alt="">
+                        </span>
+                    </span>
+                    <span class="nk-widget-match-date">CS:GO - Apr 28, 2018 8:00 pm</span>
+                </span>
+                    <span class="nk-widget-match-right">
+                    <span class="nk-match-score bg-dark-1">
+                        0 : 0
+                    </span>
+                </span>
                 </a>
-                <h3 class="nk-post-title"><a href="store-product.html">So saying he unbuckled</a></h3>
-                <div class="nk-product-rating" data-rating="4"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i></div>
-                <div class="nk-product-price">€ 23.00</div>
             </div>
 
-            <div class="nk-widget-post">
-                <a href="store-product.html" class="nk-post-image">
-                    <img src="{{ asset('images/product-2-xs.jpg') }}" alt="However, I have reason">
+            <div class="nk-widget-match">
+                <a href="#">
+                <span class="nk-widget-match-left">
+                    <span class="nk-widget-match-teams">
+                        <span class="nk-widget-match-team-logo">
+                            <img src="{{ asset('images/team-3.jpg') }}" alt="">
+                        </span>
+                        <span class="nk-widget-match-vs">VS</span>
+                        <span class="nk-widget-match-team-logo">
+                            <img src="{{ asset('images/team-2.jpg') }}" alt="">
+                        </span>
+                    </span>
+                    <span class="nk-widget-match-date">LoL - Apr 24, 2018 7:20 pm</span>
+                </span>
+                    <span class="nk-widget-match-right">
+                    <span class="nk-match-score bg-dark-1">
+                        0 : 0
+                    </span>
+                </span>
                 </a>
-                <h3 class="nk-post-title"><a href="store-product.html">However, I have reason</a></h3>
-                <div class="nk-product-rating" data-rating="2.5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fas fa-star-half"></i> <i class="far fa-star"></i> <i class="far fa-star"></i></div>
-                <div class="nk-product-price">€ 32.00</div>
             </div>
 
-            <div class="nk-widget-post">
-                <a href="store-product.html" class="nk-post-image">
-                    <img src="{{ asset('images/product-3-xs.jpg') }}" alt="It was some time before">
+            <div class="nk-widget-match">
+                <a href="#">
+                <span class="nk-widget-match-left">
+                    <span class="nk-widget-match-teams">
+                        <span class="nk-widget-match-team-logo">
+                            <img src="{{ asset('images/team-1.jpg') }}" alt="">
+                        </span>
+                        <span class="nk-widget-match-vs">VS</span>
+                        <span class="nk-widget-match-team-logo">
+                            <img src="{{ asset('images/team-4.jpg') }}" alt="">
+                        </span>
+                    </span>
+                    <span class="nk-widget-match-date">Dota 2 - Apr 12, 2018 6:40 pm</span>
+                </span>
+                    <span class="nk-widget-match-right">
+                    <span class="nk-match-score bg-dark-1">
+                        0 : 0
+                    </span>
+                </span>
                 </a>
-                <h3 class="nk-post-title"><a href="store-product.html">It was some time before</a></h3>
-                <div class="nk-product-rating" data-rating="5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                <div class="nk-product-price">€ 14.00</div>
             </div>
-
         </div>
+    </div>
+
+    <div class="nk-widget nk-widget-highlighted">
+        <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> in Forums</span></h4>
+
+        <div class="nk-last-forum">
+            <div class="nk-post-text">
+                <p>And she went on planning to herself how she would manage it.</p>
+                <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
+            </div>
+        </div>
+
+        <div class="nk-last-forum">
+            <div class="nk-post-text">
+                <p>`They must go by the carrier,' she thought; `and how funny it'll seem, sending presents to one's own feet!...</p>
+                <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
+            </div>
+        </div>
+
     </div>
 
     <div class="nk-widget nk-widget-highlighted">

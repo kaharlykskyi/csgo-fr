@@ -1,1 +1,46 @@
 /* PLACE YOU CUSTOM STYLES IN THIS FILE */
+#flags-button{
+    width: 100%;
+    background: transparent;
+    border-radius: 0;
+    border: 1px solid #303e47;
+    padding: 9.5px 10px;
+    font-size: 1em;
+    font-weight: 400;
+    color: #fff;
+}
+
+.ui-widget-content{
+    height: 300px;
+}
+
+.nk-form .invalid-feedback{
+    display: block;
+}
+
+@media only screen and (max-width : 992px) {
+    h3, .h3 {
+        font-size: 1.5rem;
+    }
+}
+
+.btn-side-bar{
+    width: 150px;
+    margin: 10px auto 0;
+    display: block;
+    color: #fff !important;
+}
+
+.nk-last-forum{
+    background-color: #232930;
+    margin: 0;
+    padding: 20px;
+}
+
+.nk-last-forum p{
+    margin-bottom: 5px;
+}
+
+.nk-last-forum:nth-child(2n){
+    background-color: #171e22;
+}
