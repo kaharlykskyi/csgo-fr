@@ -7,7 +7,7 @@
             <div class="modal-body">
                 <h4 class="mb-0"><span class="text-main-1">Password </span> Reset</h4>
                 <div class="nk-gap-1"></div>
-                <form action="{{route('password.email')}}" id="loginFrom" class="nk-form text-white" method="post" aria-label="{{ __('Reset Password') }}">
+                <form action="{{route('password.email')}}" id="resetePassword" class="nk-form text-white" method="post" aria-label="{{ __('Reset Password') }}">
                     @csrf
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -37,6 +37,28 @@
                         </div>
                     </div>
                 </form>
+                <script>
+                    $("#resetePassword").submit(function (e) {
+
+
+                        var form = $(this);
+                        var url = form.attr('action');
+
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: form.serialize(), // serializes the form's elements.
+                            success: function (data) {
+                                location.reload();
+                            },
+                            error: function (data) {
+                                alert(data);
+                            }
+                        });
+
+                        e.preventDefault(); // avoid to execute the actual submit of the form.
+                    });
+                </script>
             </div>
         </div>
     </div>
