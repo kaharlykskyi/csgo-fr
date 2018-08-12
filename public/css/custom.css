@@ -44,3 +44,42 @@
 .nk-last-forum:nth-child(2n){
     background-color: #171e22;
 }
+
+.nk-widget-stream{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.nk-widget-stream-status{
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.nk-widget-stream-flag{
+    width: 35px;
+    margin-right: 15px;
+}
+
+.nk-widget-stream-flag img{
+    width: 100%;
+    height: auto;
+}
+
+.nk-widget-stream-name,.nk-widget-stream-count{
+    color: #fff;
+}
+
+.nk-widget-stream:hover .nk-widget-stream-name,.nk-widget-stream:hover .nk-widget-stream-count{
+    color: #8a1327;
+}
+
+.nk-widget-stream-count{
+    position: absolute;
+    right: 15px;
+    top: 0;
+}
