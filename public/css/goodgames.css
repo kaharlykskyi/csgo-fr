@@ -8273,9 +8273,10 @@ div.nk-error {
 
 .nk-news-box .nk-news-box-item .nk-news-box-item-img {
     float: left;
-    width: 50px;
+    width: 30px;
     margin-right: 10px;
     overflow: hidden;
+    height: 25px;
 }
 
 .nk-news-box .nk-news-box-item .nk-news-box-item-img img {

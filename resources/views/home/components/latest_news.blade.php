@@ -20,21 +20,17 @@
 
                 <div class="nk-news-box-item">
                     <div class="nk-news-box-item-img">
-                        <img class="mr-3" src="{{ asset('images/post-1-sm.jpg') }}" alt="Smell magic in the air. Or maybe barbecue">
+                        <img class="mr-3" src="{{ asset('images/flag/argentina.png') }}" alt="Smell magic in the air. Or maybe barbecue">
                     </div>
                     <h3 class="nk-news-box-item-title">Smell magic in the air. Or maybe barbecue</h3>
-
-                    <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
                 </div>
 
 
                 <div class="nk-news-box-item">
                     <div class="nk-news-box-item-img">
-                        <img src="{{ asset('images/post-2-sm.jpg') }}" alt="Grab your sword and fight the Horde">
+                        <img src="{{ asset('images/flag/canada.png') }}" alt="Grab your sword and fight the Horde">
                     </div>
                     <h3 class="nk-news-box-item-title">Grab your sword and fight the Horde</h3>
-
-                    <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> Sep 5, 2018</div>
                 </div>
 
             </div>
@@ -50,29 +46,23 @@
 
                 <div class="nk-news-box-item">
                     <div class="nk-news-box-item-img">
-                        <img src="{{ asset('images/post-1-sm.jpg') }}" alt="Smell magic in the air. Or maybe barbecue">
+                        <img src="https://www.vakarm.net/uploads/images/coverages/mini_icones/d6e7ad95a3fb5d13d3ac1b277590bb265993d995.jpg" alt="Smell magic in the air. Or maybe barbecue">
                     </div>
                     <div class="nk-news-box-item-img">
-                        <img src="{{ asset('images/post-1-sm.jpg') }}" alt="Smell magic in the air. Or maybe barbecue">
+                        <img src="{{ asset('images/flag/costa_rica.png') }}" alt="Smell magic in the air. Or maybe barbecue">
                     </div>
-                    <img src="{{ asset('images/post-1.jpg') }}" alt="Smell magic in the air. Or maybe barbecue" class="nk-news-box-item-full-img">
                     <h3 class="nk-news-box-item-title">Smell magic in the air. Or maybe barbecue</h3>
-
-                    <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
                 </div>
 
 
                 <div class="nk-news-box-item">
                     <div class="nk-news-box-item-img">
-                        <img src="{{ asset('images/post-2-sm.jpg') }}" alt="Grab your sword and fight the Horde">
+                        <img src="https://www.vakarm.net/uploads/images/coverages/mini_icones/97e3c9b6b1115c92a4a5eccd950d7cd8fd408348.png" alt="Grab your sword and fight the Horde">
                     </div>
                     <div class="nk-news-box-item-img">
-                        <img src="{{ asset('images/post-1-sm.jpg') }}" alt="Smell magic in the air. Or maybe barbecue">
+                        <img src="{{ asset('images/flag/gb.png') }}" alt="Smell magic in the air. Or maybe barbecue">
                     </div>
-                    <img src="{{ asset('images/post-2.jpg') }}" alt="Grab your sword and fight the Horde" class="nk-news-box-item-full-img">
                     <h3 class="nk-news-box-item-title">Grab your sword and fight the Horde</h3>
-
-                    <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> Sep 5, 2018</div>
                 </div>
 
 
