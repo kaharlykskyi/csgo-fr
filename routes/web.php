@@ -11,13 +11,18 @@
 |
 */
 
-
-Auth::routes();
+/*--------SITE--------*/
 
 Route::get('/', 'HomeController@index')->name('home');
-
 Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function (){
     Route::get('/','ProfileController@index')->name('profile');
     Route::get('/send-confirm','ProfileController@sendConfirm')->name('send_confirm');
     Route::get('/confirm-email','ProfileController@confirmEmail')->name('confirm_email');
 });
+
+/*--------ADMIN--------*/
+Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','role']],function (){
+    Route::get('/','DashboardController@index')->name('admin.dashboard');
+});
+
+Auth::routes();
