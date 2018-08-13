@@ -34,18 +34,28 @@
     <!-- Main CSS-->
     <link href="{{asset('admin-content/css/theme.css')}}" rel="stylesheet" media="all">
 
+    <script src="{{asset('admin-content/js/ckeditor/ckeditor.js')}}"></script>
+
 </head>
 
-<body class="animsition">
+<body>
 
 <div class="page-wrapper">
+    <!-- HEADER DESKTOP-->
+        @component('admin_area.component.header_desktop')
+
+        @endcomponent
+    <!-- END HEADER DESKTOP-->
     <!-- MENU SIDEBAR-->
         @component('admin_area.component.sidebar')
 
         @endcomponent
     <!-- END MENU SIDEBAR-->
 
-    @yield('content')
+    <!-- PAGE CONTAINER-->
+    <div class="page-container2">
+        @yield('content')
+    </div>
 </div>
 
 

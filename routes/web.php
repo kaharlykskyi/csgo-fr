@@ -23,6 +23,7 @@ Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function (){
 /*--------ADMIN--------*/
 Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','role']],function (){
     Route::get('/','DashboardController@index')->name('admin.dashboard');
+    Route::resource('/news', 'NewsController',['as' => 'admin']);
 });
 
 Auth::routes();
