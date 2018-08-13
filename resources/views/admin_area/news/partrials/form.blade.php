@@ -56,7 +56,7 @@
             <label for="select" class=" form-control-label">Country</label>
         </div>
         <div class="col-12 col-md-9">
-            <select name="select" id="select" class="form-control" required>
+            <select name="country_id" id="select" class="form-control" required>
                 <option>Please select country</option>
 
                 @foreach($countries as $country)
