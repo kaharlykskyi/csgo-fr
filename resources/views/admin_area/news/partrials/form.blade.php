@@ -17,6 +17,7 @@
         </div>
         <div class="col-12 col-md-9">
             <input type="text" value="@if(isset($news->id)) {{$news->short_title}} @else {{old('short_title')}} @endif" id="short_title" name="short_title" placeholder="Short title news" class="form-control" required>
+            <small class="form-text text-muted">maximum length is 45 characters</small>
             @if ($errors->has('short_title'))
                 <small class="form-text text-danger">{{ $errors->first('short_title') }}</small>
             @endif

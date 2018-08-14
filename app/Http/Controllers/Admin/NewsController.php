@@ -110,6 +110,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
+        dump($request);
         $data = $request->except(['_token','_method']);
 
         if($request->hasFile('banner_image')){

@@ -33,8 +33,15 @@
 
     <!-- Main CSS-->
     <link href="{{asset('admin-content/css/theme.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('css/jquery.bracket.min.css')}}" rel="stylesheet" media="all">
 
     <script src="{{asset('admin-content/js/ckeditor/ckeditor.js')}}"></script>
+    <!-- Jquery JS-->
+    <script src="{{asset('admin-content/vendor/jquery-3.2.1.min.js')}}"></script>
+
+    <script src="{{asset('js/jquery.bracket.min.js')}}"></script>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 
@@ -59,8 +66,7 @@
 </div>
 
 
-<!-- Jquery JS-->
-<script src="{{asset('admin-content/vendor/jquery-3.2.1.min.js')}}"></script>
+
 <!-- Bootstrap JS-->
 <script src="{{asset('admin-content/vendor/bootstrap-4.1/popper.min.js')}}"></script>
 <script src="{{asset('admin-content/vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>

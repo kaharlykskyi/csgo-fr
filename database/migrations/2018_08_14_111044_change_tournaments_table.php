@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeNewsTable extends Migration
+class ChangeTournamentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class ChangeNewsTable extends Migration
      */
     public function up()
     {
-        Schema::table('news', function (Blueprint $table) {
+        Schema::table('tournaments', function (Blueprint $table) {
             $table->foreign('country_id')->references('country')->on('countrys');
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -26,9 +26,9 @@ class ChangeNewsTable extends Migration
      */
     public function down()
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->dropForeign(['country_id']);
+        Schema::table('tournaments', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
+            $table->dropForeign(['country_id']);
         });
     }
 }

@@ -34,6 +34,18 @@
                         </li>
                     </ul>
                 </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-copy"></i>Manage news</a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="{{route('admin.tournaments.create')}}"></i>Create tournaments</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.tournaments.index')}}">All tournaments</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -49,7 +61,7 @@
     <div class="menu-sidebar2__content js-scrollbar1">
         <div class="account2">
             <div class="image img-cir img-120">
-                <img src="{{asset('admin-content/images/icon/avatar-big-01.jpg')}}" alt="John Doe" />
+                <img src="{{asset('admin-content/images/icon/avatar-big-01.jpg')}}" alt="{{ Auth::user()->name }}" />
             </div>
             <h4 class="name">{{ Auth::user()->name }}</h4>
             <a href="{{ route('logout') }}"
@@ -68,7 +80,7 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow" href="#">
-                        <i class="fas fa-edit"></i>Manage news
+                        Manage news
                         <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
@@ -79,6 +91,22 @@
                         </li>
                         <li>
                             <a href="{{route('admin.news.index')}}">All news</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        Manage tournaments
+                        <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="{{route('admin.tournaments.create')}}"></i>Create tournaments</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.tournaments.index')}}">All tournaments</a>
                         </li>
                     </ul>
                 </li>
