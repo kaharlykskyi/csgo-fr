@@ -27,7 +27,7 @@
                         <i class="fas fa-copy"></i>Manage news</a>
                     <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                         <li>
-                            <a href="{{route('admin.news.create')}}">Create new news</a>
+                            <a href="{{route('admin.news.create')}}">Create news</a>
                         </li>
                         <li>
                             <a href="{{route('admin.news.index')}}">All news</a>

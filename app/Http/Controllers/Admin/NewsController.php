@@ -42,12 +42,21 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
-        Validator::make($data,[
+        
+        $validate = Validator::make($data,[
             'title' => 'required',
             'short_title' => 'required|max:45',
             'content_news' => 'required',
-            'banner_image' => 'required|file'
+            'banner_image' => 'required|file',
+            'publication_date' => 'date_format:Y-m-d'
         ]);
+
+        if ($validate->fails()) {
+            return redirect()->route('admin.news.create')
+                ->withErrors($validate)
+                ->withInput();
+        }
+
         if($request->hasFile('banner_image')){
             $file = $request->file('banner_image');
             $data['banner_image'] = $file->getClientOriginalName();

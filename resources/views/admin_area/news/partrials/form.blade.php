@@ -4,7 +4,7 @@
             <label for="title" class=" form-control-label">Title</label>
         </div>
         <div class="col-12 col-md-9">
-            <input type="text" id="title" value="@if(isset($news->id)) {{$news->title}} @endif" name="title" placeholder="Title news" class="form-control" required>
+            <input type="text" id="title" value="@if(isset($news->id)) {{$news->title}} @else {{old('title')}} @endif" name="title" placeholder="Title news" class="form-control" required>
             @if ($errors->has('title'))
                 <small class="form-text text-danger">{{ $errors->first('title') }}</small>
             @endif
@@ -16,7 +16,7 @@
             <label for="short_title" class=" form-control-label">Short Title</label>
         </div>
         <div class="col-12 col-md-9">
-            <input type="text" value="@if(isset($news->id)) {{$news->short_title}} @endif" id="short_title" name="short_title" placeholder="Short title news" class="form-control" required>
+            <input type="text" value="@if(isset($news->id)) {{$news->short_title}} @else {{old('short_title')}} @endif" id="short_title" name="short_title" placeholder="Short title news" class="form-control" required>
             @if ($errors->has('short_title'))
                 <small class="form-text text-danger">{{ $errors->first('short_title') }}</small>
             @endif
@@ -29,7 +29,7 @@
         </div>
         <div class="col-12 col-md-9">
             <textarea id="editor" name="content_news" rows="9" placeholder="Content..." class="form-control" required>
-                @if(isset($news->id)) {{$news->content_news}} @endif
+                @if(isset($news->id)) {{$news->content_news}} @else {{old('content_news')}} @endif
             </textarea>
             @if ($errors->has('content_news'))
                 <small class="form-text text-danger">{{ $errors->first('content_news') }}</small>
@@ -72,14 +72,14 @@
             <label for="publication_date" class=" form-control-label">Data publish News</label>
         </div>
         <div class="col-12 col-md-9">
-            <input type="date" value="@if(isset($news->id)) {{$news->publication_date}} @endif" id="publication_date" name="publication_date" placeholder="Data publish News" class="form-control">
-            @if ($errors->has('short_title'))
+            <input type="date" value="@if(isset($news->id)){{$news->publication_date}}@else{{old('publication_date')}}@endif" id="publication_date" name="publication_date" placeholder="Data publish News" class="form-control">
+            @if ($errors->has('publication_date'))
                 <small class="form-text text-danger">{{ $errors->first('publication_date') }}</small>
             @endif
             @if(isset($news->id))
                 <script>
                     var dateControl = document.querySelector('input[type="date"]');
-                    dateControl.value = '{{$news->publication_date}}';
+                    dateControl.value = '@if(isset($news->id)){{$news->publication_date}}@else{{old('publication_date')}}@endif';
                 </script>
             @endif
         </div>
