@@ -102,7 +102,7 @@
                                                 case "entry-no-score":
                                                 case "entry-default-win":
                                                 case "entry-complete":
-                                                    container.append('<img src="site/png/'+data.flag+'.png" /> ').append(data.name)
+                                                    container.append('<img src="{{asset('images/flag')}}/'+data.flag+'.png" /> ').append(data.name)
                                                     return;
                                             }
                                         }
