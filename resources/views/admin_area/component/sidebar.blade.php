@@ -75,7 +75,7 @@
                     </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
-                            <a href="{{route('admin.news.create')}}"></i>Create new news</a>
+                            <a href="{{route('admin.news.create')}}"></i>Create news</a>
                         </li>
                         <li>
                             <a href="{{route('admin.news.index')}}">All news</a>

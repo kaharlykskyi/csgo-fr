@@ -18,8 +18,9 @@
                     <table class="table table-borderless table-striped table-earning">
                         <thead>
                         <tr>
-                            <th>title</th>
-                            <th>Data publish</th>
+                            <th>Title</th>
+                            <th>Short title</th>
+                            <th>Date publish</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -27,9 +28,13 @@
                             @forelse($news as $val)
                                 <tr>
                                     <td><h3>{{$val->title}}</h3></td>
+                                    <td><h3>{{$val->short_title}}</h3></td>
                                     <td>{{$val->publication_date}}</td>
                                     <td style="display: flex;justify-content: space-around;">
                                         <a class="btn btn-primary mb-2" href="{{route('admin.news.edit',$val->id)}}" role="button">Edit</a>
+
+                                        <a class="btn btn-warning mb-2" href="{{route('admin.news.show',$val->id)}}" role="link" target="_blank">View</a>
+
                                         <form onsubmit="if(confirm('DELETE?')){return true}else{return false}"
                                               action="{{route('admin.news.destroy',$val->id)}}" method="post">
                                             @csrf

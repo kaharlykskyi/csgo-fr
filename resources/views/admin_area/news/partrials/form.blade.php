@@ -39,7 +39,7 @@
 
     <div class="row form-group">
         <div class="col col-md-3">
-            <label for="banner_image" class=" form-control-label">Image news</label>
+            <label for="banner_image" class=" form-control-label">News banner</label>
         </div>
         <div class="col-12 col-md-9">
             @if(isset($news->id))
@@ -69,7 +69,7 @@
 
     <div class="row form-group">
         <div class="col col-md-3">
-            <label for="publication_date" class=" form-control-label">Data publish News</label>
+            <label for="publication_date" class=" form-control-label">Date of the publication</label>
         </div>
         <div class="col-12 col-md-9">
             <input type="date" value="@if(isset($news->id)){{$news->publication_date}}@else{{old('publication_date')}}@endif" id="publication_date" name="publication_date" placeholder="Data publish News" class="form-control">
@@ -87,7 +87,7 @@
 
     <div class="row form-group">
         <div class="col col-md-3">
-            <label class=" form-control-label">Show in homa page</label>
+            <label class=" form-control-label">Show in home page</label>
         </div>
         <div class="col col-md-9">
             <label class="switch switch-3d switch-success mr-3">
