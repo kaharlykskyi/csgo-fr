@@ -121,6 +121,8 @@ class TournamentController extends Controller
      */
     public function update(Request $request, Tournament $tournament)
     {
+        $data = $request->post();
+
         $validate = Validator::make($data,[
             'title' => 'required',
             'short_title' => 'required|max:45',
