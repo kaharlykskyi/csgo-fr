@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::get('/','DashboardController@index')->name('admin.dashboard');
     Route::resource('/news', 'NewsController',['as' => 'admin']);
     Route::resource('/tournaments','TournamentController',['as' => 'admin']);
+    Route::resource('/matches','MatchController',['as' => 'admin']);
 });
 
 Auth::routes();

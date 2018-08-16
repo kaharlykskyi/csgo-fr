@@ -39,9 +39,32 @@
     <!-- Jquery JS-->
     <script src="{{asset('admin-content/vendor/jquery-3.2.1.min.js')}}"></script>
 
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.min.js"></script>
+
     <script src="{{asset('js/jquery.bracket.min.js')}}"></script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="{{asset('js/bootstrap-datetimepicker.js')}}"></script>
+
+    <link href="{{asset('css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" media="all">
+
+    <script src="{{asset('admin-content/vendor/jqDynaForm/jqDynaForm.js')}}"></script>
+
+    <link href="{{asset('admin-content/vendor/jqDynaForm/jqDynaForm.css')}}" rel="stylesheet" media="all">
+
+    <style>
+        .datetimepicker{
+            top: 295px !important;
+        }
+        #score .footer,#score .delete{
+            display: none !important;
+        }
+    </style>
 
 </head>
 

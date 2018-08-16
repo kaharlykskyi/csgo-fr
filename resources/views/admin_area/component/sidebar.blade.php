@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="header-mobile-inner">
                 <a class="logo" href="{{route('admin.dashboard')}}">
-                    <img src="{{asset('images/icon/logo.png')}}" alt="CoolAdmin" />
+                    <img src="{{asset('admin-content/images/icon/logo.png')}}" alt="CoolAdmin" />
                 </a>
                 <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -46,6 +46,18 @@
                         </li>
                     </ul>
                 </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-copy"></i>Manage matches</a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="{{route('admin.tournaments.create')}}"></i>Create match</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.tournaments.index')}}">All matches</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -60,9 +72,6 @@
     </div>
     <div class="menu-sidebar2__content js-scrollbar1">
         <div class="account2">
-            <div class="image img-cir img-120">
-                <img src="{{asset('admin-content/images/icon/avatar-big-01.jpg')}}" alt="{{ Auth::user()->name }}" />
-            </div>
             <h4 class="name">{{ Auth::user()->name }}</h4>
             <a href="{{ route('logout') }}"
                onclick="event.preventDefault();
@@ -107,6 +116,22 @@
                         </li>
                         <li>
                             <a href="{{route('admin.tournaments.index')}}">All tournaments</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        Manage matches
+                        <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="{{route('admin.matches.create')}}"></i>Create match</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.matches.index')}}">All matches</a>
                         </li>
                     </ul>
                 </li>
