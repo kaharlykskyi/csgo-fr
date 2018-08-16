@@ -38,12 +38,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="nk-widget">
+                {{--<div class="nk-widget">
                     <h4 class="nk-widget-title"><span class="text-main-1">In</span> Twitter</h4>
                     <div class="nk-widget-content">
                         <div class="nk-twitter-list" data-twitter-count="1"></div>
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
         <div class="nk-gap-3"></div>

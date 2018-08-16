@@ -8,7 +8,7 @@
 
         <li><span class="fa fa-angle-right"></span></li>
 
-        <li><a href="#">News</a></li>
+        <li><a href="#">Tournament</a></li>
 
 
         <li><span class="fa fa-angle-right"></span></li>

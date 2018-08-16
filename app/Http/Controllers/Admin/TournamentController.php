@@ -41,14 +41,6 @@ class TournamentController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->ajax()){
-            $headers = getallheaders();
-            DB::table('tournaments')
-                ->where('id', $headers['Tournament'])
-                ->update(['tournament_metadata' => json_encode($request->post())]);
-            return "UPDATE TABLE";
-        }
-
         $data = $request->except('_token');
 
         $data = $request->except('_token');
@@ -97,7 +89,7 @@ class TournamentController extends Controller
      */
     public function show(Tournament $tournament)
     {
-        //
+        return view('admin_area.tournaments.view_tournament',compact('tournament'));
     }
 
     /**
@@ -121,6 +113,11 @@ class TournamentController extends Controller
      */
     public function update(Request $request, Tournament $tournament)
     {
+        if($request->ajax()){
+            $tournament->update(['tournament_metadata' => json_encode($request->post())]);
+            return "UPDATE Tournament Brackets";
+        }
+
         $data = $request->post();
 
         $validate = Validator::make($data,[

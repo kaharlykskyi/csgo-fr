@@ -23,9 +23,9 @@
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
-                                       aria-selected="true">Tournament info</a>
+                                       aria-selected="true">Tournament Info</a>
                                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
-                                       aria-selected="false">Tournament chart</a>
+                                       aria-selected="false">Tournament Brackets</a>
                                 </div>
                             </nav>
                             <div class="tab-content pl-3 pt-2" id="nav-tabContent">
@@ -38,6 +38,9 @@
                                     </form>
                                 </div>
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                    <div class="alert alert-info m-t-5 m-b-5" role="alert">
+                                        Save automatically!
+                                    </div>
                                     <div id="brackets">
                                     </div>
                                     <script>
@@ -70,20 +73,19 @@
                                         function saveFn(data) {
                                             $.ajaxSetup({
                                                 headers: {
-                                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                                                    'Tournament' : '{{$tournament->id}}'
+                                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                                 },
 
                                             });
 
                                             $.ajax({
-                                                type: "POST",
-                                                url: "{{route('admin.tournaments.store')}}",
+                                                type: "PATCH",
+                                                url: "{{route('admin.tournaments.update',$tournament->id)}}",
                                                 data: JSON.stringify(data),
                                                 contentType: "application/json",
                                                 dataType: "json",
                                                 success: function (data) {
-                                                    alert(data)
+                                                    alert(data);
                                                 },
 
                                             });
@@ -124,5 +126,7 @@
             </div>
         </div>
     </div>
+
+
 
 @endsection
