@@ -83,7 +83,9 @@
                             jQuery('#brackets').bracket({
                                 init: autoCompleteData,
                                 decorator: {edit: edit_fn,
-                                    render: render_fn}
+                                    render: render_fn},
+                                teamWidth: 150,
+                                matchMargin: 20
                             })
                         </script>
                     </div>

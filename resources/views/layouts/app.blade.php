@@ -73,6 +73,12 @@
     <script src="{{asset('js/jquery.bracket.min.js')}}"></script>
     <link href="{{asset('css/jquery.bracket.min.css')}}" rel="stylesheet" media="all">
 
+    <style>
+        #brackets img{
+            width: 25px;
+        }
+    </style>
+
 </head>
 
 
