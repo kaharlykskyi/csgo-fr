@@ -122,7 +122,7 @@
                                                 contentType: "application/json",
                                                 dataType: "json",
                                                 success: function (data) {
-                                                    alert("DATA UPDATE")
+                                                    alert("Information updated")
                                                 },
                                             });
 
@@ -266,8 +266,8 @@
                                             contentType: "application/json",
                                             dataType: "json",
                                             success: function (data) {
-                                                //alert("Information updated")
-                                                alert(JSON.stringify(data, null, 4))
+                                                alert("Information updated")
+                                                //alert(JSON.stringify(data, null, 4))
                                             },
                                         });
 
