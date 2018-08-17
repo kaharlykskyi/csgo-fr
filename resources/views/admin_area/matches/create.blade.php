@@ -108,8 +108,7 @@
 
                                 $.ajaxSetup({
                                     headers: {
-                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                                        'Request Method' : 'PATCH'
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                     },
 
                                 });
