@@ -77,6 +77,9 @@
         #brackets img{
             width: 25px;
         }
+        img {
+            max-width: 100%;
+        }
     </style>
 
 </head>

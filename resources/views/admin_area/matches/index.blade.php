@@ -34,7 +34,7 @@
                                                 <?php
                                                 $team_data = json_decode($val->team);
                                                 //print_r($team_data);
-                                                echo $team_data[0]->team_names1 . ' <strong>vs</strong> ' . $team_data[0]->team_names2;
+                                                echo $team_data->team_names1 . ' <strong>vs</strong> ' . $team_data->team_names2;
                                                 ?>
                                             @endif
                                         </p>

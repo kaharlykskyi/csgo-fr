@@ -72,7 +72,7 @@
 
                         <div class="card-footer">
                             <button type="submit" id="saveSmallForm" class="btn btn-primary btn-sm">
-                                <i class="fa fa-dot-circle-o"></i> Submit
+                                <i class="fa fa-dot-circle-o"></i> {{__('Next')}}
                             </button>
                         </div>
                         <script type="text/javascript">

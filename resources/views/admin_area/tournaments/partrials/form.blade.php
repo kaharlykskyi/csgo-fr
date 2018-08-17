@@ -100,10 +100,7 @@
 
 <div class="card-footer">
     <button type="submit" class="btn btn-primary btn-sm">
-        <i class="fa fa-dot-circle-o"></i> @if(isset($tournament->id)){{__('Submit')}} @else {{__('Next')}} @endif
-    </button>
-    <button type="reset" class="btn btn-danger btn-sm">
-        <i class="fa fa-ban"></i> Reset
+        <i class="fa fa-dot-circle-o"></i> @if(isset($tournament->id)){{__('Save')}} @else {{__('Next')}} @endif
     </button>
 </div>
 

@@ -102,10 +102,10 @@
 
     <div class="card-footer">
         <button type="submit" class="btn btn-primary btn-sm">
-            <i class="fa fa-dot-circle-o"></i> Submit
-        </button>
-        <button type="reset" class="btn btn-danger btn-sm">
-            <i class="fa fa-ban"></i> Reset
+            <i class="fa fa-dot-circle-o"></i>
+
+                {{__('Save')}}
+
         </button>
     </div>
 

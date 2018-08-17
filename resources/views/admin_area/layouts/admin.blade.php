@@ -35,13 +35,14 @@
     <link href="{{asset('admin-content/css/theme.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('css/jquery.bracket.min.css')}}" rel="stylesheet" media="all">
 
-    <script src="{{asset('admin-content/js/ckeditor/ckeditor.js')}}"></script>
     <!-- Jquery JS-->
     <script src="{{asset('admin-content/vendor/jquery-3.2.1.min.js')}}"></script>
 
     <script src="https://code.jquery.com/jquery-migrate-3.0.1.min.js"></script>
 
     <script src="{{asset('js/jquery.bracket.min.js')}}"></script>
+
+    <script src="{{asset('admin-content/js/ckeditor/ckeditor.js')}}"></script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -56,6 +57,8 @@
     <script src="{{asset('admin-content/vendor/jqDynaForm/jqDynaForm.js')}}"></script>
 
     <link href="{{asset('admin-content/vendor/jqDynaForm/jqDynaForm.css')}}" rel="stylesheet" media="all">
+
+    <script src="{{asset('vendor/laravel-filemanager/js/lfm.js')}}"></script>
 
     <style>
         .datetimepicker{

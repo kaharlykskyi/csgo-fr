@@ -69,7 +69,8 @@ class MatchController extends Controller
      */
     public function show(Match $match)
     {
-        //
+        $countrys = DB::table('countrys')->get();
+        return view('admin_area.matches.view_match',compact('match','countrys'));
     }
 
     /**
@@ -96,7 +97,7 @@ class MatchController extends Controller
 
         if($request->team){
             $match->update([
-                'team' => json_encode($request->teamArray)
+                'team' => json_encode($request->post())
             ]);
 
             return $request;

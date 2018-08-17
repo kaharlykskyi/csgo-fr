@@ -82,7 +82,7 @@
 
                                     <div class="card-footer">
                                         <button type="submit" id="saveSmallForm" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-dot-circle-o"></i> Submit
+                                            <i class="fa fa-dot-circle-o"></i> {{__('Save')}}
                                         </button>
                                     </div>
                                     <script type="text/javascript">
@@ -147,7 +147,7 @@
 
                                     <div class="card-footer">
                                         <button type="submit" id="saveMapForm" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-dot-circle-o"></i> Submit
+                                            <i class="fa fa-dot-circle-o"></i> {{__('Save')}}
                                         </button>
                                     </div>
 
@@ -170,6 +170,17 @@
                                                             <option value="Dust II">Dust II</option>
                                                         </select>
                                                     </div>
+                                                </div>
+                                                <div class="col-12 m-b-5">
+                                                    <div class="input-group">
+                                                           <span class="input-group-btn">
+                                                             <a id="map_img" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                                               <i class="fa fa-picture-o"></i> Choose
+                                                             </a>
+                                                           </span>
+                                                        <input id="thumbnail" class="form-control" type="text" name="map_img">
+                                                    </div>
+                                                    <img id="holder" style="margin-top:15px;max-height:100px;">
                                                 </div>
                                                 <div class="col-6">
                                                     <table>
@@ -228,9 +239,9 @@
 
                                     var mapJson = {
                                         @if(isset($match->map))
-                                            "mapArray": {!! $match->map  !!},
-                                         @else
-                                            "mapArray" : []
+                                        "mapArray": {!! $match->map  !!},
+                                        @else
+                                        "mapArray" : []
                                         @endif
 
                                     };
@@ -255,12 +266,15 @@
                                             contentType: "application/json",
                                             dataType: "json",
                                             success: function (data) {
-                                                alert("DATA UPDATE")
-                                                //alert(JSON.stringify(data, null, 4))
+                                                //alert("Information updated")
+                                                alert(JSON.stringify(data, null, 4))
                                             },
                                         });
 
                                     });
+
+
+                                    $('#map_img').filemanager('image');
 
                                 </script>
                             </div>
@@ -273,48 +287,66 @@
                                                 <label for="match_day" class=" form-control-label">Teams</label>
                                             </div>
                                             <div class="col-12 col-md-10">
-                                                <div data-holder-for="team"></div>
+                                                <div class="product m-b-15">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="team1">Team 1</span>
+                                                                </div>
+                                                                <input name="team_names1" type="text" class="form-control" placeholder="Team name" aria-describedby="team1">
+                                                            </div>
+                                                            <div class="m-b-5 m-t-5">
+                                                                <div class="input-group">
+                                                                   <span class="input-group-btn">
+                                                                     <a id="logo1" data-input="thumbnaiTeam1" data-preview="holderTeam1" class="btn btn-primary">
+                                                                       <i class="fa fa-picture-o"></i> Choose
+                                                                     </a>
+                                                                   </span>
+                                                                    <input placeholder="Team logo" id="thumbnaiTeam1" class="form-control" type="text" name="team1_logo">
+                                                                </div>
+                                                                <img id="holderTeam1" style="margin-top:15px;max-height:100px;">
+                                                            </div>
+                                                            <div style="margin:10px; border-left:3px solid black" data-holder-for="team_users1"></div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="team1">Team 2</span>
+                                                                </div>
+                                                                <input name="team_names2" type="text" class="form-control" placeholder="Team name" aria-describedby="team1">
+                                                            </div>
+                                                            <div class="m-b-5 m-t-5">
+                                                                <div class="input-group">
+                                                                   <span class="input-group-btn">
+                                                                     <a id="logo2" data-input="thumbnaiTeam2" data-preview="holderTeam2" class="btn btn-primary">
+                                                                       <i class="fa fa-picture-o"></i> Choose
+                                                                     </a>
+                                                                   </span>
+                                                                    <input placeholder="Team logo" id="thumbnaiTeam2" class="form-control" type="text" name="team2_logo">
+                                                                </div>
+                                                                <img id="holderTeam2" style="margin-top:15px;max-height:100px;">
+                                                            </div>
+                                                            <div style="margin:10px; border-left:3px solid black" data-holder-for="team_users2"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="card-footer">
                                         <button type="submit" id="saveTeamForm" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-dot-circle-o"></i> Submit
+                                            <i class="fa fa-dot-circle-o"></i> {{__('Save')}}
                                         </button>
                                     </div>
                                 </div>
 
                                 <!-- Subforms library -->
                                 <div style="display:none">
-                                    <div data-name="team" data-label="Team" class="product m-b-15">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="team1">Team 1</span>
-                                                    </div>
-                                                    <input name="team_names1" type="text" class="form-control" placeholder="Team name" aria-describedby="team1">
-                                                </div>
-                                                <div style="margin:10px; border-left:3px solid black" data-holder-for="team_users1"></div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="team1">Team 2</span>
-                                                    </div>
-                                                    <input name="team_names2" type="text" class="form-control" placeholder="Team name" aria-describedby="team1">
-                                                </div>
-                                                <div style="margin:10px; border-left:3px solid black" data-holder-for="team_users2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div style="display:none">
                                     <div data-name="team_users1" data-label="Team" class="product m-b-15">
                                         <table>
-                                            <thead>User info</thead>
+                                            <thead>Player info</thead>
                                             <tr>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -344,7 +376,7 @@
                                 <div style="display:none">
                                     <div data-name="team_users2" data-label="Team" class="product m-b-15">
                                         <table>
-                                            <thead>User info</thead>
+                                            <thead>Player info</thead>
                                             <tr>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -373,14 +405,20 @@
 
                                 <script type="text/javascript">
 
-                                    var teamJson = {
-                                        @if(isset($match->team))
-                                        "teamArray": {!! $match->team  !!},
-                                        @else
-                                        "teamArray" : []
-                                        @endif
 
-                                    };
+                                            @if(isset($match->team))
+                                    var teamJson = {!! $match->team  !!};
+                                            @else
+                                    var teamJson = {
+                                            "team_names1" : "",
+                                            "team_names2" : "",
+                                            "team1_logo": "",
+                                            "team2_logo": "",
+                                            "team_users1Array": [{"user_name": "sdfdf", "country_id": "Albania"}]
+                                        };
+                                    @endif
+
+
 
                                     $('#teamForm').jqDynaForm();
                                     $('#teamForm').jqDynaForm('set', teamJson);
@@ -402,12 +440,15 @@
                                             contentType: "application/json",
                                             dataType: "json",
                                             success: function (data) {
-                                                alert("DATA UPDATE")
+                                                alert("Information updated")
                                                 //alert(JSON.stringify(data, null, 4))
                                             },
                                         });
 
                                     });
+
+                                    $('#logo1').filemanager('image');
+                                    $('#logo2').filemanager('image');
 
                                 </script>
                             </div>
