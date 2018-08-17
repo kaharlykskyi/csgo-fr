@@ -60,11 +60,18 @@
                             type: "POST",
                             url: url,
                             data: form.serialize(), // serializes the form's elements.
-                            success: function (data) {
+                            success: function () {
                                 location.reload();
                             },
                             error: function (data) {
-                                alert(data);
+                                var buff = JSON.stringify(data, null, 4);
+                                var error = JSON.parse(buff);
+                                if(error.responseJSON.errors.email === undefined){
+                                    alert(error.responseJSON.errors.password[0]);
+                                } else {
+                                    alert(error.responseJSON.errors.email[0]);
+                                }
+
                             }
                         });
 
