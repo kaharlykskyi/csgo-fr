@@ -1,3 +1,12 @@
+@auth
+    @if(Auth::user()->role == 'admin')
+        <div class="row bg-dark pt-5 pb-5">
+            <div class="col-12 text-center">
+                <a href="{{route('admin.dashboard')}}">Admin</a>
+            </div>
+        </div>
+    @endif
+@endauth
 <div class="nk-contacts-top">
     <div class="container">
         <div class="nk-contacts-left">

@@ -110,5 +110,5 @@
     </div>
 
     <script>
-        CKEDITOR.replace('editor');
+        CKEDITOR.replace('editor',options);
     </script>

@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                     <div class="alert alert-info m-t-5 m-b-5" role="alert">
-                                        Save automatically!
+                                        Saved automatically!
                                     </div>
                                     <div id="brackets">
                                     </div>

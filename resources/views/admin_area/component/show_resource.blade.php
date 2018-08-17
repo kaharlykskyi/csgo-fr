@@ -10,8 +10,8 @@
     <tbody>
     @forelse($data as $val)
         <tr>
-            <td><h3>{{$val->title}}</h3></td>
-            <td><h3>{{$val->short_title}}</h3></td>
+            <td><p>{{ str_limit($val->title, 20, ' (...)')}}</p></td>
+            <td><p>{{ str_limit($val->short_title, 20, ' (...)')}}</p></td>
             <td>{{$val->publication_date}}</td>
             <td style="display: flex;justify-content: space-around;">
                 <a class="btn btn-primary mb-2" href="{{route($edit_rout,$val->id)}}" role="button">Edit</a>
