@@ -13,7 +13,7 @@
                 <!-- START: Post Text -->
                 <div class="nk-post-text mt-0">
                     <div class="nk-post-img">
-                        <img src="{{asset('assets/images/news_img/' . $tournament->banner_image)}}" alt="{{$tournament->title}}">
+                        <img src="{{asset('assets/images/tournament_img/' . $tournament->banner_image)}}" alt="{{$tournament->title}}">
                     </div>
                     <div class="nk-gap-1"></div>
                     <h1 class="nk-post-title h4">{{$tournament->title}}</h1>
