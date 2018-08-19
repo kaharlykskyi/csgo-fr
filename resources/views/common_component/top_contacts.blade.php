@@ -1,12 +1,3 @@
-@auth
-    @if(Auth::user()->role == 'admin')
-        <div class="row bg-dark pt-5 pb-5">
-            <div class="col-12 text-center">
-                <a href="{{route('admin.dashboard')}}">Admin</a>
-            </div>
-        </div>
-    @endif
-@endauth
 <div class="nk-contacts-top">
     <div class="container">
         <div class="nk-contacts-left">
@@ -78,6 +69,11 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
+                            @if(Auth::user()->role == 'admin')
+                                <a class="dropdown-item" href="{{route('admin.dashboard')}}">
+                                    {{ __('Admin') }}
+                                </a>
+                            @endif
                         </div>
                     @endguest
                 </li>
