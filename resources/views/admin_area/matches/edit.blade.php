@@ -171,16 +171,16 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 m-b-5">
+                                                <div class="col-12 m-b-5 form_add_img_map">
                                                     <div class="input-group">
                                                            <span class="input-group-btn">
-                                                             <a id="map_img" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                                             <a data-input="thumbnail" data-preview="holder" class="btn btn-primary map_img">
                                                                <i class="fa fa-picture-o"></i> Choose
                                                              </a>
                                                            </span>
-                                                        <input id="thumbnail" class="form-control" type="text" name="map_img">
+                                                        <input id="thumbnail" class="form-control inputform_add_img_map" type="text" name="map_img">
                                                     </div>
-                                                    <img id="holder" style="margin-top:15px;max-height:100px;">
+                                                    <img id="holder" class="preview_form_add_img_map" style="margin-top:15px;max-height:100px;">
                                                 </div>
                                                 <div class="col-6">
                                                     <table>
@@ -273,8 +273,48 @@
 
                                     });
 
+                                    var count_id = 0;
 
-                                    $('#map_img').filemanager('image');
+                                    $('#mapForm .add').on('click', function(){
+                                        var map_input = $('div.form_add_img_map');
+
+                                        for(var i = 0; i < map_input.length; i++){
+                                            var id = 'map_img' + count_id;
+                                            $(map_input[i]).find('a.map_img')
+                                                .attr('id', id)
+                                                .attr('data-input','thumbnail' + count_id)
+                                                .attr('data-preview', 'holder' + count_id);
+                                            $(map_input[i]).find('input.inputform_add_img_map')
+                                                .attr('id', 'thumbnail' + count_id);
+                                            $(map_input[i]).find('img.preview_form_add_img_map')
+                                                .attr('id', 'holder' + count_id);
+
+                                            $('#' + id).filemanager('image');
+                                            count_id++;
+                                        }
+                                    });
+
+                                    $(document).ready(function () {
+                                        var map_input = $('div.form_add_img_map');
+
+                                        for(var i = 0; i < map_input.length; i++){
+                                            var id = 'map_img' + count_id;
+                                            $(map_input[i]).find('a.map_img')
+                                                .attr('id', id)
+                                                .attr('data-input','thumbnail' + count_id)
+                                                .attr('data-preview', 'holder' + count_id);
+                                            $(map_input[i]).find('input.inputform_add_img_map')
+                                                .attr('id', 'thumbnail' + count_id);
+                                            $(map_input[i]).find('img.preview_form_add_img_map')
+                                                .attr('id', 'holder' + count_id);
+
+                                            $('#' + id).filemanager('image');
+                                            count_id++;
+
+                                            console.log($(map_input[i]).find('img.preview_form_add_img_map'));
+                                        }
+                                    })
+
 
                                 </script>
                             </div>
