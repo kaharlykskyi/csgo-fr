@@ -14,7 +14,21 @@
                 @endcomponent
             <!-- END: Latest News -->
 
+            {{--TODO:delete when create out put match info--}}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mb-5">
+                        @forelse($matches as $match)
+                            <a href="{{route('match_page',$match->id)}}">Match - {{$match->match_day}}</a><br>
+                        @empty
+                            <p>no matches</p>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+
             <div class="nk-gap-2"></div>
+
             <div class="row vertical-gap">
                 <div class="col-lg-8">
 

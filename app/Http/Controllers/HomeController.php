@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Match;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,6 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        $matches = Match::all();
+        return view('home.index', compact('matches'));
     }
 }

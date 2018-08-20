@@ -10,7 +10,6 @@
         <?php
             $team = json_decode($match->team);
             $streams = json_decode($match->stream_link);
-            dump($team);
         ?>
 
     <!-- START: Now Playing -->

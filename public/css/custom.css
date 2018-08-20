@@ -83,3 +83,9 @@
     right: 15px;
     top: 0;
 }
+
+.team-content, .map-content{
+    padding: 20px;
+    background-color: #232930;
+    border: 1px solid #293139;
+}
