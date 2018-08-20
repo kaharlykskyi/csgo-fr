@@ -7996,10 +7996,6 @@ div.nk-error {
             transform: scale(1.05);
 }
 
-.nk-post-img:hover {
-    opacity: .8;
-}
-
 .nk-post-img .nk-post-comments-count {
     position: absolute;
     display: block;

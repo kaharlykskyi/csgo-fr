@@ -347,7 +347,7 @@
                                                                 </div>
                                                                 <img id="holderTeam1" style="margin-top:15px;max-height:100px;">
                                                             </div>
-                                                            <div style="margin:10px; border-left:3px solid black" data-holder-for="team_users1"></div>
+                                                            <div style="margin:10px; border-left:3px solid rgba(0, 0, 0, 0.31); padding-left: 10px;" data-holder-for="team_users1"></div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="input-group mb-3">
@@ -367,7 +367,7 @@
                                                                 </div>
                                                                 <img id="holderTeam2" style="margin-top:15px;max-height:100px;">
                                                             </div>
-                                                            <div style="margin:10px; border-left:3px solid black" data-holder-for="team_users2"></div>
+                                                            <div style="margin:10px; border-left:3px solid rgba(0, 0, 0, 0.31); padding-left: 10px;" data-holder-for="team_users2"></div>
                                                         </div>
                                                     </div>
                                                 </div>
