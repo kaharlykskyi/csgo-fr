@@ -80,6 +80,10 @@
         img {
             max-width: 100%;
         }
+        .logo-team-block{
+            display: flex !important;
+            flex-wrap: nowrap !important;
+        }
     </style>
 
 </head>

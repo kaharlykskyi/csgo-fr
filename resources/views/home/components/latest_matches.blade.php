@@ -13,7 +13,7 @@
             <div class="nk-gap-2"></div>
             <div class="nk-match">
                 <div class="nk-match-team-left">
-                    <a href="#">
+                    <a class="logo-team-block" href="#">
                         <span class="nk-match-team-logo">
                             <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
                         </span>
@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="nk-match-team-right">
-                    <a href="#">
+                    <a class="logo-team-block" href="#">
                         <span class="nk-match-team-name">
                            {{$team->team_names2}}
                         </span>
@@ -60,7 +60,7 @@
             <div class="nk-gap-2"></div>
             <div class="nk-match">
                 <div class="nk-match-team-left">
-                    <a href="#">
+                    <a class="logo-team-block" href="#">
                         <span class="nk-match-team-logo">
                             <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
                         </span>
@@ -76,7 +76,7 @@
                     </a>
                 </div>
                 <div class="nk-match-team-right">
-                    <a href="#">
+                    <a class="logo-team-block" href="#">
                         <span class="nk-match-team-name">
                            {{$team->team_names2}}
                         </span>
@@ -107,7 +107,7 @@
     <div class="nk-gap-2"></div>
     <div class="nk-match">
         <div class="nk-match-team-left">
-            <a href="{{route('match_page',$val->id)}}">
+            <a class="logo-team-block" href="{{route('match_page',$val->id)}}">
                         <span class="nk-match-team-logo">
                             <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
                         </span>
@@ -126,7 +126,7 @@
             </a>
         </div>
         <div class="nk-match-team-right">
-            <a href="{{route('match_page',$val->id)}}">
+            <a class="logo-team-block" href="{{route('match_page',$val->id)}}">
                         <span class="nk-match-team-name">
                            {{$team->team_names2}}
                         </span>

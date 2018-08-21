@@ -19,7 +19,7 @@
 
                 <div class="nk-match">
                     <div class="nk-match-team-left">
-                        <a href="#">
+                        <a class="logo-team-block" href="#">
                         <span class="nk-match-team-logo">
                             <img src="{{$team->team1_logo}}" alt="">
                         </span>
@@ -29,7 +29,7 @@
                         </a>
                     </div>
                     <div class="nk-match-status">
-                        <a href="#">
+                        <a class="" href="#">
                             @if(isset($score[0]))
                                 <span class="nk-match-status-vs">
                                     {{$match_data->match_day}}
@@ -44,7 +44,7 @@
                         </a>
                     </div>
                     <div class="nk-match-team-right">
-                        <a href="#">
+                        <a class="logo-team-block" href="#">
                         <span class="nk-match-team-name">
                             {{$team->team_names2}}
                         </span>
