@@ -77,7 +77,7 @@
 
                                     </div>
                                     <div class="col-10">
-                                        <p>{{$user->user_name}}</p>
+                                        <p class="text-white">{{$user->user_name}}</p>
                                     </div>
                                 </div>
 
@@ -91,7 +91,7 @@
 
                                 <div class="row">
                                     <div class="col-10">
-                                        <p class="text-right">{{$user->user_name}}</p>
+                                        <p class="text-right text-white">{{$user->user_name}}</p>
                                     </div>
                                     <div class="col-2">
                                         @foreach($countrys as $country)
