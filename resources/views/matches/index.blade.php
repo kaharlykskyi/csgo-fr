@@ -58,6 +58,9 @@
                 <div class="nk-gap-2"></div>
 
                 <div class="team-content">
+                    <div class="col-12">
+                        <p class="h3 text-center">Players</p>
+                    </div>
                     <div class="row">
                         <div class="col-6">
                             @forelse($team->team_users1Array as $user)
@@ -112,9 +115,17 @@
                 <div class="nk-gap-2"></div>
 
                 <div class="team-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="h3 text-center">Maps</p>
+                        </div>
+                    </div>
                     @forelse($maps as $map)
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col-12">
+                                <p class="h4 text-center">{{$map->map_name}}</p>
+                            </div>
+                            <div class="col-2 text-center">
                                 <span class="@if($map->team1_t > $map->team2_ct){{__('text-success')}}@else{{__('text-danger')}}@endif">T {{$map->team1_t}}</span><br>
                                 <span class="@if($map->team1_ct > $map->team2_t){{__('text-success')}}@else{{__('text-danger')}}@endif">CT {{$map->team1_ct}}</span>
                                 <p class="h3">{{(integer)$map->team1_ct + (integer)$map->team1_t}}</p>
@@ -124,7 +135,7 @@
                                     <img src="{{asset($map->map_img)}}" alt="">
                                 @endif
                             </div>
-                            <div class="col-2">
+                            <div class="col-2 text-center">
                                 <span class="@if($map->team1_t < $map->team2_ct){{__('text-success')}}@else{{__('text-danger')}}@endif">CT {{$map->team2_ct}}</span><br>
                                 <span class="@if($map->team1_ct < $map->team2_t){{__('text-success')}}@else{{__('text-danger')}}@endif">T {{$map->team2_t}}</span>
                                 <p class="h3">{{(integer)$map->team2_ct + (integer)$map->team2_t}}</p>

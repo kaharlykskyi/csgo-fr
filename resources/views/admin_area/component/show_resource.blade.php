@@ -16,7 +16,7 @@
             <td style="display: flex;justify-content: space-around;">
                 <a class="btn btn-primary mb-2" href="{{route($edit_rout,$val->id)}}" role="button">Edit</a>
 
-                <a class="btn btn-warning mb-2" href="{{route($view_rout,$val->id)}}" role="link" target="_blank">View</a>
+                <a class="btn btn-warning mb-2 disabled" href="{{route($view_rout,$val->id)}}" role="link" target="_blank">View</a>
 
                 <form onsubmit="if(confirm('DELETE?')){return true}else{return false}"
                       action="{{route($delete_rout,$val->id)}}" method="post">
