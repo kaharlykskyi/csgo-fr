@@ -9,23 +9,14 @@
             <!-- END: Image Slider -->
 
             <!-- START: Latest News -->
-                @component('home.components.latest_news')
+                @component('home.components.latest_news',[
+                'latest_news' =>$latest_news,
+                'countrys' => $countrys,
+                'latest_turnaments' => $latest_turnaments
+                ])
 
                 @endcomponent
             <!-- END: Latest News -->
-
-            {{--TODO:delete when create out put match info--}}
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 mb-5">
-                        @forelse($matches as $match)
-                            <a href="{{route('match_page',$match->id)}}">Match - {{$match->match_day}}</a><br>
-                        @empty
-                            <p>no matches</p>
-                        @endforelse
-                    </div>
-                </div>
-            </div>
 
             <div class="nk-gap-2"></div>
 
@@ -33,30 +24,14 @@
                 <div class="col-lg-8">
 
                     <!-- START: Latest Matches -->
-                        @component('home.components.latest_matches')
+                        @component('home.components.latest_matches',[
+                            'latest_match' => $latest_match,
+                            'live_match' => $live_match,
+                            'upcoming_matches' => $upcoming_matches
+                        ])
 
                         @endcomponent
                     <!-- END: Latest Matches -->
-
-                {{--
-                    <!-- START: Tabbed News  -->
-                        @component('home.components.tabbed_news')
-
-                        @endcomponent
-                    <!-- END: Tabbed News -->
-
-
-                    <!-- START: Latest Pictures -->
-                        @component('home.components.latest_pictures')
-
-                        @endcomponent
-                    <!-- END: Latest Pictures -->
-
-                    <!-- START: Best Selling -->
-                        @component('home.components.best_selling')
-
-                        @endcomponent
-                    <!-- END: Best Selling -->--}}
 
                 </div>
                 <div class="col-lg-4">

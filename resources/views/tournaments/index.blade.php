@@ -37,14 +37,14 @@
                             </div>
                         </div>
                         <script>
-                            @if(isset($tournament->tournament_metadata))
-                                var autoCompleteData = {!! $tournament->tournament_metadata !!};
+                                    @if(isset($tournament->tournament_metadata))
+                            var autoCompleteData = {!! $tournament->tournament_metadata !!};
 
-                                        @else
-                                var autoCompleteData = {
-                                        teams : [["Devon", ""],["", ""]],
-                                        results : []
-                                    };
+                                    @else
+                            var autoCompleteData = {
+                                    teams : [["Devon", ""],["", ""]],
+                                    results : []
+                                };
                             @endif
 
                             function edit_fn(container, data, doneCb) {

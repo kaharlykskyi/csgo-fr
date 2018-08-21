@@ -17,21 +17,21 @@
         <div class="nano">
             <div class="nano-content">
 
-
-                <div class="nk-news-box-item">
-                    <div class="nk-news-box-item-img">
-                        <img class="mr-3" src="{{ asset('images/flag/argentina.png') }}" alt="Smell magic in the air. Or maybe barbecue">
-                    </div>
-                    <h3 class="nk-news-box-item-title">Smell magic in the air. Or maybe barbecue</h3>
-                </div>
-
-
-                <div class="nk-news-box-item">
-                    <div class="nk-news-box-item-img">
-                        <img src="{{ asset('images/flag/canada.png') }}" alt="Grab your sword and fight the Horde">
-                    </div>
-                    <h3 class="nk-news-box-item-title">Grab your sword and fight the Horde</h3>
-                </div>
+                @forelse($latest_news as $latest_new)
+                    <a href="{{route('news_page',$latest_new->id)}}">
+                        <div class="nk-news-box-item">
+                            <div class="nk-news-box-item-img">
+                                @foreach($countrys as $country)
+                                    @if($country->country == $latest_new->country_id)
+                                        <img class="mr-3" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_new->title}}">
+                                    @endif
+                                @endforeach
+                            </div>
+                            <h3 class="nk-news-box-item-title">{{$latest_new->short_title}}</h3>
+                        </div>
+                    </a>
+                @empty
+                @endforelse
 
             </div>
         </div>
@@ -43,28 +43,24 @@
         <div class="nano">
             <div class="nano-content">
 
-
-                <div class="nk-news-box-item">
-                    <div class="nk-news-box-item-img">
-                        <img src="https://www.vakarm.net/uploads/images/coverages/mini_icones/d6e7ad95a3fb5d13d3ac1b277590bb265993d995.jpg" alt="Smell magic in the air. Or maybe barbecue">
-                    </div>
-                    <div class="nk-news-box-item-img">
-                        <img src="{{ asset('images/flag/costa_rica.png') }}" alt="Smell magic in the air. Or maybe barbecue">
-                    </div>
-                    <h3 class="nk-news-box-item-title">Smell magic in the air. Or maybe barbecue</h3>
-                </div>
-
-
-                <div class="nk-news-box-item">
-                    <div class="nk-news-box-item-img">
-                        <img src="https://www.vakarm.net/uploads/images/coverages/mini_icones/97e3c9b6b1115c92a4a5eccd950d7cd8fd408348.png" alt="Grab your sword and fight the Horde">
-                    </div>
-                    <div class="nk-news-box-item-img">
-                        <img src="{{ asset('images/flag/gb.png') }}" alt="Smell magic in the air. Or maybe barbecue">
-                    </div>
-                    <h3 class="nk-news-box-item-title">Grab your sword and fight the Horde</h3>
-                </div>
-
+                @forelse($latest_turnaments as $latest_turnament)
+                    <a href="{{route('tournament_page',$latest_turnament->id)}}">
+                        <div class="nk-news-box-item">
+                            <div class="nk-news-box-item-img">
+                                <img src="https://www.vakarm.net/uploads/images/coverages/mini_icones/d6e7ad95a3fb5d13d3ac1b277590bb265993d995.jpg" alt="{{$latest_turnament->title}}">
+                            </div>
+                            <div class="nk-news-box-item-img">
+                                @foreach($countrys as $country)
+                                    @if($country->country == $latest_turnament->country_id)
+                                        <img class="mr-3" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_turnament->title}}">
+                                    @endif
+                                @endforeach
+                            </div>
+                            <h3 class="nk-news-box-item-title">{{$latest_turnament->short_title}}</h3>
+                        </div>
+                    </a>
+                @empty
+                @endforelse
 
             </div>
         </div>

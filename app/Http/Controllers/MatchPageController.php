@@ -15,7 +15,11 @@ class MatchPageController extends Controller
         $countrys = DB::table('countrys')->get();
         $comments = Comment::where('match_id',$request->id)->paginate(20);
         $count = Comment::where('match_id',$request->id)->count();
-        $users = User::all();
+        $users_id = [];
+        foreach ($comments as $comment){
+            $users_id[] = $comment->user_id;
+        }
+        $users = User::whereIn('id',$users_id)->get();
         return view('matches.index',compact('match_data','countrys','comments','count','users'));
     }
 

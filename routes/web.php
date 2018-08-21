@@ -21,6 +21,8 @@ Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function (){
 });
 Route::get('/matches/{id}','MatchPageController@index')->name('match_page');
 Route::post('/match-comment', 'MatchPageController@writeComment')->name('match_comment');
+Route::get('/news/{id}','NewsPageController@index')->name('news_page');
+Route::get('/tournament/{id}','TournamentPageController@index')->name('tournament_page');
 
 /*--------ADMIN--------*/
 Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','role']],function (){
