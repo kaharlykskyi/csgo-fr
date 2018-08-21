@@ -114,37 +114,43 @@
 
                 <div class="nk-gap-2"></div>
 
-                <div class="team-content">
+                <div class="team-content maps">
                     <div class="row">
                         <div class="col-12">
                             <p class="h3 text-center">Maps</p>
                         </div>
                     </div>
-                    @forelse($maps as $map)
+                    @if(isset($maps))
+                        @foreach($maps as $map)
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="h4 text-center">{{$map->map_name}}</p>
+                                </div>
+                                <div class="col-2 text-center">
+                                    <span class="@if($map->team1_t > $map->team2_ct){{__('text-success')}}@else{{__('text-danger')}}@endif">T {{$map->team1_t}}</span><br>
+                                    <span class="@if($map->team1_ct > $map->team2_t){{__('text-success')}}@else{{__('text-danger')}}@endif">CT {{$map->team1_ct}}</span>
+                                    <p class="h3">{{(integer)$map->team1_ct + (integer)$map->team1_t}}</p>
+                                </div>
+                                <div class="col-8">
+                                    @if(isset($map->map_img))
+                                        <img src="{{asset($map->map_img)}}" alt="">
+                                    @endif
+                                </div>
+                                <div class="col-2 text-center">
+                                    <span class="@if($map->team1_t < $map->team2_ct){{__('text-success')}}@else{{__('text-danger')}}@endif">CT {{$map->team2_ct}}</span><br>
+                                    <span class="@if($map->team1_ct < $map->team2_t){{__('text-success')}}@else{{__('text-danger')}}@endif">T {{$map->team2_t}}</span>
+                                    <p class="h3">{{(integer)$map->team2_ct + (integer)$map->team2_t}}</p>
+                                </div>
+                            </div>
+                            <div class="nk-gap-2"></div>
+                        @endforeach
+                    @else
                         <div class="row">
                             <div class="col-12">
-                                <p class="h4 text-center">{{$map->map_name}}</p>
-                            </div>
-                            <div class="col-2 text-center">
-                                <span class="@if($map->team1_t > $map->team2_ct){{__('text-success')}}@else{{__('text-danger')}}@endif">T {{$map->team1_t}}</span><br>
-                                <span class="@if($map->team1_ct > $map->team2_t){{__('text-success')}}@else{{__('text-danger')}}@endif">CT {{$map->team1_ct}}</span>
-                                <p class="h3">{{(integer)$map->team1_ct + (integer)$map->team1_t}}</p>
-                            </div>
-                            <div class="col-8">
-                                @if(isset($map->map_img))
-                                    <img src="{{asset($map->map_img)}}" alt="">
-                                @endif
-                            </div>
-                            <div class="col-2 text-center">
-                                <span class="@if($map->team1_t < $map->team2_ct){{__('text-success')}}@else{{__('text-danger')}}@endif">CT {{$map->team2_ct}}</span><br>
-                                <span class="@if($map->team1_ct < $map->team2_t){{__('text-success')}}@else{{__('text-danger')}}@endif">T {{$map->team2_t}}</span>
-                                <p class="h3">{{(integer)$map->team2_ct + (integer)$map->team2_t}}</p>
+                                <p class="h4 text-center">TBA</p>
                             </div>
                         </div>
-                        <div class="nk-gap-2"></div>
-                    @empty
-                    
-                    @endforelse
+                    @endif
                 </div>
 
                 <div class="nk-gap-2"></div>

@@ -136,6 +136,8 @@
             </a>
         </div>
     </div>
+    <div class="nk-gap"></div>
+    <a href="{{route('match_page',$val->id)}}" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Match Details</a>
     <div class="nk-gap-2"></div>
 @empty
     <div class="nk-gap"></div>

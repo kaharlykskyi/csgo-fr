@@ -73,19 +73,6 @@
     <script src="{{asset('js/jquery.bracket.min.js')}}"></script>
     <link href="{{asset('css/jquery.bracket.min.css')}}" rel="stylesheet" media="all">
 
-    <style>
-        #brackets img{
-            width: 25px;
-        }
-        img {
-            max-width: 100%;
-        }
-        .logo-team-block{
-            display: flex !important;
-            flex-wrap: nowrap !important;
-        }
-    </style>
-
 </head>
 
 

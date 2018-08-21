@@ -2,7 +2,7 @@
     <div class="container">
         <div class="nk-nav-table">
 
-            <a href="{{route('home')}}" class="nk-nav-logo">
+            <a style="width: 100px;"  href="{{route('home')}}" class="nk-nav-logo">
                 <img src="{{ asset('images/logo.png') }}" alt="GoodGames" width="199">
             </a>
 
