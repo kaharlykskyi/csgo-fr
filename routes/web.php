@@ -19,7 +19,7 @@ Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function (){
     Route::get('/send-confirm','ProfileController@sendConfirm')->name('send_confirm');
     Route::get('/confirm-email','ProfileController@confirmEmail')->name('confirm_email');
 });
-Route::get('/matches/{id}','MatchPageController@index')->name('match_page');
+Route::get('/matches/{id}/{type?}','MatchPageController@index')->name('match_page');
 Route::post('/match-comment', 'MatchPageController@writeComment')->name('match_comment');
 Route::get('/news/{id}','NewsPageController@index')->name('news_page');
 Route::get('/tournament/{id}','TournamentPageController@index')->name('tournament_page');

@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="nk-gap-2"></div>
-            <a href="{{route('match_page',$val->id)}}" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Match Details</a>
+            <a href="{{route('match_page',['id' => $val->id,'type' => 'Live Matches'])}}" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Match Details</a>
             <div class="nk-gap-2"></div>
         @empty
             <div class="nk-gap"></div>
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="nk-gap-2"></div>
-            <a href="{{route('match_page',$val->id)}}" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Match Details</a>
+            <a href="{{route('match_page',['id' => $val->id,'type' => 'Upcoming Matches'])}}" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Match Details</a>
             <div class="nk-gap"></div>
         @empty
             <div class="nk-gap"></div>
@@ -137,7 +137,7 @@
         </div>
     </div>
     <div class="nk-gap"></div>
-    <a href="{{route('match_page',$val->id)}}" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Match Details</a>
+    <a href="{{route('match_page',['id' => $val->id,'type' => 'Latest Matches'])}}" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Match Details</a>
     <div class="nk-gap-2"></div>
 @empty
     <div class="nk-gap"></div>

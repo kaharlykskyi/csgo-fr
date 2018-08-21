@@ -13,7 +13,7 @@
     <div class="row vertical-gap">
         <div class="col-lg-8">
 
-            @component('admin_area.tournaments.component.breadcrumb',['title' => 'Tournaments'])
+            @component('matches.component.breadcrumb',['type' => $type_match])
 
             @endcomponent
 

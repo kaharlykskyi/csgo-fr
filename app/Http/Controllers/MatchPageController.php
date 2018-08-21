@@ -16,11 +16,12 @@ class MatchPageController extends Controller
         $comments = Comment::where('match_id',$request->id)->paginate(20);
         $count = Comment::where('match_id',$request->id)->count();
         $users_id = [];
+        $type_match = $request->type;
         foreach ($comments as $comment){
             $users_id[] = $comment->user_id;
         }
         $users = User::whereIn('id',$users_id)->get();
-        return view('matches.index',compact('match_data','countrys','comments','count','users'));
+        return view('matches.index',compact('match_data','countrys','comments','count','users','type_match'));
     }
 
     public function writeComment(Request $request){
