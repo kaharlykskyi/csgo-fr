@@ -6,7 +6,7 @@
                 <div class="col-md-12">
                     <div class="au-breadcrumb-content">
                         <div class="au-breadcrumb-left">
-                            <ul class="list-unstyled list-inline au-breadcrumb__list">
+                            <ul style="font-weight: 600;" class="list-unstyled list-inline au-breadcrumb__list">
                                 <li class="list-inline-item active">
                                     <a class="text-white" href="{{route('admin.dashboard')}}">{{__('Home')}}</a>
                                 </li>
