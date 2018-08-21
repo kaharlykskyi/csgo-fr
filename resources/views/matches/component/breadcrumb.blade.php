@@ -8,12 +8,14 @@
                         <div class="au-breadcrumb-left">
                             <ul class="list-unstyled list-inline au-breadcrumb__list">
                                 <li class="list-inline-item active">
-                                    <a href="{{route('admin.dashboard')}}">{{__('Home')}}</a>
+                                    <a class="text-white" href="{{route('admin.dashboard')}}">{{__('Home')}}</a>
                                 </li>
-                                <li class="list-inline-item seprate">
-                                    <span class="fa fa-angle-right"></span>
-                                </li>
-                                <li class="list-inline-item">{{$type}}</li>
+                                @if(isset($type))
+                                    <li class="list-inline-item seprate">
+                                        <span class="fa fa-angle-right"></span>
+                                    </li>
+                                    <li class="list-inline-item text-white">{{$type}}</li>
+                                @endif
                             </ul>
                         </div>
                     </div>
