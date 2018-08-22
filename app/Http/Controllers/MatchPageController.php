@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Match;
 use App\User;
+use App\Tournament;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,8 +21,9 @@ class MatchPageController extends Controller
         foreach ($comments as $comment){
             $users_id[] = $comment->user_id;
         }
+        $tournament = Tournament::where('id',$match_data->tournament)->first();
         $users = User::whereIn('id',$users_id)->get();
-        return view('matches.index',compact('match_data','countrys','comments','count','users','type_match'));
+        return view('matches.index',compact('match_data','countrys','comments','count','users','type_match','tournament'));
     }
 
     public function writeComment(Request $request){

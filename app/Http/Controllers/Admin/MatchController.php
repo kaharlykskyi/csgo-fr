@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Match;
+use App\Tournament;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,8 @@ class MatchController extends Controller
      */
     public function create()
     {
-        return view('admin_area.matches.create');
+        $turnaments = Tournament::all();
+        return view('admin_area.matches.create',compact('turnaments'));
     }
 
     /**
@@ -54,7 +56,8 @@ class MatchController extends Controller
         $match->fill([
             'match_day' => $request->match_day,
             'fin_score' => json_encode($request->scoreArray),
-            'stream_link' => json_encode($request->linkArray)
+            'stream_link' => json_encode($request->linkArray),
+            'tournament' => (integer)$request->tournaments
         ]);
         $match->save();
 
@@ -81,8 +84,9 @@ class MatchController extends Controller
      */
     public function edit(Match $match)
     {
+        $turnaments = Tournament::all();
         $countries = DB::table('countrys')->get();
-        return view('admin_area.matches.edit',compact('match','countries'));
+        return view('admin_area.matches.edit',compact('match','countries','turnaments'));
     }
 
     /**
@@ -115,7 +119,8 @@ class MatchController extends Controller
             $match->update([
                 'match_day' => $request->match_day,
                 'fin_score' => json_encode($request->scoreArray),
-                'stream_link' => json_encode($request->linkArray)
+                'stream_link' => json_encode($request->linkArray),
+                'tournament' => (integer)$request->tournaments
             ]);
 
             return $request;

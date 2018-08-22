@@ -5,34 +5,16 @@
         <div class="row vertical-gap">
             <div class="col-12">
                 <div class="nk-widget">
-                    <h4 class="nk-widget-title"><span class="text-main-1">Latest</span> Posts</h4>
+                    <h4 class="nk-widget-title"><span class="text-main-1"> </span> </h4>
                     <div class="nk-widget-content">
                         <div class="row vertical-gap sm-gap">
 
                             <div class="col-lg-6">
-                                <div class="nk-widget-post-2">
-                                    <a href="blog-article.html" class="nk-post-image">
-                                        <img src="{{ asset('images/post-1-sm.jpg') }}" alt="">
-                                    </a>
-                                    <div class="nk-post-title"><a href="blog-article.html">Smell magic in the air. Or maybe barbecue</a></div>
-                                    <div class="nk-post-date">
-                                        <span class="fa fa-calendar"></span> Sep 18, 2018
-                                        <span class="fa fa-comments"></span> <a href="#">4</a>
-                                    </div>
-                                </div>
+
                             </div>
 
                             <div class="col-lg-6">
-                                <div class="nk-widget-post-2">
-                                    <a href="blog-article.html" class="nk-post-image">
-                                        <img src="{{ asset('images/post-2-sm.jpg') }}" alt="">
-                                    </a>
-                                    <div class="nk-post-title"><a href="blog-article.html">Grab your sword and fight the Horde</a></div>
-                                    <div class="nk-post-date">
-                                        <span class="fa fa-calendar"></span> Sep 5, 2018
-                                        <span class="fa fa-comments"></span> <a href="#">7</a>
-                                    </div>
-                                </div>
+
                             </div>
 
                         </div>

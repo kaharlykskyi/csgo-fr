@@ -23,9 +23,6 @@
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <input type="text" id="match_day" value="2018-08-30 14:45" name="match_day" placeholder="Match day" class="form-control form_datetime" required>
-                                    @if ($errors->has('match_day'))
-                                        <small class="form-text text-danger">{{ $errors->first('match_day') }}</small>
-                                    @endif
                                 </div>
                             </div>
 
@@ -44,6 +41,23 @@
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <div data-holder-for="link"></div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="match_day" class=" form-control-label">Tournaments</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <div class="product">
+                                        <select name="tournaments" class="custom-select">
+                                            @if(isset($turnaments))
+                                                @foreach($turnaments as $turnament)
+                                                    <option value="{{$turnament->id}}">{{$turnament->title}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +111,8 @@
                                     {
                                         "link": ""
                                     }
-                                ]
+                                ],
+                                "tournaments" : ''
                             };
 
                             $('#smallForm').jqDynaForm();

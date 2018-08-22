@@ -13,6 +13,7 @@ class Match extends Model
         'fin_score',
         'team',
         'map',
-        'stream_link'
+        'stream_link',
+        'tournament'
     ];
 }

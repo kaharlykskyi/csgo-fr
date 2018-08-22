@@ -56,6 +56,24 @@
                                                 <div data-holder-for="link"></div>
                                             </div>
                                         </div>
+
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="match_day" class=" form-control-label">Tournaments</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <div class="product">
+                                                    <select name="tournaments" class="custom-select">
+                                                        <option value="0">select tournaments</option>
+                                                        @if(isset($turnaments))
+                                                            @foreach($turnaments as $turnament)
+                                                                <option @if($turnament->id == $match->tournament) {{__('selected')}} @endif value="{{$turnament->id}}">{{$turnament->title}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Subforms library -->
@@ -99,7 +117,8 @@
                                         var smallJson = {
                                             "match_day": '{{ $match->match_day }}',
                                             "scoreArray":{!! $match->fin_score !!},
-                                            "linkArray": {!! $match->stream_link !!}
+                                            "linkArray": {!! $match->stream_link !!},
+
                                         };
 
                                         $('#smallForm').jqDynaForm();

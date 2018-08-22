@@ -8,13 +8,13 @@
                         <div class="au-breadcrumb-left">
                             <ul style="font-weight: 600;" class="list-unstyled list-inline au-breadcrumb__list">
                                 <li class="list-inline-item active">
-                                    <a class="text-white" href="{{route('admin.dashboard')}}">{{__('Home')}}</a>
+                                    <a class="text-white" href="{{route('home')}}">{{__('Home')}}</a>
                                 </li>
                                 @if(isset($type))
                                     <li class="list-inline-item seprate">
                                         <span class="fa fa-angle-right"></span>
                                     </li>
-                                    <li class="list-inline-item text-white">{{$type}}</li>
+                                    <li class="list-inline-item text-white text-capitalize">{{str_replace('-',' ',$type)}}</li>
                                 @endif
                             </ul>
                         </div>
