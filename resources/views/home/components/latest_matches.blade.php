@@ -3,9 +3,6 @@
 <div class="nk-gap"></div>
 <div class="row">
     <div class="col-12">
-        <div class="nk-match-score bg-dark-3">
-            Now Playing
-        </div>
         @forelse($live_match as $val)
             <?php
                 $team = json_decode($val->team);
