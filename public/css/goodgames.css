@@ -8912,9 +8912,9 @@ div.nk-error {
 /* Score */
 .nk-match-score {
     display: inline-block;
-    padding: 9px 19px;
+    padding: 11px 21px;
     font-family: "Montserrat", sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     font-weight: 600;
     line-height: 1.2;
     color: #fff;

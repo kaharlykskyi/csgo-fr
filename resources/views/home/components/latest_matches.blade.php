@@ -11,7 +11,6 @@
                 $team = json_decode($val->team);
                 $score = json_decode($val->fin_score);
             ?>
-            <div class="nk-gap-2"></div>
             <div class="nk-match">
                 <div class="nk-match-team-left">
                     <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'live-matches'])}}">
@@ -43,6 +42,9 @@
                                 @endif ">{{$score[0]->score_team2}}</span>
                             </span>
                         @endif
+                        @isset($val->match_day)
+                            <span class="nk-match-status-date mt-10">{{$val->match_day}}</span>
+                        @endisset
                     </a>
                 </div>
                 <div class="nk-match-team-right">
@@ -60,7 +62,6 @@
                     </a>
                 </div>
             </div>
-            <div class="nk-gap-2"></div>
         @empty
             <div class="nk-gap"></div>
         @endforelse
@@ -78,7 +79,6 @@
             $team = json_decode($val->team);
             $score = json_decode($val->fin_score);
             ?>
-            <div class="nk-gap-2"></div>
             <div class="nk-match">
                 <div class="nk-match-team-left">
                     <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'upcoming-matches'])}}">
@@ -97,7 +97,6 @@
                 <div class="nk-match-status">
                     <a href="{{route('match_page',['id' => $val->id,'type' => 'upcoming-matches'])}}">
                         <span class="nk-match-status-vs">VS</span>
-                        <span class="nk-match-status-date">{{$val->match_day}}</span>
                         @if(isset($score[0]->score_team1) && isset($score[0]->score_team2))
                             <span class="nk-match-score">
                                 <span class="@if($score[0]->score_team1 >= $score[0]->score_team2)
@@ -111,6 +110,9 @@
                                 @endif ">{{$score[0]->score_team2}}</span>
                             </span>
                         @endif
+                        @isset($val->match_day)
+                            <span class="nk-match-status-date mt-10">{{$val->match_day}}</span>
+                        @endisset
                     </a>
                 </div>
                 <div class="nk-match-team-right">
@@ -128,7 +130,6 @@
                     </a>
                 </div>
             </div>
-            <div class="nk-gap-2"></div>
         @empty
             <div class="nk-gap"></div>
         @endforelse
@@ -144,7 +145,6 @@
     $team = json_decode($val->team);
     $score = json_decode($val->fin_score);
     ?>
-    <div class="nk-gap-2"></div>
     <div class="nk-match">
         <div class="nk-match-team-left">
             <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'latest-matches'])}}">
@@ -163,7 +163,6 @@
         <div class="nk-match-status">
             <a href="{{route('match_page',['id' => $val->id,'type' => 'latest-matches'])}}">
                 <span class="nk-match-status-vs">VS</span>
-                <span class="nk-match-status-date">{{$val->match_day}}</span>
                 @if(isset($score[0]->score_team1) && isset($score[0]->score_team2))
                     <span class="nk-match-score">
                             <span class="@if($score[0]->score_team1 >= $score[0]->score_team2)
@@ -177,6 +176,9 @@
                         @endif ">{{$score[0]->score_team2}}</span>
                 </span>
                 @endif
+                @isset($val->match_day)
+                    <span class="nk-match-status-date mt-10">{{$val->match_day}}</span>
+                @endisset
             </a>
         </div>
         <div class="nk-match-team-right">
@@ -194,7 +196,6 @@
             </a>
         </div>
     </div>
-    <div class="nk-gap-2"></div>
 @empty
     <div class="nk-gap"></div>
 @endforelse

@@ -181,7 +181,7 @@
                         <p class="h4">Tournament</p>
                         <div class="row">
                             <div class="col-12">
-                                <a href="{{route('tournament_page',$tournament->id)}}">{{$tournament->title}}</a>
+                                <p style="color: #dd163b;">{{$tournament->title}}</p>
                             </div>
                         </div>
                     </div>
