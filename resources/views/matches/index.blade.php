@@ -20,12 +20,16 @@
             <div class="nk-match">
                 <div class="nk-match-team-left">
                     <a class="logo-team-block" href="#">
-                        <span class="nk-match-team-logo">
-                            <img src="{{$team->team1_logo}}" alt="">
-                        </span>
-                        <span class="nk-match-team-name">
-                            {{$team->team_names1}}
-                        </span>
+                        @if(isset($team->team1_logo) && isset($team->team_names1))
+                            <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
+                            </span>
+                        @endif
+                        @isset($team->team_names1)
+                            <span class="nk-match-team-name">
+                                {{$team->team_names1}}
+                            </span>
+                        @endisset
                     </a>
                 </div>
                 <div class="nk-match-status">
@@ -53,12 +57,16 @@
                 </div>
                 <div class="nk-match-team-right">
                     <a class="logo-team-block" href="#">
-                        <span class="nk-match-team-name">
-                            {{$team->team_names2}}
-                        </span>
-                        <span class="nk-match-team-logo">
-                            <img src="{{$team->team2_logo}}" alt="">
-                        </span>
+                        @isset($team->team_names2)
+                            <span class="nk-match-team-name">
+                                    {{$team->team_names2}}
+                            </span>
+                        @endisset
+                        @if(isset($team->team2_logo) && isset($team->team_names2))
+                            <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
+                            </span>
+                        @endif
                     </a>
                 </div>
             </div>
@@ -72,20 +80,22 @@
 
                             <div class="row">
                                 <div class="col-2">
-                                    @foreach($countrys as $country)
+                                    @isset($user->country_id)
+                                        @foreach($countrys as $country)
 
-                                        @if($country->country == $user->country_id)
-                                            <img src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
-                                        @endif
+                                            @if($country->country == $user->country_id)
+                                                <img src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
+                                            @endif
 
-                                    @endforeach
-
+                                        @endforeach
+                                    @endisset
                                 </div>
                                 <div class="col-10">
-                                    <p class="text-white">{{$user->user_name}}</p>
+                                    @isset($user->user_name)
+                                        <p class="text-white">{{$user->user_name}}</p>
+                                    @endisset
                                 </div>
                             </div>
-
                         @empty
 
                         @endforelse
@@ -96,17 +106,18 @@
 
                             <div class="row">
                                 <div class="col-10">
-                                    <p class="text-right text-white">{{$user->user_name}}</p>
+                                    @isset($user->user_name)
+                                        <p class="text-right text-white">{{$user->user_name}}</p>
+                                    @endisset
                                 </div>
                                 <div class="col-2">
-                                    @foreach($countrys as $country)
-
-                                        @if($country->country == $user->country_id)
-                                            <img src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
-                                        @endif
-
-                                    @endforeach
-
+                                    @isset($user->country_id)
+                                        @foreach($countrys as $country)
+                                            @if($country->country == $user->country_id)
+                                                <img src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
+                                            @endif
+                                        @endforeach
+                                    @endisset
                                 </div>
                             </div>
 
@@ -124,7 +135,9 @@
                     @foreach($maps as $map)
                         <div class="row">
                             <div class="col-12">
-                                <p class="h4 text-center">{{$map->map_name}}</p>
+                                @isset($map->map_name)
+                                    <p class="h4 text-center">{{$map->map_name}}</p>
+                                @endisset
                             </div>
                             <div class="col-2 text-center">
                                 <span class="@if($map->team1_t > $map->team2_ct){{__('text-success')}}@else{{__('text-danger')}}@endif">T {{$map->team1_t}}</span><br>
@@ -163,27 +176,33 @@
 
                 <div class="nk-gap-2"></div>
 
-                <div class="team-content">
-                    <p class="h4">Tournament</p>
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="{{route('tournament_page',$tournament->id)}}">{{$tournament->title}}</a>
+                @isset($tournament->title)
+                    <div class="team-content">
+                        <p class="h4">Tournament</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="{{route('tournament_page',$tournament->id)}}">{{$tournament->title}}</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endisset
 
             <div class="nk-gap-2"></div>
 
-            <div class="team-content">
-                <p class="h4">Stream links</p>
-                <div class="row">
-                    @foreach($streams as $stream)
-                        <div class="col-12">
-                            <a href="{{$stream->link}}">{{$stream->link}}</a>
+                @isset($streams)
+                    <div class="team-content">
+                        <p class="h4">Stream links</p>
+                        <div class="row">
+
+                            @foreach($streams as $stream)
+                                <div class="col-12">
+                                    <a href="{{$stream->link}}">{{$stream->link}}</a>
+                                </div>
+                            @endforeach
+
                         </div>
-                    @endforeach
-                </div>
-            </div>
+                    </div>
+                @endisset
 
             <div class="nk-gap-2"></div>
             <!-- START: Comments -->

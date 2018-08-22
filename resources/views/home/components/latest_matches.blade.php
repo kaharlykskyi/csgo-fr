@@ -15,12 +15,16 @@
             <div class="nk-match">
                 <div class="nk-match-team-left">
                     <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'live-matches'])}}">
-                        <span class="nk-match-team-logo">
-                            <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
-                        </span>
-                        <span class="nk-match-team-name">
-                            {{$team->team_names1}}
-                        </span>
+                        @if(isset($team->team1_logo) && isset($team->team_names1))
+                            <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
+                            </span>
+                        @endif
+                        @isset($team->team_names1)
+                            <span class="nk-match-team-name">
+                                {{$team->team_names1}}
+                            </span>
+                        @endisset
                     </a>
                 </div>
                 <div class="nk-match-status">
@@ -43,12 +47,16 @@
                 </div>
                 <div class="nk-match-team-right">
                     <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'live-matches'])}}">
-                        <span class="nk-match-team-name">
-                           {{$team->team_names2}}
-                        </span>
-                        <span class="nk-match-team-logo">
-                            <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
-                        </span>
+                        @isset($team->team_names2)
+                            <span class="nk-match-team-name">
+                                    {{$team->team_names2}}
+                            </span>
+                        @endisset
+                        @if(isset($team->team2_logo) && isset($team->team_names2))
+                            <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
+                            </span>
+                        @endif
                     </a>
                 </div>
             </div>
@@ -74,12 +82,16 @@
             <div class="nk-match">
                 <div class="nk-match-team-left">
                     <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'upcoming-matches'])}}">
-                        <span class="nk-match-team-logo">
-                            <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
-                        </span>
-                        <span class="nk-match-team-name">
-                            {{$team->team_names1}}
-                        </span>
+                        @if(isset($team->team1_logo) && isset($team->team_names1))
+                            <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
+                            </span>
+                        @endif
+                            @isset($team->team_names1)
+                                <span class="nk-match-team-name">
+                                {{$team->team_names1}}
+                            </span>
+                            @endisset
                     </a>
                 </div>
                 <div class="nk-match-status">
@@ -103,12 +115,16 @@
                 </div>
                 <div class="nk-match-team-right">
                     <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'upcoming-matches'])}}">
-                        <span class="nk-match-team-name">
-                           {{$team->team_names2}}
-                        </span>
-                        <span class="nk-match-team-logo">
-                            <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
-                        </span>
+                        @isset($team->team_names2)
+                            <span class="nk-match-team-name">
+                                    {{$team->team_names2}}
+                            </span>
+                        @endisset
+                        @if(isset($team->team2_logo) && isset($team->team_names2))
+                            <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
+                            </span>
+                        @endif
                     </a>
                 </div>
             </div>
@@ -132,12 +148,16 @@
     <div class="nk-match">
         <div class="nk-match-team-left">
             <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'latest-matches'])}}">
-                        <span class="nk-match-team-logo">
-                            <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
-                        </span>
-                <span class="nk-match-team-name">
-                            {{$team->team_names1}}
-                        </span>
+                @if(isset($team->team1_logo) && isset($team->team_names1))
+                    <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
+                            </span>
+                @endif
+                @isset($team->team_names1)
+                    <span class="nk-match-team-name">
+                                {{$team->team_names1}}
+                            </span>
+                @endisset
             </a>
         </div>
         <div class="nk-match-status">
@@ -161,12 +181,16 @@
         </div>
         <div class="nk-match-team-right">
             <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'latest-matches'])}}">
-                        <span class="nk-match-team-name">
-                           {{$team->team_names2}}
-                        </span>
-                <span class="nk-match-team-logo">
-                            <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
-                        </span>
+                @isset($team->team_names2)
+                    <span class="nk-match-team-name">
+                                    {{$team->team_names2}}
+                            </span>
+                @endisset
+                @if(isset($team->team2_logo) && isset($team->team_names2))
+                    <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
+                            </span>
+                @endif
             </a>
         </div>
     </div>
