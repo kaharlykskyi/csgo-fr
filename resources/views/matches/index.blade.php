@@ -34,14 +34,9 @@
                 </div>
                 <div class="nk-match-status">
                     <a class="" href="#">
-                        @if(isset($score[0]))
-                            <span class="nk-match-status-vs">
-                                    {{$match_data->match_day}}
-                                </span>
-                        @endif
                         <span class="nk-match-status-vs">VS</span>
                         @if(isset($score[0]->score_team1) && isset($score[0]->score_team2))
-                            <span class="nk-match-score">
+                            <span style="font-size: 2rem;" class="nk-match-score">
                                 <span class="@if($score[0]->score_team1 >= $score[0]->score_team2)
                                 {{__('text-success')}}
                                 @else
@@ -52,6 +47,11 @@
                                 {{__('text-danger')}}
                                 @endif ">{{$score[0]->score_team2}}</span>
                             </span>
+                        @endif
+                        @if(isset($score[0]))
+                            <span class="nk-match-status-vs">
+                                    {{$match_data->match_day}}
+                                </span>
                         @endif
                     </a>
                 </div>
