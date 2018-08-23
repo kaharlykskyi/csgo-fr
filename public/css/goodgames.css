@@ -7822,11 +7822,13 @@ div.nk-error {
  ----------------------------*/
 .nk-image-slider {
     position: relative;
-    height: 210px;
+    height: 132px;
     overflow: hidden;
     background-color: #232930;
     border-bottom: 3px solid #dd163b;
     z-index: 0;
+    width: 726px;
+    margin: 0 auto;
 }
 
 .nk-image-slider .nk-image-slider-item {
