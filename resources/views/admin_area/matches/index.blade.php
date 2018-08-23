@@ -50,7 +50,7 @@
                                     <td style="display: flex;justify-content: space-around;">
                                         <a class="btn btn-primary mb-2" href="{{route('admin.matches.edit',$val->id)}}" role="button">Edit</a>
 
-                                        <a class="btn btn-warning mb-2 disabled" href="{{route('admin.matches.show',$val->id)}}" role="link" target="_blank">View</a>
+                                        <a class="btn btn-warning mb-2" href="{{route('admin.matches.show',$val->id)}}" role="link" target="_blank">View</a>
 
                                         <form onsubmit="if(confirm('DELETE?')){return true}else{return false}"
                                               action="{{route('admin.matches.destroy',$val->id)}}" method="post">

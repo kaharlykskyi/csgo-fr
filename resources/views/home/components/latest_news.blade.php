@@ -19,16 +19,18 @@
 
                 @forelse($latest_news as $latest_new)
 
-                    <div class="nk-news-box-item">
-                        <div class="nk-news-box-item-img">
-                            @foreach($countrys as $country)
-                                @if($country->country == $latest_new->country_id)
-                                    <img class="mr-3" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_new->title}}">
-                                @endif
-                            @endforeach
+                    <a href="{{route('news_page',$latest_new->id)}}">
+                        <div class="nk-news-box-item">
+                            <div class="nk-news-box-item-img">
+                                @foreach($countrys as $country)
+                                    @if($country->country == $latest_new->country_id)
+                                        <img class="mr-3" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_new->title}}">
+                                    @endif
+                                @endforeach
+                            </div>
+                            <h3 class="nk-news-box-item-title">{{$latest_new->short_title}}</h3>
                         </div>
-                        <h3 class="nk-news-box-item-title">{{$latest_new->short_title}}</h3>
-                    </div>
+                    </a>
 
                 @empty
                 @endforelse

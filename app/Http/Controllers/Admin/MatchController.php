@@ -72,8 +72,9 @@ class MatchController extends Controller
      */
     public function show(Match $match)
     {
+        $tournament = Tournament::where('id',$match->tournament)->first();
         $countrys = DB::table('countrys')->get();
-        return view('admin_area.matches.view_match',compact('match','countrys'));
+        return view('admin_area.matches.view_match',compact('match','countrys','tournament'));
     }
 
     /**

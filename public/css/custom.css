@@ -102,6 +102,10 @@ img {
     width: 85px;
 }
 
+.nano-content a:hover{
+    text-decoration: none !important;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 870px;
