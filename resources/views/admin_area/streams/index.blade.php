@@ -18,8 +18,9 @@
                     <table class="table table-borderless table-striped table-earning">
                         <thead>
                         <tr>
-                            <th>Title</th>
+                            <th>Streamen name</th>
                             <th>Show homepage</th>
+                            <th>Streamer link</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -28,10 +29,9 @@
                             <tr>
                                 <td><p>{{ str_limit($val->name, 20, ' (...)')}}</p></td>
                                 <td><p>{{ $val->show_homepage }}</p></td>
+                                <td><p>{{ $val->link }}</p></td>
                                 <td style="display: flex;justify-content: space-around;">
-                                    <a class="btn btn-primary mb-2" href="{{route('admin.streams.edit',$val->id)}}" role="button">Edit</a>
-
-                                    <a class="btn btn-warning mb-2 disabled" href="{{route('admin.streams.show',$val->id)}}" role="link" target="_blank">View</a>
+                                    <a class="btn btn-primary mb-2 mr-2" href="{{route('admin.streams.edit',$val->id)}}" role="button">Edit</a>
 
                                     <form onsubmit="if(confirm('DELETE?')){return true}else{return false}"
                                           action="{{route('admin.streams.destroy',$val->id)}}" method="post">
@@ -43,7 +43,7 @@
                             </tr>
                         @empty
                             <tr scope="row">
-                                <th colspan="4"><h2 class="text-center">{{ __('Not streams')  }}</h2></th>
+                                <th colspan="4"><h2 class="text-center">{{ __('No streams added')  }}</h2></th>
                             </tr>
                         @endforelse
                         </tbody>

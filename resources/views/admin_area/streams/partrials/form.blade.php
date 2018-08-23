@@ -1,6 +1,6 @@
 <div class="row form-group">
     <div class="col col-md-3">
-        <label for="name" class=" form-control-label">Name stream</label>
+        <label for="name" class=" form-control-label">Streamer's name</label>
     </div>
     <div class="col-12 col-md-9">
         <input type="text" id="name" value="@if(isset($stream->id)) {{$stream->name}} @else {{old('name')}} @endif" name="name" placeholder="Name stream" class="form-control" required>
@@ -12,7 +12,7 @@
 
 <div class="row form-group">
     <div class="col col-md-3">
-        <label for="link" class=" form-control-label">Link stream</label>
+        <label for="link" class=" form-control-label">Streamer's link</label>
     </div>
     <div class="col-12 col-md-9">
         <input type="text" id="link" value="@if(isset($stream->id)) {{$stream->link}} @else {{old('link')}} @endif" name="link" placeholder="Link stream" class="form-control" required>
