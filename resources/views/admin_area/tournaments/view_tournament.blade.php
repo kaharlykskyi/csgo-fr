@@ -26,18 +26,19 @@
 
                     {!! $tournament->content_tournament !!}
 
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12 m-b-5 m-t-5">
-                                <p class="h3">Tournament Brackets</p>
-                            </div>
-                            <div class="col-12">
-                                <div id="brackets">
+                    @isset($tournament->tournament_metadata)
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 m-b-5 m-t-5">
+                                    <p class="h3">Tournament Brackets</p>
+                                </div>
+                                <div class="col-12">
+                                    <div id="brackets">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <script>
-                            @if(isset($tournament->tournament_metadata))
+                            <script>
+                                        @if(isset($tournament->tournament_metadata))
                                 var autoCompleteData = {!! $tournament->tournament_metadata !!};
 
                                         @else
@@ -45,50 +46,51 @@
                                         teams : [["Devon", ""],["", ""]],
                                         results : []
                                     };
-                            @endif
+                                @endif
 
-                            function edit_fn(container, data, doneCb) {
-                                var input = $('<input type="text">')
-                                input.val(data ? data.flag + ':' + data.name : '')
-                                container.html(input)
-                                input.focus()
-                                input.blur(function() {
-                                    var inputValue = input.val()
-                                    if (inputValue.length === 0) {
-                                        doneCb(null); // Drop the team and replace with BYE
-                                    } else {
-                                        var flagAndName = inputValue.split(':') // Expects correct input
-                                        doneCb({flag: flagAndName[0], name: flagAndName[1]})
-                                    }
-                                })
-                            }
-
-                            function render_fn(container, data, score, state) {
-                                switch(state) {
-                                    case "empty-bye":
-                                        container.append("No team");
-                                        return;
-                                    case "empty-tbd":
-                                        container.append("Upcoming");
-                                        return;
-
-                                    case "entry-no-score":
-                                    case "entry-default-win":
-                                    case "entry-complete":
-                                        container.append('<img src="{{asset('images/flag')}}/'+data.flag+'.png" /> ').append(data.name)
-                                        return;
+                                function edit_fn(container, data, doneCb) {
+                                    var input = $('<input type="text">')
+                                    input.val(data ? data.flag + ':' + data.name : '')
+                                    container.html(input)
+                                    input.focus()
+                                    input.blur(function() {
+                                        var inputValue = input.val()
+                                        if (inputValue.length === 0) {
+                                            doneCb(null); // Drop the team and replace with BYE
+                                        } else {
+                                            var flagAndName = inputValue.split(':') // Expects correct input
+                                            doneCb({flag: flagAndName[0], name: flagAndName[1]})
+                                        }
+                                    })
                                 }
-                            }
 
-                            jQuery('#brackets').bracket({
-                                init: autoCompleteData,
-                                decorator: {edit: edit_fn,
-                                    render: render_fn},
-                                teamWidth: 150,
-                                matchMargin: 20
-                            })
-                        </script>
-                    </div>
+                                function render_fn(container, data, score, state) {
+                                    switch(state) {
+                                        case "empty-bye":
+                                            container.append("No team");
+                                            return;
+                                        case "empty-tbd":
+                                            container.append("Upcoming");
+                                            return;
+
+                                        case "entry-no-score":
+                                        case "entry-default-win":
+                                        case "entry-complete":
+                                            container.append('<img src="{{asset('images/flag')}}/'+data.flag+'.png" /> ').append(data.name)
+                                            return;
+                                    }
+                                }
+
+                                jQuery('#brackets').bracket({
+                                    init: autoCompleteData,
+                                    decorator: {edit: edit_fn,
+                                        render: render_fn},
+                                    teamWidth: 150,
+                                    matchMargin: 20
+                                })
+                            </script>
+                        </div>
+                    @endisset
 
                     <div class="nk-gap"></div>
                 </div>

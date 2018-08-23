@@ -106,6 +106,10 @@ img {
     text-decoration: none !important;
 }
 
+#brackets{
+    overflow-x: scroll;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 870px;

@@ -47,19 +47,21 @@
 
                 @forelse($latest_turnaments as $latest_turnament)
 
-                    <div class="nk-news-box-item">
-                        <div class="nk-news-box-item-img">
-                            <img src="https://www.vakarm.net/uploads/images/coverages/mini_icones/d6e7ad95a3fb5d13d3ac1b277590bb265993d995.jpg" alt="{{$latest_turnament->title}}">
+                    <a href="{{route('tournament_page',$latest_turnament->id)}}">
+                        <div class="nk-news-box-item">
+                            <div class="nk-news-box-item-img">
+                                <img src="https://www.vakarm.net/uploads/images/coverages/mini_icones/d6e7ad95a3fb5d13d3ac1b277590bb265993d995.jpg" alt="{{$latest_turnament->title}}">
+                            </div>
+                            <div class="nk-news-box-item-img">
+                                @foreach($countrys as $country)
+                                    @if($country->country == $latest_turnament->country_id)
+                                        <img class="mr-3" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_turnament->title}}">
+                                    @endif
+                                @endforeach
+                            </div>
+                            <h3 class="nk-news-box-item-title">{{$latest_turnament->short_title}}</h3>
                         </div>
-                        <div class="nk-news-box-item-img">
-                            @foreach($countrys as $country)
-                                @if($country->country == $latest_turnament->country_id)
-                                    <img class="mr-3" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_turnament->title}}">
-                                @endif
-                            @endforeach
-                        </div>
-                        <h3 class="nk-news-box-item-title">{{$latest_turnament->short_title}}</h3>
-                    </div>
+                    </a>
 
                 @empty
                 @endforelse

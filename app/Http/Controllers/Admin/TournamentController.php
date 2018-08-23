@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use function PHPSTORM_META\type;
 
 class TournamentController extends Controller
 {
@@ -43,16 +44,19 @@ class TournamentController extends Controller
     {
         $data = $request->except('_token');
 
-        $data = $request->except('_token');
-
         $validate = Validator::make($data,[
             'title' => 'required',
             'short_title' => 'required|max:45',
             'content_tournament' => 'required',
             'banner_image' => 'required|file',
             'publication_date' => 'date_format:Y-m-d',
-            'author' => 'string|nullable'
+            'author' => 'string|nullable',
+            'country_id' => 'required',
         ]);
+
+        if((integer)$data['country_id'] == 0){
+            $data['country_id'] = null;
+        }
 
         if ($validate->fails()) {
             return redirect()->route('admin.tournaments.create')
@@ -71,6 +75,8 @@ class TournamentController extends Controller
         if(!isset($data['publication_date'])){
             $data['publication_date'] = date('Y-m-d');
         }
+
+
 
         $tournament = new Tournament();
         $tournament->fill($data);
@@ -133,6 +139,10 @@ class TournamentController extends Controller
             return redirect()->route('admin.tournaments.edit',$tournament->id)
                 ->withErrors($validate)
                 ->withInput();
+        }
+
+        if((integer)$data['country_id'] == 0){
+            $data['country_id'] = null;
         }
 
         if($request->hasFile('banner_image')){

@@ -58,7 +58,7 @@
     </div>
     <div class="col-12 col-md-9">
         <select name="country_id" id="select" class="form-control" required>
-            <option>Please select country</option>
+            <option value="0">Please select country</option>
 
             @foreach($countries as $country)
                 <option @if(isset($tournament->id) && $tournament->country_id == $country->country) selected @endif value="<?php print_r($country->country); ?>"><?php print_r($country->country); ?></option>
