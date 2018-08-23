@@ -58,6 +58,18 @@
                         </li>
                     </ul>
                 </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-copy"></i>Manage streams</a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="{{route('admin.streams.create')}}"></i>Create stream</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.streams.index')}}">All streams</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -132,6 +144,22 @@
                         </li>
                         <li>
                             <a href="{{route('admin.matches.index')}}">All matches</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        Manage streams
+                        <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="{{route('admin.streams.create')}}"></i>Create stream</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.streams.index')}}">All streams</a>
                         </li>
                     </ul>
                 </li>

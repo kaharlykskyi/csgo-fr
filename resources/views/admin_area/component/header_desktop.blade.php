@@ -145,10 +145,26 @@
                     </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
-                            <a href="{{route('admin.tournaments.create')}}">Create tournaments</a>
+                            <a href="{{route('admin.tournaments.create')}}">Create tournament</a>
                         </li>
                         <li>
                             <a href="{{route('admin.tournaments.index')}}">All tournaments</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        Manage streams
+                        <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="{{route('admin.streams.create')}}">Create stream</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.streams.index')}}">All streams</a>
                         </li>
                     </ul>
                 </li>
