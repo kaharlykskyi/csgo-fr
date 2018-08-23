@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
-use App\Match;
-use App\User;
-use App\Tournament;
+use App\{Comment,Match,User,Tournament,Stream};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,7 +20,18 @@ class MatchPageController extends Controller
         }
         $tournament = Tournament::where('id',$match_data->tournament)->first();
         $users = User::whereIn('id',$users_id)->get();
-        return view('matches.index',compact('match_data','countrys','comments','count','users','type_match','tournament'));
+        $streams = Stream::where('show_homepage','on')->get();
+        return view('matches.index',compact(
+                'match_data',
+                'countrys',
+                'comments',
+                'streams',
+                'count',
+                'users',
+                'type_match',
+                'tournament'
+            )
+        );
     }
 
     public function writeComment(Request $request){

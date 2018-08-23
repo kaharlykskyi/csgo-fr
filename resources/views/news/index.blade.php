@@ -42,7 +42,7 @@
                     .nk-sidebar-right
                     .nk-sidebar-sticky
             -->
-        @component('common_component.sidebar')
+        @component('common_component.sidebar',['streams' => $streams])
 
         @endcomponent
         <!-- END: Sidebar -->

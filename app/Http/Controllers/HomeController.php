@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Match;
+use App\Stream;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,6 +28,7 @@ class HomeController extends Controller
             ->limit(40)
             ->get();
         $countrys = DB::table('countrys')->get();
+        $streams = Stream::where('show_homepage','on')->get();
         return view('home.index',
             compact(
                 'latest_news',
@@ -34,7 +36,8 @@ class HomeController extends Controller
                 'latest_turnaments',
                 'latest_match',
                 'live_match',
-                'upcoming_matches'
+                'upcoming_matches',
+                'streams'
             )
         );
     }

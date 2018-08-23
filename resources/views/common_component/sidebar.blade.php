@@ -14,29 +14,17 @@
         <h4 class="nk-widget-title"><span><span class="text-main-1">LIVE </span> STREAMS</span></h4>
         <div class="nk-widget-content">
             <div class="nk-widget-match p-5">
-                <a href="#">
-                    <div class="nk-widget-stream">
-                        <span class="nk-widget-stream-status bg-success"></span>
-                        <div class="nk-widget-stream-flag">
-                            <img src="{{asset('images/flag/brunei.png')}}" alt="">
+                @isset($streams)
+                    @foreach($streams as $stream)
+                        <div class="nk-widget-stream">
+                            <span class="nk-widget-stream-status bg-success"></span>
+                            <div class="nk-widget-stream-name">
+                                <a href="{{$stream->link}}" target="_blank">{{$stream->name}}</a>
+                            </div>
+                            <span class="nk-widget-stream-count">0 viewers</span>
                         </div>
-                        <div class="nk-widget-stream-name">ESL TV</div>
-                        <span class="nk-widget-stream-count">1234 viewers</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="nk-widget-match p-5">
-                <a href="#">
-                    <div class="nk-widget-stream">
-                        <span class="nk-widget-stream-status bg-danger"></span>
-                        <div class="nk-widget-stream-flag">
-                            <img src="{{asset('images/flag/brazil.png')}}" alt="">
-                        </div>
-                        <div class="nk-widget-stream-name">FcS</div>
-                        <span class="nk-widget-stream-count"></span>
-                    </div>
-                </a>
+                    @endforeach
+                @endisset
             </div>
         </div>
     </div>
