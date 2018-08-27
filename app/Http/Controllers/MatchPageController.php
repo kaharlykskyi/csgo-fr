@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\{Comment,Match,User,Tournament,Stream};
+use App\{AppTreid\StreamApi, Comment, Match, User, Tournament, Stream};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class MatchPageController extends Controller
 {
+    use StreamApi;
+
     public function index(Request $request){
         $match_data = Match::where('id', $request->id)->first();
         $countrys = DB::table('countrys')->get();
@@ -21,11 +23,14 @@ class MatchPageController extends Controller
         $tournament = Tournament::where('id',$match_data->tournament)->first();
         $users = User::whereIn('id',$users_id)->get();
         $streams = Stream::where('show_homepage','on')->get();
+
+        $streams_output = $this->getStream($streams);
+
         return view('matches.index',compact(
                 'match_data',
                 'countrys',
                 'comments',
-                'streams',
+                'streams_output',
                 'count',
                 'users',
                 'type_match',

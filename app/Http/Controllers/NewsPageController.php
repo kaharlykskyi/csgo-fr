@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\{News, NewsComment, Stream, User};
+use App\{AppTreid\StreamApi, News, NewsComment, Stream, User};
 use Illuminate\Http\Request;
 
 class NewsPageController extends Controller
 {
+    use StreamApi;
+
     public function index(Request $request){
         $news = News::where('id', $request->id)->first();
         $streams = Stream::where('show_homepage','on')->get();
@@ -17,7 +19,10 @@ class NewsPageController extends Controller
             $users_id[] = $comment->user_id;
         }
         $users = User::whereIn('id',$users_id)->get();
-        return view('news.index', compact('news', 'streams','count','comments','users'));
+
+        $streams_output = $this->getStream($streams);
+
+        return view('news.index', compact('news', 'streams_output','count','comments','users'));
     }
 
     public function writeComment(Request $request){

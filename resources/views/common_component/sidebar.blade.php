@@ -17,11 +17,11 @@
                 @isset($streams)
                     @foreach($streams as $stream)
                         <div class="nk-widget-stream">
-                            <span class="nk-widget-stream-status bg-success"></span>
+                            <span class="nk-widget-stream-status @if($stream['type'] === 'live') {{__('bg-success')}} @else {{__('bg-danger')}} @endif"></span>
                             <div class="nk-widget-stream-name">
-                                <a href="{{$stream->link}}" target="_blank">{{$stream->name}}</a>
+                                <a href="{{$stream['link']}}" target="_blank">{{$stream['channel_name']}}</a>
                             </div>
-                            <span class="nk-widget-stream-count">0 viewers</span>
+                            <span class="nk-widget-stream-count">@if($stream['type'] === 'live'){{$stream['views']}} viewers @else {{__('')}} @endif</span>
                         </div>
                     @endforeach
                 @endisset

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
             <!-- START: Image Slider -->
@@ -43,7 +42,7 @@
                             .nk-sidebar-right
                             .nk-sidebar-sticky
                     -->
-                        @component('common_component.sidebar',['streams' => $streams])
+                        @component('common_component.sidebar',['streams' => $streams_output])
 
                         @endcomponent
                     <!-- END: Sidebar -->

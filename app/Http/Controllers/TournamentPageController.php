@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\{Stream,Tournament,TournamentComment,User};
+use App\{AppTreid\StreamApi, Stream, Tournament, TournamentComment, User};
 use Illuminate\Http\Request;
 
 class TournamentPageController extends Controller
 {
+    use StreamApi;
+
     public function index(Request $request){
         $tournament = Tournament::where('id', $request->id)->first();
         $streams = Stream::where('show_homepage','on')->get();
@@ -16,8 +18,11 @@ class TournamentPageController extends Controller
         foreach ($comments as $comment){
             $users_id[] = $comment->user_id;
         }
+
+        $streams_output = $this->getStream($streams);
+
         $users = User::whereIn('id',$users_id)->get();
-        return view('tournaments.index', compact('tournament', 'streams','count','users','comments'));
+        return view('tournaments.index', compact('tournament', 'streams_output','count','users','comments'));
     }
 
     public function writeComment(Request $request){

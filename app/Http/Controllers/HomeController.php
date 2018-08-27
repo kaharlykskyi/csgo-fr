@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AppTreid\StreamApi;
 use App\Match;
 use App\Stream;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    use StreamApi;
     /**
      * Show the application dashboard.
      *
@@ -29,6 +31,9 @@ class HomeController extends Controller
             ->get();
         $countrys = DB::table('countrys')->get();
         $streams = Stream::where('show_homepage','on')->get();
+
+        $streams_output = $this->getStream($streams);
+
         return view('home.index',
             compact(
                 'latest_news',
@@ -37,7 +42,7 @@ class HomeController extends Controller
                 'latest_match',
                 'live_match',
                 'upcoming_matches',
-                'streams'
+                'streams_output'
             )
         );
     }

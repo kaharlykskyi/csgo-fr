@@ -159,7 +159,7 @@
                     .nk-sidebar-right
                     .nk-sidebar-sticky
             -->
-        @component('common_component.sidebar',['streams' => $streams])
+        @component('common_component.sidebar',['streams' => $streams_output])
 
         @endcomponent
         <!-- END: Sidebar -->
