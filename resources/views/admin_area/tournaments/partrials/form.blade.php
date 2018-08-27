@@ -3,7 +3,7 @@
         <label for="title" class=" form-control-label">Title</label>
     </div>
     <div class="col-12 col-md-9">
-        <input type="text" id="title" value="@if(isset($tournament->id)) {{$tournament->title}} @else {{old('title')}} @endif" name="title" placeholder="Title news" class="form-control" required>
+        <input type="text" id="title" value="@if(isset($tournament->id)){{$tournament->title}}@else{{old('title')}}@endif" name="title" placeholder="Title news" class="form-control" required>
         @if ($errors->has('title'))
             <small class="form-text text-danger">{{ $errors->first('title') }}</small>
         @endif
@@ -15,7 +15,7 @@
         <label for="short_title" class=" form-control-label">Short Title</label>
     </div>
     <div class="col-12 col-md-9">
-        <input type="text" value="@if(isset($tournament->id)) {{$tournament->short_title}} @else {{old('short_title')}} @endif" id="short_title" name="short_title" placeholder="Short title news" class="form-control" required>
+        <input type="text" value="@if(isset($tournament->id)){{$tournament->short_title}}@else{{old('short_title')}}@endif" id="short_title" name="short_title" placeholder="Short title news" class="form-control" required>
         <small class="form-text text-muted">maximum length is 45 characters</small>
         @if ($errors->has('short_title'))
             <small class="form-text text-danger">{{ $errors->first('short_title') }}</small>
@@ -29,7 +29,7 @@
     </div>
     <div class="col-12 col-md-9">
             <textarea id="editor" name="content_tournament" rows="9" placeholder="Content..." class="form-control" required>
-                @if(isset($tournament->id)) {{$tournament->content_tournament}} @else {{old('content_tournament')}} @endif
+                @if(isset($tournament->id)){{$tournament->content_tournament}}@else{{old('content_tournament')}}@endif
             </textarea>
         @if ($errors->has('content_tournament'))
             <small class="form-text text-danger">{{ $errors->first('content_tournament') }}</small>
@@ -91,7 +91,7 @@
         <label for="author" class=" form-control-label">Author's name</label>
     </div>
     <div class="col-12 col-md-9">
-        <input type="text" id="title" value="@if(isset($tournament->id)) {{$tournament->author}} @else {{old('author')}} @endif" name="author" placeholder="Author's name" class="form-control" required>
+        <input type="text" id="title" value="@if(isset($tournament->id)){{$tournament->author}}@else{{old('author')}}@endif" name="author" placeholder="Author's name" class="form-control" required>
         @if ($errors->has('author'))
             <small class="form-text text-danger">{{ $errors->first('author') }}</small>
         @endif
@@ -100,7 +100,7 @@
 
 <div class="card-footer">
     <button type="submit" class="btn btn-primary btn-sm">
-        <i class="fa fa-dot-circle-o"></i> @if(isset($tournament->id)){{__('Save')}} @else {{__('Next')}} @endif
+        <i class="fa fa-dot-circle-o"></i> @if(isset($tournament->id)){{__('Save')}}@else{{__('Next')}}@endif
     </button>
 </div>
 

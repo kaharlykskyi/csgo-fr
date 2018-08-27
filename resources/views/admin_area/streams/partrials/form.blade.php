@@ -3,7 +3,7 @@
         <label for="name" class=" form-control-label">Streamer's name</label>
     </div>
     <div class="col-12 col-md-9">
-        <input type="text" id="name" value="@if(isset($stream->id)) {{$stream->name}} @else {{old('name')}} @endif" name="name" placeholder="Name stream" class="form-control" required>
+        <input type="text" id="name" value="@if(isset($stream->id)){{$stream->name}}@else{{old('name')}}@endif" name="name" placeholder="Name stream" class="form-control" required>
         @if ($errors->has('name'))
             <small class="form-text text-danger">{{ $errors->first('name') }}</small>
         @endif
@@ -15,7 +15,7 @@
         <label for="link" class=" form-control-label">Streamer's link</label>
     </div>
     <div class="col-12 col-md-9">
-        <input type="text" id="link" value="@if(isset($stream->id)) {{$stream->link}} @else {{old('link')}} @endif" name="link" placeholder="Link stream" class="form-control" required>
+        <input type="text" id="link" value="@if(isset($stream->id)){{$stream->link}}@else{{old('link')}}@endif" name="link" placeholder="Link stream" class="form-control" required>
         @if ($errors->has('link'))
             <small class="form-text text-danger">{{ $errors->first('link') }}</small>
         @endif
