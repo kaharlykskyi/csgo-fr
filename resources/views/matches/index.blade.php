@@ -210,7 +210,7 @@
             <div class="nk-gap"></div>
             <div class="nk-comments">
 
-            @forelse($comments as $comment)
+                @forelse($comments as $comment)
                 <!-- START: Comment -->
                     <div class="nk-comment">
                         <div class="nk-comment-meta">
@@ -231,6 +231,9 @@
                     <!-- END: Comment -->
                 @empty
                 @endforelse
+                <ul class="pagination">
+                    {{$comments->links()}}
+                </ul>
 
             </div>
 

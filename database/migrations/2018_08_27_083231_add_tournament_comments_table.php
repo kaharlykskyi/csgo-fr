@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCommebtsMatchTable extends Migration
+class AddTournamentCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCommebtsMatchTable extends Migration
      */
     public function up()
     {
-        Schema::table('comments_match', function (Blueprint $table) {
-            $table->foreign('match_id')->references('id')->on('matches')->onDelete('cascade');
+        Schema::table('tournament_comments', function (Blueprint $table) {
+            $table->foreign('tournament_id')->references('id')->on('tournaments')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -26,8 +26,8 @@ class AddCommebtsMatchTable extends Migration
      */
     public function down()
     {
-        Schema::table('comments_match', function (Blueprint $table) {
-            $table->dropForeign('match_id');
+        Schema::table('tournament_comments', function (Blueprint $table) {
+            $table->dropForeign('tournament_id');
             $table->dropForeign('user_id');
         });
     }
