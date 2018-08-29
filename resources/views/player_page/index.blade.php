@@ -129,7 +129,7 @@
                                     <tr>
                                         <td>
                                             <a href="{{route('match_page',['id' => $val->match->id,'type' => 'latest-matches'])}}">
-                                                {{$val->team1->name}}<strong> VS </strong>{{$val->team2->name}}
+                                                {{$val->team1->name}}<strong> VS </strong>{{$val->team2->name}} - {{$val->match->match_day}}
                                             </a>
                                         </td>
                                     </tr>

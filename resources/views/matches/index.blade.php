@@ -18,7 +18,7 @@
 
             <div class="nk-match">
                 <div class="nk-match-team-left">
-                    <a class="logo-team-block" href="#">
+                    <a class="logo-team-block" href="{{route('team_page',$team->team1->name)}}">
                         @if(isset($team->team1))
                             <span class="nk-match-team-logo">
                                 <img src="@if(isset($team->team1->logo)){{asset($team->team1->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="{{$team->team1->name}}">
@@ -54,7 +54,7 @@
                     </a>
                 </div>
                 <div class="nk-match-team-right">
-                    <a class="logo-team-block" href="#">
+                    <a class="logo-team-block" href="{{route('team_page',$team->team2->name)}}">
                         @if(isset($team->team2))
                             <span class="nk-match-team-logo">
                                 <img src="@if(isset($team->team2->logo)){{asset($team->team2->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="{{$team->team2->name}}">

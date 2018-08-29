@@ -30,6 +30,8 @@ Route::post('/tournament-comment', 'TournamentPageController@writeComment')->nam
 
 Route::get('/player/{nickname}','PlayerController@index')->name('player_page');
 
+Route::get('/team/{name}','TeamController@index')->name('team_page');
+
 /*--------ADMIN--------*/
 Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','role']],function (){
     Route::get('/','DashboardController@index')->name('admin.dashboard');

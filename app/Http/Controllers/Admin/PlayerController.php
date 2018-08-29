@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Player;
 use App\Team;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -66,6 +67,14 @@ class PlayerController extends Controller
         $player = new Player();
         $player->fill($data);
         if($player->save()){
+            if(isset($data['team_id'])){
+                DB::table('team_history')->insert([
+                    'player_id' => $player->id,
+                    'team_id' => $player->team_id,
+                    'message' => "player {$player->nickname} added to team",
+                    'created_at' => Carbon::now()
+                ]);
+            }
             return redirect()->route('admin.players.index')->with('status','Player Added');
         } else{
             dump($data);
@@ -123,10 +132,35 @@ class PlayerController extends Controller
             $data['team_id'] = null;
         }
 
+        if (isset($data['team_id'])){
+            $old_team_id = $player->team_id;
+        } else {
+            DB::table('team_history')->insert([
+                'player_id' => $player->id,
+                'team_id' => $player->team_id,
+                'message' => "player {$player->nickname} removed from team",
+                'created_at' => Carbon::now()
+            ]);
+        }
+
         $data['account_type'] = 'player';
 
         $player->update($data);
         if($player->save()){
+            if (isset($data['team_id'])){
+                if($old_team_id != $player->team_id){
+                    DB::table('team_history')->insert([
+                        ['player_id' => $player->id,
+                        'team_id' => $old_team_id,
+                        'message' => "player {$player->nickname} removed from team",
+                        'created_at' => Carbon::now()],
+                        ['player_id' => $player->id,
+                            'team_id' => $player->team_id,
+                            'message' => "player {$player->nickname} added to team",
+                            'created_at' => Carbon::now()]
+                    ]);
+                }
+            }
             return redirect()->back()->with('status','Player Added');
         } else{
             dump($data);
