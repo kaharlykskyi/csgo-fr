@@ -26,7 +26,8 @@
                         @component('home.components.latest_matches',[
                             'latest_match' => $latest_match,
                             'live_match' => $live_match,
-                            'upcoming_matches' => $upcoming_matches
+                            'upcoming_matches' => $upcoming_matches,
+                            'teams' => $teams
                         ])
 
                         @endcomponent

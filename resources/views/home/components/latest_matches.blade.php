@@ -5,22 +5,24 @@
     <div class="col-12">
         @forelse($live_match as $val)
             <?php
-                $team = json_decode($val->team);
+                $team_data = json_decode($val->team);
                 $score = json_decode($val->fin_score);
             ?>
             <div class="nk-match">
                 <div class="nk-match-team-left">
                     <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'live-matches'])}}">
-                        @if(isset($team->team1_logo) && isset($team->team_names1))
-                            <span class="nk-match-team-logo">
-                                <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
+                        @foreach($teams as $team)
+                            @if(isset($team_data->team_names1) && $team->id == $team_data->team_names1)
+                                <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->logo) }}" alt="{{$team->name}}">
                             </span>
-                        @endif
-                        @isset($team->team_names1)
-                            <span class="nk-match-team-name">
-                                {{$team->team_names1}}
+                            @endif
+                            @if(isset($team_data->team_names1) && $team->id == $team_data->team_names1)
+                                <span class="nk-match-team-name">
+                                {{$team->names}}
                             </span>
-                        @endisset
+                            @endif
+                        @endforeach
                     </a>
                 </div>
                 <div class="nk-match-status">
@@ -46,16 +48,18 @@
                 </div>
                 <div class="nk-match-team-right">
                     <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'live-matches'])}}">
-                        @isset($team->team_names2)
-                            <span class="nk-match-team-name">
-                                    {{$team->team_names2}}
+                        @foreach($teams as $team)
+                            @if(isset($team_data->team_names1) && $team->id == $team_data->team_names2)
+                                <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->logo) }}" alt="{{$team->name}}">
                             </span>
-                        @endisset
-                        @if(isset($team->team2_logo) && isset($team->team_names2))
-                            <span class="nk-match-team-logo">
-                                <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
+                            @endif
+                            @if(isset($team_data->team_names2) && $team->id == $team_data->team_names2)
+                                <span class="nk-match-team-name">
+                                {{$team->names}}
                             </span>
-                        @endif
+                            @endif
+                        @endforeach
                     </a>
                 </div>
             </div>
@@ -73,22 +77,24 @@
     <div class="col-12">
         @forelse($upcoming_matches as $val)
             <?php
-            $team = json_decode($val->team);
+            $team_data = json_decode($val->team);
             $score = json_decode($val->fin_score);
             ?>
             <div class="nk-match">
                 <div class="nk-match-team-left">
                     <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'upcoming-matches'])}}">
-                        @if(isset($team->team1_logo) && isset($team->team_names1))
-                            <span class="nk-match-team-logo">
-                                <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
+                        @foreach($teams as $team)
+                            @if($team->id == $team_data->team_names1)
+                                <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->logo) }}" alt="{{$team->name}}">
                             </span>
-                        @endif
-                            @isset($team->team_names1)
+                            @endif
+                            @if($team->id == $team_data->team_names1)
                                 <span class="nk-match-team-name">
-                                {{$team->team_names1}}
+                                {{$team->name}}
                             </span>
-                            @endisset
+                            @endif
+                        @endforeach
                     </a>
                 </div>
                 <div class="nk-match-status">
@@ -114,16 +120,18 @@
                 </div>
                 <div class="nk-match-team-right">
                     <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'upcoming-matches'])}}">
-                        @isset($team->team_names2)
-                            <span class="nk-match-team-name">
-                                    {{$team->team_names2}}
+                        @foreach($teams as $team)
+                            @if(isset($team_data->team_names1) && $team->id == $team_data->team_names2)
+                                <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->logo) }}" alt="{{$team->name}}">
                             </span>
-                        @endisset
-                        @if(isset($team->team2_logo) && isset($team->team_names2))
-                            <span class="nk-match-team-logo">
-                                <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
+                            @endif
+                            @if(isset($team_data->team_names2) && $team->id == $team_data->team_names2)
+                                <span class="nk-match-team-name">
+                                {{$team->names}}
                             </span>
-                        @endif
+                            @endif
+                        @endforeach
                     </a>
                 </div>
             </div>
@@ -139,22 +147,24 @@
 <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Latest</span> Matches</span></h3>
 @forelse($latest_match as $val)
     <?php
-    $team = json_decode($val->team);
+    $team_data = json_decode($val->team);
     $score = json_decode($val->fin_score);
     ?>
     <div class="nk-match">
         <div class="nk-match-team-left">
             <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'latest-matches'])}}">
-                @if(isset($team->team1_logo) && isset($team->team_names1))
-                    <span class="nk-match-team-logo">
-                                <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
+                @foreach($teams as $team)
+                    @if($team->id == $team_data->team_names1)
+                        <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->logo) }}" alt="{{$team->name}}">
                             </span>
-                @endif
-                @isset($team->team_names1)
-                    <span class="nk-match-team-name">
-                                {{$team->team_names1}}
+                    @endif
+                    @if($team->id == $team_data->team_names1)
+                        <span class="nk-match-team-name">
+                                {{$team->name}}
                             </span>
-                @endisset
+                    @endif
+                @endforeach
             </a>
         </div>
         <div class="nk-match-status">
@@ -180,16 +190,18 @@
         </div>
         <div class="nk-match-team-right">
             <a class="logo-team-block" href="{{route('match_page',['id' => $val->id,'type' => 'latest-matches'])}}">
-                @isset($team->team_names2)
-                    <span class="nk-match-team-name">
-                                    {{$team->team_names2}}
+                @foreach($teams as $team)
+                    @if(isset($team_data->team_names1) && $team->id == $team_data->team_names2)
+                        <span class="nk-match-team-logo">
+                                <img src="{{ asset($team->logo) }}" alt="{{$team->name}}">
                             </span>
-                @endisset
-                @if(isset($team->team2_logo) && isset($team->team_names2))
-                    <span class="nk-match-team-logo">
-                                <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
+                    @endif
+                    @if(isset($team_data->team_names2) && $team->id == $team_data->team_names2)
+                        <span class="nk-match-team-name">
+                                {{$team->names}}
                             </span>
-                @endif
+                    @endif
+                @endforeach
             </a>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Match;
+use App\Team;
 use App\Tournament;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,15 @@ class MatchController extends Controller
     public function index()
     {
         $matches = Match::paginate(20);
-        return view('admin_area.matches.index',compact('matches'));
+        $use_teams = [];
+        foreach ($matches as $match){
+            $team_data = json_decode($match->team);
+            $use_teams[] = (object)[
+                'team1' => Team::where('id',$team_data->team_names1)->first(),
+                'team2' => Team::where('id',$team_data->team_names2)->first()
+            ] ;
+        }
+        return view('admin_area.matches.index',compact('matches','use_teams'));
     }
 
     /**
@@ -87,7 +96,8 @@ class MatchController extends Controller
     {
         $turnaments = Tournament::all();
         $countries = DB::table('countrys')->get();
-        return view('admin_area.matches.edit',compact('match','countries','turnaments'));
+        $teams = Team::all();
+        return view('admin_area.matches.edit',compact('match','countries','turnaments','teams'));
     }
 
     /**

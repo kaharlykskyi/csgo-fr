@@ -329,8 +329,6 @@
 
                                             $('#' + id).filemanager('image');
                                             count_id++;
-
-                                            console.log($(map_input[i]).find('img.preview_form_add_img_map'));
                                         }
                                     })
 
@@ -351,42 +349,32 @@
                                                         <div class="col-6">
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="team1">Team 1</span>
+                                                                    <span class="input-group-text" id="team_names1">Team 1</span>
                                                                 </div>
-                                                                <input name="team_names1" type="text" class="form-control" placeholder="Team name" aria-describedby="team1">
+                                                                <select class="custom-select" id="team_names1" name="team_names1">
+                                                                    <option value="0" >choose team</option>
+                                                                    @isset($teams)
+                                                                        @foreach($teams as $team)
+                                                                            <option value="<?php print_r($team->id); ?>"><?php print_r($team->name); ?></option>
+                                                                        @endforeach
+                                                                    @endisset
+                                                                </select>
                                                             </div>
-                                                            <div class="m-b-5 m-t-5">
-                                                                <div class="input-group">
-                                                                   <span class="input-group-btn">
-                                                                     <a id="logo1" data-input="thumbnaiTeam1" data-preview="holderTeam1" class="btn btn-primary">
-                                                                       <i class="fa fa-picture-o"></i> Choose
-                                                                     </a>
-                                                                   </span>
-                                                                    <input placeholder="Team logo" id="thumbnaiTeam1" class="form-control" type="text" name="team1_logo">
-                                                                </div>
-                                                                <img id="holderTeam1" style="margin-top:15px;max-height:100px;">
-                                                            </div>
-                                                            <div style="margin:10px; border-left:3px solid rgba(0, 0, 0, 0.31); padding-left: 10px;" data-holder-for="team_users1"></div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="team1">Team 2</span>
+                                                                    <span class="input-group-text" id="team_names2">Team 2</span>
                                                                 </div>
-                                                                <input name="team_names2" type="text" class="form-control" placeholder="Team name" aria-describedby="team1">
+                                                                <select class="custom-select" id="team_names2" name="team_names2">
+                                                                    <option value="0" >choose team</option>
+                                                                    @isset($teams)
+                                                                        @foreach($teams as $team)
+                                                                            <option value="<?php print_r($team->id); ?>"><?php print_r($team->name); ?></option>
+                                                                        @endforeach
+                                                                    @endisset
+                                                                </select>
                                                             </div>
-                                                            <div class="m-b-5 m-t-5">
-                                                                <div class="input-group">
-                                                                   <span class="input-group-btn">
-                                                                     <a id="logo2" data-input="thumbnaiTeam2" data-preview="holderTeam2" class="btn btn-primary">
-                                                                       <i class="fa fa-picture-o"></i> Choose
-                                                                     </a>
-                                                                   </span>
-                                                                    <input placeholder="Team logo" id="thumbnaiTeam2" class="form-control" type="text" name="team2_logo">
-                                                                </div>
-                                                                <img id="holderTeam2" style="margin-top:15px;max-height:100px;">
-                                                            </div>
-                                                            <div style="margin:10px; border-left:3px solid rgba(0, 0, 0, 0.31); padding-left: 10px;" data-holder-for="team_users2"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -401,67 +389,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Subforms library -->
-                                <div style="display:none">
-                                    <div data-name="team_users1" data-label="Team" class="product m-b-15">
-                                        <table>
-                                            <thead>Player info</thead>
-                                            <tr>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="user_name">Name</span>
-                                                    </div>
-                                                    <input id="user_name" name="user_name" type="text" class="form-control">
-                                                </div>
-                                            </tr>
-                                            <tr>
-                                                <div class="input-group m-b-5 m-t-5">
-                                                    <div class="input-group-prepend">
-                                                        <label class="input-group-text" for="country">Country</label>
-                                                    </div>
-                                                    <select id="flags" name="country_id" class="form-control}}">
-                                                        @if(isset($countries))
-                                                            @foreach($countries as $country)
-                                                                <option value="{{$country->country}}" data-class="avatar" data-style="background-image: url({!! asset('images/flag/'.$country->flag) !!});">{{$country->country}}</option>
-                                                            @endforeach
-                                                        @endif
-                                                    </select>
-                                                </div>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div style="display:none">
-                                    <div data-name="team_users2" data-label="Team" class="product m-b-15">
-                                        <table>
-                                            <thead>Player info</thead>
-                                            <tr>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="user_name">Name</span>
-                                                    </div>
-                                                    <input id="user_name" name="user_name" type="text" class="form-control">
-                                                </div>
-                                            </tr>
-                                            <tr>
-                                                <div class="input-group m-b-5 m-t-5">
-                                                    <div class="input-group-prepend">
-                                                        <label class="input-group-text" for="country">Country</label>
-                                                    </div>
-                                                    <select id="flags" name="country_id" class="form-control}}">
-                                                        @if(isset($countries))
-                                                            @foreach($countries as $country)
-                                                                <option value="{{$country->country}}" data-class="avatar" data-style="background-image: url({!! asset('images/flag/'.$country->flag) !!});">{{$country->country}}</option>
-                                                            @endforeach
-                                                        @endif
-                                                    </select>
-                                                </div>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-
                                 <script type="text/javascript">
 
 
@@ -469,11 +396,6 @@
                                     var teamJson = {!! $match->team  !!};
                                             @else
                                     var teamJson = {
-                                            "team_names1" : "",
-                                            "team_names2" : "",
-                                            "team1_logo": "",
-                                            "team2_logo": "",
-                                            "team_users1Array": [{"user_name": "sdfdf", "country_id": "Albania"}]
                                         };
                                     @endif
 
@@ -505,10 +427,6 @@
                                         });
 
                                     });
-
-                                    $('#logo1').filemanager('image');
-                                    $('#logo2').filemanager('image');
-
                                 </script>
                             </div>
                         </div>

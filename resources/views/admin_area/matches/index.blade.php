@@ -31,11 +31,13 @@
                                     <td>
                                         <p>
                                             @if(isset($val->team))
-                                                <?php
-                                                $team_data = json_decode($val->team);
-                                                //print_r($team_data);
-                                                echo $team_data->team_names1 . ' <strong>vs</strong> ' . $team_data->team_names2;
-                                                ?>
+                                                <?php $team_data = json_decode($val->team); ?>
+                                                @foreach($use_teams as $use_team)
+                                                    @if($use_team->team1->id == $team_data->team_names1 && $use_team->team2->id == $team_data->team_names2)
+                                                        {{$use_team->team1->name}} <strong>vs</strong> {{$use_team->team2->name}}
+                                                        @break
+                                                    @endif
+                                                @endforeach
                                             @endif
                                         </p>
                                     </td>

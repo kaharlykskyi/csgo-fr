@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{AppTreid\StreamApi, Comment, Match, User, Tournament, Stream};
+use App\{AppTreid\StreamApi, Comment, Match, Player, Team, User, Tournament, Stream};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,6 +12,15 @@ class MatchPageController extends Controller
 
     public function index(Request $request){
         $match_data = Match::where('id', $request->id)->first();
+
+        $team_json = json_decode($match_data->team);
+        $team = (object)[
+            'team1' => Team::where('id',$team_json->team_names1)->first(),
+            'team2' => Team::where('id',$team_json->team_names2)->first(),
+            'players_team1' => Player::where('team_id',$team_json->team_names1)->get(),
+            'players_team2' => Player::where('team_id',$team_json->team_names2)->get()
+        ];
+
         $countrys = DB::table('countrys')->get();
         $comments = Comment::where('match_id',$request->id)->paginate(20);
         $count = Comment::where('match_id',$request->id)->count();
@@ -34,7 +43,8 @@ class MatchPageController extends Controller
                 'count',
                 'users',
                 'type_match',
-                'tournament'
+                'tournament',
+                'team'
             )
         );
     }

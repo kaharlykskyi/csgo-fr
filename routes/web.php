@@ -28,6 +28,8 @@ Route::post('/news-comment', 'NewsPageController@writeComment')->name('news_comm
 Route::get('/tournament/{id}','TournamentPageController@index')->name('tournament_page');
 Route::post('/tournament-comment', 'TournamentPageController@writeComment')->name('tournament_comment');
 
+Route::get('/player/{nickname}','PlayerController@index')->name('player_page');
+
 /*--------ADMIN--------*/
 Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','role']],function (){
     Route::get('/','DashboardController@index')->name('admin.dashboard');
@@ -35,6 +37,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::resource('/tournaments','TournamentController',['as' => 'admin']);
     Route::resource('/matches','MatchController',['as' => 'admin']);
     Route::resource('/streams', 'StreamController', ['as' => 'admin']);
+    Route::resource('/players','PlayerController',['as' => 'admin']);
+    Route::resource('/teams','TeamController',['as' => 'admin']);
 });
 
 Auth::routes();

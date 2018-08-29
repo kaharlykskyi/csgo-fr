@@ -70,6 +70,30 @@
                         </li>
                     </ul>
                 </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-copy"></i>Manage players</a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="{{route('admin.players.create')}}"></i>Create player</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.players.index')}}">All players</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-copy"></i>Manage teams</a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="{{route('admin.teams.create')}}"></i>Create team</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.teams.index')}}">All teams</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -160,6 +184,38 @@
                         </li>
                         <li>
                             <a href="{{route('admin.streams.index')}}">All streams</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        Manage players
+                        <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="{{route('admin.players.create')}}"></i>Create player</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.players.index')}}">All players</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        Manage teams
+                        <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="{{route('admin.teams.create')}}"></i>Create team</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.teams.index')}}">All teams</a>
                         </li>
                     </ul>
                 </li>

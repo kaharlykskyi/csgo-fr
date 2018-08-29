@@ -3,7 +3,6 @@
 @section('content')
 
     <?php
-    $team = json_decode($match_data->team);
     $streams = json_decode($match_data->stream_link);
     $maps = json_decode($match_data->map);
     $score = json_decode($match_data->fin_score);
@@ -20,14 +19,14 @@
             <div class="nk-match">
                 <div class="nk-match-team-left">
                     <a class="logo-team-block" href="#">
-                        @if(isset($team->team1_logo) && isset($team->team_names1))
+                        @if(isset($team->team1))
                             <span class="nk-match-team-logo">
-                                <img src="{{ asset($team->team1_logo) }}" alt="{{$team->team_names1}}">
+                                <img src="@if(isset($team->team1->logo)){{asset($team->team1->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="{{$team->team1->name}}">
                             </span>
                         @endif
-                        @isset($team->team_names1)
+                        @isset($team->team1)
                             <span class="nk-match-team-name">
-                                {{$team->team_names1}}
+                                {{$team->team1->name}}
                             </span>
                         @endisset
                     </a>
@@ -56,16 +55,16 @@
                 </div>
                 <div class="nk-match-team-right">
                     <a class="logo-team-block" href="#">
-                        @isset($team->team_names2)
-                            <span class="nk-match-team-name">
-                                    {{$team->team_names2}}
-                            </span>
-                        @endisset
-                        @if(isset($team->team2_logo) && isset($team->team_names2))
+                        @if(isset($team->team2))
                             <span class="nk-match-team-logo">
-                                <img src="{{ asset($team->team2_logo) }}" alt="{{$team->team_names2}}">
+                                <img src="@if(isset($team->team2->logo)){{asset($team->team2->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="{{$team->team2->name}}">
                             </span>
                         @endif
+                        @isset($team->team2)
+                            <span class="nk-match-team-name">
+                                {{$team->team2->name}}
+                            </span>
+                        @endisset
                     </a>
                 </div>
             </div>
@@ -75,50 +74,54 @@
             <div class="team-content">
                 <div class="row">
                     <div class="col-6">
-                        @forelse($team->team_users1Array as $user)
+                        @forelse($team->players_team1 as $user)
 
-                            <div class="row">
-                                <div class="col-2">
-                                    @isset($user->country_id)
-                                        @foreach($countrys as $country)
+                            <a href="{{route('player_page',$user->nickname)}}">
+                                <div class="row">
+                                    <div class="col-2">
+                                        @isset($user->country)
+                                            @foreach($countrys as $country)
 
-                                            @if($country->country == $user->country_id)
-                                                <img src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
-                                            @endif
+                                                @if($country->country == $user->country)
+                                                    <img src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
+                                                @endif
 
-                                        @endforeach
-                                    @endisset
+                                            @endforeach
+                                        @endisset
+                                    </div>
+                                    <div class="col-10">
+                                        @isset($user->nickname)
+                                            <p class="text-white">{{$user->nickname}}</p>
+                                        @endisset
+                                    </div>
                                 </div>
-                                <div class="col-10">
-                                    @isset($user->user_name)
-                                        <p class="text-white">{{$user->user_name}}</p>
-                                    @endisset
-                                </div>
-                            </div>
+                            </a>
                         @empty
 
                         @endforelse
                     </div>
 
                     <div class="col-6">
-                        @forelse($team->team_users2Array as $user)
+                        @forelse($team->players_team2 as $user)
 
-                            <div class="row">
-                                <div class="col-10">
-                                    @isset($user->user_name)
-                                        <p class="text-right text-white">{{$user->user_name}}</p>
-                                    @endisset
+                            <a href="{{route('player_page',$user->nickname)}}">
+                                <div class="row">
+                                    <div class="col-10">
+                                        @isset($user->nickname)
+                                            <p class="text-right text-white">{{$user->nickname}}</p>
+                                        @endisset
+                                    </div>
+                                    <div class="col-2">
+                                        @isset($user->country)
+                                            @foreach($countrys as $country)
+                                                @if($country->country == $user->country)
+                                                    <img src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
+                                                @endif
+                                            @endforeach
+                                        @endisset
+                                    </div>
                                 </div>
-                                <div class="col-2">
-                                    @isset($user->country_id)
-                                        @foreach($countrys as $country)
-                                            @if($country->country == $user->country_id)
-                                                <img src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
-                                            @endif
-                                        @endforeach
-                                    @endisset
-                                </div>
-                            </div>
+                            </a>
 
                         @empty
 
