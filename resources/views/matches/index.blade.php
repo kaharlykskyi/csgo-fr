@@ -3,9 +3,9 @@
 @section('content')
 
     <?php
-    $streams = json_decode($match_data->stream_link);
-    $maps = json_decode($match_data->map);
-    $score = json_decode($match_data->fin_score);
+        $streams = json_decode($match_data->stream_link);
+        $maps = json_decode($match_data->map);
+        $score = json_decode($match_data->fin_score);
     ?>
 
     <div class="nk-gap-2"></div>
@@ -137,13 +137,15 @@
                     @foreach($maps as $map)
                         <div class="row">
                             <div class="col-2 text-center">
-                                <span class="@if($map->team1_t > $map->team2_ct){{__('text-success')}}@else{{__('text-danger')}}@endif">T {{$map->team1_t}}</span><br>
-                                <span class="@if($map->team1_ct > $map->team2_t){{__('text-success')}}@else{{__('text-danger')}}@endif">CT {{$map->team1_ct}}</span>
-                                <p class="h3 @if(((integer)$map->team1_ct + (integer)$map->team1_t) > ((integer)$map->team2_ct + (integer)$map->team2_t))
-                                    {{__('text-success')}}
-                                @else
-                                    {{__('text-danger')}}
-                                @endif">{{(integer)$map->team1_ct + (integer)$map->team1_t}}</p>
+                                <?php $sum = 0; ?>
+                                @foreach($map->map_score_tean1Array as $item)
+                                    <p class="@if(strtolower($item->name) == 't'){{__('text-danger')}}@elseif(strtolower($item->name) == 'ct'){{__('text-primary')}}@else{{__('text-warning')}}@endif">
+                                        <span>{{$item->name}}:</span>
+                                        <span>{{$item->score}}</span>
+                                    </p>
+                                    <?php $sum += (int)$item->score ?>
+                                @endforeach
+                                    <p class="h3 text-success">{{$sum}}</p>
                             </div>
                             <div class="col-8 map-wrapper">
                                 <div class="map-name-hover">
@@ -156,13 +158,15 @@
                                 @endif
                             </div>
                             <div class="col-2 text-center">
-                                <span class="@if($map->team1_t < $map->team2_ct){{__('text-success')}}@else{{__('text-danger')}}@endif">CT {{$map->team2_ct}}</span><br>
-                                <span class="@if($map->team1_ct < $map->team2_t){{__('text-success')}}@else{{__('text-danger')}}@endif">T {{$map->team2_t}}</span>
-                                <p class="h3 @if(((integer)$map->team2_ct + (integer)$map->team2_t) > ((integer)$map->team1_ct + (integer)$map->team1_t))
-                                {{__('text-success')}}
-                                @else
-                                {{__('text-danger')}}
-                                @endif">{{(integer)$map->team2_ct + (integer)$map->team2_t}}</p>
+                                <?php $sum = 0; ?>
+                                @foreach($map->map_score_tean2Array as $item)
+                                    <p class="@if(strtolower($item->name) == 't'){{__('text-danger')}}@elseif(strtolower($item->name) == 'ct'){{__('text-primary')}}@else{{__('text-warning')}}@endif">
+                                        <span>{{$item->name}}:</span>
+                                        <span>{{$item->score}}</span>
+                                    </p>
+                                    <?php $sum += (int)$item->score ?>
+                                @endforeach
+                                <p class="h3 text-success">{{$sum}}</p>
                             </div>
                         </div>
                         <div class="nk-gap-2"></div>
@@ -178,42 +182,37 @@
 
                 <div class="nk-gap-2"></div>
 
-                @isset($tournament->title)
+
                     <div class="team-content">
-                        <p class="h4">Tournament</p>
-                        <div class="row">
-                            <div class="col-12">
-                                <p style="color: #dd163b;">{{$tournament->title}}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endisset
-
-            <div class="nk-gap-2"></div>
-
-                @isset($streams)
-                    <div class="team-content">
-                        <p class="h4">Stream links</p>
-                        <div class="row">
-
-                            @foreach($streams as $stream)
+                        @isset($tournament->title)
+                            <p class="h5 mb-1">Tournament</p>
+                            <div class="row">
                                 <div class="col-12">
-                                    <a href="{{$stream->link}}">{{$stream->link}}</a>
-                                        @isset($streams_output)
-                                            @foreach($streams_output as $item)
-                                                @if($item['link'] == $stream->link && $item['type'] == 'live')
-                                                    <span>
+                                    <p style="color: #dd163b;">{{$tournament->title}}</p>
+                                </div>
+                            </div>
+                            <div class="nk-gap-2"></div>
+                        @endisset
+                            @isset($streams)
+                                <p class="h5 mb-1">Stream links</p>
+                                <div class="row">
+                                    @foreach($streams as $stream)
+                                        <div class="col-12">
+                                            <a href="{{$stream->link}}">{{$stream->link}}</a>
+                                            @isset($streams_output)
+                                                @foreach($streams_output as $item)
+                                                    @if($item['link'] == $stream->link && $item['type'] == 'live')
+                                                        <span>
                                                         - {{$item['views']}} viewers
                                                     </span>
-                                                @endif
-                                            @endforeach
-                                        @endisset
+                                                    @endif
+                                                @endforeach
+                                            @endisset
+                                        </div>
+                                    @endforeach
                                 </div>
-                            @endforeach
-
-                        </div>
+                            @endisset
                     </div>
-                @endisset
 
             <div class="nk-gap-2"></div>
             <!-- START: Comments -->
@@ -282,7 +281,13 @@
                     .nk-sidebar-right
                     .nk-sidebar-sticky
             -->
-        @component('common_component.sidebar',['streams' => $streams_output])
+        @component('common_component.sidebar',[
+            'streams' => $streams_output,
+            'latest_match' => $latest_match,
+            'live_match' => $live_match,
+            'upcoming_matches' => $upcoming_matches,
+            'teams' => $teams
+        ])
 
         @endcomponent
         <!-- END: Sidebar -->

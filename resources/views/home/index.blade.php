@@ -1,26 +1,24 @@
 @extends('layouts.app')
 @section('content')
 
-            <!-- START: Latest News -->
-            @component('home.components.latest_news',[
-            'latest_news' =>$latest_news,
-            'countrys' => $countrys,
-            'latest_turnaments' => $latest_turnaments
-            ])
-
-            @endcomponent
-            <!-- END: Latest News -->
-
-            <!-- START: Image Slider -->
-            @component('home.components.image_slider')
-
-            @endcomponent
-            <!-- END: Image Slider -->
-
-            <div class="nk-gap-2"></div>
-
             <div class="row vertical-gap">
                 <div class="col-lg-8">
+
+                        <!-- START: Latest News -->
+                    @component('home.components.latest_news',[
+                    'latest_news' =>$latest_news,
+                    'countrys' => $countrys,
+                    'latest_turnaments' => $latest_turnaments
+                    ])
+
+                    @endcomponent
+                    <!-- END: Latest News -->
+
+                        <!-- START: Image Slider -->
+                    @component('home.components.image_slider')
+
+                    @endcomponent
+                    <!-- END: Image Slider -->
 
                     <div class="tabbed-news-wrapper">
                         <!-- START: Tabbed News  -->
@@ -30,7 +28,7 @@
                         <!-- END: Tabbed News -->
                     </div>
 
-                    <!-- START: Latest Matches -->
+{{--                    <!-- START: Latest Matches -->
                     @component('home.components.latest_matches',[
                         'latest_match' => $latest_match,
                         'live_match' => $live_match,
@@ -39,7 +37,7 @@
                     ])
 
                     @endcomponent
-                <!-- END: Latest Matches -->
+                    <!-- END: Latest Matches -->--}}
 
                 </div>
                 <div class="col-lg-4">
@@ -51,7 +49,13 @@
                             .nk-sidebar-right
                             .nk-sidebar-sticky
                     -->
-                        @component('common_component.sidebar',['streams' => $streams_output])
+                        @component('common_component.sidebar',[
+                            'streams' => $streams_output,
+                            'latest_match' => $latest_match,
+                            'live_match' => $live_match,
+                            'upcoming_matches' => $upcoming_matches,
+                            'teams' => $teams
+                        ])
 
                         @endcomponent
                     <!-- END: Sidebar -->

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @component('admin_area.component.breadcrumb',['title'=>'','parent'=>'Dashboard','active' =>'Update match'])
+    @component('admin_area.component.breadcrumb',['title'=>'','parent'=>'Dashboard','active' =>'Edit match'])
 
     @endcomponent
 
@@ -11,7 +11,7 @@
             <div class="col-12 m-t-30">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Create</strong> Match
+                        <strong>Edit</strong> Match
                     </div>
                     <div class="default-tab">
                         <nav>
@@ -202,56 +202,61 @@
                                                     <img id="holder" class="preview_form_add_img_map" style="margin-top:15px;max-height:100px;">
                                                 </div>
                                                 <div class="col-6">
-                                                    <table>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="input-group m-b-5">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text" id="team1_ct">Team 1 CT</span>
-                                                                    </div>
-                                                                    <input id="team1_ct" name="team1_ct" type="text" class="form-control">
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text" id="team2_t">Team 2 T</span>
-                                                                    </div>
-                                                                    <input id="team2_t" name="team2_t" type="text" class="form-control">
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <h3>Team 1</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div data-holder-for="map_score_tean1"></div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <table>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="input-group m-b-5">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text" id="team1_t">Team 1 T</span>
-                                                                    </div>
-                                                                    <input id="team1_t" name="team1_t" type="text" class="form-control">
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text" id="team2_ct">Team 2 CT</span>
-                                                                    </div>
-                                                                    <input id="team2_ct" name="team2_ct" type="text" class="form-control">
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <h3>Team 2</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div data-holder-for="map_score_tean2"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div  style="display:none">
+                                        <div data-name="map_score_tean1" data-label="Map score team1" class="product m-b-15">
+                                            <div class="row p-0">
+                                                <div class="col-6">
+                                                    <div class="input-group m-b-1 m-t-5">
+                                                        <input id="name" name="name" type="text" placeholder="name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="input-group m-b-1 m-t-5">
+                                                        <input id="score" name="score" type="text" placeholder="score" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+
+                                    <div  style="display:none">
+                                        <div data-name="map_score_tean2" data-label="Map score team1" class="product m-b-15">
+                                            <div class="row p-0">
+                                                <div class="col-6">
+                                                    <div class="input-group m-b-1 m-t-5">
+                                                        <input id="name" name="name" type="text" placeholder="name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="input-group m-b-1 m-t-5">
+                                                        <input id="score" name="score" type="text" placeholder="score" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <script type="text/javascript">

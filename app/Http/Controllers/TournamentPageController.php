@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{AppTreid\StreamApi, Stream, Tournament, TournamentComment, User};
+use App\{AppTreid\StreamApi, Match, Stream, Team, Tournament, TournamentComment, User};
 use Illuminate\Http\Request;
 
 class TournamentPageController extends Controller
@@ -21,8 +21,23 @@ class TournamentPageController extends Controller
 
         $streams_output = $this->getStream($streams);
 
+        $latest_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, match_day, NOW()) > 2")->limit(20)->get();
+        $live_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) IN (0,1,2)")->limit(10)->get();
+        $upcoming_matches = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) > 2")->limit(10)->get();
+        $teams = Team::all();
+
         $users = User::whereIn('id',$users_id)->get();
-        return view('tournaments.index', compact('tournament', 'streams_output','count','users','comments'));
+        return view('tournaments.index', compact(
+            'tournament',
+            'streams_output',
+            'count',
+            'users',
+            'comments',
+            'latest_match',
+            'live_match',
+            'upcoming_matches',
+            'teams'
+        ));
     }
 
     public function writeComment(Request $request){

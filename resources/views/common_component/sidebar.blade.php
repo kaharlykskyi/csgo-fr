@@ -1,4 +1,15 @@
 <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
+
+    <!-- START: Scoreboard -->
+    @component('common_component.scoreboard', [
+        'latest_match' => $latest_match,
+        'live_match' => $live_match,
+        'upcoming_matches' => $upcoming_matches,
+        'teams' => $teams
+    ])
+    @endcomponent
+    <!-- END: Scoreboard -->
+
     <div class="nk-widget nk-widget-highlighted">
         <h4 class="nk-widget-title"><span><span class="text-main-1">LIVE </span> STREAMS</span></h4>
         <div class="nk-widget-content">
@@ -8,11 +19,13 @@
                         <div class="nk-widget-stream">
                             <span class="nk-widget-stream-status @if($stream['type'] === 'live') {{__('bg-success')}} @else {{__('bg-danger')}} @endif"></span>
                             <div class="nk-widget-stream-name">
-                                <a href="{{$stream['link']}}" target="_blank">@isset($stream['channel_name']){{$stream['channel_name']}}@endisset</a>
+                                <a href="{{$stream['link']}}" target="_blank">
+                                    @isset($stream['channel_name']){{$stream['channel_name']}}@endisset
+                                    @isset($stream['country'])
+                                         <img style="width: 25px;" class="ml-2 rounded" src="{{asset('images/flag/' . $stream['country']->flag)}}" alt="{{$stream['country']->country}}">
+                                    @endisset
+                                </a>
                             </div>
-                            @isset($stream['country'])
-                                <span class="nk-widget-stream-count"><img src="{{asset('images/flag/' . $stream['country']->flag)}}" alt="{{$stream['country']->country}}"></span>
-                            @endisset
                             <span class="nk-widget-stream-count">@if(isset($stream['type']) && $stream['type'] === 'live'){{$stream['views']}} viewers @else {{__('')}} @endif</span>
                         </div>
                     @endforeach

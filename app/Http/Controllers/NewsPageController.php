@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{AppTreid\StreamApi, News, NewsComment, Stream, User};
+use App\{AppTreid\StreamApi, Match, News, NewsComment, Stream, Team, User};
 use Illuminate\Http\Request;
 
 class NewsPageController extends Controller
@@ -22,7 +22,22 @@ class NewsPageController extends Controller
 
         $streams_output = $this->getStream($streams);
 
-        return view('news.index', compact('news', 'streams_output','count','comments','users'));
+        $latest_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, match_day, NOW()) > 2")->limit(20)->get();
+        $live_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) IN (0,1,2)")->limit(10)->get();
+        $upcoming_matches = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) > 2")->limit(10)->get();
+        $teams = Team::all();
+
+        return view('news.index', compact(
+            'news',
+            'streams_output',
+            'count',
+            'comments',
+            'users',
+            'latest_match',
+            'live_match',
+            'upcoming_matches',
+            'teams'
+        ));
     }
 
     public function writeComment(Request $request){

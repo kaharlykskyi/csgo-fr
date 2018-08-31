@@ -37,6 +37,23 @@ class TeamController extends Controller
 
         $history = DB::table('team_history')->where('team_id',$team->id)->get();
 
-        return view('team_page.index', compact('team','streams_output','countrys','players','team_latest_match','history'));
+        $latest_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, match_day, NOW()) > 2")->limit(20)->get();
+        $live_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) IN (0,1,2)")->limit(10)->get();
+        $upcoming_matches = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) > 2")->limit(10)->get();
+        $teams = Team::all();
+
+
+        return view('team_page.index', compact(
+            'team',
+            'streams_output',
+            'countrys',
+            'players',
+            'team_latest_match',
+            'history',
+            'latest_match',
+            'live_match',
+            'upcoming_matches',
+            'teams'
+        ));
     }
 }

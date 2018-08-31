@@ -4397,7 +4397,7 @@ img.rounded {
 }
 
 .nk-widget-match .nk-widget-match-teams .nk-widget-match-team-logo img {
-    width: 47px;
+    width: 30px;
     height: auto;
     border: 1px solid #232930;
 }
@@ -7827,7 +7827,7 @@ div.nk-error {
     background-color: #232930;
     border-bottom: 3px solid #dd163b;
     z-index: 0;
-    width: 726px;
+    width: 100%;
     margin: 0 auto;
 }
 
