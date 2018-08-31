@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AppTreid\StreamApi;
 use App\Match;
+use App\News;
+use App\NewsCategory;
 use App\Stream;
 use App\Team;
 use Illuminate\Http\Request;
@@ -32,9 +34,20 @@ class HomeController extends Controller
             ->limit(40)
             ->get();
         $countrys = DB::table('countrys')->get();
-        $streams = Stream::where('show_homepage','on')->get();
 
+        //stream part
+        $streams = Stream::where('show_homepage','on')->get();
         $streams_output = $this->getStream($streams);
+
+        //news tabbed
+        $news_categories = NewsCategory::all();
+        $news_tabbed = null;
+        foreach ($news_categories as $news_category){
+            $news_tabbed [] = (object)[
+                'category' => $news_category->name,
+                'news' => News::where('category_id',$news_category->id)->where('enabled','=','on')->get()
+            ];
+        }
 
         return view('home.index',
             compact(
@@ -45,7 +58,8 @@ class HomeController extends Controller
                 'live_match',
                 'upcoming_matches',
                 'streams_output',
-                'teams'
+                'teams',
+                'news_tabbed'
             )
         );
     }

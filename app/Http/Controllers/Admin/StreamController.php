@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Stream;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class StreamController extends Controller
@@ -27,7 +28,8 @@ class StreamController extends Controller
      */
     public function create()
     {
-        return view('admin_area.streams.create');
+        $countries = DB::table('countrys')->get();
+        return view('admin_area.streams.create', compact('countries'));
     }
 
     /**
@@ -84,7 +86,8 @@ class StreamController extends Controller
      */
     public function edit(Stream $stream)
     {
-        return view('admin_area.streams.edit', compact('stream'));
+        $countries = DB::table('countrys')->get();
+        return view('admin_area.streams.edit', compact('stream', 'countries'));
     }
 
     /**

@@ -2,7 +2,6 @@
     <thead>
     <tr>
         <th>Title</th>
-        <th>Short title</th>
         <th>Date publish</th>
         <th>Action</th>
     </tr>
@@ -11,7 +10,6 @@
     @forelse($data as $val)
         <tr>
             <td><p>{{ str_limit($val->title, 20, ' (...)')}}</p></td>
-            <td><p>{{ str_limit($val->short_title, 20, ' (...)')}}</p></td>
             <td>{{$val->publication_date}}</td>
             <td style="display: flex;justify-content: space-around;">
                 <a class="btn btn-primary mb-2" href="{{route($edit_rout,$val->id)}}" role="button">Edit</a>

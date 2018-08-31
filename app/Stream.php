@@ -9,6 +9,7 @@ class Stream extends Model
     protected $fillable = [
         'name',
         'link',
-        'show_homepage'
+        'show_homepage',
+        'country'
     ];
 }

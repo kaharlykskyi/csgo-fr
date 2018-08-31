@@ -10,6 +10,7 @@ namespace App\AppTreid;
 
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 trait StreamApi
 {
@@ -44,7 +45,8 @@ trait StreamApi
                 'type' => $stream_type,
                 'link' => trim($stream->link),
                 'views' => $stream_views,
-                'channel_name' => trim($stream->name)
+                'channel_name' => trim($stream->name),
+                'country' => DB::table('countrys')->where('country',$stream->country)->first()
             ];
         }
 

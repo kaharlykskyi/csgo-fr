@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFkToPlayersTable extends Migration
+class AddFkNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddFkToPlayersTable extends Migration
      */
     public function up()
     {
-        Schema::table('players', function (Blueprint $table) {
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('SET NULL');
+        Schema::table('news', function (Blueprint $table) {
+            $table->foreign('category_id')->references('id')->on('news_categoryes')->onDelete('SET NULL');
         });
     }
 
@@ -25,8 +25,8 @@ class AddFkToPlayersTable extends Migration
      */
     public function down()
     {
-        Schema::table('players', function (Blueprint $table) {
-            $table->dropForeign('team_id');
+        Schema::table('news', function (Blueprint $table) {
+            $table->dropForeign('category_id');
         });
     }
 }

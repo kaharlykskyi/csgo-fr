@@ -24,6 +24,25 @@
 
 <div class="row form-group">
     <div class="col col-md-3">
+        <label for="select" class=" form-control-label">Country</label>
+    </div>
+    <div class="col-12 col-md-9">
+        <select name="country" id="select" class="form-control" required>
+            <option value="0">Please select country</option>
+
+            @foreach($countries as $country)
+                <option @if(isset($stream->id) && $stream->country == $country->country) selected @endif value="<?php print_r($country->country); ?>"><?php print_r($country->country); ?></option>
+            @endforeach
+
+        </select>
+        @if ($errors->has('country'))
+            <small class="form-text text-danger">{{ $errors->first('country') }}</small>
+        @endif
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col col-md-3">
         <label class=" form-control-label">Show in home page</label>
     </div>
     <div class="col col-md-9">

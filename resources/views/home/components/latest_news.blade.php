@@ -24,11 +24,19 @@
                             <div class="nk-news-box-item-img">
                                 @foreach($countrys as $country)
                                     @if($country->country == $latest_new->country_id)
-                                        <img class="mr-3" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_new->title}}">
+                                        <img class="mr-3 flag" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_new->title}}">
                                     @endif
                                 @endforeach
                             </div>
-                            <h3 class="nk-news-box-item-title">{{$latest_new->short_title}}</h3>
+                            <div class="nk-news-box-item-title-wrapper">
+                                <h6 class="nk-news-box-item-title">{{str_limit($latest_new->short_title, 30, ' (...)')}}</h6>
+                                <div class="nk-news-box-item-title-comment-wrapper">
+                                    <span class="fa fa-comments"></span>
+                                    <a href="#">
+                                        {{\Illuminate\Support\Facades\DB::table('news_comments')->where('news_id',$latest_new->id)->count()}}
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </a>
 
@@ -55,11 +63,19 @@
                             <div class="nk-news-box-item-img">
                                 @foreach($countrys as $country)
                                     @if($country->country == $latest_turnament->country_id)
-                                        <img class="mr-3" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_turnament->title}}">
+                                        <img class="mr-3 flag" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_turnament->title}}">
                                     @endif
                                 @endforeach
                             </div>
-                            <h3 class="nk-news-box-item-title">{{$latest_turnament->short_title}}</h3>
+                            <div class="nk-news-box-item-title-wrapper">
+                                <h6 class="nk-news-box-item-title">{{str_limit($latest_turnament->short_title, 30, ' (...)')}}</h6>
+                                <div class="nk-news-box-item-title-comment-wrapper">
+                                    <span class="fa fa-comments"></span>
+                                    <a href="#">
+                                        {{\Illuminate\Support\Facades\DB::table('tournament_comments')->where('tournament_id',$latest_turnament->id)->count()}}
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </a>
 

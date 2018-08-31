@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\News;
+use App\NewsCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -29,8 +30,9 @@ class NewsController extends Controller
      */
     public function create()
     {
+        $categories = NewsCategory::all();
         $countries = DB::table('countrys')->get();
-        return view('admin_area.news.create',compact('countries'));
+        return view('admin_area.news.create',compact('countries','categories'));
     }
 
     /**
@@ -52,7 +54,7 @@ class NewsController extends Controller
         ]);
 
         if ($validate->fails()) {
-            return redirect()->route('admin.news.create')
+            return redirect()->back()
                 ->withErrors($validate)
                 ->withInput();
         }
@@ -97,8 +99,9 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
+        $categories = NewsCategory::all();
         $countries = DB::table('countrys')->get();
-        return view('admin_area.news.edit',compact('countries','news'));
+        return view('admin_area.news.edit',compact('countries','news','categories'));
     }
 
     /**
@@ -110,7 +113,6 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        dump($request);
         $data = $request->except(['_token','_method']);
 
         if($request->hasFile('banner_image')){
@@ -130,9 +132,9 @@ class NewsController extends Controller
         $news->update($data);
 
         if($news->save()){
-            return redirect()->route('admin.news.edit',$news->id)->with('status','News update');
+            return redirect()->back()->with('status','News update');
         } else {
-            return redirect()->route('admin.news.edit',$news->id)->with('status','News not update');
+            return redirect()->back()->with('status','News not update');
         }
     }
 

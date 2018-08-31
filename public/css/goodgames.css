@@ -3863,7 +3863,7 @@ img.rounded {
     display: flex;
     margin-top: 9px;
     margin-left: 0;
-    font-size: 2.025rem;
+    font-size: 1.5rem;
 }
 
 .nk-breadcrumbs > li:last-of-type > span,
@@ -8307,7 +8307,7 @@ div.nk-error {
     margin-top: 5px;
     margin-bottom: 2px;
     overflow: hidden;
-    font-size: 1.1rem;
+    font-size: 1rem;
     -o-text-overflow: ellipsis;
        text-overflow: ellipsis;
     white-space: nowrap;

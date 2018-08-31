@@ -39,11 +39,9 @@
                             <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block">Sign In</button>
                         </div>
                         <div class="col-md-6">
+                            <a href="{{route('register')}}" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block mb-3">Sign up</a>
                             <div class="mnt-5">
-                                <small><a href="{{route('password.request')}}">Forgot your password?</a></small>
-                            </div>
-                            <div class="mnt-5">
-                                <small><a href="{{route('register')}}">Not a member? Sign up</a></small>
+                                <small><a class="m-t-5" href="{{route('password.request')}}">Forgot your password?</a></small>
                             </div>
                         </div>
                     </div>

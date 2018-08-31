@@ -17,5 +17,7 @@ class News extends Model
         'enabled',
         'user_id',
         'publication_date',
+        'author_name',
+        'category_id'
     ];
 }

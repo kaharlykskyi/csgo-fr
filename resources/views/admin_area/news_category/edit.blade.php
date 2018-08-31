@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @component('admin_area.component.breadcrumb',['title'=>'','parent'=>'Dashboard','active' =>'Edit news'])
+    @component('admin_area.component.breadcrumb',['title'=>'','parent'=>'Dashboard','active' =>'Edit news category'])
 
     @endcomponent
 
@@ -16,14 +16,14 @@
             <div class="col-12 m-t-30">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Edit</strong> News
+                        <strong>Edit</strong> News Category
                     </div>
                     <div class="card-body card-block">
-                        <form action="{{route('admin.news.update',$news->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="{{route('admin.news-category.update',$newsCategory->id)}}" method="post" class="form-horizontal">
                             <input type="hidden" name="_method" value="put">
                             @csrf
 
-                            @include('admin_area.news.partrials.form')
+                            @include('admin_area.news_category.partrials.form')
                         </form>
                     </div>
                 </div>

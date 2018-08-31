@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::resource('/streams', 'StreamController', ['as' => 'admin']);
     Route::resource('/players','PlayerController',['as' => 'admin']);
     Route::resource('/teams','TeamController',['as' => 'admin']);
+    Route::resource('/news-category','NewsCategoryController',['as' => 'admin']);
 });
 
 Auth::routes();

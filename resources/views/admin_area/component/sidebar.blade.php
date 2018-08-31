@@ -32,6 +32,12 @@
                         <li>
                             <a href="{{route('admin.news.index')}}">All news</a>
                         </li>
+                        <li>
+                            <a href="{{route('admin.news-category.create')}}"></i>Create category</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.news-category.index')}}">All categories</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="has-sub">
@@ -136,6 +142,12 @@
                         </li>
                         <li>
                             <a href="{{route('admin.news.index')}}">All news</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.news-category.create')}}"></i>Create category</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.news-category.index')}}">All categories</a>
                         </li>
                     </ul>
                 </li>

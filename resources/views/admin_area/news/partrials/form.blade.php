@@ -92,10 +92,45 @@
         </div>
         <div class="col col-md-9">
             <label class="switch switch-3d switch-success mr-3">
-                <input name="enabled" type="checkbox" class="switch-input" checked="true">
+                <input name="enabled" type="checkbox" class="switch-input"
+                       @if(isset($news->id))
+                       @if($news->enabled == 'on')
+                            checked
+                       @else
+
+                       @endif
+                       @endif>
                 <span class="switch-label"></span>
                 <span class="switch-handle"></span>
             </label>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col col-md-3">
+            <label for="author_name" class=" form-control-label">Author name</label>
+        </div>
+        <div class="col-12 col-md-9">
+            <input type="text" id="author_name" value="@if(isset($news->id)){{$news->author_name}}@else{{old('author_name')}}@endif" name="author_name" placeholder="Author name" class="form-control">
+            @if ($errors->has('author_name'))
+                <small class="form-text text-danger">{{ $errors->first('author_name') }}</small>
+            @endif
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col col-md-3">
+            <label for="category_id" class=" form-control-label">Category</label>
+        </div>
+        <div class="col-12 col-md-9">
+            <select name="category_id" id="select" class="form-control">
+                <option>Please select Category</option>
+
+                @foreach($categories as $val)
+                    <option @if(isset($news->id) && $news->category_id == $val->id) selected @endif value="<?php print_r($val->id); ?>"><?php print_r($val->name); ?></option>
+                @endforeach
+
+            </select>
         </div>
     </div>
 

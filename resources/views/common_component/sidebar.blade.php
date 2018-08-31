@@ -1,15 +1,4 @@
 <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
-    <div class="nk-widget">
-        <div class="nk-widget-content">
-            <form action="#" class="nk-form nk-form-style-1" novalidate="novalidate">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Type something...">
-                    <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <div class="nk-widget nk-widget-highlighted">
         <h4 class="nk-widget-title"><span><span class="text-main-1">LIVE </span> STREAMS</span></h4>
         <div class="nk-widget-content">
@@ -19,9 +8,12 @@
                         <div class="nk-widget-stream">
                             <span class="nk-widget-stream-status @if($stream['type'] === 'live') {{__('bg-success')}} @else {{__('bg-danger')}} @endif"></span>
                             <div class="nk-widget-stream-name">
-                                <a href="{{$stream['link']}}" target="_blank">{{$stream['channel_name']}}</a>
+                                <a href="{{$stream['link']}}" target="_blank">@isset($stream['channel_name']){{$stream['channel_name']}}@endisset</a>
                             </div>
-                            <span class="nk-widget-stream-count">@if($stream['type'] === 'live'){{$stream['views']}} viewers @else {{__('')}} @endif</span>
+                            @isset($stream['country'])
+                                <span class="nk-widget-stream-count"><img src="{{asset('images/flag/' . $stream['country']->flag)}}" alt="{{$stream['country']->country}}"></span>
+                            @endisset
+                            <span class="nk-widget-stream-count">@if(isset($stream['type']) && $stream['type'] === 'live'){{$stream['views']}} viewers @else {{__('')}} @endif</span>
                         </div>
                     @endforeach
                 @endisset
