@@ -29,7 +29,7 @@
                                 @endforeach
                             </div>
                             <div class="nk-news-box-item-title-wrapper">
-                                <h6 class="nk-news-box-item-title">{{str_limit($latest_new->short_title, 15, ' ...')}}</h6>
+                                <h6 class="nk-news-box-item-title">{{str_limit($latest_new->title, 15, ' ...')}}</h6>
                                 <div class="nk-news-box-item-title-comment-wrapper">
                                     <span class="fa fa-comments"></span>
                                     <a href="#">
@@ -65,7 +65,7 @@
                                 @endforeach
                             </div>
                             <div class="nk-news-box-item-title-wrapper">
-                                <h6 class="nk-news-box-item-title">{{str_limit($latest_turnament->short_title, 15, ' ...')}}</h6>
+                                <h6 class="nk-news-box-item-title">{{str_limit($latest_turnament->title, 15, ' ...')}}</h6>
                                 <div class="nk-news-box-item-title-comment-wrapper">
                                     <span class="fa fa-comments"></span>
                                     <a href="#">

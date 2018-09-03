@@ -47,7 +47,6 @@ class NewsController extends Controller
         
         $validate = Validator::make($data,[
             'title' => 'required',
-            'short_title' => 'required|max:45',
             'content_news' => 'required',
             'banner_image' => 'required|file',
             'publication_date' => 'date_format:Y-m-d'
@@ -66,6 +65,10 @@ class NewsController extends Controller
         }
 
         $data['user_id'] = Auth::user()->id;
+
+        if ($data['category_id'] == 0){
+            $data['category_id'] = null;
+        }
 
         if(!isset($data['publication_date'])){
             $data['publication_date'] = date('Y-m-d');
@@ -127,6 +130,10 @@ class NewsController extends Controller
 
         if(!isset($data['publication_date'])){
             $data['publication_date'] = date('Y-m-d');
+        }
+
+        if ($data['category_id'] == 0){
+            $data['category_id'] = null;
         }
 
         $news->update($data);

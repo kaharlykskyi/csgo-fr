@@ -48,6 +48,6 @@ class NewsPageController extends Controller
             $comment->save();
             return back();
         }
-        return back()->with('status', 'You must be login');
+        return back()->with('status', 'You must be logged in');
     }
 }

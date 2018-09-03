@@ -53,7 +53,7 @@ class NewsCategoryController extends Controller
         $news_category = new NewsCategory();
         $news_category->fill($data);
         if($news_category->save()){
-            return redirect()->route('admin.news-category.index')->with('status','News category added');
+            return redirect()->route('admin.news-category.edit',$news_category->id)->with('status','News category added');
         } else{
             return redirect()->route('admin.news-category.index')->with('status','News category not added');
         }

@@ -17,6 +17,11 @@
                 <div class="card">
                     <div class="card-header">
                         <strong>Edit</strong> News Category
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <a href="{{route('admin.news-category.create')}}" class="btn btn-primary btn-sm">Add more</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body card-block">
                         <form action="{{route('admin.news-category.update',$newsCategory->id)}}" method="post" class="form-horizontal">

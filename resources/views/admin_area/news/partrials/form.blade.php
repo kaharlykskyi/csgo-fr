@@ -13,19 +13,6 @@
 
     <div class="row form-group">
         <div class="col col-md-3">
-            <label for="short_title" class=" form-control-label">Short Title</label>
-        </div>
-        <div class="col-12 col-md-9">
-            <input type="text" value="@if(isset($news->id)){{$news->short_title}}@else{{old('short_title')}}@endif" id="short_title" name="short_title" placeholder="Short title news" class="form-control" required>
-            <small class="form-text text-muted">maximum length is 45 characters</small>
-            @if ($errors->has('short_title'))
-                <small class="form-text text-danger">{{ $errors->first('short_title') }}</small>
-            @endif
-        </div>
-    </div>
-
-    <div class="row form-group">
-        <div class="col col-md-3">
             <label for="editor" class=" form-control-label">Content News</label>
         </div>
         <div class="col-12 col-md-9">
@@ -124,7 +111,7 @@
         </div>
         <div class="col-12 col-md-9">
             <select name="category_id" id="select" class="form-control">
-                <option>Please select Category</option>
+                <option value="0">Please select Category</option>
 
                 @foreach($categories as $val)
                     <option @if(isset($news->id) && $news->category_id == $val->id) selected @endif value="<?php print_r($val->id); ?>"><?php print_r($val->name); ?></option>

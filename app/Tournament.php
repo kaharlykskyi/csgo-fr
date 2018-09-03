@@ -8,7 +8,6 @@ class Tournament extends Model
 {
     protected $fillable = [
         'title',
-        'short_title',
         'content_tournament',
         'banner_image',
         'country_id',
