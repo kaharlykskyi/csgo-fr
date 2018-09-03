@@ -115,17 +115,18 @@ img {
 }
 
 .flag{
-    max-width: 25px !important;
-    height: 13px !important;
+    max-width: 20px !important;
+    height: 9px !important;
 }
 
 .nk-news-box-item-title-wrapper{
     position: relative;
+    margin-top: 8px;
 }
 
 .nk-news-box-item-title-comment-wrapper{
     position: absolute;
-    top: 0;
+    top: -5px;
     right: 0;
 }
 
@@ -172,6 +173,16 @@ img {
 .flex-center{
     display: flex;
     justify-content: center;
+}
+
+.title-latest-home{
+    font-size: 0.6rem !important;
+}
+
+.profile-flag{
+    width: 23px;
+    height: 14px;
+    margin-right: 5px;
 }
 
 @media (min-width: 1200px) {

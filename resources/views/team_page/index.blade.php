@@ -42,7 +42,7 @@
                                     <tbody>
                                         <tr>
                                             <td rowspan="5" class="text-center" style="width: 150px">
-                                                <img style="max-width: 150px" src="@if(isset($team->logo)){{asset($team->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="$player->nickname">
+                                                <img style="max-width: 150px" src="@if(isset($team->logo)){{asset($team->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="$player->nickname">
                                             </td>
                                             <td>Team name</td>
                                             <td>{{$team->name}}</td>
@@ -78,14 +78,20 @@
                                         <tr>
                                             @isset($players)
                                                 @foreach($players as $player)
-                                                    <td class="text-center">
+                                                    <td class="text-center p-l-0 p-r-0">
                                                         <a style="text-decoration: none !important;" href="{{route('player_page',$player->nickname)}}">
-                                                            <img style="max-width: 100px;width: 100%;" src="@if(isset($player->logo)){{asset($player->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="">
+                                                            <img style="max-width: 100px;width: 100%;" src="@if(isset($player->logo)){{asset($player->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="">
                                                             @isset($player->full_name)
                                                                 <p class="p-1 m-0">{{$player->full_name}}</p>
                                                             @endisset
-                                                            <p class="p-1 m-0">{{$player->nickname}}</p>
-                                                            <p class="p-1 m-0">{{$player->account_type}}</p>
+                                                            <p class="p-1 m-0">
+                                                                @foreach($countrys as $country)
+                                                                    @if($country->country == $player->country)
+                                                                        <img class="profile-flag" src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
+                                                                    @endif
+                                                                @endforeach
+                                                                {{$player->nickname}}
+                                                            </p>
                                                         </a>
                                                     </td>
                                                 @endforeach

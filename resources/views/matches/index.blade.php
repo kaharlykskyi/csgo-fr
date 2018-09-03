@@ -135,17 +135,29 @@
             <div class="team-content maps">
                 @if(isset($maps))
                     @foreach($maps as $map)
+                        <?php
+                            $sum = 0;
+                            $sum2 = 0;
+                            foreach ($map->map_score_tean1Array as $item){
+                                $sum += (int)$item->score;
+                            }
+                            foreach ($map->map_score_tean2Array as $item){
+                                $sum2 += (int)$item->score;
+                            }
+                        ?>
                         <div class="row">
                             <div class="col-2 text-center">
-                                <?php $sum = 0; ?>
-                                @foreach($map->map_score_tean1Array as $item)
-                                    <p class="@if(strtolower($item->name) == 't'){{__('text-danger')}}@elseif(strtolower($item->name) == 'ct'){{__('text-primary')}}@else{{__('text-warning')}}@endif">
-                                        <span>{{$item->name}}:</span>
-                                        <span>{{$item->score}}</span>
-                                    </p>
-                                    <?php $sum += (int)$item->score ?>
-                                @endforeach
-                                    <p class="h3 text-success">{{$sum}}</p>
+                                <?php  ?>
+                                @isset($map->map_score_tean1Array)
+                                    @foreach($map->map_score_tean1Array as $item)
+                                        <p class="@if(strtolower($item->name) == 't'){{__('text-danger')}}@elseif(strtolower($item->name) == 'ct'){{__('text-primary')}}@else{{__('text-warning')}}@endif mb-2">
+                                            <span>{{$item->name}}:</span>
+                                            <span>{{$item->score}}</span>
+                                        </p>
+                                        <?php $sum += (int)$item->score ?>
+                                    @endforeach
+                                @endisset
+                                    <p class="h3 @if($sum > $sum2){{__('text-success')}}@else{{__('text-danger')}}@endif">{{$sum}}</p>
                             </div>
                             <div class="col-8 map-wrapper">
                                 <div class="map-name-hover">
@@ -158,15 +170,16 @@
                                 @endif
                             </div>
                             <div class="col-2 text-center">
-                                <?php $sum = 0; ?>
-                                @foreach($map->map_score_tean2Array as $item)
-                                    <p class="@if(strtolower($item->name) == 't'){{__('text-danger')}}@elseif(strtolower($item->name) == 'ct'){{__('text-primary')}}@else{{__('text-warning')}}@endif">
-                                        <span>{{$item->name}}:</span>
-                                        <span>{{$item->score}}</span>
-                                    </p>
-                                    <?php $sum += (int)$item->score ?>
-                                @endforeach
-                                <p class="h3 text-success">{{$sum}}</p>
+                                @isset($map->map_score_tean2Array)
+                                    @foreach($map->map_score_tean2Array as $item)
+                                        <p class="@if(strtolower($item->name) == 't'){{__('text-danger')}}@elseif(strtolower($item->name) == 'ct'){{__('text-primary')}}@else{{__('text-warning')}}@endif mb-2">
+                                            <span>{{$item->name}}:</span>
+                                            <span>{{$item->score}}</span>
+                                        </p>
+                                        <?php $sum += (int)$item->score ?>
+                                    @endforeach
+                                @endisset
+                                <p class="h3 @if($sum < $sum2){{__('text-success')}}@else{{__('text-danger')}}@endif">{{$sum2}}</p>
                             </div>
                         </div>
                         <div class="nk-gap-2"></div>
@@ -179,6 +192,77 @@
                     </div>
                 @endif
             </div>
+
+                <div class="nk-gap-2"></div>
+
+                <div class="team-content">
+                    <p class="h4 m-t-5 m-b-5">Teams Photo</p>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="h5 mb-5">{{$team->team1->name}}</p>
+                        </div>
+                        <table class="nk-table">
+                            <tbody>
+                            <tr>
+                                @isset($team->players_team1)
+                                    @foreach($team->players_team1 as $player)
+                                        <td class="text-center p-l-0 p-r-0">
+                                            <a style="text-decoration: none !important;" href="{{route('player_page',$player->nickname)}}">
+                                                <img style="max-width: 100px;width: 100%;" src="@if(isset($player->logo)){{asset($player->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="">
+                                                @isset($player->full_name)
+                                                    <p class="p-1 m-0">{{$player->full_name}}</p>
+                                                @endisset
+                                                <p class="p-1 m-0">
+                                                    @foreach($countrys as $country)
+                                                        @if($country->country == $player->country)
+                                                            <img class="profile-flag" src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
+                                                        @endif
+                                                    @endforeach
+                                                    {{$player->nickname}}
+                                                </p>
+                                            </a>
+                                        </td>
+                                    @endforeach
+                                @endisset
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nk-gap-2"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="h5 mb-5">{{$team->team2->name}}</p>
+                        </div>
+                        <table class="nk-table">
+                            <tbody>
+                            <tr>
+                                @isset($team->players_team2)
+                                    @foreach($team->players_team2 as $player)
+                                        <td class="text-center p-l-0 p-r-0">
+                                            <a style="text-decoration: none !important;" href="{{route('player_page',$player->nickname)}}">
+                                                <img style="max-width: 100px;width: 100%;" src="@if(isset($player->logo)){{asset($player->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="">
+                                                @isset($player->full_name)
+                                                    <p class="p-1 m-0">{{$player->full_name}}</p>
+                                                @endisset
+                                                <p class="p-1 m-0">
+                                                    @foreach($countrys as $country)
+                                                        @if($country->country == $player->country)
+                                                            <img class="profile-flag" src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
+                                                        @endif
+                                                    @endforeach
+                                                    {{$player->nickname}}
+                                                </p>
+                                            </a>
+                                        </td>
+                                    @endforeach
+                                @endisset
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nk-gap-2"></div>
+                </div>
+
 
                 <div class="nk-gap-2"></div>
 
