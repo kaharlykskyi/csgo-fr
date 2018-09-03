@@ -8,29 +8,33 @@
 
         @endcomponent
 
-        <!-- START: Post -->
-            <div class="nk-blog-post nk-blog-post-single">
-                <!-- START: Post Text -->
-                <div class="nk-post-text mt-0">
-                    <div class="nk-post-img">
-                        <img src="{{asset('assets/images/news_img/' . $news->banner_image)}}" alt="{{$news->title}}">
+            <div class="nk-widget-highlighted">
+                <div class="nk-widget-content p-10">
+                    <!-- START: Post -->
+                    <div class="nk-blog-post nk-blog-post-single">
+                        <!-- START: Post Text -->
+                        <div class="nk-post-text mt-0">
+                            <div class="nk-post-img">
+                                <img src="{{asset('assets/images/news_img/' . $news->banner_image)}}" alt="{{$news->title}}">
+                            </div>
+                            <div class="nk-gap-1"></div>
+                            <h1 class="nk-post-title h4">{{$news->title}}</h1>
+
+                            <div class="nk-post-by">
+                                by <a href="#">{{ $news->author_name }}</a> in {{ $news->publication_date }}
+                            </div>
+
+                            <div class="nk-gap"></div>
+
+                            {!! $news->content_news !!}
+
+                            <div class="nk-gap"></div>
+                        </div>
+                        <!-- END: Post Text -->
                     </div>
-                    <div class="nk-gap-1"></div>
-                    <h1 class="nk-post-title h4">{{$news->title}}</h1>
-
-                    <div class="nk-post-by">
-                        by <a href="#">{{ $news->author_name }}</a> in {{ $news->publication_date }}
-                    </div>
-
-                    <div class="nk-gap"></div>
-
-                    {!! $news->content_news !!}
-
-                    <div class="nk-gap"></div>
+                    <!-- END: Post -->
                 </div>
-                <!-- END: Post Text -->
             </div>
-            <!-- END: Post -->
 
             <div class="nk-gap-2"></div>
             <!-- START: Comments -->
