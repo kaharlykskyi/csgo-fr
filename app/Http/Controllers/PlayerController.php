@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\{AppTreid\StreamApi,Match,Player,Stream,Team};
+use App\{AppTreid\MatchSort, AppTreid\StreamApi, Match, Player, Stream, Team};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PlayerController extends Controller
 {
-    use StreamApi;
+    use StreamApi, MatchSort;
 
     public function index(Request $request){
         $player = Player::where('nickname',$request->nickname)->first();
@@ -35,13 +35,16 @@ class PlayerController extends Controller
             if ($count == 15) break;
         }
 
+        $teams = Team::all();
+
         return view('player_page.index', compact(
             'player',
             'team',
             'countrys',
             'streams_output',
             'team_players',
-            'player_latest_match'
-        ));
+            'player_latest_match',
+            'teams'
+        ))->with(['sort_match' => $this->selectMatch()]);
     }
 }

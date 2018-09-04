@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\AppTreid\StreamApi;
-use App\Match;
-use App\News;
-use App\NewsCategory;
-use App\Stream;
-use App\Team;
+use App\{AppTreid\MatchSort,AppTreid\StreamApi,News,NewsCategory,Stream,Team};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    use StreamApi;
+    use StreamApi, MatchSort;
     /**
      * Show the application dashboard.
      *
@@ -21,9 +16,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $latest_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, match_day, NOW()) > 2")->limit(20)->get();
-        $live_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) IN (0,1,2)")->limit(10)->get();
-        $upcoming_matches = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) > 2")->limit(10)->get();
         $teams = Team::all();
         $latest_news = DB::table('news')
             ->orderByDesc('created_at')
@@ -54,13 +46,11 @@ class HomeController extends Controller
                 'latest_news',
                 'countrys',
                 'latest_turnaments',
-                'latest_match',
-                'live_match',
-                'upcoming_matches',
                 'streams_output',
                 'teams',
-                'news_tabbed'
+                'news_tabbed',
+                'sort_match'
             )
-        );
+        )->with(['sort_match' => $this->selectMatch()]);
     }
 }

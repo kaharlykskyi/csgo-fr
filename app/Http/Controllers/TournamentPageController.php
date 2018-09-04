@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\{AppTreid\StreamApi, Match, Stream, Team, Tournament, TournamentComment, User};
+use App\{AppTreid\MatchSort, AppTreid\StreamApi, Match, Stream, Team, Tournament, TournamentComment, User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TournamentPageController extends Controller
 {
-    use StreamApi;
+    use StreamApi, MatchSort;
 
     public function index(Request $request){
         $tournament = Tournament::where('id', $request->id)->first();
@@ -32,9 +32,6 @@ class TournamentPageController extends Controller
 
         $streams_output = $this->getStream($streams);
 
-        $latest_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, match_day, NOW()) > 2")->limit(20)->get();
-        $live_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) IN (0,1,2)")->limit(10)->get();
-        $upcoming_matches = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) > 2")->limit(10)->get();
         $teams = Team::all();
 
         $users = User::whereIn('id',$users_id)->get();
@@ -44,11 +41,8 @@ class TournamentPageController extends Controller
             'count',
             'users',
             'comments',
-            'latest_match',
-            'live_match',
-            'upcoming_matches',
             'teams'
-        ));
+        ))->with(['sort_match' => $this->selectMatch()]);
     }
 
     public function writeComment(Request $request){

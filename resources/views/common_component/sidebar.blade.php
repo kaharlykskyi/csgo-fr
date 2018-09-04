@@ -2,9 +2,7 @@
 
     <!-- START: Scoreboard -->
     @component('common_component.scoreboard', [
-        'latest_match' => $latest_match,
-        'live_match' => $live_match,
-        'upcoming_matches' => $upcoming_matches,
+        'sort_match' => $sort_match,
         'teams' => $teams
     ])
     @endcomponent

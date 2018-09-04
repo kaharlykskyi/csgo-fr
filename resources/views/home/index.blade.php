@@ -51,9 +51,7 @@
                     -->
                         @component('common_component.sidebar',[
                             'streams' => $streams_output,
-                            'latest_match' => $latest_match,
-                            'live_match' => $live_match,
-                            'upcoming_matches' => $upcoming_matches,
+                            'sort_match' => $sort_match,
                             'teams' => $teams
                         ])
 

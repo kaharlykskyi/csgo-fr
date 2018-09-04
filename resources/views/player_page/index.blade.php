@@ -151,7 +151,11 @@
                     .nk-sidebar-right
                     .nk-sidebar-sticky
             -->
-        @component('common_component.sidebar',['streams' => $streams_output])
+        @component('common_component.sidebar',[
+            'streams' => $streams_output,
+            'sort_match' => $sort_match,
+            'teams' => $teams
+        ])
 
         @endcomponent
         <!-- END: Sidebar -->
