@@ -41,8 +41,11 @@
                                 <h2 class="nk-post-title h4"><a href="{{route('news_page',$news->id)}}">{{$news->title}}</a></h2>
                                 <div class="nk-post-date mt-10 mb-10">
                                     <span class="fa fa-calendar"></span> {{$news->publication_date}}
-                                    <span class="fa fa-comments"></span> <a href="#">
-                                        {{\Illuminate\Support\Facades\DB::table('news_comments')->where('news_id',$news->id)->count()}} comments</a>
+                                    <span class="fa fa-comments"></span>
+                                        <a href="#" class="mr-5">
+                                            {{\Illuminate\Support\Facades\DB::table('news_comments')->where('news_id',$news->id)->count()}}
+                                            comments</a>
+                                    @isset($news->viewers_count)<span class="fa fa-eye"></span> {{$news->viewers_count}}@endisset
                                 </div>
                                 <div class="nk-post-text">
                                     <p>
@@ -67,9 +70,11 @@
                                         <h2 class="nk-post-title h4"><a href="{{route('news_page',$news->id)}}">At length one of them called out in a clear</a></h2>
                                         <div class="nk-post-date mt-10 mb-10">
                                             <span class="fa fa-calendar"></span> {{$news->publication_date}}
-                                            <span class="fa fa-comments"></span> <a href="#">
+                                            <span class="fa fa-comments"></span>
+                                            <a href="#" class="mr-5">
                                                 {{\Illuminate\Support\Facades\DB::table('news_comments')->where('news_id',$news->id)->count()}} comments
                                             </a>
+                                            @isset($news->viewers_count)<span class="fa fa-eye"></span> {{$news->viewers_count}}@endisset
                                         </div>
                                         <div class="nk-post-text">
                                             <div>
@@ -88,7 +93,7 @@
                 <div class="nk-gap"></div>
             </div>
             @foreach($news_tabbed as $k => $val)
-                <div role="tabpanel" class="tab-pane fade @if($k == 0){{__('show active')}}@endif" id="tabs-1-{{$k}}">
+                <div role="tabpanel" class="tab-pane fade" id="tabs-1-{{$k}}">
                     <div class="nk-gap"></div>
                     <!-- START: Tab -->
 

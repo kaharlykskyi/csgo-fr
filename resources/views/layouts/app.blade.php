@@ -73,6 +73,10 @@
     <script src="{{asset('js/jquery.bracket.min.js')}}"></script>
     <link href="{{asset('css/jquery.bracket.min.css')}}" rel="stylesheet" media="all">
 
+    <script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 

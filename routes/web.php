@@ -21,12 +21,15 @@ Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function (){
 });
 Route::get('/matches/{id}/{type?}','MatchPageController@index')->name('match_page');
 Route::post('/match-comment', 'MatchPageController@writeComment')->name('match_comment');
+Route::post('/match-comment-like','MatchPageController@like',['middleware' => ['auth']])->name('match_comment_like');
 
 Route::get('/news/{id}','NewsPageController@index')->name('news_page');
 Route::post('/news-comment', 'NewsPageController@writeComment')->name('news_comment');
+Route::post('/news-comment-like','NewsPageController@like',['middleware' => ['auth']])->name('news_comment_like');
 
 Route::get('/tournament/{id}','TournamentPageController@index')->name('tournament_page');
 Route::post('/tournament-comment', 'TournamentPageController@writeComment')->name('tournament_comment');
+Route::post('/tournament-comment-like','TournamentPageController@like',['middleware' => ['auth']])->name('tournament_comment_like');
 
 Route::get('/player/{nickname}','PlayerController@index')->name('player_page');
 

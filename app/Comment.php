@@ -11,6 +11,12 @@ class Comment extends Model
     protected $fillable = [
         'match_id',
         'user_id',
-        'comment'
+        'comment',
+        'parent_comment',
+        'like_count'
     ];
+
+    public function children(){
+        return $this->hasMany(self::class, 'parent_comment');
+    }
 }

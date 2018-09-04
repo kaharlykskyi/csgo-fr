@@ -138,11 +138,15 @@
                         <?php
                             $sum = 0;
                             $sum2 = 0;
-                            foreach ($map->map_score_tean1Array as $item){
-                                $sum += (int)$item->score;
+                            if(isset($map->map_score_tean1Array)){
+                                foreach ($map->map_score_tean1Array as $item){
+                                    $sum += (int)$item->score;
+                                }
                             }
-                            foreach ($map->map_score_tean2Array as $item){
-                                $sum2 += (int)$item->score;
+                            if (isset($map->map_score_tean2Array)){
+                                foreach ($map->map_score_tean2Array as $item){
+                                    $sum2 += (int)$item->score;
+                                }
                             }
                         ?>
                         <div class="row">
@@ -272,7 +276,7 @@
                             <p class="h5 mb-1">Tournament</p>
                             <div class="row">
                                 <div class="col-12">
-                                    <p style="color: #dd163b;">{{$tournament->title}}</p>
+                                    <a href="{{route('tournament_page',$tournament->id)}}">{{$tournament->title}}</a>
                                 </div>
                             </div>
                             <div class="nk-gap-2"></div>
@@ -300,58 +304,16 @@
 
             <div class="nk-gap-2"></div>
             <!-- START: Comments -->
-            <div id="comments"></div>
-            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">@if($count != 0){{$count}}@else{{__('')}}@endif</span> Comments</span></h3>
-            <div class="nk-gap"></div>
-            <div class="nk-comments">
+                @component('common_component.comments_output',[
+                    'comments' => $comments,
+                    'count' => $count,
+                    'users' => $users,
+                    'object' => $match_data,
+                    'url' => route('match_comment_like'),
+                    'url_comment' => route('match_comment')
+                    ])
 
-                @forelse($comments as $comment)
-                <!-- START: Comment -->
-                    <div class="nk-comment">
-                        <div class="nk-comment-meta">
-                            by
-                            @foreach($users as $user)
-                                @if($user->id == $comment->user_id)
-                                    <a href="#">
-                                        {{$user->name}}
-                                    </a>
-                                @endif
-                            @endforeach
-                            in {{$comment->created_at}}
-                        </div>
-                        <div class="nk-comment-text">
-                            <p>{{$comment->comment}}</p>
-                        </div>
-                    </div>
-                    <!-- END: Comment -->
-                @empty
-                @endforelse
-                <ul class="pagination">
-                    {{$comments->links()}}
-                </ul>
-
-            </div>
-
-            <!-- START: Reply -->
-            <div class="nk-gap-2"></div>
-            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Leave</span> a Reply</span></h3>
-            <div class="nk-gap"></div>
-            <div class="nk-reply">
-                <form action="{{route('match_comment')}}" method="post" class="nk-form" novalidate="novalidate">
-                    @csrf
-                    @if(isset(Auth::user()->id))
-                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                    @endif
-                    <input type="hidden" name="match_id" value="{{$match_data->id}}">
-                    <textarea class="form-control required" name="comment" rows="5" placeholder="Message *" aria-required="true"></textarea>
-                    <div class="nk-gap-1"></div>
-                    @if (session('status'))
-                        <div style="display: block;" class="nk-form-response-error">{{ session('status') }}</div>
-                    @endif
-                    <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Post Comment</button>
-                </form>
-            </div>
-            <!-- END: Reply -->
+                @endcomponent
             <!-- END: Comments -->
 
 

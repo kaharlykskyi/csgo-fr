@@ -94,59 +94,16 @@
 
             <div class="nk-gap-2"></div>
             <!-- START: Comments -->
-            <div id="comments"></div>
-            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">@if($count != 0){{$count}}@else{{__('')}}@endif</span> Comments</span></h3>
-            <div class="nk-gap"></div>
+                @component('common_component.comments_output',[
+                    'comments' => $comments,
+                    'count' => $count,
+                    'users' => $users,
+                    'object' => $tournament,
+                    'url' => route('tournament_comment_like'),
+                    'url_comment' => route('tournament_comment')
+                    ])
 
-            <div class="nk-comments">
-
-            @forelse($comments as $comment)
-                <!-- START: Comment -->
-                    <div class="nk-comment">
-                        <div class="nk-comment-meta">
-                            by
-                            @foreach($users as $user)
-                                @if($user->id == $comment->user_id)
-                                    <a href="#">
-                                        {{$user->name}}
-                                    </a>
-                                @endif
-                            @endforeach
-                            in {{$comment->created_at}}
-                        </div>
-                        <div class="nk-comment-text">
-                            <p>{{$comment->comment}}</p>
-                        </div>
-                    </div>
-                    <!-- END: Comment -->
-                @empty
-                @endforelse
-                <ul class="pagination">
-                    {{$comments->links()}}
-                </ul>
-
-            </div>
-
-            <!-- START: Reply -->
-            <div class="nk-gap-2"></div>
-            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Leave</span> a Reply</span></h3>
-            <div class="nk-gap"></div>
-            <div class="nk-reply">
-                <form action="{{route('tournament_comment')}}" method="post" class="nk-form" novalidate="novalidate">
-                    @csrf
-                    @if(isset(Auth::user()->id))
-                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                    @endif
-                    <input type="hidden" name="tournament_id" value="{{$tournament->id}}">
-                    <textarea class="form-control required" name="comment" rows="5" placeholder="Message *" aria-required="true"></textarea>
-                    <div class="nk-gap-1"></div>
-                    @if (session('status'))
-                        <div style="display: block;" class="nk-form-response-error">{{ session('status') }}</div>
-                    @endif
-                    <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-main-1">Post Comment</button>
-                </form>
-            </div>
-            <!-- END: Reply -->
+                @endcomponent
             <!-- END: Comments -->
 
         </div>

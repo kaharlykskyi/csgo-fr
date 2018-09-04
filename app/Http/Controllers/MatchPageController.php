@@ -22,12 +22,22 @@ class MatchPageController extends Controller
         ];
 
         $countrys = DB::table('countrys')->get();
-        $comments = Comment::where('match_id',$request->id)->paginate(20);
+
+        $comments = Comment::with('children')
+            ->where('match_id',$request->id)
+            ->where('parent_comment', null)
+            ->get();
         $count = Comment::where('match_id',$request->id)->count();
+
         $users_id = [];
         $type_match = $request->type;
         foreach ($comments as $comment){
             $users_id[] = $comment->user_id;
+            if (isset($comment->children)){
+                foreach ($comment->children as $child){
+                    $users_id[] = $child->user_id;
+                }
+            }
         }
         $tournament = Tournament::where('id',$match_data->tournament)->first();
         $users = User::whereIn('id',$users_id)->get();
@@ -62,10 +72,21 @@ class MatchPageController extends Controller
         $data = $request->post();
         if(isset($data['user_id'])){
             $comment = new Comment();
+            $data['match_id'] = $data['object_id'];
             $comment->fill($data);
             $comment->save();
             return back();
         }
         return back()->with('status', 'You must be logged in');
+    }
+
+    public function like(Request $request){
+        $comment = Comment::where('id',$request->id)->first();
+        $comment->like_count = (int)$comment->like_count + (int)$request->increment;
+        DB::table('comments_match')->where('id',$request->id)->update([
+            'like_count' => $comment->like_count
+        ]);
+
+        return $comment->like_count;
     }
 }
