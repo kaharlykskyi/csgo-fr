@@ -55,16 +55,16 @@
                 </div>
                 <div class="nk-match-team-right">
                     <a class="logo-team-block" href="{{route('team_page',$team->team2->name)}}">
-                        @if(isset($team->team2))
-                            <span class="nk-match-team-logo">
-                                <img src="@if(isset($team->team2->logo)){{asset($team->team2->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="{{$team->team2->name}}">
-                            </span>
-                        @endif
                         @isset($team->team2)
                             <span class="nk-match-team-name">
                                 {{$team->team2->name}}
                             </span>
                         @endisset
+                            @if(isset($team->team2))
+                                <span class="nk-match-team-logo">
+                                <img src="@if(isset($team->team2->logo)){{asset($team->team2->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="{{$team->team2->name}}">
+                            </span>
+                            @endif
                     </a>
                 </div>
             </div>
@@ -163,10 +163,10 @@
                                 @endisset
                                     <p class="h3 @if($sum > $sum2){{__('text-success')}}@else{{__('text-danger')}}@endif">{{$sum}}</p>
                             </div>
-                            <div class="col-8 map-wrapper">
+                            <div class="col-8 map-wrapper p-0">
                                 <div class="map-name-hover">
                                     @isset($map->map_name)
-                                        <p class="h4 text-center">{{$map->map_name}}</p>
+                                        <p class="h4 text-center m-0 pt-10 pb-10">{{$map->map_name}}</p>
                                     @endisset
                                 </div>
                                 @if(isset($map->map_img))

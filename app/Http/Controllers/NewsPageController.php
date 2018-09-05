@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\{AppTreid\MatchSort, AppTreid\StreamApi, Match, News, NewsComment, Stream, Team, User};
+use App\{AppTreid\MatchSort, AppTreid\StreamApi, News, NewsComment, Stream, Team, User};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class NewsPageController extends Controller
@@ -62,11 +63,16 @@ class NewsPageController extends Controller
     }
 
     public function like(Request $request){
+        $liked = DB::table('news_likes')->where(['comment_id' => $request->id, 'user_id' => Auth::user()->id])->first();
+        if (isset($liked)){
+            return abort('407', 'You have liked this');
+        }
         $comment = NewsComment::where('id',$request->id)->first();
         $comment->like_count = (int)$comment->like_count + (int)$request->increment;
         DB::table('news_comments')->where('id',$request->id)->update([
             'like_count' => $comment->like_count
         ]);
+        DB::table('news_likes')->insert(['comment_id' => $request->id, 'user_id' => Auth::user()->id]);
 
         return $comment->like_count;
     }

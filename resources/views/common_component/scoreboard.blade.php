@@ -31,11 +31,11 @@
                                     @endforeach
                                 </span>
                                 @if($val->type == 'upcoming_matches')
-                                    <span class="nk-widget-match-vs">
+                                    <span class="nk-widget-match-vs ml-30">
                                     {{date('d/m',strtotime($val->match_data->match_day))}}
                                     </span>
                                 @elseif($val->type == 'live_match')
-                                    <span class="nk-widget-match-vs ml-3 text-warning">
+                                    <span class="nk-widget-match-vs ml-30 text-warning">
                                         {{__('LIVE!')}}
                                     </span>
                                 @elseif($val->type == 'latest_match')
@@ -64,7 +64,7 @@
             @endforeach
         @endisset
     </div>
-    <a href="{{route('latest_matches')}}" class="nk-btn nk-btn-outline nk-btn-color-success mt-2" style="margin: 0 auto;display: block;width: 150px;">
+    <a href="{{route('latest_matches')}}" class="nk-btn nk-btn-rounded nk-btn-color-main-1 mt-10" style="margin: 0 auto;display: block;width: 150px;">
         View more
     </a>
 </div>

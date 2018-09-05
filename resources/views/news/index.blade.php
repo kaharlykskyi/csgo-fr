@@ -18,7 +18,6 @@
                                 <img src="{{asset('assets/images/news_img/' . $news->banner_image)}}" alt="{{$news->title}}">
                             </div>
                             <div class="nk-gap-1"></div>
-                            <h1 class="nk-post-title h4">{{$news->title}}</h1>
 
                             <div class="nk-post-by">
                                 by <a href="#">{{ $news->author_name }}</a> in {{ $news->publication_date }}

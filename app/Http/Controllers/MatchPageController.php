@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\{AppTreid\MatchSort, AppTreid\StreamApi, Comment, Match, Player, Team, User, Tournament, Stream};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MatchPageController extends Controller
@@ -75,11 +76,16 @@ class MatchPageController extends Controller
     }
 
     public function like(Request $request){
+        $liked = DB::table('match_likes')->where(['comment_id' => $request->id, 'user_id' => Auth::user()->id])->first();
+        if (isset($liked)){
+            return abort('407', 'You have liked this');
+        }
         $comment = Comment::where('id',$request->id)->first();
         $comment->like_count = (int)$comment->like_count + (int)$request->increment;
         DB::table('comments_match')->where('id',$request->id)->update([
             'like_count' => $comment->like_count
         ]);
+        DB::table('match_likes')->insert(['comment_id' => $request->id, 'user_id' => Auth::user()->id]);
 
         return $comment->like_count;
     }

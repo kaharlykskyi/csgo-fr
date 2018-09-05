@@ -41,7 +41,7 @@
                                 $('#comment-' + id).html(data);
                             },
                             error: function (data) {
-                                alert('Error happen');
+                                alert(data.statusText);
                                 console.log(data);
                             }
                         });

@@ -108,7 +108,11 @@
                     .nk-sidebar-right
                     .nk-sidebar-sticky
             -->
-        @component('common_component.sidebar')
+        @component('common_component.sidebar',[
+            'streams' => null,
+            'sort_match' => null,
+            'teams' => null
+        ])
 
         @endcomponent
         <!-- END: Sidebar -->
