@@ -18,13 +18,17 @@
         <div class="nk-comment-text">
             {!! $comment->comment !!}
             <div class="row justify-content-end mt-2">
-                <div class="col-1" id="comment-{{$comment->id}}">
+                <div class="col-1 @if((int)$comment->like_count > 0){{__('text-success')}}@elseif((int)$comment->like_count < 0){{__('text-danger')}}@endif" id="comment-{{$comment->id}}">
                     {{$comment->like_count}}
                 </div>
-                <div class="col-2">
-                    <button type="button" class="btn btn-outline-success btn-sm" onclick="like(1,{{$comment->id}})">+</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="like(-1,{{$comment->id}})">-</button>
-                </div>
+                @guest
+
+                @else
+                    <div class="col-2">
+                        <button type="button" class="btn btn-outline-success btn-sm" onclick="like(1,{{$comment->id}})">+</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="like(-1,{{$comment->id}})">-</button>
+                    </div>
+                @endguest
                 <script>
                     function like(increment,id) {
                         $.ajaxSetup({

@@ -21,7 +21,8 @@
         @endif
         <div id="reply-block"></div>
         <input type="hidden" name="object_id" value="{{$object->id}}">
-        <textarea id="editor" class="form-control required" name="comment" rows="5" placeholder="Message *" aria-required="true"></textarea>
+        <div class="nk-gap-1"></div>
+        <textarea name="comment" cols="30" rows="10" class="nk-summernote form-control" placeholder="Message *"></textarea>
         <div class="nk-gap-1"></div>
         @if (session('status'))
             <div style="display: block;" class="nk-form-response-error">{{ session('status') }}</div>
@@ -39,8 +40,5 @@
             '<input type="text" class="form-control" value="'+name+'" aria-label="reply" aria-describedby="inputGroup-sizing-sm">'+
             '</div>');
     }
-
-    CKEDITOR.replace('editor');
-
 </script>
 <!-- END: Reply -->
