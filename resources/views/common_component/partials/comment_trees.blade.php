@@ -45,7 +45,7 @@
                                 $('#comment-' + id).html(data);
                             },
                             error: function (data) {
-                                alert(data.statusText);
+                                alert(data.responseJSON.message);
                                 console.log(data);
                             }
                         });

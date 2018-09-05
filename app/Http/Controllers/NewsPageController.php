@@ -65,7 +65,7 @@ class NewsPageController extends Controller
     public function like(Request $request){
         $liked = DB::table('news_likes')->where(['comment_id' => $request->id, 'user_id' => Auth::user()->id])->first();
         if (isset($liked)){
-            return abort('407', 'You have liked this');
+            return abort('500', 'You already rated this comment');
         }
         $comment = NewsComment::where('id',$request->id)->first();
         $comment->like_count = (int)$comment->like_count + (int)$request->increment;
