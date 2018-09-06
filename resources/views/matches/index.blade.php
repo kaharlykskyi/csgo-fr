@@ -158,7 +158,6 @@
                                             <span>{{$item->name}}:</span>
                                             <span>{{$item->score}}</span>
                                         </p>
-                                        <?php $sum += (int)$item->score ?>
                                     @endforeach
                                 @endisset
                                     <p class="h3 @if($sum > $sum2){{__('text-success')}}@else{{__('text-danger')}}@endif">{{$sum}}</p>
@@ -180,7 +179,6 @@
                                             <span>{{$item->name}}:</span>
                                             <span>{{$item->score}}</span>
                                         </p>
-                                        <?php $sum += (int)$item->score ?>
                                     @endforeach
                                 @endisset
                                 <p class="h3 @if($sum < $sum2){{__('text-success')}}@else{{__('text-danger')}}@endif">{{$sum2}}</p>

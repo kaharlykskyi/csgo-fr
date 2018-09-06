@@ -14,7 +14,7 @@
                                     <li class="list-inline-item seprate">
                                         <span class="fa fa-angle-right"></span>
                                     </li>
-                                    <li class="list-inline-item text-white text-capitalize">{{str_replace('-',' ',$type)}}</li>
+                                    <li class="list-inline-item text-white text-capitalize">{{str_replace('_',' ',$type)}}</li>
                                 @endif
                             </ul>
                         </div>
