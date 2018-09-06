@@ -114,6 +114,7 @@
                                     <span class="fa fa-calendar"></span> {{$news->publication_date}}
                                     <span class="fa fa-comments"></span> <a href="#">
                                         {{\Illuminate\Support\Facades\DB::table('news_comments')->where('news_id',$news->id)->count()}} comments</a>
+                                    @isset($news->viewers_count)<span class="fa fa-eye"></span> {{$news->viewers_count}}@endisset
                                 </div>
                                 <div class="nk-post-text">
                                     <p>
