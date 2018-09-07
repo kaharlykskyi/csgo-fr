@@ -21,7 +21,7 @@
                         <td>Full name</td>
                         <td>{{$player->full_name}}</td>
                         <td rowspan="5" class="text-center" style="width: 150px">
-                            <img style="max-width: 150px" src="@if(isset($player->logo)){{asset($player->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="$player->nickname">
+                            <img style="max-width: 150px" src="@if(isset($player->logo)){{asset($player->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="$player->nickname">
                         </td>
                     </tr>
                     <tr>

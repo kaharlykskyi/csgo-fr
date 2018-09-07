@@ -14,11 +14,21 @@
 /*--------SITE--------*/
 
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function (){
     Route::get('/','ProfileController@index')->name('profile');
     Route::get('/send-confirm','ProfileController@sendConfirm')->name('send_confirm');
     Route::get('/confirm-email','ProfileController@confirmEmail')->name('confirm_email');
 });
+
+Route::group(['prefix' => 'forum'], function (){
+    Route::get('/','ForumController@index')->name('forum_topics');
+    Route::get('/topic-page/{id}','ForumController@topicPage')->name('topic_page');
+    Route::match(['get', 'post'],'/create-thread','ForumController@createThread')->name('add_thread')->middleware('auth');
+    Route::get('/topic-page/{id}/thread-page/{thread_id}','ForumController@threadPost')->name('thread_page');
+    Route::post('/create-post','ForumController@createPost')->name('create_post')->middleware('auth');
+});
+
 Route::get('/matches/{id}/{type?}','MatchPageController@index')->name('match_page');
 Route::post('/match-comment', 'MatchPageController@writeComment')->name('match_comment');
 Route::post('/match-comment-like','MatchPageController@like')->name('match_comment_like')->middleware('auth');

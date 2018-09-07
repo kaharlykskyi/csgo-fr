@@ -9,7 +9,7 @@
             <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
 
                 <li>
-                    <a href="elements.html">
+                    <a href="{{route('forum_topics')}}">
                         Forum
                     </a>
                 </li>
