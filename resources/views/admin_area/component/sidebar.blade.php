@@ -112,6 +112,24 @@
                         </li>
                     </ul>
                 </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-copy"></i>Manage Galleries</a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="{{route('admin.gallery.create')}}"></i>Create Gallery</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.gallery.index')}}">All Galleries</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.image.create')}}"></i>Add Image</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.image.index')}}">All Images</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -256,6 +274,28 @@
                         </li>
                         <li>
                             <a href="{{route('admin.forum-topic.index')}}">All Forum Topics</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        Manage Galleries
+                        <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="{{route('admin.gallery.create')}}"></i>Create Gallery</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.gallery.index')}}">All Galleries</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.image.create')}}"></i>Add Image</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.image.index')}}">All Images</a>
                         </li>
                     </ul>
                 </li>

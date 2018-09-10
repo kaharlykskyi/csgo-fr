@@ -61,6 +61,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::resource('/teams','TeamController',['as' => 'admin']);
     Route::resource('/news-category','NewsCategoryController',['as' => 'admin']);
     Route::resource('/forum-topic','ForumTopicController',['as' => 'admin']);
+    Route::resource('/gallery','GalleryController',['as' => 'admin']);
+    Route::resource('/image','ImageController',['as' => 'admin']);
 });
 
 
