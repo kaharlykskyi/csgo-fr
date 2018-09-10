@@ -1,5 +1,14 @@
 @foreach($posts as $post)
-    <li class="@isset($children){{__('mt-5')}}@endisset">
+    <li class="@isset($children){{__('mt-5')}}@endisset post-wrapper">
+        @isset(Auth::user()->role)
+            @if(Auth::user()->role == 'admin')
+                <div class="post-delete-wrapper">
+                    <a href="{{route('post_delete',$post->id)}}" onclick="if(confirm('DELETE?')){return true}else{return false}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </div>
+            @endif
+        @endisset
         <div class="nk-forum-topic-author">
             @isset($users)
                 @foreach($users as $user)

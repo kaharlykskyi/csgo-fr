@@ -178,6 +178,32 @@ img {
     width: 100px;
 }
 
+.thread-wrapper,.post-wrapper{
+    position: relative;
+}
+
+.thread-action-wrapper{
+    position: absolute;
+    top: 0;
+    left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.thread-wrapper:first-child .thread-action-wrapper{
+    top: 35px;
+}
+
+.post-delete-wrapper{
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.thread-action-wrapper a{
+    flex-basis: 100%;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 870px;

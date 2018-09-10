@@ -30,7 +30,7 @@
                             {{\Illuminate\Support\Facades\DB::table('topic_threads')->where('topic_id',$topic->id)->count()}} threads
                         </div>
                         <?php
-                            $last_thread = \Illuminate\Support\Facades\DB::table('topic_threads')->where('topic_id',$topic->id)->limit(1)->latest()->first();
+                            $last_thread = \Illuminate\Support\Facades\DB::table('topic_threads')->where('topic_id',$topic->id)->whereIn('state',[1,2])->limit(1)->latest()->first();
                             if (isset($last_thread->user_id)){
                                 $user = \Illuminate\Support\Facades\DB::table('users')->where('id',$last_thread->user_id)->first();
                             }

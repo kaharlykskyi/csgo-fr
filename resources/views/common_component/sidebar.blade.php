@@ -32,24 +32,30 @@
         </div>
     </div>
 
-    <div class="nk-widget nk-widget-highlighted">
-        <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> in Forums</span></h4>
-
-        <div class="nk-last-forum">
-            <div class="nk-post-text">
-                <p>And she went on planning to herself how she would manage it.</p>
-                <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
-            </div>
+    <?php
+        $last_posts = \Illuminate\Support\Facades\DB::table('thread_posts')
+            ->join('topic_threads','thread_posts.thread_id', '=', 'topic_threads.id')
+            ->select('thread_posts.*')
+            ->where('topic_threads.state','!=',0)
+            ->orderByDesc('created_at')
+            ->limit(2)
+            ->get();
+    ?>
+    @isset($last_posts)
+        <div class="nk-widget nk-widget-highlighted">
+            <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> in Forums</span></h4>
+            @foreach($last_posts as $last_post)
+                <div class="nk-last-forum">
+                    <div class="nk-post-text">
+                        <p>
+                            {{str_limit(strip_tags($last_post->text_post), 30, ' ...')}}
+                        </p>
+                        <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> {{date('M d Y',strtotime($last_post->created_at))}}</div>
+                    </div>
+                </div>
+            @endforeach
         </div>
-
-        <div class="nk-last-forum">
-            <div class="nk-post-text">
-                <p>`They must go by the carrier,' she thought; `and how funny it'll seem, sending presents to one's own feet!...</p>
-                <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
-            </div>
-        </div>
-
-    </div>
+    @endisset
 
     <div class="nk-widget nk-widget-highlighted">
         <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Video</span></h4>
