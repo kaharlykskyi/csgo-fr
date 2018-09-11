@@ -204,6 +204,10 @@ img {
     flex-basis: 100%;
 }
 
+iframe{
+    width: 100% !important;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 870px;
@@ -213,5 +217,9 @@ img {
 @media only screen and (max-width : 992px) {
     h3, .h3 {
         font-size: 1.5rem;
+    }
+
+    iframe{
+        width: 90% !important;
     }
 }

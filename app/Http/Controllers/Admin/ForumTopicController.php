@@ -97,7 +97,7 @@ class ForumTopicController extends Controller
         $data = $request->except('_token');
 
         $validate = Validator::make($data,[
-            'title' => 'required|unique:forum_topics'
+            'title' => 'required'
         ]);
 
         if ($validate->fails()) {

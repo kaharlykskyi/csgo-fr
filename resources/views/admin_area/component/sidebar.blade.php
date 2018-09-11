@@ -102,13 +102,13 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow" href="#">
-                        <i class="fas fa-copy"></i>Manage Forum Topics</a>
+                        <i class="fas fa-copy"></i>Manage Forum Threads</a>
                     <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                         <li>
-                            <a href="{{route('admin.forum-topic.create')}}"></i>Create Forum Topic</a>
+                            <a href="{{route('admin.forum-topic.create')}}"></i>Create Forum Thread</a>
                         </li>
                         <li>
-                            <a href="{{route('admin.forum-topic.index')}}">All Forum Topics</a>
+                            <a href="{{route('admin.forum-topic.index')}}">All Forum Threads</a>
                         </li>
                     </ul>
                 </li>
@@ -269,17 +269,17 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow" href="#">
-                        Manage Forum Topics
+                        Manage Forum Threads
                         <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
                     </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
-                            <a href="{{route('admin.forum-topic.create')}}"></i>Create Forum Topic</a>
+                            <a href="{{route('admin.forum-topic.create')}}"></i>Create Forum Thread</a>
                         </li>
                         <li>
-                            <a href="{{route('admin.forum-topic.index')}}">All Forum Topics</a>
+                            <a href="{{route('admin.forum-topic.index')}}">All Forum Threads</a>
                         </li>
                     </ul>
                 </li>

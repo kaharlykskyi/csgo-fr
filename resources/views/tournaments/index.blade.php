@@ -7,90 +7,93 @@
         @component('admin_area.tournaments.component.breadcrumb',['title' => $tournament->title])
 
         @endcomponent
-
-        <!-- START: Post -->
-            <div class="nk-blog-post nk-blog-post-single">
-                <!-- START: Post Text -->
-                <div class="nk-post-text mt-0">
-                    <div class="nk-post-img">
-                        <img src="{{asset('assets/images/tournament_img/' . $tournament->banner_image)}}" alt="{{$tournament->title}}">
-                    </div>
-                    <div class="nk-gap-1"></div>
-                    <h1 class="nk-post-title h4">{{$tournament->title}}</h1>
-
-                    <div class="nk-post-by">
-                        by <a href="#">{{ $tournament->author }}</a> in {{ $tournament->publication_date }}
-                    </div>
-
-                    <div class="nk-gap"></div>
-
-                    {!! $tournament->content_tournament !!}
-
-                    @isset($tournament->tournament_metadata)
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-12 m-b-5 m-t-5">
-                                    <p class="h3">Tournament Brackets</p>
-                                </div>
-                                <div class="col-12">
-                                    <div id="brackets">
-                                    </div>
-                                </div>
+            <div class="nk-widget-highlighted">
+                <div class="nk-widget-content p-10">
+                    <!-- START: Post -->
+                    <div class="nk-blog-post nk-blog-post-single">
+                        <!-- START: Post Text -->
+                        <div class="nk-post-text mt-0">
+                            <div class="nk-post-img">
+                                <img src="{{asset('assets/images/tournament_img/' . $tournament->banner_image)}}" alt="{{$tournament->title}}">
                             </div>
-                            <script>
-                                @if(isset($tournament->tournament_metadata))
-                                    var autoCompleteData = {!! $tournament->tournament_metadata !!};
-                                @endif
+                            <div class="nk-gap-1"></div>
+                            <h1 class="nk-post-title h4">{{$tournament->title}}</h1>
 
-                                function edit_fn(container, data, doneCb) {
-                                    var input = $('<input type="text">')
-                                    input.val(data ? data.flag + ':' + data.name : '')
-                                    container.html(input)
-                                    input.focus()
-                                    input.blur(function() {
-                                        var inputValue = input.val()
-                                        if (inputValue.length === 0) {
-                                            doneCb(null); // Drop the team and replace with BYE
-                                        } else {
-                                            var flagAndName = inputValue.split(':') // Expects correct input
-                                            doneCb({flag: flagAndName[0], name: flagAndName[1]})
+                            <div class="nk-post-by">
+                                by <a href="#">{{ $tournament->author }}</a> in {{ $tournament->publication_date }}
+                            </div>
+
+                            <div class="nk-gap"></div>
+
+                            {!! $tournament->content_tournament !!}
+
+                            @isset($tournament->tournament_metadata)
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-12 m-b-5 m-t-5">
+                                            <p class="h3">Tournament Brackets</p>
+                                        </div>
+                                        <div class="col-12">
+                                            <div id="brackets">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        @if(isset($tournament->tournament_metadata))
+                                            var autoCompleteData = {!! $tournament->tournament_metadata !!};
+                                        @endif
+
+                                        function edit_fn(container, data, doneCb) {
+                                            var input = $('<input type="text">')
+                                            input.val(data ? data.flag + ':' + data.name : '')
+                                            container.html(input)
+                                            input.focus()
+                                            input.blur(function() {
+                                                var inputValue = input.val()
+                                                if (inputValue.length === 0) {
+                                                    doneCb(null); // Drop the team and replace with BYE
+                                                } else {
+                                                    var flagAndName = inputValue.split(':') // Expects correct input
+                                                    doneCb({flag: flagAndName[0], name: flagAndName[1]})
+                                                }
+                                            })
                                         }
-                                    })
-                                }
 
-                                function render_fn(container, data, score, state) {
-                                    switch(state) {
-                                        case "empty-bye":
-                                            container.append("No team");
-                                            return;
-                                        case "empty-tbd":
-                                            container.append("Upcoming");
-                                            return;
+                                        function render_fn(container, data, score, state) {
+                                            switch(state) {
+                                                case "empty-bye":
+                                                    container.append("No team");
+                                                    return;
+                                                case "empty-tbd":
+                                                    container.append("Upcoming");
+                                                    return;
 
-                                        case "entry-no-score":
-                                        case "entry-default-win":
-                                        case "entry-complete":
-                                            container.append('<img src="{{asset('images/flag')}}/'+data.flag+'.png" /> ').append(data.name)
-                                            return;
-                                    }
-                                }
+                                                case "entry-no-score":
+                                                case "entry-default-win":
+                                                case "entry-complete":
+                                                    container.append('<img src="{{asset('images/flag')}}/'+data.flag+'.png" /> ').append(data.name)
+                                                    return;
+                                            }
+                                        }
 
-                                jQuery('#brackets').bracket({
-                                    init: autoCompleteData,
-                                    decorator: {edit: edit_fn,
-                                        render: render_fn},
-                                    teamWidth: 150,
-                                    matchMargin: 20
-                                })
-                            </script>
+                                        jQuery('#brackets').bracket({
+                                            init: autoCompleteData,
+                                            decorator: {edit: edit_fn,
+                                                render: render_fn},
+                                            teamWidth: 150,
+                                            matchMargin: 20
+                                        })
+                                    </script>
+                                </div>
+                            @endisset
+
+                            <div class="nk-gap"></div>
                         </div>
-                    @endisset
-
-                    <div class="nk-gap"></div>
+                        <!-- END: Post Text -->
+                    </div>
+                    <!-- END: Post -->
                 </div>
-                <!-- END: Post Text -->
             </div>
-            <!-- END: Post -->
 
             <div class="nk-gap-2"></div>
             <!-- START: Comments -->

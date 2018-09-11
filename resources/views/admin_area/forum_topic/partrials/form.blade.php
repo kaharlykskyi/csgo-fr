@@ -3,7 +3,7 @@
         <label for="title" class=" form-control-label">Title</label>
     </div>
     <div class="col-12 col-md-9">
-        <input type="text" id="full_name" value="@if(isset($forumTopic->id)){{$forumTopic->title}}@else{{old('title')}}@endif" name="title" placeholder="Topic's title" class="form-control" required>
+        <input type="text" id="full_name" value="@if(isset($forumTopic->id)){{$forumTopic->title}}@else{{old('title')}}@endif" name="title" placeholder="Thread's title" class="form-control" required>
         @if ($errors->has('title'))
             <small class="form-text text-danger">{{ $errors->first('title') }}</small>
         @endif
@@ -15,7 +15,7 @@
         <label for="description" class=" form-control-label">Description</label>
     </div>
     <div class="col-12 col-md-9">
-        <textarea class="form-control" id="description" name="description" aria-label="Topic's title" placeholder="Topic's description">@if(isset($forumTopic->id)){{$forumTopic->description}}@else{{old('description')}}@endif</textarea>
+        <textarea class="form-control" id="description" name="description" aria-label="Topic's title" placeholder="Thread's description">@if(isset($forumTopic->id)){{$forumTopic->description}}@else{{old('description')}}@endif</textarea>
         @if ($errors->has('description'))
             <small class="form-text text-danger">{{ $errors->first('description') }}</small>
         @endif
@@ -45,6 +45,7 @@
 </div>
 <script>
     $('#logo_topic').filemanager('image');
+    CKEDITOR.replace('description',options);
 </script>
 
 <div class="card-footer">

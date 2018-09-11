@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @component('admin_area.component.breadcrumb',['title'=>'','parent'=>'Dashboard','active' =>'Create forum topic'])
+    @component('admin_area.component.breadcrumb',['title'=>'','parent'=>'Dashboard','active' =>'Create forum Thread'])
 
     @endcomponent
 
@@ -11,7 +11,7 @@
             <div class="col-12 m-t-30">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Create</strong> Topic
+                        <strong>Create</strong> Thread
                     </div>
                     <div class="card-body card-block">
                         <form action="{{route('admin.forum-topic.store')}}" method="post" class="form-horizontal">

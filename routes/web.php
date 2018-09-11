@@ -24,9 +24,9 @@ Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function (){
 /*--------FORUM--------*/
 Route::group(['prefix' => 'forum'], function (){
     Route::get('/','ForumController@index')->name('forum_topics');
-    Route::get('/topic-page/{id}','ForumController@topicPage')->name('topic_page');
+    Route::get('/thread-page/{id}','ForumController@topicPage')->name('topic_page');
     Route::match(['get', 'post'],'/create-thread','ForumController@createThread')->name('add_thread')->middleware('auth');
-    Route::get('/topic-page/{id}/thread-page/{thread_id}','ForumController@threadPost')->name('thread_page');
+    Route::get('/thread-page/{id}/topic-page/{thread_id}','ForumController@threadPost')->name('thread_page');
     Route::post('/create-post','ForumController@createPost')->name('create_post')->middleware('auth');
     Route::get('/thread-action/{id}/{action}','ForumController@threadAction')->name('thread_action')->middleware(['auth','role']);
     Route::get('/post-delete/{id}','ForumController@postDelete')->name('post_delete')->middleware(['auth','role']);

@@ -23,7 +23,7 @@
                         <div class="nk-forum-title">
                             <h3><a href="{{route('topic_page',$topic->id)}}">{{$topic->title}}</a></h3>
                             @isset($topic->description)
-                                <div class="nk-forum-title-sub">{{$topic->description}}</div>
+                                <div class="nk-forum-title-sub">{!! $topic->description !!}</div>
                             @endisset
                         </div>
                         <div class="nk-forum-count">

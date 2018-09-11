@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @component('admin_area.component.breadcrumb',['title'=>'','parent'=>'Dashboard','active' =>'All forum topics'])
+    @component('admin_area.component.breadcrumb',['title'=>'','parent'=>'Dashboard','active' =>'All forum Threads'])
 
     @endcomponent
 
@@ -18,7 +18,7 @@
                     <table class="table table-borderless table-striped table-earning">
                         <thead>
                         <tr>
-                            <th>Name topic</th>
+                            <th>Name Thread</th>
                             <th>Action</th>
                         </tr>
                         </thead>

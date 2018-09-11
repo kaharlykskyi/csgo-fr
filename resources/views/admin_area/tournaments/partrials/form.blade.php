@@ -91,7 +91,7 @@
         <label for="author" class=" form-control-label">Author's name</label>
     </div>
     <div class="col-12 col-md-9">
-        <input type="text" id="title" value="@if(isset($tournament->id)){{$tournament->author}}@else{{old('author')}}@endif" name="author" placeholder="Author's name" class="form-control" required>
+        <input type="text" id="title" value="@if(isset($tournament->id)){{$tournament->author}}@else{{old('author')}}@endif" name="author" placeholder="Author's name" class="form-control">
         @if ($errors->has('author'))
             <small class="form-text text-danger">{{ $errors->first('author') }}</small>
         @endif

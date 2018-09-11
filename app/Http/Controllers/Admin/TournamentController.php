@@ -54,7 +54,7 @@ class TournamentController extends Controller
             'country_id' => 'required',
         ]);
 
-        if((integer)$data['country_id'] == 0){
+        if($data['country_id'] === '0'){
             $data['country_id'] = null;
         }
 
@@ -141,7 +141,7 @@ class TournamentController extends Controller
                 ->withInput();
         }
 
-        if((integer)$data['country_id'] == 0){
+        if($data['country_id'] === '0'){
             $data['country_id'] = null;
         }
 
