@@ -128,6 +128,12 @@
                         <li>
                             <a href="{{route('admin.image.index')}}">All Images</a>
                         </li>
+                        <li>
+                            <a href="{{route('admin.video.create')}}"></i>Add Video</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.video.index')}}">All Video</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -296,6 +302,12 @@
                         </li>
                         <li>
                             <a href="{{route('admin.image.index')}}">All Images</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.video.create')}}"></i>Add Video</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.video.index')}}">All Video</a>
                         </li>
                     </ul>
                 </li>

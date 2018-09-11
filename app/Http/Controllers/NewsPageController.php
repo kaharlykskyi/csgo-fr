@@ -43,9 +43,6 @@ class NewsPageController extends Controller
             'count',
             'comments',
             'users',
-            'latest_match',
-            'live_match',
-            'upcoming_matches',
             'teams'
         ))->with(['sort_match' => $this->selectMatch()]);
     }

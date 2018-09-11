@@ -57,75 +57,58 @@
         </div>
     @endisset
 
-    <div class="nk-widget nk-widget-highlighted">
-        <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Video</span></h4>
-        <div class="nk-widget-content">
-            <div class="nk-plain-video" data-video="https://www.youtube.com/watch?v=vXy8UBazlO8"></div>
+    <?php
+        $video = \Illuminate\Support\Facades\DB::table('video')->orderByDesc('created_at')->first();
+    ?>
+
+    @isset($video)
+        <div class="nk-widget nk-widget-highlighted">
+            <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Video</span></h4>
+            <div class="nk-widget-content">
+                @if(isset($video->code))
+                    <div class="nk-plain-video" data-video="{{$video->code}}"></div>
+                @else
+                    <video controls class="nk-plain-video" @isset($video->logo) poster="{{asset($video->logo)}}"@endisset style="padding-top: 0">
+                        <source src="{{asset($video->path)}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                @endif
+            </div>
         </div>
-    </div>
-    <div class="nk-widget nk-widget-highlighted">
-        <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Screenshots</span></h4>
-        <div class="nk-widget-content">
-            <div class="nk-popup-gallery">
-                <div class="row sm-gap vertical-gap">
-                    <div class="col-sm-6">
-                        <div class="nk-gallery-item-box">
-                            <a href="{{ asset('images/gallery-1.jpg') }}" class="nk-gallery-item" data-size="1016x572">
-                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                <img src="{{ asset('images/gallery-1-thumb.jpg') }}" alt="">
-                            </a>
-                            <div class="nk-gallery-item-description">
-                                <h4>Called Let</h4>
-                                Divided thing, land it evening earth winged whose great after. Were grass night. To Air itself saw bring fly fowl. Fly years behold spirit day greater of wherein winged and form. Seed open don't thing midst created dry every greater divided of, be man is. Second Bring stars fourth gathering he hath face morning fill. Living so second darkness. Moveth were male. May creepeth. Be tree fourth.
+    @endisset
+
+    <?php
+        $latest_img = \Illuminate\Support\Facades\DB::table('images')->orderByDesc('created_at')->limit(6)->get();
+    ?>
+
+    @isset($latest_img)
+        <div class="nk-widget nk-widget-highlighted">
+            <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Screenshots</span></h4>
+            <div class="nk-widget-content">
+                <div class="nk-popup-gallery">
+                    <div class="row sm-gap vertical-gap">
+                        @foreach($latest_img as $item)
+                            <div class="col-sm-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="{{asset($item->path)}}" class="nk-gallery-item" data-size="900x500">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="{{asset($item->path)}}" alt="">
+                                    </a>
+                                    @isset($item->title)
+                                        <div class="nk-gallery-item-description">
+                                            <h4>{{$item->title}}</h4>
+                                            @isset($item->description)
+                                                {!! $item->description !!}
+                                            @endisset
+                                        </div>
+                                    @endisset
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="nk-gallery-item-box">
-                            <a href="{{ asset('images/gallery-2.jpg') }}" class="nk-gallery-item" data-size="1188x594">
-                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                <img src="{{ asset('images/gallery-2-thumb.jpg') }}" alt="">
-                            </a>
-                            <div class="nk-gallery-item-description">
-                                Seed open don't thing midst created dry every greater divided of, be man is. Second Bring stars fourth gathering he hath face morning fill. Living so second darkness. Moveth were male. May creepeth. Be tree fourth.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="nk-gallery-item-box">
-                            <a href="{{ asset('images/gallery-3.jpg') }}" class="nk-gallery-item" data-size="625x350">
-                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                <img src="{{ asset('images/gallery-3-thumb.jpg') }}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="nk-gallery-item-box">
-                            <a href="{{ asset('images/gallery-4.jpg') }}" class="nk-gallery-item" data-size="873x567">
-                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                <img src="{{ asset('images/gallery-4-thumb.jpg') }}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="nk-gallery-item-box">
-                            <a href="{{ asset('images/gallery-5.jpg') }}" class="nk-gallery-item" data-size="471x269">
-                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                <img src="{{ asset('images/gallery-5-thumb.jpg') }}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="nk-gallery-item-box">
-                            <a href="{{ asset('images/gallery-6.jpg') }}" class="nk-gallery-item" data-size="472x438">
-                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                <img src="{{ asset('images/gallery-6-thumb.jpg') }}" alt="">
-                            </a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endisset
 
 </aside>

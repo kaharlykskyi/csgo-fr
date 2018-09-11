@@ -32,6 +32,12 @@ Route::group(['prefix' => 'forum'], function (){
     Route::get('/post-delete/{id}','ForumController@postDelete')->name('post_delete')->middleware(['auth','role']);
 });
 
+/*--------GALLERY--------*/
+Route::group(['prefix' => 'gallery'], function (){
+    Route::get('/','GalleryController@index')->name('gallery');
+    Route::get('/{name}','GalleryController@gallery')->name('gallery_page');
+});
+
 Route::get('/matches/{id}/{type?}','MatchPageController@index')->name('match_page');
 Route::post('/match-comment', 'MatchPageController@writeComment')->name('match_comment');
 Route::post('/match-comment-like','MatchPageController@like')->name('match_comment_like')->middleware('auth');
@@ -63,6 +69,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::resource('/forum-topic','ForumTopicController',['as' => 'admin']);
     Route::resource('/gallery','GalleryController',['as' => 'admin']);
     Route::resource('/image','ImageController',['as' => 'admin']);
+    Route::resource('/video','VideoController',['as' => 'admin']);
 });
 
 

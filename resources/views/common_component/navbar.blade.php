@@ -60,7 +60,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="gallery.html">
+                    <a href="{{route('gallery')}}">
                         Gallery
 
                     </a>

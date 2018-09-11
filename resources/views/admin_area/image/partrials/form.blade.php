@@ -60,7 +60,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <script>
     $('#image').filemanager('image');
     CKEDITOR.replace('editor',options);
