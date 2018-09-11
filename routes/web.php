@@ -59,6 +59,10 @@ Route::get('/latest-matches','LatestMatchesController@index')->name('latest_matc
 /*--------ADMIN--------*/
 Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','role']],function (){
     Route::get('/','DashboardController@index')->name('admin.dashboard');
+    Route::get('/users','DashboardController@users')->name('admin.users');
+    Route::post('/users-search','DashboardController@search')->name('admin.search');
+    Route::post('/users-access','DashboardController@access')->name('admin.access');
+
     Route::resource('/news', 'NewsController',['as' => 'admin']);
     Route::resource('/tournaments','TournamentController',['as' => 'admin']);
     Route::resource('/matches','MatchController',['as' => 'admin']);

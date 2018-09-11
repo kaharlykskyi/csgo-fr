@@ -12,13 +12,17 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item">
-                                <h2 class="number">10,368</h2>
-                                <span class="desc">members online</span>
-                                <div class="icon">
-                                    <i class="zmdi zmdi-account-o"></i>
+                            <a href="{{route('admin.users')}}" style="width: 100%;">
+                                <div class="statistic__item">
+                                    <h2 class="number">
+                                        {{\Illuminate\Support\Facades\DB::table('users')->count()}}
+                                    </h2>
+                                    <span class="desc">Users</span>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-account-o"></i>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item">
