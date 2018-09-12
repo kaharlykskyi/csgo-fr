@@ -41,13 +41,15 @@ trait StreamApi
                 $stream_type = $stream_data->stream->stream_type;
                 $stream_views = $stream_data->stream->viewers;
             }
-            $streams_output[$k] = [
-                'type' => $stream_type,
-                'link' => trim($stream->link),
-                'views' => $stream_views,
-                'channel_name' => trim($stream->name),
-                'country' => DB::table('countrys')->where('country',$stream->country)->first()
-            ];
+            if($stream_type == 'live'){
+                $streams_output[$k] = [
+                    'type' => $stream_type,
+                    'link' => trim($stream->link),
+                    'views' => $stream_views,
+                    'channel_name' => trim($stream->name),
+                    'country' => DB::table('countrys')->where('country',$stream->country)->first()
+                ];
+            }
         }
 
         usort($streams_output, function($a,$b){

@@ -1,5 +1,5 @@
 @foreach($posts as $post)
-    <li class="@isset($children){{__('mt-5')}}@endisset post-wrapper">
+    <li class="@isset($children){{__('mt-5')}}@endisset post-wrapper" id="post-{{$post->id}}">
         @isset(Auth::user()->role)
             @if(Auth::user()->role == 'admin')
                 <div class="post-delete-wrapper">

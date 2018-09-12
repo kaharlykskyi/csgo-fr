@@ -45,7 +45,7 @@
         <div id="forum-reply"></div>
         <div class="nk-gap-4"></div>
         <!-- START: Reply -->
-        <form action="{{route('create_post')}}" method="post" novalidate>
+        <form action="{{route('create_post')}}" method="post" novalidate id="reply-post">
             <h3 class="h4">Reply</h3>
             <div class="nk-gap-1"></div>
             <div id="id-post-reply"></div>
@@ -64,6 +64,10 @@
     <script>
         function addField(id) {
             $('#id-post-reply').html('<input type="hidden" value="'+id+'" name="parent_post">');
+            var contentPost = $('#post-' + id + ' .nk-forum-topic-content').html();
+            $('#reply-post .note-editable.card-block').html('<blockquote>'+contentPost+'</blockquote><p><br></p>');
+            console.log(contentPost);
+
         }
     </script>
 

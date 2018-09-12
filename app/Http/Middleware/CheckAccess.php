@@ -16,6 +16,10 @@ class CheckAccess
      */
     public function handle($request, Closure $next)
     {
+        if(!isset($request->email)){
+            return back();
+        }
+
         $user = User::where('email',$request->email)->first();
         if($user->accses == 0){
             return response()->json([
