@@ -67,7 +67,7 @@
                                         '                    <div class="nk-info-box-icon">\n' +
                                         '                        <i class="ion-android-notifications-none"></i>\n' +
                                         '                    </div>\n' +
-                                        '                    <h3>Notification!</h3>\n' +
+                                        '                    <h3>Sorry!</h3>\n' +
                                         '                    <em>'+data.access+'</em>\n' +
                                         '                    <div class="nk-gap-1"></div>\n' +
                                         '                </div>')

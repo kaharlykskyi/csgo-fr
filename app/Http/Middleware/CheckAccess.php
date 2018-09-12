@@ -23,7 +23,7 @@ class CheckAccess
         $user = User::where('email',$request->email)->first();
         if($user->accses == 0){
             return response()->json([
-                'access' => 'You are banned',
+                'access' => 'You have been banned',
             ]);
         }
 

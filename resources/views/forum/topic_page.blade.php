@@ -59,6 +59,9 @@
                         </div>
                         <div class="nk-forum-title">
                             <h3><a href="{{route('thread_page',['id' => $topic->id, 'thread_id' => $thread->id])}}">{{$thread->title}}</a></h3>
+                            @isset($thread->description)
+                                <div class="nk-forum-title-sub">{!! $thread->description !!}</div>
+                            @endisset
                             <div class="nk-forum-title-sub">Started by <a href="#">
                                     @isset($users)
                                         @foreach($users as $user)
@@ -128,7 +131,7 @@
                         <div class="nk-forum-title">
                             <h3><a href="@if($thread->state == 1){{route('thread_page',['id' => $topic->id, 'thread_id' => $thread->id])}}@endif">{{$thread->title}}</a></h3>
                             @isset($thread->description)
-                                <div class="nk-forum-title-sub">{{$thread->description}}</div>
+                                <div class="nk-forum-title-sub">{!! $thread->description !!}</div>
                             @endisset
                             <div class="nk-forum-title-sub">Started by
                                 <a href="#">

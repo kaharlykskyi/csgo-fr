@@ -56,6 +56,14 @@ class ForumController extends Controller
             $thread->fill($data);
 
             if($thread->save()){
+                $post_data = [
+                    'text_post' => $thread->description,
+                    'thread_id' => $thread->id,
+                    'user_id' => $thread->user_id
+                ];
+                $post = new ThreadPost();
+                $post->fill($post_data);
+                $post->save();
                 return redirect()->route('topic_page',$request->topic_id)->with('status','Thread created');
             } else{
                 return redirect()->back()->withInput()->with('status','Thread not created');

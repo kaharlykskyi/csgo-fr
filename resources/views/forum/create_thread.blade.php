@@ -43,7 +43,8 @@
                                 @endisset
                             </div>
                             <div class="nk-gap"></div>
-                            <textarea class="form-control" name="description" rows="5" placeholder="Description *">{{old('title')}}</textarea>
+                            <p class="h6 mt-5 mb-1">Description</p>
+                            <textarea name="description" cols="30" rows="10" class="nk-summernote form-control" required>{{old('description')}}</textarea>
                             <div class="nk-gap-1"></div>
                             <button class="nk-btn nk-btn-rounded nk-btn-color-white" type="submit">
                                 <span>Send</span>
