@@ -28,4 +28,19 @@ class DashboardController extends Controller
         DB::table('users')->where('id',$request->id)->update(['accses' => $request->accses]);
         return 'Info updated';
     }
+
+    public function moderators(Request $request){
+        if ($request->moderators == 'admin'){
+            DB::table('users')->where('id',$request->id)->update([
+                'moderators' => $request->moderators,
+                'role' => 'admin'
+            ]);
+        } elseif ($request->moderators == 'user'){
+            DB::table('users')->where('id',$request->id)->update([
+                'moderators' => $request->moderators,
+                'role' => 'user'
+            ]);
+        }
+        return 'Info updated';
+    }
 }

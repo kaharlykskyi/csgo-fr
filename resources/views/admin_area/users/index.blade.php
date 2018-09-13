@@ -36,6 +36,7 @@
                                             <td>name</td>
                                             <td>role</td>
                                             <td>access</td>
+                                            <td>moderators</td>
                                         </tr>
                                         </thead>
                                     <tbody>
@@ -76,8 +77,37 @@
                 type:     "POST", //метод отправки
                 data: $('#user-' + id).serialize(),  // Сеарилизуем объект
                 success: function(response) { //Данные отправлены успешно
-                    //result = $.parseJSON(response);
-                    alert(response);
+                    if (response.access) {
+                        alert(response.access);
+                    } else {
+                        alert(response);
+                    }
+                },
+                error: function(response) { // Данные не отправлены
+                    alert('Error');
+                    console.log(response);
+                }
+            });
+        }
+
+        function moderators_user(id,url){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+
+            });
+
+            $.ajax({
+                url:     url,
+                type:     "POST", //метод отправки
+                data: $('#user-moderators-' + id).serialize(),  // Сеарилизуем объект
+                success: function(response) { //Данные отправлены успешно
+                    if (response.access) {
+                        alert(response.access);
+                    } else {
+                        alert(response);
+                    }
                 },
                 error: function(response) { // Данные не отправлены
                     alert('Error');

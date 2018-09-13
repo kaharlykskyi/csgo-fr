@@ -26,6 +26,20 @@
                     </div>
                 @endif
             </td>
+            <td>
+                @if($user->moderators != 'super_admin')
+                    <div class="rs-select2--trans rs-select2--sm">
+                        <form action="" method="post" id="user-moderators-{{$user->id}}">
+                            <input type="hidden" name="id" value="{{$user->id}}">
+                            <select class="js-select2" name="moderators" onchange="moderators_user({{$user->id}},'{{route('admin.moderators')}}')">
+                                <option value="admin" @if($user->moderators == 'admin') {{__('selected')}} @endif >Moderators</option>
+                                <option value="user" @if($user->moderators == 'user') {{__('selected')}} @endif >User</option>
+                            </select>
+                            <div class="dropDownSelect2"></div>
+                        </form>
+                    </div>
+                @endif
+            </td>
         </tr>
     @endforeach
 @endisset

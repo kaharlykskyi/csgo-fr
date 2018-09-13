@@ -22,7 +22,9 @@ class DefaultAdminUserTableSeeder extends Seeder
             'date_birth' => '2018-08-10',
             'sex' => 'male',
             'role' => 'admin',
-            'is_verified' => 2
+            'is_verified' => 2,
+            'accses' => 1,
+            'moderators' => 'super_admin'
         ]);
     }
 }
