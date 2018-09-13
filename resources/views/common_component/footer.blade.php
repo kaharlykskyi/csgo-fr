@@ -20,12 +20,6 @@
                         </div>
                     </div>
                 </div>
-                {{--<div class="nk-widget">
-                    <h4 class="nk-widget-title"><span class="text-main-1">In</span> Twitter</h4>
-                    <div class="nk-widget-content">
-                        <div class="nk-twitter-list" data-twitter-count="1"></div>
-                    </div>
-                </div>--}}
             </div>
         </div>
         <div class="nk-gap-3"></div>
@@ -34,6 +28,11 @@
     <div class="nk-copyright">
         <div class="container">
             <div class="nk-copyright-left">
+                <p>
+                    Total registered members: {{\Illuminate\Support\Facades\DB::table('users')->where('accses','1')->count()}}
+                    <span class="ml-10">Registered users online: {{\Illuminate\Support\Facades\DB::table('sessions')->where('user_id','!=', null)->where('last_activity','>', time() - 60 * 5)->count()}}</span>
+                    <span class="ml-10">Guests online: {{\Illuminate\Support\Facades\DB::table('sessions')->where('user_id','=', null)->where('last_activity','>', time() - 60 * 5)->count()}}</span>
+                </p>
                 Copyright &copy; 2018 <a href="https://themeforest.net/user/_nk?ref=_nK" target="_blank">nK</a>
             </div>
             <div class="nk-copyright-right">
