@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
+    @isset($announcement)
+        <marquee behavior="scroll" direction="right">{!! $announcement !!}</marquee>
+    @endisset
             <div class="row vertical-gap">
                 <div class="col-lg-8">
 
@@ -15,7 +18,7 @@
                     <!-- END: Latest News -->
 
                         <!-- START: Image Slider -->
-                    @component('home.components.image_slider')
+                    @component('home.components.image_slider',['banner' => $banner])
 
                     @endcomponent
                     <!-- END: Image Slider -->

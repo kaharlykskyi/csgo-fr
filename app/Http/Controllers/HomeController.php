@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\{AppTreid\MatchSort,AppTreid\StreamApi,News,NewsCategory,Stream,Team};
+use App\{AppTreid\MatchSort, AppTreid\StreamApi, BannerImage, News, NewsCategory, Stream, Team};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -41,6 +42,14 @@ class HomeController extends Controller
             ];
         }
 
+        $announcement = null;
+        $exists = Storage::disk()->exists('announcement.txt');
+        if ($exists){
+            $announcement = Storage::get('announcement.txt');
+        }
+
+        $banner = BannerImage::all();
+
         return view('home.index',
             compact(
                 'latest_news',
@@ -49,7 +58,9 @@ class HomeController extends Controller
                 'streams_output',
                 'teams',
                 'news_tabbed',
-                'sort_match'
+                'sort_match',
+                'announcement',
+                'banner'
             )
         )->with(['sort_match' => $this->selectMatch()]);
     }

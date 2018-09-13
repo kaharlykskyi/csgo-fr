@@ -11,10 +11,11 @@
 |
 */
 
-/*--------SITE--------*/
+/*!!--------SITE--------!!*/
 
 Route::get('/', 'HomeController@index')->name('home');
 
+/*--------PROFILE--------*/
 Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function (){
     Route::get('/','ProfileController@index')->name('profile');
     Route::get('/send-confirm','ProfileController@sendConfirm')->name('send_confirm');
@@ -38,14 +39,18 @@ Route::group(['prefix' => 'gallery'], function (){
     Route::get('/{name}','GalleryController@gallery')->name('gallery_page');
 });
 
+/*--------MATCH--------*/
 Route::get('/matches/{id}/{type?}','MatchPageController@index')->name('match_page');
 Route::post('/match-comment', 'MatchPageController@writeComment')->name('match_comment');
 Route::post('/match-comment-like','MatchPageController@like')->name('match_comment_like')->middleware('auth');
+Route::get('/latest-matches','LatestMatchesController@index')->name('latest_matches');
 
+/*--------NEWS--------*/
 Route::get('/news/{id}','NewsPageController@index')->name('news_page');
 Route::post('/news-comment', 'NewsPageController@writeComment')->name('news_comment');
 Route::post('/news-comment-like','NewsPageController@like')->name('news_comment_like')->middleware('auth');
 
+/*--------TOURNAMENT--------*/
 Route::get('/tournament/{id}','TournamentPageController@index')->name('tournament_page');
 Route::post('/tournament-comment', 'TournamentPageController@writeComment')->name('tournament_comment');
 Route::post('/tournament-comment-like','TournamentPageController@like')->name('tournament_comment_like')->middleware('auth');
@@ -54,15 +59,14 @@ Route::get('/player/{nickname}','PlayerController@index')->name('player_page');
 
 Route::get('/team/{name}','TeamController@index')->name('team_page');
 
-Route::get('/latest-matches','LatestMatchesController@index')->name('latest_matches');
-
-/*--------ADMIN--------*/
+/*!!--------ADMIN--------!!*/
 Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','role']],function (){
     Route::get('/','DashboardController@index')->name('admin.dashboard');
     Route::get('/users','DashboardController@users')->name('admin.users');
     Route::post('/users-search','DashboardController@search')->name('admin.search');
     Route::post('/users-access','DashboardController@access')->name('admin.access');
     Route::post('/users-moderators','DashboardController@moderators')->name('admin.moderators')->middleware('moderation');
+    Route::match(['get', 'post'],'/announcement','DashboardController@announcement')->name('announcement');
 
     Route::resource('/news', 'NewsController',['as' => 'admin']);
     Route::resource('/tournaments','TournamentController',['as' => 'admin']);
@@ -75,6 +79,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::resource('/gallery','GalleryController',['as' => 'admin']);
     Route::resource('/image','ImageController',['as' => 'admin']);
     Route::resource('/video','VideoController',['as' => 'admin']);
+    Route::resource('/banner-image','BannerImageController',['as' => 'admin']);
 });
 
 

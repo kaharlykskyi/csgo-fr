@@ -1,4 +1,3 @@
-<!-- END HEADER MOBILE-->
 <aside class="menu-sidebar2">
     <div class="logo">
         <a href="{{route('admin.dashboard')}}">
@@ -21,6 +20,24 @@
             <ul class="list-unstyled navbar__list">
                 <li class="active">
                     <a class="js-arrow" href="{{route('admin.dashboard')}}" onclick="document.location.href ='{{route('admin.dashboard')}}'"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        Manage Home page
+                        <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="{{route('announcement')}}"></i>Manage Announcement</a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="{{route('admin.banner-image.index')}}"></i>Manage Banner Images</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow" href="#">

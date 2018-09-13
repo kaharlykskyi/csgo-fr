@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {
@@ -42,5 +44,30 @@ class DashboardController extends Controller
             ]);
         }
         return 'Info updated';
+    }
+
+    public function announcement(Request $request){
+        if ($request->isMethod('post')){
+            $data = $request->except('_token');
+
+            $validate = Validator::make($data,[
+                'content' => 'required',
+            ]);
+
+            if ($validate->fails()) {
+                return redirect()->back()
+                    ->withErrors($validate)
+                    ->withInput();
+            }
+            Storage::put('announcement.txt', $data['content']);
+    }
+
+        $announcement = null;
+        $exists = Storage::disk()->exists('announcement.txt');
+        if ($exists){
+            $announcement = Storage::get('announcement.txt');
+        }
+
+        return view('admin_area.home_content.announcement', compact('announcement'));
     }
 }

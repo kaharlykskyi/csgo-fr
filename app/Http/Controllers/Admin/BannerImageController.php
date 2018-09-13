@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Gallery;
-use App\Image;
+use App\BannerImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class ImageController extends Controller
+class BannerImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $images = Image::paginate(40);
-        $galleres = Gallery::all();
-        return view('admin_area.image.index', compact('images','galleres'));
+        $images = BannerImage::paginate(40);
+
+        return view('admin_area.home_content.banner_index', compact('images'));
     }
 
     /**
@@ -29,8 +28,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        $galleres = Gallery::all();
-        return view('admin_area.image.create', compact('galleres'));
+        return view('admin_area.home_content.banner_create');
     }
 
     /**
@@ -41,11 +39,10 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->except('_token');
 
         $validate = Validator::make($data,[
-            'path' => 'required'
+            'img' => 'required'
         ]);
 
         if ($validate->fails()) {
@@ -54,14 +51,10 @@ class ImageController extends Controller
                 ->withInput();
         }
 
-        if ($data['gallery_id'] == 0){
-            $data['gallery_id'] = null;
-        }
-
-        $image = new Image();
+        $image = new BannerImage();
         $image->fill($data);
         if($image->save()){
-            return redirect()->route('admin.image.index')->with('status','Image Added');
+            return redirect()->route('admin.banner-image.index')->with('status','Image Added');
         } else{
             return redirect()->back()->withInput();
         }
@@ -70,10 +63,10 @@ class ImageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Image  $image
+     * @param  \App\BannerImage  $bannerImage
      * @return \Illuminate\Http\Response
      */
-    public function show(Image $image)
+    public function show(BannerImage $bannerImage)
     {
         //
     }
@@ -81,28 +74,27 @@ class ImageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Image  $image
+     * @param  \App\BannerImage  $bannerImage
      * @return \Illuminate\Http\Response
      */
-    public function edit(Image $image)
+    public function edit(BannerImage $bannerImage)
     {
-        $galleres = Gallery::all();
-        return view('admin_area.image.edit', compact('image','galleres'));
+        return view('admin_area.home_content.banner_edit',compact('bannerImage'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Image  $image
+     * @param  \App\BannerImage  $bannerImage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Image $image)
+    public function update(Request $request, BannerImage $bannerImage)
     {
         $data = $request->except('_token');
 
         $validate = Validator::make($data,[
-            'path' => 'required'
+            'img' => 'required'
         ]);
 
         if ($validate->fails()) {
@@ -111,12 +103,8 @@ class ImageController extends Controller
                 ->withInput();
         }
 
-        if ($data['gallery_id'] == 0){
-            $data['gallery_id'] = null;
-        }
-
-        $image->update($data);
-        if($image->save()){
+        $bannerImage->update($data);
+        if($bannerImage->save()){
             return redirect()->back()->with('status','Image Update');
         } else{
             return redirect()->back()->withInput();
@@ -126,12 +114,12 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Image  $image
+     * @param  \App\BannerImage  $bannerImage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
+    public function destroy(BannerImage $bannerImage)
     {
-        $image->delete();
+        $bannerImage->delete();
         return back()->with('status','Image Deleted');
     }
 }
