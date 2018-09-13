@@ -214,6 +214,10 @@ blockquote{
     border-radius: 5px;
 }
 
+.nk-news-box-list h6{
+    font-weight: 400;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 870px;

@@ -7,10 +7,13 @@
                     $team_data = json_decode($val->match_data->team);
                     $score = json_decode($val->match_data->fin_score);
                 ?>
-                <div class="nk-widget-match">
+                <div class="nk-widget-match" style="padding: 5px 10px;">
                     <a href="{{route('match_page',['id' => $val->match_data->id,'type' => $val->type])}}">
                         <span class="nk-widget-match-left">
                             <span class="nk-widget-match-teams">
+                                <span class="nk-widget-match-vs mr-5">
+                                    {{date('d/m',strtotime($val->match_data->match_day))}}
+                                </span>
                                 <span class="nk-widget-match-team-logo">
                                     @foreach($teams as $team)
                                         @if($team->id == $team_data->team_names1)
@@ -31,15 +34,15 @@
                                     @endforeach
                                 </span>
                                 @if($val->type == 'upcoming_matches')
-                                    <span class="nk-widget-match-vs ml-30">
-                                    {{date('d/m',strtotime($val->match_data->match_day))}}
+                                    <span class="nk-widget-match-vs ml-10">
+                                    {{date('H:i',strtotime($val->match_data->match_day))}}
                                     </span>
                                 @elseif($val->type == 'live_match')
-                                    <span class="nk-widget-match-vs ml-30 text-warning">
+                                    <span class="nk-widget-match-vs ml-10 text-warning">
                                         {{__('LIVE!')}}
                                     </span>
                                 @elseif($val->type == 'latest_match')
-                                    <span class="nk-match-score p-3 ml-30" style="font-size: 1.3rem;">
+                                    <span class="nk-match-score p-3 ml-10" style="font-size: 1.3rem;">
                                         <span class="@if($score[0]->score_team1 >= $score[0]->score_team2)
                                         {{__('text-success')}}
                                         @else

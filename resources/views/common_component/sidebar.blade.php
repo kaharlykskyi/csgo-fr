@@ -33,27 +33,39 @@
     </div>
 
     <?php
-        $last_posts = \Illuminate\Support\Facades\DB::table('thread_posts')
-            ->join('topic_threads','thread_posts.thread_id', '=', 'topic_threads.id')
-            ->select('thread_posts.*')
+        $last_forum = \Illuminate\Support\Facades\DB::table('topic_threads')
+            ->join('forum_topics','topic_threads.topic_id', '=', 'forum_topics.id')
+            ->select(['topic_threads.*','forum_topics.logo','forum_topics.id as id_topic'])
             ->where('topic_threads.state','!=',0)
             ->orderByDesc('created_at')
-            ->limit(2)
+            ->limit(10)
             ->get();
     ?>
-    @isset($last_posts)
+    @isset($last_forum)
         <div class="nk-widget nk-widget-highlighted">
             <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> in Forums</span></h4>
-            @foreach($last_posts as $last_post)
-                <div class="nk-last-forum">
-                    <div class="nk-post-text">
-                        <p>
-                            {{str_limit(strip_tags($last_post->text_post), 30, ' ...')}}
-                        </p>
-                        <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> {{date('M d Y',strtotime($last_post->created_at))}}</div>
-                    </div>
+            <div class="nk-widget-content">
+                <div class="nk-widget-match p-5">
+                    @isset($last_forum)
+                        @foreach($last_forum as $item)
+                            <a href="{{route('thread_page',['id' => $item->id_topic, 'thread_id' => $item->id])}}">
+                                <div class="nk-widget-stream mt-2 mb-2">
+                                    <div class="nk-widget-stream-name">
+                                        @isset($item->logo)
+                                            <img style="width: 25px;" class="mr-5 rounded" src="{{asset($item->logo)}}" alt="{{$item->title}}">
+                                        @endisset
+                                        @isset($item->title){{$item->title}}@endisset
+                                    </div>
+                                    <span class="nk-widget-stream-count" style="color: #7f8b92;">
+                                    {{\Illuminate\Support\Facades\DB::table('thread_posts')->where('thread_id',$item->id)->count()}}
+                                        <span class="fa fa-comments ml-3"></span>
+                                </span>
+                                </div>
+                            </a>
+                        @endforeach
+                    @endisset
                 </div>
-            @endforeach
+            </div>
         </div>
     @endisset
 

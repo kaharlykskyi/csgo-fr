@@ -37,7 +37,7 @@ class HomeController extends Controller
         foreach ($news_categories as $news_category){
             $news_tabbed [] = (object)[
                 'category' => $news_category->name,
-                'news' => News::where('category_id',$news_category->id)->where('enabled','=','on')->get()
+                'news' => News::where('category_id',$news_category->id)->where('enabled','=','on')->limit(11)->get()
             ];
         }
 
