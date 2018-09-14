@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('status'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-12">
             @if(Auth::user()->is_verified === 0)
@@ -14,6 +19,7 @@
                     <a href="{{route('send_confirm')}}">No messages?</a>
                 </div>
             @endif
+
         </div>
     </div>
 

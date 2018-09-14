@@ -57,7 +57,7 @@ trait StreamApi
                     return ($b['views'] - $a['views']);
                 });
             }catch (\Exception $e){
-                if (!Config::get('app.debug')){
+                if (Config::get('app.debug')){
                     dump($e->getMessage());
                 } else {
                     $streams_output = null;

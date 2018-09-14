@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -18,11 +19,21 @@ class ProfileController extends Controller
     public function sendConfirm(){
         $user_email = Auth::user()->email;
         $email_token = Str::random(100);
+        try{
+            Mail::to($user_email)->send(new ConfirmEmail($user_email,$email_token));
+        }catch (\Exception $e){
+            if (Config::get('app.debug')){
+                dump($e->getMessage());
+            } else {
+                return redirect()->route('profile')->with('status','Error send email!!');
+            }
+        }
+
         DB::table('users')->where('email', Auth::user()->email)->update([
             'mail_token' => $email_token,
             'is_verified' => 1
         ]);
-        Mail::to($user_email)->send(new ConfirmEmail($user_email,$email_token));
+
         return redirect()->route('profile');
     }
 
