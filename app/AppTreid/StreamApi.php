@@ -10,6 +10,7 @@ namespace App\AppTreid;
 
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 trait StreamApi
@@ -25,7 +26,7 @@ trait StreamApi
             $client = new Client([
                 'headers' =>
                     [
-                        'Client-ID' => env('TWITCH_KEY'),
+                        'Client-ID' => Config::get('app.twitch_key'),
                         'Accept' => 'application/vnd.twitchtv.v5+json'
                     ]
             ]);
@@ -56,7 +57,11 @@ trait StreamApi
                     return ($b['views'] - $a['views']);
                 });
             }catch (\Exception $e){
-                $streams_output = null;
+                if (!Config::get('app.debug')){
+                    dump($e->getMessage());
+                } else {
+                    $streams_output = null;
+                }
             }
         }
 
