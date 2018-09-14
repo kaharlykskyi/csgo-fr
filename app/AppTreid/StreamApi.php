@@ -29,32 +29,36 @@ trait StreamApi
                         'Accept' => 'application/vnd.twitchtv.v5+json'
                     ]
             ]);
-            $user_twitch_data = $client->get('https://api.twitch.tv/kraken/users?login=' . trim($stream->name))->getBody();
-            $user_twitch_data = json_decode($user_twitch_data);
-            $user_id = $user_twitch_data->users[0]->_id;
-            $stream_data = $client->get('https://api.twitch.tv/kraken/streams/' . $user_id)->getBody();
-            $stream_data = json_decode($stream_data);
-            if($stream_data->stream == null){
-                $stream_type = null;
-                $stream_views = null;
-            } else {
-                $stream_type = $stream_data->stream->stream_type;
-                $stream_views = $stream_data->stream->viewers;
-            }
-            if($stream_type == 'live'){
-                $streams_output[$k] = [
-                    'type' => $stream_type,
-                    'link' => trim($stream->link),
-                    'views' => $stream_views,
-                    'channel_name' => trim($stream->name),
-                    'country' => DB::table('countrys')->where('country',$stream->country)->first()
-                ];
+            try{
+                $user_twitch_data = $client->get('https://api.twitch.tv/kraken/users?login=' . trim($stream->name))->getBody();
+                $user_twitch_data = json_decode($user_twitch_data);
+                $user_id = $user_twitch_data->users[0]->_id;
+                $stream_data = $client->get('https://api.twitch.tv/kraken/streams/' . $user_id)->getBody();
+                $stream_data = json_decode($stream_data);
+                if($stream_data->stream == null){
+                    $stream_type = null;
+                    $stream_views = null;
+                } else {
+                    $stream_type = $stream_data->stream->stream_type;
+                    $stream_views = $stream_data->stream->viewers;
+                }
+                if($stream_type == 'live'){
+                    $streams_output[$k] = [
+                        'type' => $stream_type,
+                        'link' => trim($stream->link),
+                        'views' => $stream_views,
+                        'channel_name' => trim($stream->name),
+                        'country' => DB::table('countrys')->where('country',$stream->country)->first()
+                    ];
+                }
+
+                usort($streams_output, function($a,$b){
+                    return ($b['views'] - $a['views']);
+                });
+            }catch (\Exception $e){
+                $streams_output = null;
             }
         }
-
-        usort($streams_output, function($a,$b){
-            return ($b['views'] - $a['views']);
-        });
 
         return $streams_output;
 
