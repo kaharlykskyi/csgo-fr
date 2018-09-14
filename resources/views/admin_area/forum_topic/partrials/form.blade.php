@@ -26,25 +26,23 @@
     <div class="col-12">
         <div class="row">
             <div class="col col-md-3">
-                <label for="logo" class=" form-control-label">Logo</label>
+                <label for="logo-forum" class=" form-control-label">Logo</label>
             </div>
             <div class="col col-md-9">
-                <div class="input-group">
-                    <span class="input-group-btn">
-                    <a data-input="thumbnail" data-preview="holder" id="logo_topic" class="btn btn-primary">
-                        <i class="fa fa-picture-o"></i> Choose
-                    </a>
-                </span>
-                    <input @if(isset($forumTopic->id))value="{{$forumTopic->logo}}"@endif id="thumbnail" class="form-control" type="text" name="logo">
-                </div>
-                <img @if(isset($forumTopic->id))src="{{$forumTopic->logo}}"@endif id="holder" style="margin-top:15px;max-height:100px;">
+                <select name="logo" class="selectpicker" id="logo-forum">
+                    <option value="ion-ios-game-controller-b" @if($forumTopic->logo == 'ion-ios-game-controller-b') selected @endif data-content='<span class="ion-ios-game-controller-b m-r-10"></span>'></option>
+                    <option value="ion-help-buoy" @if($forumTopic->logo == 'ion-help-buoy') selected @endif data-content='<span class="ion-help-buoy"></span>'></option>
+                    <option value="ion-playstation" @if($forumTopic->logo == 'ion-playstation') selected @endif data-content='<span class="ion-playstation"></span>'></option>
+                    <option value="ion-xbox" @if($forumTopic->logo == 'ion-xbox') selected @endif data-content='<span class="ion-xbox"></span>'></option>
+                    <option value="ion-steam" @if($forumTopic->logo == 'ion-steam') selected @endif data-content='<span class="ion-steam"></span>'></option>
+                    <option value="ion-fireball" @if($forumTopic->logo == 'ion-fireball') selected @endif data-content='<span class="ion-fireball"></span>'></option>
+                </select>
             </div>
         </div>
     </div>
 </div>
 </div>
 <script>
-    $('#logo_topic').filemanager('image');
     CKEDITOR.replace('description',options);
 </script>
 

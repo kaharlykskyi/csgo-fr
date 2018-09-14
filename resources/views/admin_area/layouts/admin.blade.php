@@ -20,6 +20,7 @@
 
     <!-- Bootstrap CSS-->
     <link href="{{asset('admin-content/vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('vendor/bootstrap-select-1.13.2/css/bootstrap-select.min.css')}}" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
     <link href="{{asset('admin-content/vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
@@ -34,6 +35,9 @@
     <!-- Main CSS-->
     <link href="{{asset('admin-content/css/theme.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('css/jquery.bracket.min.css')}}" rel="stylesheet" media="all">
+
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="{{ asset('vendor/ionicons/css/ionicons.min.css') }}">
 
     <!-- Jquery JS-->
     <script src="{{asset('admin-content/vendor/jquery-3.2.1.min.js')}}"></script>
@@ -127,6 +131,12 @@
 
 <!-- Main JS-->
 <script src="{{asset('admin-content/js/main.js')}}"></script>
+
+<script src="{{asset('vendor/bootstrap-select-1.13.2/js/bootstrap-select.min.js')}}"></script>
+
+<script>
+    $('#logo-forum').selectpicker();
+</script>
 
 </body>
 

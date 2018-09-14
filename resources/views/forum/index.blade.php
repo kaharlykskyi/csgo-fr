@@ -18,7 +18,7 @@
                 @foreach($topics as $topic)
                     <li>
                         <div class="nk-forum-icon">
-                            <img class="rounded topic-avatar" src="@if(asset($topic->logo)){{asset($topic->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$topic->title}}">
+                            <span class="{{$topic->logo}}"></span>
                         </div>
                         <div class="nk-forum-title">
                             <h3><a href="{{route('topic_page',$topic->id)}}">{{$topic->title}}</a></h3>
