@@ -52,7 +52,7 @@
                                 <div class="nk-widget-stream mt-2 mb-2">
                                     <div class="nk-widget-stream-name">
                                         @isset($item->logo)
-                                            <img style="width: 25px;" class="mr-5 rounded" src="{{asset($item->logo)}}" alt="{{$item->title}}">
+                                            <span class="{{$item->logo}} mr-10"></span>
                                         @endisset
                                         @isset($item->title){{$item->title}}@endisset
                                     </div>
