@@ -22,11 +22,15 @@
 
         <div class="row justify-content-end">
             <div class="col-md-3 text-right">
-                <a href="{{route('add_thread')}}" class="nk-btn nk-btn-rounded nk-btn-color-white">New Topic</a>
+                <a href="{{route('add_thread')}}" class="nk-btn nk-btn-rounded nk-btn-color-white" @guest onclick="alert('Sorry, you are not logged in'); return false;" @endguest>New Topic</a>
             </div>
         </div>
 
         <div class="nk-gap-2"></div>
+
+        @guest
+
+        @endguest
 
     <!-- START: Forums List -->
         <ul class="nk-forum">
@@ -182,7 +186,7 @@
         <!-- START: Pagination -->
         <div class="row">
             <div class="col-md-3 order-md-2 text-right">
-                <a href="{{route('add_thread')}}" class="nk-btn nk-btn-rounded nk-btn-color-white">New Topic</a>
+                <a href="{{route('add_thread')}}" class="nk-btn nk-btn-rounded nk-btn-color-white" @guest onclick="alert('Sorry, you are not logged in'); return false;" @endguest>New Topic</a>
             </div>
 
             <div class="col-md-9">
@@ -194,6 +198,5 @@
     </div>
 
     <div class="nk-gap-2"></div>
-
 
 @endsection
