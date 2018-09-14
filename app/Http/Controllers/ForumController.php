@@ -29,7 +29,7 @@ class ForumController extends Controller
         foreach ($affix_threads as $affix_thread){
             $users_id[] = $affix_thread->user_id;
         }
-        //dump(extend());
+
         $users = User::whereIn('id',$users_id)->get();
         return view('forum.topic_page',compact('topic','threads','users','affix_threads'));
     }
