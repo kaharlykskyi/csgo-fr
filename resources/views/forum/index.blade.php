@@ -62,5 +62,12 @@
 
     <div class="nk-gap-2"></div>
 
+    <!-- START: Page Background -->
+
+    <img class="nk-page-background-top" src="{{ asset('images/bg-top-5.png') }}" alt="">
+    <img class="nk-page-background-bottom" src="{{ asset('images/bg-bottom.png') }}" alt="">
+
+    <!-- END: Page Background -->
+
 
 @endsection

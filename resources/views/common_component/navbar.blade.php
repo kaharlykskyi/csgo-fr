@@ -3,14 +3,19 @@
         <div class="nk-nav-table">
 
             <a style="width: 100px;"  href="{{route('home')}}" class="nk-nav-logo">
-                <img src="{{ asset('images/logo.png') }}" alt="GoodGames" width="199">
+                <img src="{{ asset('images/logo.png') }}" alt="GoodGames" width="199" class="mr-20">
             </a>
 
-            <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
+            <ul class="nk-nav nk-nav-center d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
 
                 <li>
                     <a href="{{route('forum_topics')}}">
                         Forum
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('latest_matches')}}">
+                        Matches
                     </a>
                 </li>
                 <li class=" nk-drop-item">

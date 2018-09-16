@@ -29,8 +29,7 @@
                             <div class="row vertical-gap">
                                 <div class="col-lg-3 col-md-5">
                                     <a href="{{route('news_page',$news->id)}}" class="nk-post-img">
-                                        <img src="{{ asset('assets/images/news_img/' . $news->banner_image) }}" alt="{{$news->title}}">
-
+                                        <div class="nk-post-img-block" style="background-image: url({{ asset('assets/images/news_img/' . $news->banner_image) }})"></div>
                                         <span class="nk-post-categories">
                                                     <span class="bg-main-1">{{$val->category}}</span>
                                                 </span>
@@ -97,7 +96,7 @@
                                 <div class="row vertical-gap">
                                     <div class="col-lg-3 col-md-5">
                                         <a href="{{route('news_page',$news->id)}}" class="nk-post-img">
-                                            <img src="{{ asset('assets/images/news_img/' . $news->banner_image) }}" alt="{{$news->title}}">
+                                            <div class="nk-post-img-block" style="background-image: url({{ asset('assets/images/news_img/' . $news->banner_image) }})"></div>
 
                                             <span class="nk-post-categories">
                                                 <span class="bg-main-1">{{$val->category}}</span>

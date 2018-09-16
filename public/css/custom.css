@@ -218,6 +218,13 @@ blockquote{
     font-weight: 400;
 }
 
+.nk-post-img-block{
+    width: 100%;
+    min-height: 100px;
+    background-size: cover;
+    background: no-repeat 50% 0;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 870px;

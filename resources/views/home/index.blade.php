@@ -2,7 +2,12 @@
 @section('content')
 
     @isset($announcement)
-        <marquee behavior="scroll" direction="right">{!! $announcement !!}</marquee>
+        {{--<marquee behavior="scroll" direction="right"></marquee>--}}
+        <div class="row">
+            <div class="col-12 text-center">
+                {!! $announcement !!}
+            </div>
+        </div>
     @endisset
             <div class="row vertical-gap">
                 <div class="col-lg-8">
