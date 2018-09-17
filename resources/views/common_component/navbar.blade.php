@@ -18,51 +18,10 @@
                         Matches
                     </a>
                 </li>
-                <li class=" nk-drop-item">
-                    <a href="blog-list.html">
-                        Blog
-
-                    </a><ul class="dropdown">
-
-                        <li>
-                            <a href="news.html">
-                                News
-
-                            </a>
-                        </li>
-                        <li class=" nk-drop-item">
-                            <a href="blog-grid.html">
-                                Blog With Sidebar
-
-                            </a><ul class="dropdown">
-
-                                <li>
-                                    <a href="blog-grid.html">
-                                        Blog Grid
-
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="blog-list.html">
-                                        Blog List
-
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="blog-fullwidth.html">
-                                Blog Fullwidth
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="blog-article.html">
-                                Blog Article
-
-                            </a>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="{{route('all_news')}}">
+                        News
+                    </a>
                 </li>
                 <li>
                     <a href="{{route('gallery')}}">
@@ -70,32 +29,12 @@
 
                     </a>
                 </li>
-                <li class=" nk-drop-item">
-                    <a href="tournaments.html">
+                <li>
+                    <a href="{{route('all_tournaments')}}">
                         Tournaments
-
-                    </a><ul class="dropdown">
-
-                        <li>
-                            <a href="tournaments.html">
-                                Tournament
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="tournaments-teams.html">
-                                Teams
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="tournaments-teammate.html">
-                                Teammate
-
-                            </a>
-                        </li>
-                    </ul>
+                    </a>
                 </li>
+
                 @guest
                     <li>
                         <a href="#" data-toggle="modal" data-target="#modalLogin">

@@ -53,11 +53,13 @@ Route::get('/latest-matches','LatestMatchesController@index')->name('latest_matc
 Route::get('/news/{id}','NewsPageController@index')->name('news_page');
 Route::post('/news-comment', 'NewsPageController@writeComment')->name('news_comment');
 Route::post('/news-comment-like','NewsPageController@like')->name('news_comment_like')->middleware('auth');
+Route::get('/all-news', 'NewsPageController@allNews')->name('all_news');
 
 /*--------TOURNAMENT--------*/
 Route::get('/tournament/{id}','TournamentPageController@index')->name('tournament_page');
 Route::post('/tournament-comment', 'TournamentPageController@writeComment')->name('tournament_comment');
 Route::post('/tournament-comment-like','TournamentPageController@like')->name('tournament_comment_like')->middleware('auth');
+Route::get('/all-tournaments', 'TournamentPageController@allTournaments')->name('all_tournaments');
 
 Route::get('/player/{nickname}','PlayerController@index')->name('player_page');
 

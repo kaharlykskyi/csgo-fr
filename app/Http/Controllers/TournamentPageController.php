@@ -72,4 +72,14 @@ class TournamentPageController extends Controller
 
         return $comment->like_count;
     }
+
+    public function allTournaments(){
+        $tournament = Tournament::orderByDesc('created_at')->paginate(30);
+
+        $streams = Stream::where('show_homepage','on')->get();
+        $streams_output = $this->getStream($streams);
+        $teams = Team::all();
+
+        return view('tournaments.all_tournaments', compact('tournament','streams_output','teams'))->with(['sort_match' => $this->selectMatch()]);
+    }
 }

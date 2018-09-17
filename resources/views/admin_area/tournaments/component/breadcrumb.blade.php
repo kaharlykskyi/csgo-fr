@@ -8,7 +8,7 @@
 
         <li><span class="fa fa-angle-right"></span></li>
 
-        <li><a href="#">Tournament</a></li>
+        <li><a href="{{route('all_tournaments')}}">Tournaments</a></li>
 
 
         <li><span class="fa fa-angle-right"></span></li>

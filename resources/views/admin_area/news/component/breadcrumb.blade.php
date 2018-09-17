@@ -8,12 +8,14 @@
 
         <li><span class="fa fa-angle-right"></span></li>
 
-        <li><a href="#">News</a></li>
+        <li><a href="{{route('all_news')}}">All News</a></li>
 
 
-        <li><span class="fa fa-angle-right"></span></li>
+        @isset($title)
+            <li><span class="fa fa-angle-right"></span></li>
 
-        <li><span>{{$title}}</span></li>
+            <li><span>{{$title}}</span></li>
+        @endisset
 
     </ul>
 </div>
