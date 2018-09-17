@@ -20,6 +20,10 @@ Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function (){
     Route::get('/','ProfileController@index')->name('profile');
     Route::get('/send-confirm','ProfileController@sendConfirm')->name('send_confirm');
     Route::get('/confirm-email','ProfileController@confirmEmail')->name('confirm_email');
+    Route::post('/upload-avatar','ProfileController@uploadAvatar')->name('upload_avatar');
+    Route::get('/delete-avatar','ProfileController@deleteAvatar')->name('delete_avatar');
+    Route::match(['get', 'post'],'/edit','ProfileController@editProfile')->name('edit_profile');
+    Route::match(['get', 'post'],'/change-password','ProfileController@changePassword')->name('change_password');
 });
 
 /*--------FORUM--------*/

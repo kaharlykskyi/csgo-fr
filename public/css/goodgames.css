@@ -8871,10 +8871,10 @@ div.nk-error {
 }
 
 .nk-teammate-card .nk-teammate-card-photo {
-    -ms-flex-item-align: end;
-        align-self: flex-end;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
     width: 50%;
-    padding-right: 15px;
+    padding: 10px;
 }
 
 .nk-teammate-card .nk-teammate-card-photo img {

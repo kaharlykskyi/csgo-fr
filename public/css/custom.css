@@ -225,6 +225,14 @@ blockquote{
     background: no-repeat 50% 0;
 }
 
+.profile-button{
+    display: flex;
+}
+
+.upload_input{
+    display: none;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 870px;
