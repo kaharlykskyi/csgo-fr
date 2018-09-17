@@ -2,13 +2,21 @@
     <h4 class="nk-widget-title"><span><span class="text-main-1">Scoreboard</span></span></h4>
     <div class="nk-widget-content">
         @isset($sort_match)
-            @foreach($sort_match as $val)
-                <?php
-                    $team_data = json_decode($val->match_data->team);
-                    $score = json_decode($val->match_data->fin_score);
-                ?>
-                <div class="nk-widget-match" style="padding: 5px 10px;">
-                    <a href="{{route('match_page',['id' => $val->match_data->id,'type' => $val->type])}}">
+            <?php
+                $prePage = 10;
+                $chunk = array_chunk($sort_match,$prePage);
+                $count = count($chunk);
+            ?>
+            <div class="tab-content" id="nav-tabContent">
+                @foreach($chunk as $k => $item)
+                    <div class="tab-pane fade @if($k == 0){{__(' show active')}}@endif" id="page-{{$k}}" role="tabpanel" aria-labelledby="nav-home-tab">
+                        @foreach($item as $k => $val)
+                            <?php
+                            $team_data = json_decode($val->match_data->team);
+                            $score = json_decode($val->match_data->fin_score);
+                            ?>
+                            <div class="nk-widget-match" style="padding: 5px 10px;">
+                                <a href="{{route('match_page',['id' => $val->match_data->id,'type' => $val->type])}}">
                         <span class="nk-widget-match-left">
                             <span class="nk-widget-match-teams">
                                 <span class="nk-widget-match-vs mr-5">
@@ -56,15 +64,27 @@
                                 @endif
                             </span>
                         </span>
-                        <span class="nk-widget-match-right">
+                                    <span class="nk-widget-match-right">
                             <span class="fa fa-comments"></span>
                             <span href="#">
                                 {{\Illuminate\Support\Facades\DB::table('comments_match')->where('match_id',$val->match_data->id)->count()}}
                             </span>
                         </span>
-                    </a>
-                </div>
-            @endforeach
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
+            </div>
+            @if($count > 1)
+                <nav class="mt-40 mb-5">
+                    <div class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+                        @for($i = 0;$i < $count; $i++)
+                            <a class="nav-item nav-link @if($i == 0){{__('active')}}@endif" id="nav-home-tab" data-toggle="tab" href="#page-{{$i}}" role="tab" aria-controls="nav-home" aria-selected="true">{{$i + 1}}</a>
+                        @endfor
+                    </div>
+                </nav>
+            @endif
         @endisset
     </div>
     <a href="{{route('latest_matches')}}" class="nk-btn nk-btn-rounded nk-btn-color-main-1 mt-10" style="margin: 0 auto;display: block;width: 150px;">
