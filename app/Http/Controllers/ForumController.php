@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class ForumController extends Controller
 {
     public function index(){
-        $topics = ForumTopic::all();
+        $topics = ForumTopic::orderBy('created_at', 'desc')->get();
         return view('forum.index',compact('topics'));
     }
 

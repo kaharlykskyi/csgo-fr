@@ -30,12 +30,12 @@
             </div>
             <div class="col col-md-9">
                 <select name="logo" class="selectpicker" id="logo-forum">
-                    <option value="ion-ios-game-controller-b" @if($forumTopic->logo == 'ion-ios-game-controller-b') selected @endif data-content='<span class="ion-ios-game-controller-b m-r-10"></span>'></option>
-                    <option value="ion-help-buoy" @if($forumTopic->logo == 'ion-help-buoy') selected @endif data-content='<span class="ion-help-buoy"></span>'></option>
-                    <option value="ion-playstation" @if($forumTopic->logo == 'ion-playstation') selected @endif data-content='<span class="ion-playstation"></span>'></option>
-                    <option value="ion-xbox" @if($forumTopic->logo == 'ion-xbox') selected @endif data-content='<span class="ion-xbox"></span>'></option>
-                    <option value="ion-steam" @if($forumTopic->logo == 'ion-steam') selected @endif data-content='<span class="ion-steam"></span>'></option>
-                    <option value="ion-fireball" @if($forumTopic->logo == 'ion-fireball') selected @endif data-content='<span class="ion-fireball"></span>'></option>
+                    <option value="ion-ios-game-controller-b" @isset($forumTopic->id) @if($forumTopic->logo == 'ion-ios-game-controller-b') selected @endif @endisset data-content='<span class="ion-ios-game-controller-b m-r-10"></span>'></option>
+                    <option value="ion-help-buoy" @isset($forumTopic->id) @if($forumTopic->logo == 'ion-help-buoy') selected @endif @endisset data-content='<span class="ion-help-buoy"></span>'></option>
+                    <option value="ion-playstation" @isset($forumTopic->id) @if($forumTopic->logo == 'ion-playstation') selected @endif @endisset data-content='<span class="ion-playstation"></span>'></option>
+                    <option value="ion-xbox" @isset($forumTopic->id) @if($forumTopic->logo == 'ion-xbox') selected @endif @endisset data-content='<span class="ion-xbox"></span>'></option>
+                    <option value="ion-steam" @isset($forumTopic->id) @if($forumTopic->logo == 'ion-steam') selected @endif @endisset data-content='<span class="ion-steam"></span>'></option>
+                    <option value="ion-fireball" @isset($forumTopic->id) @if($forumTopic->logo == 'ion-fireball') selected @endif @endisset data-content='<span class="ion-fireball"></span>'></option>
                 </select>
             </div>
         </div>
