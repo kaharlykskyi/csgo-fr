@@ -15,7 +15,7 @@ class AddAccsesToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unique('name');
-            $table->enum('accses',[0,1])->default(1);
+            $table->enum('access',[0,1])->default(1);
         });
     }
 
@@ -27,7 +27,7 @@ class AddAccsesToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('accses');
+            $table->dropColumn('access');
             $table->dropIndex('name');
         });
     }

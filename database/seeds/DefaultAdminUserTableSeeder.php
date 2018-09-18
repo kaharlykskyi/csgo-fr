@@ -23,7 +23,6 @@ class DefaultAdminUserTableSeeder extends Seeder
             'sex' => 'male',
             'role' => 'admin',
             'is_verified' => 2,
-            'accses' => 1,
             'moderators' => 'super_admin'
         ]);
     }

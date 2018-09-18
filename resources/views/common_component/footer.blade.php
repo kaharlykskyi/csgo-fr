@@ -29,7 +29,7 @@
         <div class="container">
             <div class="nk-copyright-left">
                 <p>
-                    Total registered members: {{\Illuminate\Support\Facades\DB::table('users')->where('accses','1')->count()}}
+                    Total registered members: {{\Illuminate\Support\Facades\DB::table('users')->where('access','1')->count()}}
                     <span class="ml-10">Registered users online: {{\Illuminate\Support\Facades\DB::table('sessions')->where('user_id','!=', null)->where('last_activity','>', time() - 60 * 5)->count()}}</span>
                     <span class="ml-10">Guests online: {{\Illuminate\Support\Facades\DB::table('sessions')->where('user_id','=', null)->where('last_activity','>', time() - 60 * 5)->count()}}</span>
                 </p>
