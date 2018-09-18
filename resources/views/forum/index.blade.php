@@ -38,7 +38,7 @@
                         <div class="nk-forum-activity-avatar mr-5">
                             @if(is_object($last_thread))
                                 <a href="{{route('thread_page',['id' => $topic->id, 'thread_id' => $last_thread->id])}}">
-                                    <img src="@if(isset($user->logo_user)){{asset(''.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$user->name}}">
+                                    <img src="@if(isset($user->logo_user)){{asset('assets/images/user_avatar/'.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$user->name}}">
                                 </a>
                             @endif
                         </div>

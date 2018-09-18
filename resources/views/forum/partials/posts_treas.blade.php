@@ -14,7 +14,7 @@
                 @foreach($users as $user)
                     @if($user->id == $post->user_id)
                         <a href="#">
-                            <img src="@if(isset($user->logo_user)){{asset(''.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$user->name}}">
+                            <img src="@if(isset($user->logo_user)){{asset('assets/images/user_avatar/'.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$user->name}}">
                         </a>
                         <div class="nk-forum-topic-author-name" title="{{$user->name}}">
                             <a href="#">{{$user->name}}</a>

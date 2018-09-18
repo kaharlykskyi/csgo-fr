@@ -88,7 +88,7 @@
                         <div class="nk-forum-activity-avatar mr-5">
                             @if(is_object($last_post))
                                 <a href="{{route('thread_page',['id' => $topic->id, 'thread_id' => $last_post->id])}}">
-                                    <img src="@if(isset($user->logo_user)){{asset(''.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="Witch Murder">
+                                    <img src="@if(isset($user->logo_user)){{asset('assets/images/user_avatar/'.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="Witch Murder">
                                 </a>
                             @endif
                         </div>
@@ -160,7 +160,7 @@
                         <div class="nk-forum-activity-avatar mr-5">
                             @if(is_object($last_post))
                                 <a href="@if($thread->state == 1){{route('thread_page',['id' => $topic->id, 'thread_id' => $last_post->id])}}@endif">
-                                    <img src="@if(isset($user->logo_user)){{asset(''.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="Witch Murder">
+                                    <img src="@if(isset($user->logo_user)){{asset('assets/images/user_avatar/'.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="Witch Murder">
                                 </a>
                             @endif
                         </div>
