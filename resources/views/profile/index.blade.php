@@ -20,7 +20,7 @@
                 </div>
             @elseif(Auth::user()->is_verified === 1)
                 <div class="alert alert-info" role="alert">
-                    You have been sent a letter. Check your mail.
+                    We have sent the confirmation letter to your e-mail.
                     <a href="{{route('send_confirm')}}">No messages?</a>
                 </div>
             @endif
@@ -29,14 +29,6 @@
     </div>
 
     <div class="nk-gap-3"></div>
-
-    <div class="row justify-content-end">
-        <div class="col-3">
-            <a href="{{route('change_password')}}" class="nk-btn nk-btn-xs nk-btn-rounded nk-btn-color-white">{{__('Change Password')}}</a>
-        </div>
-    </div>
-
-    <div class="nk-gap"></div>
 
     <div class="row">
         <div class="col-12">
@@ -129,6 +121,8 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="profile-button justify-content-end">
+                        <a href="{{route('change_password')}}" class="nk-btn nk-btn-outline nk-btn-color-primary mr-10">{{__('Change Password')}}</a>
+
                         <a href="{{route('edit_profile')}}" class="nk-btn nk-btn-outline nk-btn-color-warning">
                             {{ __('Edit Info') }}
                         </a>

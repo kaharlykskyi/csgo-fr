@@ -36,6 +36,11 @@
                             <a class="dropdown-item" href="{{ route('profile') }}">
                                 {{ __('Profile') }}
                             </a>
+                            @if(Auth::user()->role == 'admin')
+                                <a class="dropdown-item" href="{{route('admin.dashboard')}}">
+                                    {{ __('Admin') }}
+                                </a>
+                            @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -44,11 +49,6 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                            @if(Auth::user()->role == 'admin')
-                                <a class="dropdown-item" href="{{route('admin.dashboard')}}">
-                                    {{ __('Admin') }}
-                                </a>
-                            @endif
                         </div>
                     @endguest
                 </li>

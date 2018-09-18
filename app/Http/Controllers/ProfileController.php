@@ -27,6 +27,7 @@ class ProfileController extends Controller
         }catch (\Exception $e){
             if (Config::get('app.debug')){
                 dump($e->getMessage());
+                die();
             } else {
                 return redirect()->route('profile')->with('status','Error send email!!');
             }
