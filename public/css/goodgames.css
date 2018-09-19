@@ -6884,7 +6884,7 @@ img.rounded {
 .nk-gallery-item-box img,
 .nk-gallery-item-group img {
     width: 100%;
-    height: auto;
+    height: 140px;
     -webkit-transition: -webkit-transform .15s ease-in-out;
     transition: -webkit-transform .15s ease-in-out;
     -o-transition: transform .15s ease-in-out;

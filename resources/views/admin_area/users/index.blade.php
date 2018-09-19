@@ -99,17 +99,17 @@
             });
 
             $.ajax({
-                url:     url,
-                type:     "POST", //метод отправки
-                data: $('#user-moderators-' + id).serialize(),  // Сеарилизуем объект
-                success: function(response) { //Данные отправлены успешно
+                url: url,
+                type: "POST",
+                data: $('#user-moderators-' + id).serialize(),
+                success: function(response) {
                     if (response.access) {
                         alert(response.access);
                     } else {
                         alert(response);
                     }
                 },
-                error: function(response) { // Данные не отправлены
+                error: function(response) {
                     alert('Error');
                     console.log(response);
                 }

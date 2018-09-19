@@ -20,7 +20,7 @@ class ForumController extends Controller
 
     public function topicPage(Request $request){
         $topic = ForumTopic::where('id',$request->id)->first();
-        $threads = TopicThread::where('topic_id',$topic->id)->whereIn('state',[0,1])->orderBy('created_at', 'desc')->paginate(5);
+        $threads = TopicThread::where('topic_id',$topic->id)->whereIn('state',[0,1])->orderBy('created_at', 'desc')->paginate(25);
         $affix_threads = TopicThread::where('topic_id',$topic->id)->whereIn('state',[2])->orderBy('created_at', 'desc')->limit(3)->get();
         $users_id = [];
         foreach ($threads as $thread){
@@ -78,7 +78,7 @@ class ForumController extends Controller
     public function threadPost(Request $request){
         $topic = ForumTopic::where('id',$request->id)->first();
         $thread = TopicThread::where('id',$request->thread_id)->first();
-        $posts = ThreadPost::with('children')->where('parent_post', null)->where('thread_id',$thread->id)->paginate(10);
+        $posts = ThreadPost::with('children')->where('parent_post', null)->where('thread_id',$thread->id)->paginate(20);
         $users_id = [];
         foreach ($posts as $post){
             $users_id[] = $post->user_id;
