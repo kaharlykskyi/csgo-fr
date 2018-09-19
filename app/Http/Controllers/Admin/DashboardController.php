@@ -27,7 +27,7 @@ class DashboardController extends Controller
     }
 
     public function access(Request $request){
-        DB::table('users')->where('id',$request->id)->update(['accses' => $request->accses]);
+        DB::table('users')->where('id',$request->id)->update(['access' => $request->access]);
         return 'Info updated';
     }
 

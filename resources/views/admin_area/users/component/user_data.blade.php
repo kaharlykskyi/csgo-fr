@@ -17,9 +17,9 @@
                     <div class="rs-select2--trans rs-select2--sm">
                         <form action="" method="post" id="user-{{$user->id}}">
                             <input type="hidden" name="id" value="{{$user->id}}">
-                            <select class="js-select2" name="accses" onchange="accses_user({{$user->id}},'{{route('admin.access')}}')">
-                                <option value="1" @if($user->accses == 1) {{__('selected')}} @endif >Registered</option>
-                                <option value="0" @if($user->accses == 0) {{__('selected')}} @endif >Banned</option>
+                            <select class="js-select2" name="access" onchange="accses_user({{$user->id}},'{{route('admin.access')}}')">
+                                <option value="1" @if($user->access == 1) {{__('selected')}} @endif >Registered</option>
+                                <option value="0" @if($user->access == 0) {{__('selected')}} @endif >Banned</option>
                             </select>
                             <div class="dropDownSelect2"></div>
                         </form>
