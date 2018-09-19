@@ -233,6 +233,10 @@ blockquote{
     display: none;
 }
 
+button.note-btn[aria-label="Picture"]{
+    display: none;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 870px;

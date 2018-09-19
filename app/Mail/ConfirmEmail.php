@@ -36,6 +36,6 @@ class ConfirmEmail extends Mailable
             ->with([
                 'email' => $this->email,
                 'token' => $this->token
-            ]);
+            ])->subject('Confirmation e-mail');
     }
 }

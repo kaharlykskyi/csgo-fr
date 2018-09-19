@@ -16,7 +16,8 @@ use Illuminate\Validation\Rule;
 class ProfileController extends Controller
 {
     public function index(){
-        return view('profile.index');
+        $pageTitle = Auth::user()->name . ' profile';
+        return view('profile.index',compact('pageTitle'));
     }
 
     public function sendConfirm(){

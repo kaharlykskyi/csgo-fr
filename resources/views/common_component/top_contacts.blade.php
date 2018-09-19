@@ -15,13 +15,6 @@
             <ul class="nk-contacts-icons">
 
                 <li>
-                    <a href="#" data-toggle="modal" data-target="#modalSearch">
-                        <span class="fa fa-search"></span>
-                    </a>
-                </li>
-
-
-                <li>
                 @guest
                         <a href="#" data-toggle="modal" data-target="#modalLogin">
                             <span class="fa fa-user"></span>

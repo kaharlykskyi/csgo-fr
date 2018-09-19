@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', $pageTitle)
+
 @section('content')
 
     @component('player_page.component.breadcrumb',['title' => Auth::user()->name])
@@ -15,7 +17,7 @@
         <div class="col-12">
             @if(Auth::user()->is_verified === 0)
                 <div class="alert alert-warning" role="alert">
-                    Please confirm your email.
+                    We have sent the confirmation letter to your e-mail.
                     <a href="{{route('send_confirm')}}">Resend.</a>
                 </div>
             @elseif(Auth::user()->is_verified === 1)
