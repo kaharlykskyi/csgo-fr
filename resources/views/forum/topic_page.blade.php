@@ -64,7 +64,7 @@
                         <div class="nk-forum-title">
                             <h3><a href="{{route('thread_page',['id' => $topic->id, 'thread_id' => $thread->id])}}">{{$thread->title}}</a></h3>
                             @isset($thread->description)
-                                <div class="nk-forum-title-sub">{!! $thread->description !!}</div>
+                                <div class="nk-forum-title-sub">{{ str_limit($thread->description, 50, ' ...')  }}</div>
                             @endisset
                             <div class="nk-forum-title-sub">Started by <a href="#">
                                     @isset($users)
