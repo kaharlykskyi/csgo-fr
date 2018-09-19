@@ -54,18 +54,16 @@
                     </a>
                 </div>
                 <div class="nk-match-team-right">
+                    @isset($team->team2)
                     <a class="logo-team-block" href="{{route('team_page',$team->team2->name)}}">
-                        @isset($team->team2)
-                            <span class="nk-match-team-name">
-                                {{$team->team2->name}}
-                            </span>
-                        @endisset
-                            @if(isset($team->team2))
-                                <span class="nk-match-team-logo">
-                                <img src="@if(isset($team->team2->logo)){{asset($team->team2->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="{{$team->team2->name}}">
-                            </span>
-                            @endif
+                        <span class="nk-match-team-name">
+                            {{$team->team2->name}}
+                        </span>
+                        <span class="nk-match-team-logo">
+                            <img src="@if(isset($team->team2->logo)){{asset($team->team2->logo)}}@else{{asset('images/obama_meme_by_zcoogerchannel-d4xo8rx.png')}}@endif" alt="{{$team->team2->name}}">
+                        </span>
                     </a>
+                    @endisset
                 </div>
             </div>
 
@@ -102,7 +100,7 @@
                     </div>
 
                     <div class="col-6">
-                        @forelse($team->players_team2 as $user)
+                        @foreach($team->players_team2 as $user)
 
                             <a href="{{route('player_page',$user->nickname)}}">
                                 <div class="row">
@@ -122,10 +120,7 @@
                                     </div>
                                 </div>
                             </a>
-
-                        @empty
-
-                        @endforelse
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -233,7 +228,7 @@
                     <div class="nk-gap-2"></div>
                     <div class="row">
                         <div class="col-12">
-                            <p class="h5 mb-5">{{$team->team2->name}}</p>
+                            <p class="h5 mb-5">@isset($team->team2->name){{$team->team2->name}}@endisset</p>
                         </div>
                         <table class="nk-table">
                             <tbody>

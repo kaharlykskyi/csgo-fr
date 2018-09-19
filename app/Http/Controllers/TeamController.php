@@ -35,7 +35,7 @@ class TeamController extends Controller
             if ($count == 15) break;
         }
 
-        $history = DB::table('team_history')->where('team_id',$team->id)->get();
+        $history = DB::table('team_history')->where('team_id',$team->id)->orderByDesc('created_at')->get();
 
         $teams = Team::all();
 

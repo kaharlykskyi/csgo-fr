@@ -134,7 +134,7 @@ class PlayerController extends Controller
 
         if (isset($data['team_id'])){
             $old_team_id = $player->team_id;
-        } else {
+        } elseif (isset($player->team_id)) {
             DB::table('team_history')->insert([
                 'player_id' => $player->id,
                 'team_id' => $player->team_id,
@@ -147,7 +147,7 @@ class PlayerController extends Controller
 
         $player->update($data);
         if($player->save()){
-            if (isset($data['team_id'])){
+            if (isset($data['team_id']) && isset($player->team_id)){
                 if($old_team_id != $player->team_id){
                     DB::table('team_history')->insert([
                         ['player_id' => $player->id,
@@ -156,6 +156,13 @@ class PlayerController extends Controller
                         'created_at' => Carbon::now()],
                         ['player_id' => $player->id,
                             'team_id' => $player->team_id,
+                            'message' => "player {$player->nickname} added to team",
+                            'created_at' => Carbon::now()]
+                    ]);
+                } else {
+                    DB::table('team_history')->insert([
+                        ['player_id' => $player->id,
+                            'team_id' => $data['team_id'],
                             'message' => "player {$player->nickname} added to team",
                             'created_at' => Carbon::now()]
                     ]);
