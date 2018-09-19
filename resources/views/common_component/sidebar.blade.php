@@ -54,7 +54,7 @@
                                         @isset($item->logo)
                                             <span class="{{$item->logo}} mr-10"></span>
                                         @endisset
-                                        @isset($item->title){{$item->title}}@endisset
+                                        @isset($item->title){{str_limit(strip_tags($item->title), 20, ' ...')}}@endisset
                                     </div>
                                     <span class="nk-widget-stream-count" style="color: #7f8b92;">
                                     {{\Illuminate\Support\Facades\DB::table('thread_posts')->where('thread_id',$item->id)->count()}}
