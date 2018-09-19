@@ -1,4 +1,3 @@
-<div class="nk-gap-1"></div>
 <div class="container">
     <ul class="nk-breadcrumbs">
 

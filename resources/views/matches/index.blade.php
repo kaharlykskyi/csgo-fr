@@ -8,7 +8,6 @@
         $score = json_decode($match_data->fin_score);
     ?>
 
-    <div class="nk-gap-2"></div>
     <div class="row vertical-gap">
         <div class="col-lg-8">
 

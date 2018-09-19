@@ -1,4 +1,3 @@
-<div class="nk-gap-2"></div>
 <div class="row">
     <div class="col-md-6 d-sm-none d-none d-md-block d-lg-block d-xl-block">
         <h5 class="nk-decorated-h-2"><span><span class="text-main-1">Latest</span> News</span></h5>
