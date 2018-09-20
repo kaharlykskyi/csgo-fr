@@ -20,6 +20,8 @@
                             @isset($news)
                                 @foreach($news as $iteam)
                                     <li>
+                                        <div class="news-banner"
+                                             style="background-image: url({{asset('assets/images/news_img/' . $iteam->banner_image)}})"></div>
                                         <a class="pb-2" href="{{route('news_page',$iteam->id)}}">{{$iteam->title}}</a>
                                         <em class="small">by <strong>{{$iteam->author_name}}</strong> on {{date('M d Y',strtotime($iteam->publication_date))}}</em>
                                     </li>

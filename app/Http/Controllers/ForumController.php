@@ -82,6 +82,11 @@ class ForumController extends Controller
         $users_id = [];
         foreach ($posts as $post){
             $users_id[] = $post->user_id;
+            if (isset($post->children)){
+                foreach ($post->children as $child){
+                    $users_id[] = $child->user_id;
+                }
+            }
         }
         $users = User::whereIn('id',$users_id)->get();
         return view('forum.thread_post', compact('thread','topic','posts','users'));

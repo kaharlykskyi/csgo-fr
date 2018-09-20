@@ -9436,6 +9436,7 @@ div.nk-error {
     }
     .nk-forum-topic > li .nk-forum-topic-content {
         padding-left: 0;
+        flex-basis: 100%;
     }
 }
 

@@ -5,7 +5,7 @@
             by
             @foreach($users as $user)
                 @if($user->id == $comment->user_id)
-                    <a href="#">
+                    <a href="{{route('show_profile',$user->name)}}">
                         {{$user->name}}
                     </a>
                 @endif

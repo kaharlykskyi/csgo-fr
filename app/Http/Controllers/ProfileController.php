@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Auth,Config,DB,Hash,Mail,Validator};
 use Illuminate\Support\Str;
 use App\Mail\ConfirmEmail;
 use Illuminate\Validation\Rule;
@@ -16,8 +12,37 @@ use Illuminate\Validation\Rule;
 class ProfileController extends Controller
 {
     public function index(){
+        $last_forum = DB::table('thread_posts')
+            ->join('topic_threads','thread_posts.thread_id', '=', 'topic_threads.id')
+            ->join('forum_topics','topic_threads.topic_id', '=', 'forum_topics.id')
+            ->select(['thread_posts.*','forum_topics.id as id_topic','topic_threads.id as id_thread'])
+            ->where('topic_threads.state','!=',0)
+            ->orderByDesc('created_at')
+            ->limit(10)
+            ->get();
         $pageTitle = Auth::user()->name . ' profile';
-        return view('profile.index',compact('pageTitle'));
+
+        $match_comments = DB::table('comments_match')->orderByDesc('created_at')->limit(10)->get();
+        $news_comments = DB::table('news_comments')->orderByDesc('created_at')->limit(10)->get();
+        $tournament_comments = DB::table('tournament_comments')->orderByDesc('created_at')->limit(10)->get();
+
+        foreach ($match_comments as $comment){
+            $comments [] = $comment;
+        }
+        foreach ($news_comments as $comment){
+            $comments [] = $comment;
+        }
+        foreach ($tournament_comments as $comment){
+            $comments [] = $comment;
+        }
+
+        usort($comments, function($a,$b){
+            return strcmp($b->created_at,$a->created_at);
+        });
+
+        $comments = array_slice($comments,0,10);
+
+        return view('profile.index',compact('pageTitle','last_forum','comments'));
     }
 
     public function sendConfirm(){
@@ -86,7 +111,13 @@ class ProfileController extends Controller
                 'email' => 'required|string|email|max:255',
                 'city' => 'required|string',
                 'date_birth' => 'required|date',
-                'sex' => ['required',Rule::in(['male', 'female'])]
+                'sex' => ['required',Rule::in(['male', 'female'])],
+                'steam_profile' => 'nullable|url',
+                'twitch_profile' => 'nullable|url',
+                'faceit_profile' => 'nullable|url',
+                'youtube_profile' => 'nullable|url',
+                'instagram_profile' => 'nullable|url',
+                'twitter_profile' => 'nullable|url',
             ]);
 
             if ($validate->fails()) {
@@ -94,6 +125,8 @@ class ProfileController extends Controller
                     ->withErrors($validate)
                     ->withInput();
             }
+
+            $data['description'] = strip_tags($data['description']);
 
             DB::table('users')->where('id',Auth::user()->id)->update($data);
 
@@ -137,5 +170,12 @@ class ProfileController extends Controller
         }
 
         return view('profile.change_password');
+    }
+
+    public function showProfile(Request $request){
+        $user_name = $request->name;
+        $user = User::where('name',$user_name)->first();
+        $pageTitle = $user->name . ' profile';
+        return view('profile.show_profile',compact('user','pageTitle'));
     }
 }

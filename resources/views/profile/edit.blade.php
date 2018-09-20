@@ -53,13 +53,12 @@
                                     </span>
                                         @endif
 
-
                                         <div class="nk-gap"></div>
                                         <input type="text" value="{{ Auth::user()->city }}" name="city" class=" form-control {{ $errors->has('city') ? ' nk-error' : '' }}" placeholder="City" required>
                                         @if ($errors->has('city'))
                                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('city') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('city') }}</strong>
+                                            </span>
                                         @endif
 
                                         <div class="nk-gap"></div>
@@ -79,6 +78,62 @@
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('sex') }}</strong>
                                     </span>
+                                        @endif
+
+                                        <div class="nk-gap"></div>
+                                        <input type="text" value="{{ Auth::user()->twitch_profile }}" name="twitch_profile" class=" form-control {{ $errors->has('city') ? ' nk-error' : '' }}" placeholder="Twitch profile">
+                                        @if ($errors->has('twitch_profile'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('twitch_profile') }}</strong>
+                                            </span>
+                                        @endif
+
+                                        <div class="nk-gap"></div>
+                                        <input type="text" value="{{ Auth::user()->steam_profile }}" name="steam_profile" class=" form-control {{ $errors->has('steam_profile') ? ' nk-error' : '' }}" placeholder="Steam profile">
+                                        @if ($errors->has('steam_profile'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('steam_profile') }}</strong>
+                                            </span>
+                                        @endif
+
+                                        <div class="nk-gap"></div>
+                                        <input type="text" value="{{ Auth::user()->faceit_profile }}" name="faceit_profile" class=" form-control {{ $errors->has('faceit_profile') ? ' nk-error' : '' }}" placeholder="Faceit profile">
+                                        @if ($errors->has('faceit_profile'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('faceit_profile') }}</strong>
+                                            </span>
+                                        @endif
+
+                                        <div class="nk-gap"></div>
+                                        <input type="text" value="{{ Auth::user()->youtube_profile }}" name="youtube_profile" class=" form-control {{ $errors->has('youtube_profile') ? ' nk-error' : '' }}" placeholder="Youtube profile">
+                                        @if ($errors->has('youtube_profile'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('youtube_profile') }}</strong>
+                                            </span>
+                                        @endif
+
+                                        <div class="nk-gap"></div>
+                                        <input type="text" value="{{ Auth::user()->instagram_profile }}" name="instagram_profile" class=" form-control {{ $errors->has('instagram_profile') ? ' nk-error' : '' }}" placeholder="Instagram profile">
+                                        @if ($errors->has('instagram_profile'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('instagram_profile') }}</strong>
+                                            </span>
+                                        @endif
+
+                                        <div class="nk-gap"></div>
+                                        <input type="text" value="{{ Auth::user()->twitter_profile }}" name="twitter_profile" class=" form-control {{ $errors->has('twitter_profile') ? ' nk-error' : '' }}" placeholder="Twitter profile">
+                                        @if ($errors->has('twitter_profile'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('twitter_profile') }}</strong>
+                                            </span>
+                                        @endif
+
+                                        <div class="nk-gap"></div>
+                                        <textarea class="form-control" name="description" rows="5" placeholder="About myself *">{{Auth::user()->description}}</textarea>
+                                        @if ($errors->has('description'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('description') }}</strong>
+                                            </span>
                                         @endif
 
                                         <div class="nk-gap"></div>

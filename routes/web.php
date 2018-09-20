@@ -25,6 +25,7 @@ Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function (){
     Route::match(['get', 'post'],'/edit','ProfileController@editProfile')->name('edit_profile');
     Route::match(['get', 'post'],'/change-password','ProfileController@changePassword')->name('change_password');
 });
+Route::get('/profile/{name}','ProfileController@showProfile')->name('show_profile');
 
 /*--------FORUM--------*/
 Route::group(['prefix' => 'forum'], function (){

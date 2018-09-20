@@ -276,18 +276,64 @@
                             @isset($streams)
                                 <p class="h5 mb-1">Stream links</p>
                                 <div class="row">
-                                    @foreach($streams as $stream)
+                                    @foreach($streams as $k => $stream)
                                         <div class="col-12">
-                                            <a href="{{$stream->link}}">{{$stream->link}}</a>
-                                            @isset($streams_output)
-                                                @foreach($streams_output as $item)
-                                                    @if($item['link'] == $stream->link && $item['type'] == 'live')
-                                                        <span>
-                                                        - {{$item['views']}} viewers
-                                                    </span>
-                                                    @endif
-                                                @endforeach
-                                            @endisset
+                                            <?php
+                                                $channel = explode('/',$stream->link);
+                                            ?>
+                                            <script>
+                                                $(document).ready(function(){
+                                                    $.ajax({
+                                                        beforeSend: function(xhrObj){
+                                                            xhrObj.setRequestHeader("Client-ID","{{Illuminate\Support\Facades\Config::get('app.twitch_key')}}");
+                                                            xhrObj.setRequestHeader("Accept","application/vnd.twitchtv.v5+json");
+                                                        },
+                                                        type: "GET",
+                                                        url: "https://api.twitch.tv/kraken/users?login={{$channel[count($channel) - 1]}}",
+                                                        processData: false,
+                                                        dataType: "json",
+                                                        success: function (data_user) {
+                                                            $.ajax({
+                                                                beforeSend: function(xhrObj){
+                                                                    xhrObj.setRequestHeader("Client-ID","{{Illuminate\Support\Facades\Config::get('app.twitch_key')}}");
+                                                                    xhrObj.setRequestHeader("Accept","application/vnd.twitchtv.v5+json");
+                                                                },
+                                                                type: "GET",
+                                                                url: "https://api.twitch.tv/kraken/streams/" + data_user.users[0]._id,
+                                                                processData: false,
+                                                                dataType: "json",
+                                                                userData: data_user,
+                                                                success: function (data) {
+                                                                    if(data.stream !== null){
+                                                                        $('#stream-{{$k}}').html(
+                                                                            '<span class="nk-widget-stream-status bg-success"></span>'+
+                                                                            '<div class="nk-widget-stream-name">' +
+                                                                                '<a href="#" data-toggle="collapse" data-target="#video-{{$k}}">' + data.stream.channel.display_name + '</a>' +
+                                                                            '</div>'
+                                                                        );
+                                                                        if (data.stream.stream_type === 'live'){
+                                                                            $('#stream-{{$k}}').append('<span class="nk-widget-stream-count"> ' + data.stream.viewers + ' viewers</span>');
+                                                                        }
+                                                                    } else {
+                                                                        $('#stream-{{$k}}').html(
+                                                                            '<span class="nk-widget-stream-status bg-danger"></span>'+
+                                                                            '<div class="nk-widget-stream-name">' +
+                                                                                '<a href="#" data-toggle="collapse" data-target="#video-{{$k}}">' + data_user.users[0].display_name + '</a>' +
+                                                                            '</div>'
+                                                                        );
+                                                                    }
+                                                                },
+                                                            });
+                                                        },
+                                                    });
+                                                });
+                                            </script>
+                                                <div class="nk-widget-stream mt-10" id="stream-{{$k}}"></div>
+                                            <div id="video-{{$k}}" class="collapse">
+                                                <div class="responsive-embed responsive-embed-16x9">
+                                                    <iframe src="https://player.twitch.tv/?channel={{$channel[count($channel) - 1]}}&autoplay=false" frameborder="0" allowfullscreen="true" scrolling="no" height="378"></iframe>
+                                                </div>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>

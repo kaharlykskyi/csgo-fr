@@ -13,11 +13,11 @@
             @isset($users)
                 @foreach($users as $user)
                     @if($user->id == $post->user_id)
-                        <a href="#">
+                        <a href="{{route('show_profile',$user->name)}}">
                             <img src="@if(isset($user->logo_user)){{asset('assets/images/user_avatar/'.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$user->name}}">
                         </a>
                         <div class="nk-forum-topic-author-name" title="{{$user->name}}">
-                            <a href="#">{{$user->name}}</a>
+                            <a href="{{route('show_profile',$user->name)}}">{{$user->name}}</a>
                         </div>
                         <div class="nk-forum-topic-author-role">{{$user->role}}</div>
                         <div class="nk-forum-topic-author-since">
@@ -41,7 +41,8 @@
     @if(count($post->children) > 0)
         @include('forum.partials.posts_treas', [
             'posts' => $post->children,
-            'children' => true
+            'children' => true,
+            'users' => $users
         ])
     @endif
 @endforeach
