@@ -208,7 +208,7 @@ iframe{
     width: 100% !important;
 }
 
-blockquote{
+blockquote,.chat-board{
     background: rgb(28, 33, 39);
     padding: 20px;
     border-radius: 5px;

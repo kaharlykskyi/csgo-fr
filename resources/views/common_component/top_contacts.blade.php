@@ -29,6 +29,9 @@
                             <a class="dropdown-item" href="{{ route('profile') }}">
                                 {{ __('Profile') }}
                             </a>
+                            <a class="dropdown-item" href="{{ route('all_chats') }}">
+                                {{ __('Chats') }}
+                            </a>
                             @if(Auth::user()->role == 'admin')
                                 <a class="dropdown-item" href="{{route('admin.dashboard')}}">
                                     {{ __('Admin') }}

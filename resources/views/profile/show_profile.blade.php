@@ -12,6 +12,12 @@
     <div class="nk-gap-3"></div>
 
     <div class="row">
+        <div class="col-12 mb-20">
+            <a href="{{route('send_massage',$user->name)}}" class="nk-btn nk-btn-rounded nk-btn-color-success nk-btn-hover-color-info">
+                <span class="icon ion-paper-airplane"></span>
+                {{__('Send Massage')}}
+            </a>
+        </div>
         <div class="col-12">
             <!-- START: Teammate Card -->
             <div class="nk-teammate-card">

@@ -62,5 +62,6 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\CheckRole::class,
         'access' => \App\Http\Middleware\CheckAccess::class,
         'moderation' => \App\Http\Middleware\CheckModerations::class,
+        'chat' =>\App\Http\Middleware\ChatProtect::class,
     ];
 }
