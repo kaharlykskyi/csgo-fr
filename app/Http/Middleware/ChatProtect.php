@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Chat;
+use App\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,9 +18,12 @@ class ChatProtect
      */
     public function handle($request, Closure $next)
     {
-        $chat = Chat::where('creator',Auth::user()->id)->orWhere('recipient',Auth::user()->id)->first();
-        if (!isset($chat)){
-            return back();
+        $user = User::where('name',$request->name)->first();
+        $chat = Chat::where('creator',$user->id)->first();
+        if (isset($chat)){
+            if (Auth::user()->id != $chat->creator || Auth::user()->id != $chat->recipient){
+                return back();
+            }
         }
         return $next($request);
     }

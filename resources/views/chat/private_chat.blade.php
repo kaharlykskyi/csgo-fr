@@ -36,7 +36,9 @@
         </div>
 
         <!-- START: Pagination -->
-        {{$massages->links('vendor.pagination.custom')}}
+        @isset($massages)
+            {{$massages->links('vendor.pagination.custom')}}
+        @endisset
         <!-- END: Pagination -->
 
         <div class="nk-gap-2"></div>

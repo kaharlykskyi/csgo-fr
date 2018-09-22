@@ -55,9 +55,10 @@ class ChatController extends Controller
             ->with('massage')
             ->first();
 
-        $massages = $private_chat->massage()->paginate(20);
-
-
+        $massages = null;
+        if (isset($private_chat->massage)){
+            $massages = $private_chat->massage()->paginate(20);
+        }
 
         return view('chat.private_chat', compact('user','pageTitle','massages'));
     }
