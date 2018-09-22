@@ -25,7 +25,12 @@ class ChatController extends Controller
 
         if ($request->isMethod('post')){
             $private_chat = DB::table('chats')
-                ->whereIn('creator', [Auth::user()->id,$user->id])
+                ->where([
+                    'creator' => Auth::user()->id,
+                    'recipient' =>$user->id])
+                ->orWhere([
+                    'creator' => $user->id,
+                    'recipient' => Auth::user()->id])
                 ->first();
             if (!isset($private_chat)){
                 $chat = new Chat();
@@ -50,7 +55,12 @@ class ChatController extends Controller
 
         DB::table('chat_masseges')->where('addressee',Auth::user()->id)->update(['seen' => 1]);
 
-        $private_chat = Chat::whereIn('creator', [Auth::user()->id,$user->id])
+        $private_chat = Chat::where([
+            'creator' => Auth::user()->id,
+            'recipient' =>$user->id])
+            ->orWhere([
+                'creator' => $user->id,
+                'recipient' => Auth::user()->id])
             ->with('massage')
             ->first();
 
