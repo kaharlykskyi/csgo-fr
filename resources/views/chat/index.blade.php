@@ -31,10 +31,10 @@
                             ?>
                             <a href="{{route('send_massage',$user->name)}}" style="text-decoration: none !important;">
                                 <div class="alert alert-light" role="alert">
-                                    {!! $chat->massage[count($chat->massage) - 1]->massage !!}
-                                    <em>{{$chat->massage[count($chat->massage) - 1]->created_at}} by</em>
+                                    {!! $chat->massage[0]->massage !!}
+                                    <em>{{$chat->massage[0]->created_at}} by</em>
                                     <strong class="ml-5">{{$user->name}}</strong><br>
-                                    @if($chat->massage[count($chat->massage) - 1]->seen == 0)
+                                    @if($chat->massage[0]->seen == 0)
                                         <strong>Not seen</strong>
                                     @endif
                                 </div>

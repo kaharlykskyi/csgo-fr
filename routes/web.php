@@ -18,7 +18,7 @@ Route::get('/', 'HomeController@index')->name('home');
 /*--------CHAT--------*/
 Route::group(['prefix' => 'chat', 'middleware' => ['auth']], function (){
     Route::get('/','ChatController@index')->name('all_chats');
-    Route::match(['get', 'post'],'/send-massage/{name}','ChatController@sendMassage')->name('send_massage')->middleware('chat');
+    Route::match(['get', 'post'],'/send-massage/{name}','ChatController@sendMassage')->name('send_massage')/*->middleware('chat')*/;
 });
 
 /*--------PROFILE--------*/
