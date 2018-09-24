@@ -68,12 +68,12 @@
                         </tr>
                         <tr>
                             <td class="p-10">
-                                <em>about myself</em>
+                                <em>description</em>
                                 <div  class="text-white">{{$user->description}}</div>
                             </td>
                         </tr>
                         <tr>
-                            <td class="row p-l-0">
+                            <td class="p-l-0">
                                 <div class="col-12 p-0">
                                     <p class="h5">Social Profiles</p>
                                     <div class="">
@@ -119,7 +119,7 @@
                         </tr>
                         <tr>
                             <td class="p-10">
-                                <em>create account</em>
+                                <em>account created</em>
                                 <div  class="text-white">{{date('M d Y',strtotime($user->created_at))}}</div>
                             </td>
                         </tr>
