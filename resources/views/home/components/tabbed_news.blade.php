@@ -26,34 +26,26 @@
                 @foreach($news_tabbed as $k => $val)
                     @foreach($val->news as $k => $news)
                         <div class="nk-blog-post nk-blog-post-border-bottom">
-                            <div class="row vertical-gap">
-                                <div class="col-lg-5 col-md-5">
-                                    <a href="{{route('news_page',$news->id)}}" class="nk-post-img">
-                                        <div class="nk-post-img-block" style="background-image: url({{ asset('assets/images/news_img/' . $news->banner_image) }})"></div>
-                                        <span class="nk-post-categories">
-                                                    <span class="bg-main-1">{{$val->category}}</span>
-                                                </span>
+                            <a href="{{route('news_page',$news->id)}}" class="nk-post-img">
+                                <img src="{{ asset('assets/images/news_img/' . $news->banner_image) }}" alt="{{$news->title}}">
 
-                                    </a>
-                                </div>
-                                <div class="col-lg-7 col-md-7">
-                                    <h2 class="nk-post-title h4"><a href="{{route('news_page',$news->id)}}">At length one of them called out in a clear</a></h2>
-                                    <div class="nk-post-date mt-10 mb-10">
-                                        <span class="fa fa-calendar"></span> {{$news->publication_date}}
-                                        <span class="fa fa-comments"></span>
-                                        <a href="#" class="mr-5">
-                                            {{\Illuminate\Support\Facades\DB::table('news_comments')->where('news_id',$news->id)->count()}} comments
-                                        </a>
-                                        @isset($news->viewers_count)<span class="fa fa-eye"></span> {{$news->viewers_count}}@endisset
-                                    </div>
-                                    <div class="nk-post-text">
-                                        <div>
-                                            <p>
-                                                {{str_limit(strip_tags($news->content_news), 70, ' ...')}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <span class="nk-post-categories">
+                                    <span class="bg-main-1">{{$val->category}}</span>
+                                </span>
+
+                            </a>
+                            <div class="nk-gap-1"></div>
+                            <h2 class="nk-post-title h4"><a href="{{route('news_page',$news->id)}}">{{$news->title}}</a></h2>
+                            <div class="nk-post-date mt-10 mb-10">
+                                <span class="fa fa-calendar"></span> {{$news->publication_date}}
+                                <span class="fa fa-comments"></span> <a href="#">
+                                    {{\Illuminate\Support\Facades\DB::table('news_comments')->where('news_id',$news->id)->count()}} comments</a>
+                                @isset($news->viewers_count)<span class="fa fa-eye"></span> {{$news->viewers_count}}@endisset
+                            </div>
+                            <div class="nk-post-text">
+                                <p>
+                                    {{ str_limit(strip_tags($news->content_news), 150, ' ...') }}
+                                </p>
                             </div>
                         </div>
                 @endforeach
