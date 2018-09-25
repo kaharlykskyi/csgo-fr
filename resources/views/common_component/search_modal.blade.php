@@ -9,8 +9,9 @@
                 <h4 class="mb-0">Search</h4>
 
                 <div class="nk-gap-1"></div>
-                <form action="#" class="nk-form nk-form-style-1">
-                    <input type="text" value="" name="search" class="form-control" placeholder="Type something and press Enter" autofocus>
+                <form action="{{route('search')}}" method="post" class="nk-form nk-form-style-1">
+                    @csrf
+                    <input type="text" value="" name="search" class="form-control" placeholder="Type something and press Enter" autofocus required>
                 </form>
             </div>
         </div>

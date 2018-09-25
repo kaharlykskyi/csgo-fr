@@ -14,6 +14,7 @@
 /*!!--------SITE--------!!*/
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::post('/search','SearchController@index')->name('search');
 
 /*--------CHAT--------*/
 Route::group(['prefix' => 'chat', 'middleware' => ['auth']], function (){
