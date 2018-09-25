@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Chat;
 use App\ChatMassege;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,10 +12,23 @@ class ChatController extends Controller
 {
     public function index(){
         $pageTitle = Auth::user()->name . ' chats';
-        $chats = Chat::where('creator', Auth::user()->id)
-            ->orWhere('recipient', Auth::user()->id)
-            ->with('massage')->paginate(20);
-        return view('chat.index',compact('pageTitle','chats'));
+        $users = null;
+        $users_id = null;
+        $buff = DB::table('chat_masseges')->where('user',Auth::user()->id)
+            ->orWhere('user2',Auth::user()->id)->get();
+        if (isset($buff)){
+            foreach ($buff as $item){
+                if ($item->user != Auth::user()->id){
+                    $users_id[] = $item->user;
+                }
+                if ($item->user2 != Auth::user()->id){
+                    $users_id[] = $item->user2;
+                }
+            }
+        }
+        $users_id = array_unique($users_id);
+        $users = DB::table('users')->whereIn('id',$users_id)->paginate(20);
+        return view('chat.index',compact('pageTitle','users'));
     }
 
     public function sendMassage(Request $request){
@@ -24,51 +36,22 @@ class ChatController extends Controller
         $pageTitle = 'Chat with ' . $user->name;
 
         if ($request->isMethod('post')){
-            $private_chat = DB::table('chats')
-                ->where([
-                    'creator' => Auth::user()->id,
-                    'recipient' =>$user->id])
-                ->orWhere([
-                    'creator' => $user->id,
-                    'recipient' => Auth::user()->id])
-                ->first();
-            if (!isset($private_chat)){
-                $chat = new Chat();
-                $chat->fill([
-                    'creator' => Auth::user()->id,
-                    'recipient' => $user->id
-                ]);
-                 $chat->save();
-                $private_chat = $chat;
-            }
 
             $massage = new ChatMassege();
             $massage->fill([
-                'sender' => Auth::user()->id,
-                'addressee' => $user->id,
-                'chat_id' => $private_chat->id,
+                'user' => Auth::user()->id,
+                'user2' => $user->id,
                 'massage' => $request->massage
             ]);
             $massage->save();
             return back();
         }
 
-        DB::table('chat_masseges')->where('addressee',Auth::user()->id)->update(['seen' => 1]);
+        DB::table('chat_masseges')->where('user2',Auth::user()->id)->update(['seen2' => 1]);
 
-        $private_chat = Chat::where([
-            'creator' => Auth::user()->id,
-            'recipient' =>$user->id])
-            ->orWhere([
-                'creator' => $user->id,
-                'recipient' => Auth::user()->id])
-            ->with('massage')
-            ->first();
+        $private_chat = ChatMassege::where([['user',Auth::user()->id],['user2',$user->id]])
+            ->orWhere([['user2',Auth::user()->id],['user',$user->id]])->orderByDesc('created_at')->paginate(20);
 
-        $massages = null;
-        if (isset($private_chat->massage)){
-            $massages = $private_chat->massage()->paginate(20);
-        }
-
-        return view('chat.private_chat', compact('user','pageTitle','massages'));
+        return view('chat.private_chat', compact('user','pageTitle','private_chat'));
     }
 }

@@ -16,27 +16,14 @@
     <div class="container">
 
         <div class="chat-board mb-20">
-            <div class="row">
-                @if(isset($chats))
-                    @foreach($chats as $chat)
-                        <div class="col-12">
-                            <?php
-                                if (Auth::user()->id != $chat->massage[count($chat->massage) - 1]->sender){
-                                    $user = \Illuminate\Support\Facades\DB::table('users')
-                                        ->where('id',$chat->massage[count($chat->massage) - 1]->sender)->first();
-                                } else {
-                                    $user = \Illuminate\Support\Facades\DB::table('users')
-                                        ->where('id',$chat->massage[count($chat->massage) - 1]->addressee)->first();
-                                }
-                            ?>
+            <div class="row vertical-gap text-white">
+                @if(isset($users))
+                    @foreach($users as $user)
+                        <div class="col-lg-12">
                             <a href="{{route('send_massage',$user->name)}}" style="text-decoration: none !important;">
-                                <div class="alert alert-light" role="alert">
-                                    {!! $chat->massage[0]->massage !!}
-                                    <em>{{$chat->massage[0]->created_at}} by</em>
-                                    <strong class="ml-5">{{$user->name}}</strong><br>
-                                    @if($chat->massage[0]->seen == 0)
-                                        <strong>Not seen</strong>
-                                    @endif
+                                <div class="nk-box-2 bg-dark-2 p-5 pl-15">
+                                    Chat with
+                                    <h4 class="m-0">{{$user->name}}</h4>
                                 </div>
                             </a>
                         </div>
@@ -50,7 +37,7 @@
         </div>
 
         <!-- START: Pagination -->
-            {{$chats->links('vendor.pagination.custom')}}
+            {{$users->links('vendor.pagination.custom')}}
         <!-- END: Pagination -->
 
     </div>

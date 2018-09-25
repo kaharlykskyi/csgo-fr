@@ -7,16 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class ChatMassege extends Model
 {
     protected $fillable = [
-        'sender',
-        'addressee',
+        'user',
+        'user2',
         'seen',
-        'chat_id',
+        'seen2',
         'massage'
     ];
 
     protected $table = 'chat_masseges';
-
-    public function chat(){
-        return $this->belongsTo('App\Chat','chat_id','id');
-    }
 }
