@@ -22,25 +22,27 @@
                                 <span class="nk-widget-match-vs mr-5">
                                     {{date('d/m',strtotime($val->match_data->match_day))}}
                                 </span>
-                                <span class="nk-widget-match-team-logo">
+                                @isset($team_data)
+                                    <span class="nk-widget-match-team-logo">
                                     @foreach($teams as $team)
-                                        @if($team->id == $team_data->team_names1)
-                                            <span class="nk-match-team-logo">
+                                            @if($team->id == $team_data->team_names1)
+                                                <span class="nk-match-team-logo">
                                                 <img class="rounded" src="{{ asset($team->logo) }}" alt="{{$team->name}}">
                                             </span>
-                                        @endif
-                                    @endforeach
-                                </span>
-                                <span class="nk-widget-match-vs">VS</span>
-                                <span class="nk-widget-match-team-logo">
-                                    @foreach($teams as $team)
-                                        @if($team->id == $team_data->team_names2)
-                                            <span class="nk-match-team-logo">
-                                                <img class="rounded" src="{{ asset($team->logo) }}" alt="{{$team->name}}">
-                                            </span>
-                                        @endif
-                                    @endforeach
-                                </span>
+                                            @endif
+                                        @endforeach
+                                    </span>
+                                        <span class="nk-widget-match-vs">VS</span>
+                                        <span class="nk-widget-match-team-logo">
+                                        @foreach($teams as $team)
+                                                @if($team->id == $team_data->team_names2)
+                                                    <span class="nk-match-team-logo">
+                                                    <img class="rounded" src="{{ asset($team->logo) }}" alt="{{$team->name}}">
+                                                </span>
+                                                @endif
+                                            @endforeach
+                                    </span>
+                                @endisset
                                 @if($val->type == 'upcoming_matches')
                                     <span class="nk-widget-match-vs ml-10">
                                     {{date('H:i',strtotime($val->match_data->match_day))}}

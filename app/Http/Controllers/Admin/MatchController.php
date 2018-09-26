@@ -23,10 +23,12 @@ class MatchController extends Controller
         $use_teams = [];
         foreach ($matches as $match){
             $team_data = json_decode($match->team);
-            $use_teams[] = (object)[
-                'team1' => Team::where('id',$team_data->team_names1)->first(),
-                'team2' => Team::where('id',$team_data->team_names2)->first()
-            ] ;
+            if (isset($team_data)){
+                $use_teams[] = (object)[
+                    'team1' => Team::where('id',$team_data->team_names1)->first(),
+                    'team2' => Team::where('id',$team_data->team_names2)->first()
+                ] ;
+            }
         }
         return view('admin_area.matches.index',compact('matches','use_teams'));
     }
