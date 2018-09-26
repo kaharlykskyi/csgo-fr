@@ -27,7 +27,7 @@
                                     @foreach($teams as $team)
                                             @if($team->id == $team_data->team_names1)
                                                 <span class="nk-match-team-logo">
-                                                <img class="rounded" src="{{ asset($team->logo) }}" alt="{{$team->name}}">
+                                                <img class="rounded" src="@if(isset($team->logo)){{asset($team->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$team->name}}">
                                             </span>
                                             @endif
                                         @endforeach
@@ -37,7 +37,7 @@
                                         @foreach($teams as $team)
                                                 @if($team->id == $team_data->team_names2)
                                                     <span class="nk-match-team-logo">
-                                                    <img class="rounded" src="{{ asset($team->logo) }}" alt="{{$team->name}}">
+                                                    <img class="rounded" src="@if(isset($team->logo)){{asset($team->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$team->name}}">
                                                 </span>
                                                 @endif
                                             @endforeach
