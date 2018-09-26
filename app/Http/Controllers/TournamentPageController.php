@@ -15,6 +15,8 @@ class TournamentPageController extends Controller
         $tournament = Tournament::where('id', $request->id)->first();
         $streams = Stream::where('show_homepage','on')->get();
 
+        DB::table('tournaments')->where('id',$request->id)->increment('viewers_count');
+
         $count = TournamentComment::where('tournament_id',$request->id)->count();
         $comments = TournamentComment::with('children')
             ->where('tournament_id',$request->id)

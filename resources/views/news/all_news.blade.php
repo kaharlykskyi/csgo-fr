@@ -19,11 +19,15 @@
                         <ul class="nk-widget-categories">
                             @isset($news)
                                 @foreach($news as $iteam)
-                                    <li>
-                                        <div class="news-banner"
-                                             style="background-image: url({{asset('assets/images/news_img/' . $iteam->banner_image)}})"></div>
+                                    <li class="border-bottom mb-10">
+                                        <img style="width: 100%" src="{{asset('assets/images/news_img/' . $iteam->banner_image)}}" alt="">
                                         <a class="pb-2" href="{{route('news_page',$iteam->id)}}">{{$iteam->title}}</a>
                                         <em class="small">by <strong>{{$iteam->author_name}}</strong> on {{date('M d Y',strtotime($iteam->publication_date))}}</em>
+                                        <div class="nk-post-date mt-10 mb-10">
+                                            <span class="fa fa-comments"></span>
+                                                {{\Illuminate\Support\Facades\DB::table('news_comments')->where('news_id',$iteam->id)->count()}} comments
+                                            @isset($iteam->viewers_count)<span class="fa fa-eye"></span> {{$iteam->viewers_count}}@endisset
+                                        </div>
                                     </li>
                                 @endforeach
                             @endisset

@@ -24,19 +24,21 @@
                                 ?>
                                 <tr>
                                     <td>
-                                        <a href="{{route('match_page',$item->id)}}">
-                                            @foreach($teams as $team)
-                                                @if($team->id == $team_data->team_names1)
-                                                    <img class="rounded with-50" src="{{ asset($team->logo) }}" alt="{{$team->name}}">
-                                                @endif
-                                            @endforeach
-                                            <span class="nk-widget-match-vs">VS</span>
-                                            @foreach($teams as $team)
-                                                @if($team->id == $team_data->team_names2)
-                                                    <img class="rounded with-50" src="{{ asset($team->logo) }}" alt="{{$team->name}}">
-                                                @endif
-                                            @endforeach
-                                        </a>
+                                        @isset($team_data)
+                                            <a href="{{route('match_page',$item->id)}}">
+                                                @foreach($teams as $team)
+                                                    @if($team->id == $team_data->team_names1)
+                                                        <img class="rounded with-50" src="{{ asset($team->logo) }}" alt="{{$team->name}}">
+                                                    @endif
+                                                @endforeach
+                                                <span class="nk-widget-match-vs">VS</span>
+                                                @foreach($teams as $team)
+                                                    @if($team->id == $team_data->team_names2)
+                                                        <img class="rounded with-50" src="{{ asset($team->logo) }}" alt="{{$team->name}}">
+                                                    @endif
+                                                @endforeach
+                                            </a>
+                                        @endisset
                                     </td>
                                     <td class="flex-center">
                                         <span class="nk-match-score" style="font-size: 1.3rem;">

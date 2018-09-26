@@ -18,9 +18,15 @@
                     <ul class="nk-widget-categories">
                         @isset($tournament)
                             @foreach($tournament as $iteam)
-                                <li>
+                                <li class="border-bottom mb-10">
+                                    <img style="width: 100%" src="{{asset('assets/images/tournament_img/' . $iteam->banner_image)}}" alt="">
                                     <a class="pb-2" href="{{route('tournament_page',$iteam->id)}}">{{$iteam->title}}</a>
                                     <em class="small">start {{date('M d Y',strtotime($iteam->publication_date))}}</em>
+                                    <div class="nk-post-date mt-10 mb-10">
+                                        <span class="fa fa-comments"></span>
+                                        {{\Illuminate\Support\Facades\DB::table('tournament_comments')->where('tournament_id',$iteam->id)->count()}} comments
+                                        @isset($iteam->viewers_count)<span class="fa fa-eye"></span> {{$iteam->viewers_count}}@endisset
+                                    </div>
                                 </li>
                             @endforeach
                         @endisset
