@@ -17,7 +17,7 @@
                         <div class="nk-widget-stream">
                             <span class="nk-widget-stream-status @if($stream['type'] === 'live') {{__('bg-success')}} @else {{__('bg-danger')}} @endif"></span>
                             <div class="nk-widget-stream-name">
-                                <a href="{{$stream['link']}}" target="_blank">
+                                <a href="{{route('stream_page',$stream['channel_name'])}}">
                                     @isset($stream['country'])
                                         <img style="width: 25px;" class="mr-2 rounded" src="{{asset('images/flag/' . $stream['country']->flag)}}" alt="{{$stream['country']->country}}">
                                     @endisset
