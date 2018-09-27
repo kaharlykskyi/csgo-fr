@@ -27,21 +27,20 @@ trait StreamApi
                 'headers' =>
                     [
                         'Client-ID' => Config::get('app.twitch_key'),
-                        'Accept' => 'application/vnd.twitchtv.v5+json'
+                        //'Accept' => 'application/vnd.twitchtv.v5+json'
                     ]
             ]);
             try{
-                $user_twitch_data = $client->get('https://api.twitch.tv/kraken/users?login=' . trim($stream->name))->getBody();
-                $user_twitch_data = json_decode($user_twitch_data);
-                $user_id = $user_twitch_data->users[0]->_id;
-                $stream_data = $client->get('https://api.twitch.tv/kraken/streams/' . $user_id)->getBody();
+
+                $stream_data = $client->get('https://api.twitch.tv/helix/streams?user_login=' . trim($stream->name))->getBody();
                 $stream_data = json_decode($stream_data);
-                if($stream_data->stream == null){
+
+                if(empty($stream_data->data[0])){
                     $stream_type = null;
                     $stream_views = null;
                 } else {
-                    $stream_type = $stream_data->stream->stream_type;
-                    $stream_views = $stream_data->stream->viewers;
+                    $stream_type = $stream_data->data[0]->type;
+                    $stream_views = $stream_data->data[0]->viewer_count;
                 }
                 if($stream_type == 'live'){
                     $streams_output[$k] = [
