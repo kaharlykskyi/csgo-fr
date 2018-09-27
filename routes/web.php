@@ -80,8 +80,7 @@ Route::get('/stream/{name}',function ($name){
 /*!!--------ADMIN--------!!*/
 Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','role']],function (){
     Route::get('/','DashboardController@index')->name('admin.dashboard');
-    Route::get('/users','DashboardController@users')->name('admin.users');
-    Route::post('/users-search','DashboardController@search')->name('admin.search');
+    Route::match(['get', 'post'],'/users','DashboardController@users')->name('admin.users');
     Route::post('/users-access','DashboardController@access')->name('admin.access');
     Route::post('/users-moderators','DashboardController@moderators')->name('admin.moderators')->middleware('moderation');
     Route::match(['get', 'post'],'/announcement','DashboardController@announcement')->name('announcement');

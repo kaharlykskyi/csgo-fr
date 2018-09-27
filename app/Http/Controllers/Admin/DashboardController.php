@@ -15,15 +15,14 @@ class DashboardController extends Controller
         return view('admin_area.dashboard');
     }
 
-    public function users(){
+    public function users(Request $request){
+        if ($request->isMethod('post')){
+            $search = $request->search;
+            $users = User::where('name','like',"%{$search}%")->paginate(40);
+            return view('admin_area.users.index',compact('users','search'));
+        }
         $users = User::paginate(40);
         return view('admin_area.users.index',compact('users'));
-    }
-
-    public function search(Request $request){
-        $search = $request->search;
-        $users = User::where('name','like',"%{$search}%")->paginate(40);
-        return view('admin_area.users.index',compact('users','search'));
     }
 
     public function access(Request $request){

@@ -16,7 +16,7 @@
                             <h3 class="title-3 m-b-30">
                                 <i class="zmdi zmdi-account-calendar"></i>user data</h3>
                             <div class="filters m-b-45">
-                                <form class="form-header" action="{{route('admin.search')}}" method="POST">
+                                <form class="form-header" action="{{route('admin.users')}}" method="POST">
                                     @csrf
                                     <input class="au-input au-input--xl" type="text" name="search" placeholder="Search users" required/>
                                     <button class="au-btn--submit" type="submit">
