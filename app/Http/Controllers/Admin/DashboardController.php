@@ -59,7 +59,7 @@ class DashboardController extends Controller
                     ->withInput();
             }
             Storage::put('announcement.txt', $data['content']);
-    }
+        }
 
         $announcement = null;
         $exists = Storage::disk()->exists('announcement.txt');
@@ -68,5 +68,19 @@ class DashboardController extends Controller
         }
 
         return view('admin_area.home_content.announcement', compact('announcement'));
+    }
+
+    public function settings(Request $request){
+        $settings = DB::table('settings')->get();
+
+        if ($request->isMethod('post')){
+            $data = $request->except('_token');
+            foreach ($data as $k => $iteam){
+                DB::table('settings')->where('name',$k)->update(['value' => $iteam]);
+            }
+            return back();
+        }
+
+        return view('admin_area.settings',compact('settings'));
     }
 }

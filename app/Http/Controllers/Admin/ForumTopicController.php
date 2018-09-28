@@ -17,7 +17,7 @@ class ForumTopicController extends Controller
      */
     public function index()
     {
-        $topics = ForumTopic::paginate(20);
+        $topics = ForumTopic::orderByDesc('created_at')->paginate(20);
         return view('admin_area.forum_topic.index',compact('topics'));
     }
 

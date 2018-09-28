@@ -128,8 +128,11 @@
                                 @foreach($player_latest_match as $val)
                                     <tr>
                                         <td>
+                                            <?php
+                                            $score = json_decode($val->match->fin_score);
+                                            ?>
                                             <a href="{{route('match_page',['id' => $val->match->id,'type' => 'latest-matches'])}}">
-                                                {{$val->team1->name}}<strong> VS </strong>{{$val->team2->name}} - {{$val->match->match_day}}
+                                                {{$val->team1->name}}<strong> VS </strong>{{$val->team2->name}} <strong class="text-main-1 text-white"><em>{{$score[0]->score_team1}}</em> : <em>{{$score[0]->score_team2}}</em></strong> - {{$val->match->match_day}}
                                             </a>
                                         </td>
                                     </tr>

@@ -17,7 +17,7 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $images = Image::paginate(40);
+        $images = Image::orderByDesc('created_at')->paginate(40);
         $galleres = Gallery::all();
         return view('admin_area.image.index', compact('images','galleres'));
     }

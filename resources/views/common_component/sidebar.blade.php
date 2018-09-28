@@ -78,9 +78,16 @@
             <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Video</span></h4>
             <div class="nk-widget-content">
                 @if(isset($video->code))
-                    <div class="nk-plain-video" data-video="{{$video->code}}"></div>
+                    @if(stripos($video->code,'twitch.tv') !==false )
+                        <?php $id_vodeo = explode('/',$video->code); ?>
+                        <div class="responsive-embed responsive-embed-16x9">
+                            <iframe src="https://player.twitch.tv/?autoplay=false&video=v{{end($id_vodeo)}}" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
+                        </div>
+                    @elseif(stripos($video->code,'youtube.com') !==false)
+                        <div class="nk-plain-video" data-video="{{$video->code}}"></div>
+                    @endif
                 @else
-                    <video controls class="nk-plain-video" @isset($video->logo) poster="{{asset($video->logo)}}"@endisset style="padding-top: 0">
+                    <video autoplay controls class="nk-plain-video" @isset($video->logo) poster="{{asset($video->logo)}}"@endisset style="padding-top: 0">
                         <source src="{{asset($video->path)}}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>

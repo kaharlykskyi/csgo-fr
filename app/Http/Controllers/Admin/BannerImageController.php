@@ -16,7 +16,7 @@ class BannerImageController extends Controller
      */
     public function index()
     {
-        $images = BannerImage::paginate(40);
+        $images = BannerImage::orderByDesc('created_at')->paginate(40);
 
         return view('admin_area.home_content.banner_index', compact('images'));
     }

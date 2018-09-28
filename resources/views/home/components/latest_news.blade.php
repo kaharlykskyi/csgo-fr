@@ -64,7 +64,7 @@
                                 @endforeach
                             </div>
                             <div class="nk-news-box-item-title-wrapper">
-                                <h6 class="nk-news-box-item-title title-latest-home">{{str_limit($latest_turnament->title, 27, ' ...')}}</h6>
+                                <h6 class="nk-news-box-item-title title-latest-home">@if(isset($latest_turnament->short_title)){{str_limit($latest_turnament->short_title, 27, ' ...')}}@else{{str_limit($latest_turnament->title, 27, ' ...')}}@endif</h6>
                                 <div class="nk-news-box-item-title-comment-wrapper">
                                     <span class="fa fa-comments"></span>
                                     <a href="#">

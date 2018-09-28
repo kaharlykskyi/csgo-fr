@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="responsive-embed responsive-embed-16x9">
-                        <iframe src="https://player.twitch.tv/?channel={{$name}}&autoplay=false" frameborder="0" allowfullscreen="true" scrolling="no" height="500"></iframe>
+                        <iframe src="https://player.twitch.tv/?channel={{$name}}&autoplay=true" frameborder="0" allowfullscreen="true" scrolling="no" height="500"></iframe>
                     </div>
                 </div>
             </div>

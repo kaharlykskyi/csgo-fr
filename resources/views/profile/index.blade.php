@@ -85,43 +85,36 @@
                                 <td class="p-l-0">
                                     <div class="col-12 p-0">
                                         <p class="h5">Social Profiles</p>
-                                        <div class="">
-                                            @isset(Auth::user()->twitch_profile)
-                                                <p>
-                                                    <em>twitch profile</em><br>
-                                                    <a href="{{Auth::user()->twitch_profile}}">{{Auth::user()->twitch_profile}}</a>
-                                                </p>
-                                            @endisset
-                                            @isset(Auth::user()->steam_profile)
-                                                <p>
-                                                    <em>steam profile</em><br>
-                                                    <a href="{{Auth::user()->twitch_profile}}">{{Auth::user()->steam_profile}}</a>
-                                                </p>
-                                            @endisset
-                                            @isset(Auth::user()->faceit_profile)
-                                                <p>
-                                                    <em>faceit profile</em><br>
-                                                    <a href="{{Auth::user()->twitch_profile}}">{{Auth::user()->faceit_profile}}</a>
-                                                </p>
-                                            @endisset
+                                        <div class="nk-widget-content">
+                                            <ul class="nk-social-links-3 nk-social-links-cols-3">
+                                                @isset(Auth::user()->twitch_profile)
+                                                    <li>
+                                                        <a class="nk-social-twitch" href="{{Auth::user()->twitch_profile}}" target="_blank">
+                                                            <span class="fab fa-twitch"></span>
+                                                        </a>
+                                                    </li>
+                                                @endisset
+                                                @isset(Auth::user()->steam_profile)
+                                                    <li><a class="nk-social-steam" href="{{Auth::user()->steam_profile}}" target="_blank"><span class="fab fa-steam"></span></a></li>
+                                                @endisset
                                                 @isset(Auth::user()->youtube_profile)
-                                                    <p>
-                                                        <em>youtube profile</em><br>
-                                                        <a href="{{Auth::user()->twitch_profile}}">{{Auth::user()->youtube_profile}}</a>
-                                                    </p>
+                                                    <li><a class="nk-social-youtube" href="{{Auth::user()->youtube_profile}}" target="_blank"><span class="fab fa-youtube"></span></a></li>
                                                 @endisset
                                                 @isset(Auth::user()->instagram_profile)
-                                                    <p>
-                                                        <em>instagram profile</em><br>
-                                                        <a href="{{Auth::user()->twitch_profile}}">{{Auth::user()->instagram_profile}}</a>
-                                                    </p>
+                                                    <li><a class="nk-social-instagram" href="{{Auth::user()->instagram_profile}}" target="_blank"><span class="fab fa-instagram"></span></a></li>
                                                 @endisset
                                                 @isset(Auth::user()->twitter_profile)
-                                                    <p>
-                                                        <em>twitter profile</em><br>
-                                                        <a href="{{Auth::user()->twitch_profile}}">{{Auth::user()->twitter_profile}}</a>
-                                                    </p>
+                                                    <li><a class="nk-social-twitter" href="{{Auth::user()->twitter_profile}}" target="_blank"><span class="fab fa-twitter"></span></a></li>
                                                 @endisset
+                                                @isset(Auth::user()->faceit_profile)
+                                                    <li><a class="nk-social-github" href="{{Auth::user()->faceit_profile}}">
+                                                            <svg viewBox="0 0 39 34" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M17 0L34 9.75V29.25L17 39L1.26115e-08 29.25V9.75L17 0Z" transform="translate(0 34) rotate(-90)" fill="rgba(0,0,0,0)"></path>
+                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M17 3.51823L3.06717 11.5091V27.4909L17 35.4818L30.9328 27.4909V11.5091L17 3.51823ZM34 9.75L17 0L0 9.75V29.25L17 39L34 29.25V9.75Z" transform="translate(0 34) rotate(-90)" fill="#FCF5EB"></path>
+                                                                <path d="M14.625 0.109914C14.625 -0.00750568 14.4868 -0.0368597 14.4315 0.0512051C12.6626 2.95734 11.6399 4.60121 10.7554 6.12767C7.38337 6.12767 2.54641 6.12767 0.141743 6.12767C0.00354423 6.12767 -0.0517489 6.30381 0.0588104 6.36252C4.45354 8.12381 10.8107 10.7951 14.3763 12.2629C14.4592 12.2922 14.625 12.2041 14.625 12.1454V0.109914Z" transform="translate(10.9688 10.8652)" fill="#FCF5EB"></path>
+                                                            </svg></a></li>
+                                                @endisset
+                                            </ul>
                                         </div>
                                     </div>
                                 </td>
@@ -190,11 +183,11 @@
         <div class="col-lg-4">
             <div class="row p-0">
                 <div class="col-12 col-md-6 col-lg-12">
-                    @isset($last_forum)
-                        <div class="nk-widget nk-widget-highlighted">
-                            <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> in Forums</span></h4>
+                    <div class="nk-widget nk-widget-highlighted">
+                        <h4 class="nk-widget-title"><span><span class="text-main-1">Latest in Forums</span> posts</span></h4>
+                        @isset($last_forum_mass)
                             <div class="nk-widget-content">
-                                @foreach($last_forum as $item)
+                                @foreach($last_forum_mass as $item)
                                     <div class="nk-widget-match p-5">
                                         <a href="{{route('thread_page',['id' => $item->id_topic, 'thread_id' => $item->id_thread])}}">
                                             <div class="nk-widget-stream mt-2 mb-2">
@@ -206,8 +199,28 @@
                                     </div>
                                 @endforeach
                             </div>
-                        </div>
-                    @endisset
+                        @endisset
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-12 mt-20">
+                    <div class="nk-widget nk-widget-highlighted">
+                        <h4 class="nk-widget-title"><span><span class="text-main-1">Latest in Forums</span>  topics</span></h4>
+                        @isset($last_forum_topic)
+                            <div class="nk-widget-content">
+                                @foreach($last_forum_topic as $item)
+                                    <div class="nk-widget-match p-5">
+                                        <a href="{{route('thread_page',['id' => $item->id_topic, 'thread_id' => $item->id])}}">
+                                            <div class="nk-widget-stream mt-2 mb-2">
+                                                <div class="nk-widget-stream-name">
+                                                    {{str_limit(strip_tags($item->title), 50, ' ...')}}
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endisset
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-12 mt-20">
                     @isset($comments)

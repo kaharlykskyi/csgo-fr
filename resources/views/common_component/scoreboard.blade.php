@@ -3,8 +3,8 @@
     <div class="nk-widget-content">
         @isset($sort_match)
             <?php
-                $prePage = 10;
-                $chunk = array_chunk($sort_match,$prePage);
+                $prePage = \Illuminate\Support\Facades\DB::table('settings')->where('name','=','pre_match_scoreboard')->select('value')->first();
+                $chunk = array_chunk($sort_match,(int)$prePage->value);
                 $count = count($chunk);
             ?>
             <div class="tab-content" id="nav-tabContent">

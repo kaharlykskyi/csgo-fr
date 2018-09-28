@@ -19,7 +19,7 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        $players = Player::paginate(20);
+        $players = Player::orderByDesc('created_at')->paginate(20);
         $countries = DB::table('countrys')->get();
         return view('admin_area.player.index', compact('players','countries'));
     }
@@ -147,7 +147,7 @@ class PlayerController extends Controller
 
         $player->update($data);
         if($player->save()){
-            if (isset($data['team_id']) && isset($player->team_id)){
+            if (isset($data['team_id']) && isset($old_team_id)){
                 if($old_team_id != $player->team_id){
                     DB::table('team_history')->insert([
                         ['player_id' => $player->id,

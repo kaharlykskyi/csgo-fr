@@ -31,7 +31,7 @@
             {!! $post->text_post !!}
         </div>
         <div class="nk-forum-topic-footer">
-            <span class="nk-forum-topic-date">{{date('M d Y',strtotime($post->created_at))}}</span>
+            <span class="nk-forum-topic-date">{{date('M d Y H:i',strtotime($post->created_at))}}</span>
 
             <span class="nk-forum-action-btn">
             <a href="#forum-reply" class="nk-anchor" onclick="addField({{$post->id}})"><span class="fa fa-reply"></span> Reply</a>

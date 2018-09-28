@@ -24,13 +24,15 @@ class TeamController extends Controller
 
         foreach ($latest_match as $match){
             $team_inf = json_decode($match->team);
-            if($team_inf->team_names1 == $team->id || $team_inf->team_names2 == $team->id){
-                $team_latest_match[] = (object)[
-                    'team1' => Team::where('id',$team_inf->team_names1)->first(),
-                    'team2' => Team::where('id',$team_inf->team_names2)->first(),
-                    'match' => $match
-                ];
-                $count++;
+            if (isset($team_inf)){
+                if($team_inf->team_names1 == $team->id || $team_inf->team_names2 == $team->id){
+                    $team_latest_match[] = (object)[
+                        'team1' => Team::where('id',$team_inf->team_names1)->first(),
+                        'team2' => Team::where('id',$team_inf->team_names2)->first(),
+                        'match' => $match
+                    ];
+                    $count++;
+                }
             }
             if ($count == 15) break;
         }

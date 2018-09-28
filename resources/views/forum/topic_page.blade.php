@@ -63,9 +63,6 @@
                         </div>
                         <div class="nk-forum-title">
                             <h3><a href="{{route('thread_page',['id' => $topic->id, 'thread_id' => $thread->id])}}">{{$thread->title}}</a></h3>
-                            @isset($thread->description)
-                                <div class="nk-forum-title-sub">{{ str_limit(strip_tags($thread->description), 50, ' ...')  }}</div>
-                            @endisset
                             <div class="nk-forum-title-sub">Started by <a href="#">
                                     @isset($users)
                                         @foreach($users as $user)
@@ -74,7 +71,7 @@
                                             @endif
                                         @endforeach
                                     @endisset
-                                </a> on {{date('M d Y',strtotime($thread->created_at))}}</div>
+                                </a> on {{date('M d Y H:i',strtotime($thread->created_at))}}</div>
                         </div>
                         <div class="nk-forum-count">
                             {{\Illuminate\Support\Facades\DB::table('thread_posts')->where('thread_id',$thread->id)->count()}} posts
@@ -98,7 +95,7 @@
                                     <a href="{{route('thread_page',['id' => $topic->id, 'thread_id' => $last_post->id])}}">{{$user->name}}</a>
                                 </div>
                                 <div class="nk-forum-activity-date">
-                                    {{date('M d Y',strtotime($last_post->created_at))}}
+                                    {{date('M d Y H:i',strtotime($last_post->created_at))}}
                                 </div>
                             @endif
                         </div>
@@ -134,9 +131,6 @@
                         </div>
                         <div class="nk-forum-title">
                             <h3><a href="@if($thread->state == 1){{route('thread_page',['id' => $topic->id, 'thread_id' => $thread->id])}}@endif">{{$thread->title}}</a></h3>
-                            @isset($thread->description)
-                                <div class="nk-forum-title-sub">{{ str_limit(strip_tags($thread->description), 50, ' ...')  }}</div>
-                            @endisset
                             <div class="nk-forum-title-sub">Started by
                                 <a href="#">
                                     @isset($users)
@@ -146,7 +140,7 @@
                                             @endif
                                         @endforeach
                                     @endisset
-                                </a> on {{date('M d Y',strtotime($thread->created_at))}}</div>
+                                </a> on {{date('M d Y H:i',strtotime($thread->created_at))}}</div>
                         </div>
                         <div class="nk-forum-count">
                             {{\Illuminate\Support\Facades\DB::table('thread_posts')->where('thread_id',$thread->id)->count()}} posts
@@ -170,7 +164,7 @@
                                     <a href="@if($thread->state == 1){{route('thread_page',['id' => $topic->id, 'thread_id' => $last_post->id])}}@endif">{{$user->name}}</a>
                                 </div>
                                 <div class="nk-forum-activity-date">
-                                    {{date('M d Y',strtotime($last_post->created_at))}}
+                                    {{date('M d Y H:i',strtotime($last_post->created_at))}}
                                 </div>
                             @endif
                         </div>

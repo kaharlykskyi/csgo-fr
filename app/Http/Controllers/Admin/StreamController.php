@@ -17,7 +17,7 @@ class StreamController extends Controller
      */
     public function index()
     {
-        $streams = Stream::paginate(20);
+        $streams = Stream::orderByDesc('created_at')->paginate(20);
         return view('admin_area.streams.index', compact('streams'));
     }
 

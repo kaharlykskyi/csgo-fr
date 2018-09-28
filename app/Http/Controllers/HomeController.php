@@ -18,14 +18,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $count_news_home = DB::table('settings')->where('name','=','count_news_home')->select('value')->first();
+        $count_tournaments_home = DB::table('settings')->where('name','=','count_tournaments_home')->select('value')->first();
+
         $teams = Team::all();
         $latest_news = DB::table('news')
             ->orderByDesc('created_at')
-            ->limit(40)
+            ->limit((int)$count_news_home->value)
             ->get();
         $latest_turnaments = DB::table('tournaments')
             ->orderByDesc('created_at')
-            ->limit(40)
+            ->limit((int)$count_tournaments_home->value)
             ->get();
         $countrys = DB::table('countrys')->get();
 

@@ -84,6 +84,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::post('/users-access','DashboardController@access')->name('admin.access');
     Route::post('/users-moderators','DashboardController@moderators')->name('admin.moderators')->middleware('moderation');
     Route::match(['get', 'post'],'/announcement','DashboardController@announcement')->name('announcement');
+    Route::match(['get', 'post'],'/settings','DashboardController@settings')->name('settings');
 
     Route::resource('/news', 'NewsController',['as' => 'admin']);
     Route::resource('/tournaments','TournamentController',['as' => 'admin']);

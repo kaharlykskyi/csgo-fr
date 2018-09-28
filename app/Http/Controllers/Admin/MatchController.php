@@ -19,7 +19,7 @@ class MatchController extends Controller
      */
     public function index()
     {
-        $matches = Match::paginate(20);
+        $matches = Match::orderByDesc('created_at')->paginate(20);
         $use_teams = [];
         foreach ($matches as $match){
             $team_data = json_decode($match->team);

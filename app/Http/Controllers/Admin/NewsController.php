@@ -19,7 +19,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::paginate(20);
+        $news = News::orderByDesc('publication_date')->paginate(20);
         return view('admin_area.news.index',compact('news'));
     }
 

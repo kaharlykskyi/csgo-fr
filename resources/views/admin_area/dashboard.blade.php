@@ -25,13 +25,17 @@
                             </a>
                         </div>
                         <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item">
-                                <h2 class="number">388,688</h2>
-                                <span class="desc">items sold</span>
-                                <div class="icon">
-                                    <i class="zmdi zmdi-shopping-cart"></i>
+                            <a href="{{route('settings')}}" style="width: 100%;">
+                                <div class="statistic__item">
+                                    <h2 class="number">
+
+                                    </h2>
+                                    <span class="desc">Settings site</span>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-settings"></i>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item">

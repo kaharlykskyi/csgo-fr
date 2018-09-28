@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CountrysTableSeeder::class,
             DefaultAdminUserTableSeeder::class,
+            SettingsTableSeeder::class,
         ]);
     }
 }

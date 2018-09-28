@@ -10,15 +10,21 @@ namespace App\AppTreid;
 
 
 use App\Match;
+use Illuminate\Support\Facades\DB;
 
 trait MatchSort
 {
     public $sort_match = null;
 
     public function selectMatch(){
-        $latest_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, match_day, NOW()) > 2")->limit(20)->get();
-        $live_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) IN (0,1,2)")->limit(10)->get();
-        $upcoming_matches = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) > 2")->limit(10)->get();
+
+        $count_latest_match_scoreboard = DB::table('settings')->where('name','=','count_latest_match_scoreboard')->select('value')->first();
+        $count_live_match_scoreboard = DB::table('settings')->where('name','=','count_live_match_scoreboard')->select('value')->first();
+        $count_upcoming_match_scoreboard = DB::table('settings')->where('name','=','count_upcoming_match_scoreboard')->select('value')->first();
+
+        $latest_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, match_day, NOW()) > 2")->limit((int)$count_latest_match_scoreboard->value)->get();
+        $live_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) IN (0,1,2)")->limit((int)$count_live_match_scoreboard->value)->get();
+        $upcoming_matches = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) > 2")->limit((int)$count_upcoming_match_scoreboard->value)->get();
 
         $this->setArray($upcoming_matches,'upcoming_matches');
         $this->setArray($live_match,'live_match');

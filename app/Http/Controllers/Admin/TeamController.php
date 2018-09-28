@@ -17,7 +17,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::paginate(20);
+        $teams = Team::orderByDesc('created_at')->paginate(20);
         $countries = DB::table('countrys')->get();
         return view('admin_area.teams.index', compact('teams', 'countries'));
     }

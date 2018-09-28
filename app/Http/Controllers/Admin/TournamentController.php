@@ -19,7 +19,7 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        $tournaments = Tournament::paginate(20);
+        $tournaments = Tournament::orderByDesc('publication_date')->paginate(20);
         return view('admin_area.tournaments.index',compact('tournaments'));
     }
 
