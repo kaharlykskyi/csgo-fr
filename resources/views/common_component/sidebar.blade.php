@@ -83,7 +83,7 @@
                         <div class="responsive-embed responsive-embed-16x9">
                             <iframe src="https://player.twitch.tv/?autoplay=false&video=v{{end($id_vodeo)}}" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
                         </div>
-                    @elseif(stripos($video->code,'youtube.com') !==false)
+                    @elseif(stripos($video->code,'youtu.be') !==false)
                         <div class="nk-plain-video" data-video="{{$video->code}}"></div>
                     @endif
                 @else
