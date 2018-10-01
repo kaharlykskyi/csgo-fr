@@ -49,7 +49,8 @@ class NewsController extends Controller
             'title' => 'required',
             'content_news' => 'required',
             'banner_image' => 'required|file',
-            'publication_date' => 'date_format:Y-m-d'
+            'publication_date' => 'date_format:Y-m-d',
+            'short_title' => 'max:45'
         ]);
 
         if ($validate->fails()) {

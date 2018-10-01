@@ -26,8 +26,10 @@ class ChatController extends Controller
                 }
             }
         }
-        $users_id = array_unique($users_id);
-        $users = DB::table('users')->whereIn('id',$users_id)->paginate(20);
+        if (isset($users_id)){
+            $users_id = array_unique($users_id);
+            $users = DB::table('users')->whereIn('id',$users_id)->paginate(20);
+        }
         return view('chat.index',compact('pageTitle','users'));
     }
 

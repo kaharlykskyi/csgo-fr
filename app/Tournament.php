@@ -15,6 +15,7 @@ class Tournament extends Model
         'publication_date',
         'tournament_metadata',
         'author',
-        'short_title'
+        'short_title',
+        'tournament_logo'
     ];
 }

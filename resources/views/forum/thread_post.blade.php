@@ -66,8 +66,12 @@
             $('#id-post-reply').html('<input type="hidden" value="'+id+'" name="parent_post">');
             var contentPost = $('#post-' + id + ' .nk-forum-topic-content').html();
             $('#reply-post .note-editable.card-block').html('<blockquote>'+contentPost+'</blockquote><p><br></p>');
-            console.log(contentPost);
+        }
 
+        function editPost(idPost) {
+            $('#id-post-reply').html('<input type="hidden" value="'+idPost+'" name="edit_id_post">');
+            var contentPost = $('#post-' + idPost + ' .nk-forum-topic-content').html();
+            $('#reply-post .note-editable.card-block').html('<blockquote>'+contentPost+'</blockquote><p><br></p>');
         }
     </script>
 

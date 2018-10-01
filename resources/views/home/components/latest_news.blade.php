@@ -28,7 +28,7 @@
                                 @endforeach
                             </div>
                             <div class="nk-news-box-item-title-wrapper">
-                                <h6 class="nk-news-box-item-title title-latest-home">{{str_limit($latest_new->title, 27, ' ...')}}</h6>
+                                <h6 class="nk-news-box-item-title title-latest-home">@if(isset($latest_new->short_title)){{$latest_new->short_title}}@else{{$latest_new->title}}@endif</h6>
                                 <div class="nk-news-box-item-title-comment-wrapper">
                                     <span class="fa fa-comments"></span>
                                     <a href="#">
@@ -56,12 +56,17 @@
 
                     <a href="{{route('tournament_page',$latest_turnament->id)}}">
                         <div class="nk-news-box-item">
-                            <div class="nk-news-box-item-img">
+                            <div class="nk-news-box-item-img mr-0">
                                 @foreach($countrys as $country)
                                     @if($country->country == $latest_turnament->country_id)
                                         <img class="mr-3 flag" src="{{ asset('images/flag/' . $country->flag) }}" alt="{{$latest_turnament->title}}">
                                     @endif
                                 @endforeach
+                            </div>
+                            <div class="nk-news-box-item-img">
+                                @isset($latest_turnament->tournament_logo)
+                                    <img src="{{asset($latest_turnament->tournament_logo)}}" alt="{{$latest_turnament->title}}">
+                                @endisset
                             </div>
                             <div class="nk-news-box-item-title-wrapper">
                                 <h6 class="nk-news-box-item-title title-latest-home">@if(isset($latest_turnament->short_title)){{str_limit($latest_turnament->short_title, 27, ' ...')}}@else{{str_limit($latest_turnament->title, 27, ' ...')}}@endif</h6>

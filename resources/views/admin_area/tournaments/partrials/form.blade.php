@@ -98,12 +98,33 @@
     </div>
 </div>
 
+<div class="row form-group">
+    <div class="col-12">
+        <div class="row">
+            <div class="col col-md-3">
+                <label for="logo" class=" form-control-label">Logo</label>
+            </div>
+            <div class="col col-md-9">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                    <a data-input="thumbnail" data-preview="holder" id="logo_player" class="btn btn-primary">
+                        <i class="fa fa-picture-o"></i> Choose
+                    </a>
+                </span>
+                    <input @if(isset($tournament->id))value="{{$tournament->tournament_logo}}"@endif id="thumbnail" class="form-control" type="text" name="tournament_logo">
+                </div>
+                <img @if(isset($tournament->id))src="{{$tournament->tournament_logo}}"@endif id="holder" style="margin-top:15px;max-height:100px;">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    CKEDITOR.replace('editor',options);
+    $('#logo_player').filemanager('image');
+</script>
+
 <div class="card-footer">
     <button type="submit" class="btn btn-primary btn-sm">
         <i class="fa fa-dot-circle-o"></i> @if(isset($tournament->id)){{__('Save')}}@else{{__('Next')}}@endif
     </button>
 </div>
-
-<script>
-    CKEDITOR.replace('editor',options);
-</script>

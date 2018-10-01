@@ -36,9 +36,11 @@
             </div>
         </div>
 
-        <!-- START: Pagination -->
+        @isset($users)
+            <!-- START: Pagination -->
             {{$users->links('vendor.pagination.custom')}}
-        <!-- END: Pagination -->
+            <!-- END: Pagination -->
+        @endisset
 
     </div>
 

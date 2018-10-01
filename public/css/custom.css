@@ -262,6 +262,12 @@ button.note-btn[aria-label="Picture"]{
     min-width: auto !important;
 }
 
+.post-edit-wrapper{
+    position: absolute;
+    right: 6px;
+    top: 30px;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 870px;

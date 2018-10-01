@@ -46,9 +46,11 @@ class ProfileController extends Controller
             $comments [] = $comment;
         }
 
-        usort($comments, function($a,$b){
-            return strcmp($b->created_at,$a->created_at);
-        });
+        if(isset($comments)){
+            usort($comments, function($a,$b){
+                return strcmp($b->created_at,$a->created_at);
+            });
+        }
 
         $comments = array_slice($comments,0,(int)$count_comments_profile->value);
 

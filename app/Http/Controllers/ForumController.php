@@ -105,6 +105,14 @@ class ForumController extends Controller
                 ->withInput();
         }
 
+        if (isset($data['edit_id_post'])){
+            DB::table('thread_posts')->where('id', $data['edit_id_post'])
+                ->where('user_id', Auth::user()->id)
+                ->update(['text_post' => $data['text_post']]);
+
+            return back();
+        }
+
         $data['user_id'] = Auth::user()->id;
 
         $post = new ThreadPost();

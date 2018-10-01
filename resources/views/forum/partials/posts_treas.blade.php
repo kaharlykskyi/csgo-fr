@@ -8,6 +8,13 @@
                     </a>
                 </div>
             @endif
+            @if(Auth::user()->id === $post->user_id)
+                <div class="post-edit-wrapper">
+                    <a href="#forum-reply" onclick="editPost({{$post->id}})">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </div>
+            @endif
         @endisset
         <div class="nk-forum-topic-author">
             @isset($users)
