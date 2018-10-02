@@ -84,7 +84,9 @@
                             <iframe src="https://player.twitch.tv/?autoplay=false&video=v{{end($id_vodeo)}}" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
                         </div>
                     @elseif(stripos($video->code,'youtu.be') !==false)
-                        <div class="nk-plain-video" data-video="{{$video->code}}"></div>
+                        <?php $link_video = explode('/',$video->code); ?>
+                        <iframe type="video" width="100%"  sandbox="allow-scripts allow-same-origin allow-presentation" src="https://www.youtube.com/embed/{{end($link_video)}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        {{--<div class="nk-plain-video" data-video="{{$video->code}}"></div>--}}
                     @endif
                 @else
                     <video autoplay controls class="nk-plain-video" @isset($video->logo) poster="{{asset($video->logo)}}"@endisset style="padding-top: 0">
