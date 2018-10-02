@@ -50,9 +50,9 @@ class ProfileController extends Controller
             usort($comments, function($a,$b){
                 return strcmp($b->created_at,$a->created_at);
             });
-        }
 
-        $comments = array_slice($comments,0,(int)$count_comments_profile->value);
+            $comments = array_slice($comments,0,(int)$count_comments_profile->value);
+        }
 
         return view('profile.index',compact('pageTitle','last_forum_mass','last_forum_topic','comments'));
     }
