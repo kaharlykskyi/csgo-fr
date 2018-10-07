@@ -16,7 +16,7 @@ class NewsCategoryController extends Controller
      */
     public function index()
     {
-        $categories = NewsCategory::orderByDesc('match_day')->paginate(20);
+        $categories = NewsCategory::orderByDesc('created_at')->paginate(20);
         return view('admin_area.news_category.index', compact('categories'));
     }
 
