@@ -17,6 +17,8 @@ trait MatchSort
     public $sort_match = null;
 
     public function selectMatch(){
+        $date = new \DateTime();
+        date_default_timezone_set($date->getTimezone()->getName());
 
         $count_latest_match_scoreboard = DB::table('settings')->where('name','=','count_latest_match_scoreboard')->select('value')->first();
         $count_live_match_scoreboard = DB::table('settings')->where('name','=','count_live_match_scoreboard')->select('value')->first();
