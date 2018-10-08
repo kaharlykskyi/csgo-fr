@@ -23,7 +23,7 @@ trait MatchSort
         $count_upcoming_match_scoreboard = DB::table('settings')->where('name','=','count_upcoming_match_scoreboard')->select('value')->first();
 
         $latest_match = Match::whereRaw("TIMESTAMPDIFF(MINUTE, match_day, NOW()) > 60")->limit((int)$count_latest_match_scoreboard->value)->get();
-        $live_match = Match::whereRaw("TIMESTAMPDIFF(MINUTE, NOW(), match_day) BETWEEN 60 AND -120")->limit((int)$count_live_match_scoreboard->value)->get();
+        $live_match = Match::whereRaw("TIMESTAMPDIFF(MINUTE, NOW(), match_day) BETWEEN -60 AND 120")->limit((int)$count_live_match_scoreboard->value)->get();
         $upcoming_matches = Match::whereRaw("TIMESTAMPDIFF(MINUTE, NOW(), match_day) > 120")->limit((int)$count_upcoming_match_scoreboard->value)->get();
 
         $this->setArray($upcoming_matches,'upcoming_matches');
