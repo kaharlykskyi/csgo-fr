@@ -18,7 +18,7 @@
                 {{__('Send Massage')}}
             </a>
         </div>
-        <div class="col-12">
+        <div class="col-lg-8">
             <!-- START: Teammate Card -->
             <div class="nk-teammate-card">
                 <div class="nk-teammate-card-photo">
@@ -123,6 +123,15 @@
                 </div>
             </div>
             <!-- END: Teammate Card -->
+        </div>
+        <div class="col-lg-4">
+            @component('profile.component.last_info',[
+                'last_forum_mass' => $last_forum_mass,
+                'last_forum_topic' => $last_forum_topic,
+                'comments' => $comments
+            ])
+
+            @endcomponent
         </div>
     </div>
 
