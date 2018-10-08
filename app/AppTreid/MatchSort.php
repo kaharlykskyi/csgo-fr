@@ -22,9 +22,9 @@ trait MatchSort
         $count_live_match_scoreboard = DB::table('settings')->where('name','=','count_live_match_scoreboard')->select('value')->first();
         $count_upcoming_match_scoreboard = DB::table('settings')->where('name','=','count_upcoming_match_scoreboard')->select('value')->first();
 
-        $latest_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, match_day, NOW()) > 2")->limit((int)$count_latest_match_scoreboard->value)->get();
-        $live_match = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) IN (0,1,2)")->limit((int)$count_live_match_scoreboard->value)->get();
-        $upcoming_matches = Match::whereRaw("TIMESTAMPDIFF(HOUR, NOW(), match_day) > 2")->limit((int)$count_upcoming_match_scoreboard->value)->get();
+        $latest_match = Match::whereRaw("TIMESTAMPDIFF(MINUTE, match_day, NOW()) > 120")->limit((int)$count_latest_match_scoreboard->value)->get();
+        $live_match = Match::whereRaw("TIMESTAMPDIFF(MINUTE, NOW(), match_day) BETWEEN -120 AND 60")->limit((int)$count_live_match_scoreboard->value)->get();
+        $upcoming_matches = Match::whereRaw("TIMESTAMPDIFF(MINUTE, NOW(), match_day) > 120")->limit((int)$count_upcoming_match_scoreboard->value)->get();
 
         $this->setArray($upcoming_matches,'upcoming_matches');
         $this->setArray($live_match,'live_match');

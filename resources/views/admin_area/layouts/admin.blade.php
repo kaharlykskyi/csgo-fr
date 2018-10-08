@@ -65,9 +65,6 @@
     <script src="{{asset('vendor/laravel-filemanager/js/lfm.js')}}"></script>
 
     <style>
-        .datetimepicker{
-            top: 295px !important;
-        }
         #score .footer,#score .delete{
             display: none !important;
         }

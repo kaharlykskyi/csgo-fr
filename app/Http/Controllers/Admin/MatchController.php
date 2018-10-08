@@ -129,6 +129,7 @@ class MatchController extends Controller
         }
 
         if($request->match_inf){
+            dump($request->post());
             $match->update([
                 'match_day' => $request->match_day,
                 'fin_score' => json_encode($request->scoreArray),
