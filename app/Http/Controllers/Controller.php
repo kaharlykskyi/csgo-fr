@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 
 class Controller extends BaseController
 {
@@ -13,6 +14,8 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        date_default_timezone_set(config('app.timezone'));
+        $time_zome = config('app.timezone');
+        date_default_timezone_set($time_zome);
+        DB::statement("SET time_zone='{$time_zome}';");
     }
 }
