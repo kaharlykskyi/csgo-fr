@@ -117,7 +117,7 @@ class MatchController extends Controller
                 'team' => json_encode($request->post())
             ]);
 
-            return $request;
+            return $request->post();
         }
 
         if($request->map){
@@ -125,11 +125,10 @@ class MatchController extends Controller
                 'map' => json_encode($request->mapArray)
             ]);
 
-            return $request;
+            return $request->post();
         }
 
         if($request->match_inf){
-            dump($request->post());
             $match->update([
                 'match_day' => $request->match_day,
                 'fin_score' => json_encode($request->scoreArray),
@@ -137,7 +136,7 @@ class MatchController extends Controller
                 'tournament' => (integer)$request->tournaments
             ]);
 
-            return $request;
+            return $request->post();
         }
 
         return redirect()->route('admin.matches.update',$match->id);

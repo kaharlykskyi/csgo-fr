@@ -140,9 +140,13 @@
                                                 data: jsonText,
                                                 contentType: "application/json",
                                                 dataType: "json",
-                                                success: function (data) {
-                                                    alert("Information updated")
+                                                success(data) {
+                                                    alert("Information updated");
+                                                    //console.log(data)
                                                 },
+                                                error(data){
+                                                    console.log(data)
+                                                }
                                             });
 
                                         });
