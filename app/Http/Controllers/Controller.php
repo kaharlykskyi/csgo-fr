@@ -14,8 +14,7 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $time_zome = config('app.timezone');
-        date_default_timezone_set($time_zome);
-        DB::statement("SET time_zone='{$time_zome}';");
+        date_default_timezone_set(config('app.timezone'));
+        DB::statement("SET time_zone='+03:00';");
     }
 }
