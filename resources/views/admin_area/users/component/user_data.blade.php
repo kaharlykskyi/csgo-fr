@@ -20,6 +20,7 @@
                             <select class="js-select2" name="access" onchange="accses_user({{$user->id}},'{{route('admin.access')}}')">
                                 <option value="1" @if($user->access == 1) {{__('selected')}} @endif >Registered</option>
                                 <option value="0" @if($user->access == 0) {{__('selected')}} @endif >Banned</option>
+                                <option value="-1" >Delete</option>
                             </select>
                             <div class="dropDownSelect2"></div>
                         </form>
