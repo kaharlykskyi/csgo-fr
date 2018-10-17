@@ -25,7 +25,7 @@
 @isset($forum_category)
     <div class="row form-group">
         <div class="col col-md-3">
-            <label for="select" class=" form-control-label">Country</label>
+            <label for="select" class=" form-control-label">Category</label>
         </div>
         <div class="col-12 col-md-9">
             <select name="forum_category[]" size="4" multiple="multiple" id="select" class="form-control">
