@@ -11,6 +11,7 @@ class TopicThread extends Model
         'description',
         'user_id',
         'topic_id',
-        'state'
+        'state',
+        'id_category'
     ];
 }

@@ -21,6 +21,7 @@
                     <div class="nk-widget-content">
                         <form action="{{route('add_thread')}}" class="nk-form" method="post">
                             @csrf
+                            <input type="hidden" name="topic_id" value="{{$topic_id}}">
                             <div class="row vertical-gap sm-gap">
                                 <div class="col-12">
                                     <input type="text" value="{{old('title')}}" class="form-control required" name="title" placeholder="Title *" required>
@@ -28,17 +29,14 @@
                                         <small class="form-text text-danger">{{ $errors->first('title') }}</small>
                                     @endif
                                 </div>
-                                @isset($topics)
+                                @isset($category)
                                     <div class="col-12">
-                                        <select name="topic_id" class="form-control" required>
-                                            <option value="" disabled selected>Select a Topic</option>
-                                            @foreach($topics as $topic)
-                                                <option value="{{$topic->id}}">{{$topic->title}}</option>
+                                        <select name="id_category" class="form-control" required>
+                                            <option value="" disabled selected>Select a Topic category</option>
+                                            @foreach($category as $val)
+                                                <option value="{{$val->id}}">{{$val->title}}</option>
                                             @endforeach
                                         </select>
-                                        @if ($errors->has('topic_id'))
-                                            <small class="form-text text-danger">{{ $errors->first('topic_id') }}</small>
-                                        @endif
                                     </div>
                                 @endisset
                             </div>

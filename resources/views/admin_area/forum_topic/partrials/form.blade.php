@@ -22,6 +22,22 @@
     </div>
 </div>
 
+@isset($forum_category)
+    <div class="row form-group">
+        <div class="col col-md-3">
+            <label for="select" class=" form-control-label">Country</label>
+        </div>
+        <div class="col-12 col-md-9">
+            <select name="forum_category[]" size="4" multiple="multiple" id="select" class="form-control">
+                @foreach($forum_category as $val)
+                    <option @isset($use_forum_category)@foreach($use_forum_category as $category) @if($val->id == $category->category_id && $category->topic_id == $forumTopic->id) selected @endif @endforeach @endisset value="<?php print_r($val->id); ?>"><?php print_r($val->title); ?></option>
+                @endforeach
+            </select>
+            <small>multi select - press "ctrl" + "left-mouse"</small>
+        </div>
+    </div>
+@endisset
+
 <div class="row">
     <div class="col-12">
         <div class="row">

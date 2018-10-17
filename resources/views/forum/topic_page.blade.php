@@ -22,7 +22,7 @@
 
         <div class="row justify-content-end">
             <div class="col-md-3 text-right">
-                <a href="{{route('add_thread')}}" class="nk-btn nk-btn-rounded nk-btn-color-white" @guest onclick="alert('Sorry, you are not logged in'); return false;" @endguest>New Topic</a>
+                <a href="{{route('add_thread',['id_topic' => $topic->id])}}" class="nk-btn nk-btn-rounded nk-btn-color-white" @guest onclick="alert('Sorry, you are not logged in'); return false;" @endguest>New Topic</a>
             </div>
         </div>
 
@@ -180,7 +180,7 @@
         <!-- START: Pagination -->
         <div class="row">
             <div class="col-md-3 order-md-2 text-right">
-                <a href="{{route('add_thread')}}" class="nk-btn nk-btn-rounded nk-btn-color-white" @guest onclick="alert('Sorry, you are not logged in'); return false;" @endguest>New Topic</a>
+                <a href="{{route('add_thread',['id_topic' => $topic->id])}}" class="nk-btn nk-btn-rounded nk-btn-color-white" @guest onclick="alert('Sorry, you are not logged in'); return false;" @endguest>New Topic</a>
             </div>
 
             <div class="col-md-9">

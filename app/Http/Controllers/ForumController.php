@@ -19,19 +19,48 @@ class ForumController extends Controller
     }
 
     public function topicPage(Request $request){
-        $topic = ForumTopic::where('id',$request->id)->first();
-        $threads = TopicThread::where('topic_id',$topic->id)->whereIn('state',[0,1])->orderBy('created_at', 'desc')->paginate(25);
-        $affix_threads = TopicThread::where('topic_id',$topic->id)->whereIn('state',[2])->orderBy('created_at', 'desc')->limit(3)->get();
-        $users_id = [];
-        foreach ($threads as $thread){
-            $users_id[] = $thread->user_id;
-        }
-        foreach ($affix_threads as $affix_thread){
-            $users_id[] = $affix_thread->user_id;
+        if (isset($request->id_category) && $request->id_category != -1){
+            $topic = ForumTopic::where('id',$request->id)->first();
+            $threads = TopicThread::where(['topic_id' => $topic->id,'id_category' => $request->id_category])->whereIn('state',[0,1])->orderBy('created_at', 'desc')->paginate(25);
+            $affix_threads = TopicThread::where('topic_id',$topic->id)->whereIn('state',[2])->orderBy('created_at', 'desc')->limit(3)->get();
+            $users_id = [];
+            foreach ($threads as $thread){
+                $users_id[] = $thread->user_id;
+            }
+            foreach ($affix_threads as $affix_thread){
+                $users_id[] = $affix_thread->user_id;
+            }
+
+            $users = User::whereIn('id',$users_id)->get();
+            return view('forum.topic_page',compact('topic','threads','users','affix_threads'));
+        } elseif ($request->id_category == -1){
+            $topic = ForumTopic::where('id',$request->id)->first();
+            $threads = TopicThread::where(['topic_id' => $topic->id,'id_category' => null])->whereIn('state',[0,1])->orderBy('created_at', 'desc')->paginate(25);
+            $affix_threads = TopicThread::where('topic_id',$topic->id)->whereIn('state',[2])->orderBy('created_at', 'desc')->limit(3)->get();
+            $users_id = [];
+            foreach ($threads as $thread){
+                $users_id[] = $thread->user_id;
+            }
+            foreach ($affix_threads as $affix_thread){
+                $users_id[] = $affix_thread->user_id;
+            }
+
+            $users = User::whereIn('id',$users_id)->get();
+            return view('forum.topic_page',compact('topic','threads','users','affix_threads'));
+        } else {
+            $topic = ForumTopic::where('id',$request->id)->first();
+            $id = $topic->id;
+            $category = DB::table('forum_category')
+                ->whereIn('id', function ($query) use ($id) {
+                    $query->select('category_id')
+                        ->from('forum_category_relation')
+                        ->where('topic_id', $id);
+                })
+                ->get();
+
+            return view('forum.category_topic',compact('category','topic'));
         }
 
-        $users = User::whereIn('id',$users_id)->get();
-        return view('forum.topic_page',compact('topic','threads','users','affix_threads'));
     }
 
     public function createThread(Request $request){
@@ -71,8 +100,15 @@ class ForumController extends Controller
             }
         }
 
-        $topics = ForumTopic::all();
-        return view('forum.create_thread', compact('topics'));
+        $topic_id = $request->id_topic;
+        $category = DB::table('forum_category')
+            ->whereIn('id', function ($query) use ($topic_id) {
+                $query->select('category_id')
+                    ->from('forum_category_relation')
+                    ->where('topic_id', $topic_id);
+            })
+            ->get();
+        return view('forum.create_thread', compact('category','topic_id'));
     }
 
     public function threadPost(Request $request){

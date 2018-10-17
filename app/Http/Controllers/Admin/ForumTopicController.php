@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ForumCategory;
 use App\ForumTopic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ForumTopicController extends Controller
@@ -28,7 +30,8 @@ class ForumTopicController extends Controller
      */
     public function create()
     {
-        return view('admin_area.forum_topic.create');
+        $forum_category = ForumCategory::all();
+        return view('admin_area.forum_topic.create',compact('forum_category'));
     }
 
     /**
@@ -57,6 +60,14 @@ class ForumTopicController extends Controller
         $topic->fill($data);
 
         if($topic->save()){
+            if ($data['forum_category']){
+                foreach ($data['forum_category'] as $val){
+                    DB::table('forum_category_relation')->insert([
+                        'category_id' => $val,
+                        'topic_id' => $topic->id
+                    ]);
+                }
+            }
             return redirect()->route('admin.forum-topic.edit',$topic->id)->with('status','Topic Added');
         } else{
             return redirect()->route('admin.forum-topic.index')->with('status','Topic not Added');
@@ -82,7 +93,9 @@ class ForumTopicController extends Controller
      */
     public function edit(ForumTopic $forumTopic)
     {
-        return view('admin_area.forum_topic.edit', compact('forumTopic'));
+        $forum_category = ForumCategory::all();
+        $use_forum_category = DB::table('forum_category_relation')->where('topic_id',$forumTopic->id)->get();
+        return view('admin_area.forum_topic.edit', compact('forumTopic','forum_category','use_forum_category'));
     }
 
     /**
@@ -109,6 +122,25 @@ class ForumTopicController extends Controller
         $forumTopic->update($data);
 
         if($forumTopic->save()){
+            $use_forum_category = DB::table('forum_category_relation')->where('topic_id',$forumTopic->id)->get();
+            $id_use_forum_cat = [];
+            foreach ($use_forum_category as $value){
+                $id_use_forum_cat[] = $value->category_id;
+                if (array_search($value->category_id,$data['forum_category']) === false){
+                    DB::table('forum_category_relation')->where([
+                        'category_id' => $value->category_id,
+                        'topic_id' => $forumTopic->id
+                    ])->delete();
+                }
+            }
+            foreach ($data['forum_category'] as $value){
+                if (array_search($value,$id_use_forum_cat) === false){
+                    DB::table('forum_category_relation')->insert([
+                        'category_id' => $value,
+                        'topic_id' => $forumTopic->id
+                    ]);
+                }
+            }
             return redirect()->back()->with('status','Topic Added');
         } else{
             return redirect()->back()->with('status','Topic Not Added');

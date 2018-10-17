@@ -155,6 +155,9 @@
                         <li>
                             <a href="{{route('admin.forum-topic.index')}}">All Forum Threads</a>
                         </li>
+                        <li>
+                            <a href="{{route('admin.forum-category.index')}}">All Forum Category</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="has-sub">
