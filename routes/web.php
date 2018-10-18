@@ -99,6 +99,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::resource('/video','VideoController',['as' => 'admin']);
     Route::resource('/banner-image','BannerImageController',['as' => 'admin']);
     Route::resource('/forum-category','ForumCategoryController',['as' => 'admin']);
+    Route::resource('/match-map','MatchMapController',['as' => 'admin']);
 });
 
 

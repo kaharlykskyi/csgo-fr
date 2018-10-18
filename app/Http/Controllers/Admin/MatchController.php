@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Match;
+use App\MatchMap;
 use App\Team;
 use App\Tournament;
 use Illuminate\Http\Request;
@@ -99,7 +100,8 @@ class MatchController extends Controller
         $turnaments = Tournament::all();
         $countries = DB::table('countrys')->get();
         $teams = Team::all();
-        return view('admin_area.matches.edit',compact('match','countries','turnaments','teams'));
+        $maps = MatchMap::all();
+        return view('admin_area.matches.edit',compact('match','countries','turnaments','teams','maps'));
     }
 
     /**

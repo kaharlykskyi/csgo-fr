@@ -157,13 +157,16 @@
                                     <p class="h3 @if($sum > $sum2){{__('text-success')}}@else{{__('text-danger')}}@endif">{{$sum}}</p>
                             </div>
                             <div class="col-8 map-wrapper p-0">
-                                <div class="map-name-hover">
-                                    @isset($map->map_name)
-                                        <p class="h4 text-center m-0 pt-10 pb-10">{{$map->map_name}}</p>
-                                    @endisset
-                                </div>
-                                @if(isset($map->map_img))
-                                    <img src="{{asset($map->map_img)}}" alt="">
+                                @if(isset($map->map_id))
+                                    <?php
+                                        $map_inf = \Illuminate\Support\Facades\DB::table('match_maps')->where('id',$map->map_id)->first();
+                                    ?>
+                                    <div class="map-name-hover">
+                                        @isset($map_inf->title)
+                                            <p class="h4 text-center m-0 pt-10 pb-10">{{$map_inf->title}}</p>
+                                        @endisset
+                                    </div>
+                                    <img src="{{asset($map_inf->path)}}" alt="">
                                 @endif
                             </div>
                             <div class="col-2 text-center">

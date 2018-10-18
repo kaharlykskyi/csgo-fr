@@ -156,6 +156,9 @@
                             </div>
                             <div class="tab-pane fade show" id="nav-map" role="tabpanel" aria-labelledby="nav-home-map">
                                 <div class="card-body card-block">
+                                    <?php
+                                        $map_inf = json_decode($match->map);
+                                    ?>
                                     <div id="mapForm" class="form-horizontal">
                                         <input type="hidden" name="map" value="true">
                                         <div class="row form-group">
@@ -183,27 +186,14 @@
                                                         <div class="input-group-prepend">
                                                             <label class="input-group-text" for="map_name">Map</label>
                                                         </div>
-                                                        <select class="custom-select" id="map_name" name="map_name">
-                                                            <option value="inferno">Inferno</option>
-                                                            <option value="Train">Train</option>
-                                                            <option value="Mirage">Mirage</option>
-                                                            <option value="Nuke">Nuke</option>
-                                                            <option value="Overpass">Overpass</option>
-                                                            <option value="Cache">Cache</option>
-                                                            <option value="Dust II">Dust II</option>
+                                                        <select class="custom-select" id="map_name" name="map_id">
+                                                            @isset($maps)
+                                                                @foreach($maps as $map)
+                                                                    <option @isset($map_inf) @foreach($map_inf as $item) @isset($item->map_id) @if($item->map_id == $map->id) selected @endif @endisset @endforeach @endisset value="{{$map->id}}">{{$map->title}}</option>
+                                                                @endforeach
+                                                            @endisset
                                                         </select>
                                                     </div>
-                                                </div>
-                                                <div class="col-12 m-b-5 form_add_img_map">
-                                                    <div class="input-group">
-                                                           <span class="input-group-btn">
-                                                             <a data-input="thumbnail" data-preview="holder" class="btn btn-primary map_img">
-                                                               <i class="fa fa-picture-o"></i> Choose
-                                                             </a>
-                                                           </span>
-                                                        <input id="thumbnail" class="form-control inputform_add_img_map" type="text" name="map_img">
-                                                    </div>
-                                                    <img id="holder" class="preview_form_add_img_map" style="margin-top:15px;max-height:100px;">
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="row">
@@ -300,48 +290,6 @@
                                         });
 
                                     });
-
-                                    var count_id = 0;
-
-                                    $('#mapForm .add').on('click', function(){
-                                        var map_input = $('div.form_add_img_map');
-
-                                        for(var i = 0; i < map_input.length; i++){
-                                            var id = 'map_img' + count_id;
-                                            $(map_input[i]).find('a.map_img')
-                                                .attr('id', id)
-                                                .attr('data-input','thumbnail' + count_id)
-                                                .attr('data-preview', 'holder' + count_id);
-                                            $(map_input[i]).find('input.inputform_add_img_map')
-                                                .attr('id', 'thumbnail' + count_id);
-                                            $(map_input[i]).find('img.preview_form_add_img_map')
-                                                .attr('id', 'holder' + count_id);
-
-                                            $('#' + id).filemanager('image');
-                                            count_id++;
-                                        }
-                                    });
-
-                                    $(document).ready(function () {
-                                        var map_input = $('div.form_add_img_map');
-
-                                        for(var i = 0; i < map_input.length; i++){
-                                            var id = 'map_img' + count_id;
-                                            $(map_input[i]).find('a.map_img')
-                                                .attr('id', id)
-                                                .attr('data-input','thumbnail' + count_id)
-                                                .attr('data-preview', 'holder' + count_id);
-                                            $(map_input[i]).find('input.inputform_add_img_map')
-                                                .attr('id', 'thumbnail' + count_id);
-                                            $(map_input[i]).find('img.preview_form_add_img_map')
-                                                .attr('id', 'holder' + count_id);
-
-                                            $('#' + id).filemanager('image');
-                                            count_id++;
-                                        }
-                                    })
-
-
                                 </script>
                             </div>
                             <div class="tab-pane fade show" id="nav-team" role="tabpanel" aria-labelledby="nav-home-map">

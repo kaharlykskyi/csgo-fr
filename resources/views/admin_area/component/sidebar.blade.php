@@ -91,6 +91,9 @@
                         <li>
                             <a href="{{route('admin.matches.index')}}">All matches</a>
                         </li>
+                        <li>
+                            <a href="{{route('admin.match-map.index')}}">Match Maps</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="has-sub">
