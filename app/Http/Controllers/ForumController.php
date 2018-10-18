@@ -35,7 +35,7 @@ class ForumController extends Controller
 
     public function topicPage(Request $request){
         $topic = ForumTopic::where('id',$request->id)->first();
-        $threads = TopicThread::where(['topic_id' => $topic->id,'id_category' => $request->id_category])->whereIn('state',[0,1])->orderBy('created_at', 'desc')->paginate(25);
+        $threads = TopicThread::where(['topic_id' => $topic->id])->whereIn('state',[0,1])->orderBy('created_at', 'desc')->paginate(25);
         $affix_threads = TopicThread::where('topic_id',$topic->id)->whereIn('state',[2])->orderBy('created_at', 'desc')->limit(3)->get();
         $users_id = [];
         foreach ($threads as $thread){

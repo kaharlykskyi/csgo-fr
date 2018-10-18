@@ -29,16 +29,6 @@
                                         <small class="form-text text-danger">{{ $errors->first('title') }}</small>
                                     @endif
                                 </div>
-                                @isset($category)
-                                    <div class="col-12">
-                                        <select name="id_category" class="form-control" required>
-                                            <option value="" disabled selected>Select a Topic category</option>
-                                            @foreach($category as $val)
-                                                <option value="{{$val->id}}">{{$val->title}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @endisset
                             </div>
                             <div class="nk-gap"></div>
                             <p class="h6 mt-5 mb-1">Description</p>
