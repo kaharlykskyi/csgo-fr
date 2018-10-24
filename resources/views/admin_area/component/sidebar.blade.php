@@ -23,24 +23,6 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow" href="#">
-                        Manage Home page
-                        <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
-                    </a>
-                    <ul class="list-unstyled navbar__sub-list js-sub-list">
-                        <li>
-                            <a href="{{route('announcement')}}"></i>Manage Announcement</a>
-                        </li>
-                    </ul>
-                    <ul class="list-unstyled navbar__sub-list js-sub-list">
-                        <li>
-                            <a href="{{route('admin.banner-image.index')}}"></i>Manage Banner Images</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="has-sub">
-                    <a class="js-arrow" href="#">
                         Manage news
                         <span class="arrow">
                                     <i class="fas fa-angle-down"></i>

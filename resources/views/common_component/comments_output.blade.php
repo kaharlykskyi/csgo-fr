@@ -23,6 +23,7 @@
         <input type="hidden" name="object_id" value="{{$object->id}}">
         <div class="nk-gap-1"></div>
         <textarea name="comment" cols="30" rows="10" class="nk-summernote form-control" placeholder="Message *"></textarea>
+        <small class="form-text text-info">start write with : if you wont use emojis. Example - :ra</small>
         <div class="nk-gap-1"></div>
         @if (session('status'))
             <div style="display: block;" class="nk-form-response-error">{{ session('status') }}</div>

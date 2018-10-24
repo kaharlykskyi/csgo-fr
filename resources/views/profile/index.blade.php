@@ -31,7 +31,49 @@
     </div>
 
     <div class="nk-gap-3"></div>
+    <div class="row mb-15">
+        <div class="col-12 col-lg-4 mb-20">
+            <div class="profile-button">
+                <a href="#" id="upload_avatar" onclick="$('.upload_input').fadeToggle(); return false;" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-success">
+                    {{ __('Upload photo') }}
+                </a>
+                @isset(Auth::user()->logo_user)
+                    <a href="{{route('delete_avatar',['avatar' => Auth::user()->logo_user])}}" onclick="if(confirm('DELETE?')){return true}else{return false}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-danger ml-15">
+                        {{ __('Delete photo') }}
+                    </a>
+                @endisset
+            </div>
+            <div class="upload_input">
+                <div class="nk-gap-2"></div>
+                <form action="{{route('upload_avatar')}}" method="post" enctype="multipart/form-data" class="nk-form" >
+                    @csrf
+                    <div class="row vertical-gap sm-gap">
+                        <div class="col-md-12">
+                            <input type="file" class="form-control required" name="logo_user" placeholder="">
+                        </div>
+                    </div>
+                    <div class="nk-gap"></div>
+                    <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-dark-3">
+                        <span>Send</span>
+                        <span class="icon"><i class="ion-paper-airplane"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-lg-8 mb-20">
+            <div class="profile-button justify-content-end">
+                <a href="{{route('change_password')}}" class="nk-btn nk-btn-outline nk-btn-color-primary mr-10">{{__('Change Password')}}</a>
 
+                <a href="{{route('edit_profile')}}" class="nk-btn nk-btn-outline nk-btn-color-warning">
+                    {{ __('Edit Info') }}
+                </a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="ml-10 nk-btn nk-btn-outline nk-btn-color-danger">
+                    {{ __('Logout') }}
+                </a>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-8">
             <!-- START: Teammate Card -->
@@ -136,49 +178,6 @@
                 </div>
             </div>
             <!-- END: Teammate Card -->
-            <div class="row mt-15">
-                <div class="col-12 mb-20">
-                    <div class="profile-button">
-                        <a href="#" id="upload_avatar" onclick="$('.upload_input').fadeToggle(); return false;" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-success">
-                            {{ __('Upload photo') }}
-                        </a>
-                        @isset(Auth::user()->logo_user)
-                            <a href="{{route('delete_avatar',['avatar' => Auth::user()->logo_user])}}" onclick="if(confirm('DELETE?')){return true}else{return false}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-danger ml-15">
-                                {{ __('Delete photo') }}
-                            </a>
-                        @endisset
-                    </div>
-                    <div class="upload_input">
-                        <div class="nk-gap-2"></div>
-                        <form action="{{route('upload_avatar')}}" method="post" enctype="multipart/form-data" class="nk-form" >
-                            @csrf
-                            <div class="row vertical-gap sm-gap">
-                                <div class="col-md-12">
-                                    <input type="file" class="form-control required" name="logo_user" placeholder="">
-                                </div>
-                            </div>
-                            <div class="nk-gap"></div>
-                            <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-dark-3">
-                                <span>Send</span>
-                                <span class="icon"><i class="ion-paper-airplane"></i></span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-12 mb-20">
-                    <div class="profile-button justify-content-end">
-                        <a href="{{route('change_password')}}" class="nk-btn nk-btn-outline nk-btn-color-primary mr-10">{{__('Change Password')}}</a>
-
-                        <a href="{{route('edit_profile')}}" class="nk-btn nk-btn-outline nk-btn-color-warning">
-                            {{ __('Edit Info') }}
-                        </a>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" class="ml-10 nk-btn nk-btn-outline nk-btn-color-danger">
-                            {{ __('Logout') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="col-lg-4">
             @component('profile.component.last_info',[

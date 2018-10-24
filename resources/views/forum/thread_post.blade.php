@@ -52,7 +52,8 @@
             <input type="hidden" value="{{$thread->id}}" name="thread_id">
             @csrf
             <textarea name="text_post" cols="30" rows="10" class="nk-summernote form-control" required>{{old('title')}}</textarea>
-            @if ($errors->has('text_post'))
+            <small class="form-text text-info">start write with : if you wont use emojis. Example - :ra</small>
+        @if ($errors->has('text_post'))
                 <small class="form-text text-danger">{{ $errors->first('text_post') }}</small>
             @endif
             <div class="nk-gap-1"></div>
@@ -71,7 +72,7 @@
         function editPost(idPost) {
             $('#id-post-reply').html('<input type="hidden" value="'+idPost+'" name="edit_id_post">');
             var contentPost = $('#post-' + idPost + ' .nk-forum-topic-content').html();
-            $('#reply-post .note-editable.card-block').html('<blockquote>'+contentPost+'</blockquote><p><br></p>');
+            $('#reply-post .note-editable.card-block').html(contentPost);
         }
     </script>
 

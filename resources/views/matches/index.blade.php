@@ -200,18 +200,18 @@
                         <div class="col-12">
                             <p class="h5 mb-5">{{$team->team1->name}}</p>
                         </div>
-                        <table class="nk-table">
+                        <table class="nk-table table-responsive">
                             <tbody>
                             <tr>
                                 @isset($team->players_team1)
                                     @foreach($team->players_team1 as $player)
                                         <td class="text-center p-l-0 p-r-0">
                                             <a style="text-decoration: none !important;" href="{{route('player_page',$player->nickname)}}">
-                                                <img style="max-width: 100px;width: 100%;" src="@if(isset($player->logo)){{asset($player->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="">
+                                                <div class="team-palyer-avatar" style="background-image: url(@if(isset($player->logo)){{asset($player->logo)}}@else{{asset('images/photo_not_available.png')}}@endif)"></div>
                                                 @isset($player->full_name)
                                                     <p class="p-1 m-0">{{$player->full_name}}</p>
                                                 @endisset
-                                                <p class="p-1 m-0">
+                                                <p class="p-1 m-0 p-flag">
                                                     @foreach($countrys as $country)
                                                         @if($country->country == $player->country)
                                                             <img class="profile-flag" src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">
@@ -232,18 +232,18 @@
                         <div class="col-12">
                             <p class="h5 mb-5">@isset($team->team2->name){{$team->team2->name}}@endisset</p>
                         </div>
-                        <table class="nk-table">
+                        <table class="nk-table table-responsive">
                             <tbody>
                             <tr>
                                 @isset($team->players_team2)
                                     @foreach($team->players_team2 as $player)
                                         <td class="text-center p-l-0 p-r-0">
                                             <a style="text-decoration: none !important;" href="{{route('player_page',$player->nickname)}}">
-                                                <img style="max-width: 100px;width: 100%;" src="@if(isset($player->logo)){{asset($player->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="">
+                                                <div class="team-palyer-avatar" style="background-image: url(@if(isset($player->logo)){{asset($player->logo)}}@else{{asset('images/photo_not_available.png')}}@endif)"></div>
                                                 @isset($player->full_name)
                                                     <p class="p-1 m-0">{{$player->full_name}}</p>
                                                 @endisset
-                                                <p class="p-1 m-0">
+                                                <p class="p-1 m-0 p-flag">
                                                     @foreach($countrys as $country)
                                                         @if($country->country == $player->country)
                                                             <img class="profile-flag" src="{{asset('images/flag/' . $country->flag)}}" alt="{{$country->country}}">

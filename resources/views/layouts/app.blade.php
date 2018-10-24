@@ -216,6 +216,39 @@ Additional Classes:
 <!-- Summernote -->
 <script src="{{ asset('vendor/summernote/dist/summernote-bs4.min.js') }}"></script>
 
+<script>
+
+    $.ajax({
+        url: 'https://api.github.com/emojis',
+        async: false
+    }).then(function(data) {
+        window.emojis = Object.keys(data);
+        window.emojiUrls = data;
+    });;
+
+    $(".nk-summernote").summernote({
+        height: 200,
+        hint: {
+            match: /:([\-+\w]+)$/,
+            search: function (keyword, callback) {
+                callback($.grep(emojis, function (item) {
+                    return item.indexOf(keyword)  === 0;
+                }));
+            },
+            template: function (item) {
+                var content = emojiUrls[item];
+                return '<img src="' + content + '" width="20" /> :' + item + ':';
+            },
+            content: function (item) {
+                var url = emojiUrls[item];
+                if (url) {
+                    return $('<img />').attr('src', url).css('width', 20)[0];
+                }
+                return '';
+            }
+        }
+    });
+</script>
 <!-- nK Share -->
 <script src="{{ asset('plugins/nk-share/nk-share.js') }}"></script>
 

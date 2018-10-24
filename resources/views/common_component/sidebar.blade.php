@@ -17,14 +17,14 @@
                         <div class="nk-widget-stream">
                             <span class="nk-widget-stream-status @if($stream['type'] === 'live') {{__('bg-success')}} @else {{__('bg-danger')}} @endif"></span>
                             <div class="nk-widget-stream-name">
-                                <a href="{{route('stream_page',$stream['channel_name'])}}">
+                                <a href="{{route('stream_page',['name' => $stream['channel_name'],'service' => $stream['service'],'id' => isset($stream['id']) ? $stream['id']: null])}}">
                                     @isset($stream['country'])
                                         <img style="width: 25px;" class="mr-2 rounded" src="{{asset('images/flag/' . $stream['country']->flag)}}" alt="{{$stream['country']->country}}">
                                     @endisset
                                     @isset($stream['channel_name']){{$stream['channel_name']}}@endisset
                                 </a>
                             </div>
-                            <span class="nk-widget-stream-count">@if(isset($stream['type']) && $stream['type'] === 'live'){{$stream['views']}} viewers @else {{__('')}} @endif</span>
+                            <span class="nk-widget-stream-count">@if(isset($stream['type']) && $stream['type'] === 'live'){{$stream['views']}} <span class="fa fa-eye"></span> @else {{__('')}} @endif</span>
                         </div>
                     @endforeach
                 @endisset

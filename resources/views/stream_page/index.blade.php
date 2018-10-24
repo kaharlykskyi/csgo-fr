@@ -9,7 +9,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="responsive-embed responsive-embed-16x9">
-                        <iframe src="https://player.twitch.tv/?channel={{$name}}&autoplay=true" frameborder="0" allowfullscreen="true" scrolling="no" height="500"></iframe>
+                        @if($service === 'twitch')
+                            <iframe src="https://player.twitch.tv/?channel={{$name}}&autoplay=true" frameborder="0" allowfullscreen="true" scrolling="no" height="500"></iframe>
+                        @elseif($service === 'youtube')
+                            <iframe height="500" src="https://www.youtube.com/embed/{{$id}}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        @endif
                     </div>
                 </div>
             </div>

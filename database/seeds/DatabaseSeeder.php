@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             CountrysTableSeeder::class,
             DefaultAdminUserTableSeeder::class,
             SettingsTableSeeder::class,
+            CountryTablePart2Seeder::class,
         ]);
     }
 }

@@ -73,8 +73,8 @@ Route::get('/player/{nickname}','PlayerController@index')->name('player_page');
 
 Route::get('/team/{name}','TeamController@index')->name('team_page');
 
-Route::get('/stream/{name}',function ($name){
-    return view('stream_page.index',compact('name'));
+Route::get('/stream/{name}/{service}/{id?}',function ($name,$service,$id = null){
+    return view('stream_page.index',compact('name','service','id'));
 })->name('stream_page');
 
 /*!!--------ADMIN--------!!*/

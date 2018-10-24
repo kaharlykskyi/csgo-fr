@@ -7,6 +7,7 @@ use App\ForumTopic;
 use App\ThreadPost;
 use App\TopicThread;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -123,7 +124,11 @@ class ForumController extends Controller
         if (isset($data['edit_id_post'])){
             DB::table('thread_posts')->where('id', $data['edit_id_post'])
                 ->where('user_id', Auth::user()->id)
-                ->update(['text_post' => $data['text_post']]);
+                ->update([
+                    'text_post' => $data['text_post'],
+                    'edit' => 'true',
+                    'updated_at' => Carbon::now()
+                ]);
 
             return back();
         }
