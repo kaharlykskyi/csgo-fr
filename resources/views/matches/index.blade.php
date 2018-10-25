@@ -281,62 +281,144 @@
                                 <div class="row">
                                     @foreach($streams as $k => $stream)
                                         <div class="col-12">
-                                            <?php
-                                                $channel = explode('/',$stream->link);
-                                            ?>
-                                            <script>
-                                                $(document).ready(function(){
-                                                    $.ajax({
-                                                        beforeSend: function(xhrObj){
-                                                            xhrObj.setRequestHeader("Client-ID","{{Illuminate\Support\Facades\Config::get('app.twitch_key')}}");
-                                                            xhrObj.setRequestHeader("Accept","application/vnd.twitchtv.v5+json");
-                                                        },
-                                                        type: "GET",
-                                                        url: "https://api.twitch.tv/kraken/users?login={{$channel[count($channel) - 1]}}",
-                                                        processData: false,
-                                                        dataType: "json",
-                                                        success: function (data_user) {
+                                            @if(stripos($stream->link,'www.twitch.tv') !== false)
+                                                @php
+                                                    $channel = explode('/',$stream->link);
+                                                @endphp
+                                                    <script>
+                                                        $(document).ready(function(){
                                                             $.ajax({
                                                                 beforeSend: function(xhrObj){
                                                                     xhrObj.setRequestHeader("Client-ID","{{Illuminate\Support\Facades\Config::get('app.twitch_key')}}");
                                                                     xhrObj.setRequestHeader("Accept","application/vnd.twitchtv.v5+json");
                                                                 },
                                                                 type: "GET",
-                                                                url: "https://api.twitch.tv/kraken/streams/" + data_user.users[0]._id,
+                                                                url: "https://api.twitch.tv/kraken/users?login={{end($channel)}}",
                                                                 processData: false,
                                                                 dataType: "json",
-                                                                userData: data_user,
-                                                                success: function (data) {
-                                                                    if(data.stream !== null){
-                                                                        $('#stream-{{$k}}').html(
-                                                                            '<span class="nk-widget-stream-status bg-success"></span>'+
-                                                                            '<div class="nk-widget-stream-name">' +
-                                                                                '<a href="#" data-toggle="collapse" data-target="#video-{{$k}}">' + data.stream.channel.display_name + '</a>' +
-                                                                            '</div>'
-                                                                        );
-                                                                        if (data.stream.stream_type === 'live'){
-                                                                            $('#stream-{{$k}}').append('<span class="nk-widget-stream-count"> ' + data.stream.viewers + ' viewers</span>');
-                                                                        }
-                                                                    } else {
-                                                                        $('#stream-{{$k}}').html(
-                                                                            '<span class="nk-widget-stream-status bg-danger"></span>'+
-                                                                            '<div class="nk-widget-stream-name">' +
-                                                                                '<a href="#" data-toggle="collapse" data-target="#video-{{$k}}">' + data_user.users[0].display_name + '</a>' +
-                                                                            '</div>'
-                                                                        );
-                                                                    }
+                                                                success: function (data_user) {
+                                                                    $.ajax({
+                                                                        beforeSend: function(xhrObj){
+                                                                            xhrObj.setRequestHeader("Client-ID","{{Illuminate\Support\Facades\Config::get('app.twitch_key')}}");
+                                                                            xhrObj.setRequestHeader("Accept","application/vnd.twitchtv.v5+json");
+                                                                        },
+                                                                        type: "GET",
+                                                                        url: "https://api.twitch.tv/kraken/streams/" + data_user.users[0]._id,
+                                                                        processData: false,
+                                                                        dataType: "json",
+                                                                        userData: data_user,
+                                                                        success: function (data) {
+                                                                            if(data.stream !== null){
+                                                                                $('#stream-{{$k}}').html(
+                                                                                    '<span class="nk-widget-stream-status bg-success"></span>'+
+                                                                                    '<div class="nk-widget-stream-name">' +
+                                                                                    '<a href="#" data-toggle="collapse" data-target="#video-{{$k}}">' + data.stream.channel.display_name + '</a>' +
+                                                                                    '</div>'
+                                                                                );
+                                                                                if (data.stream.stream_type === 'live'){
+                                                                                    $('#stream-{{$k}}').append('<span class="nk-widget-stream-count"> ' + data.stream.viewers + ' viewers</span>');
+                                                                                }
+                                                                            } else {
+                                                                                $('#stream-{{$k}}').html(
+                                                                                    '<span class="nk-widget-stream-status bg-danger"></span>'+
+                                                                                    '<div class="nk-widget-stream-name">' +
+                                                                                    '<a href="#" data-toggle="collapse" data-target="#video-{{$k}}">' + data_user.users[0].display_name + '</a>' +
+                                                                                    '</div>'
+                                                                                );
+                                                                            }
+                                                                        },
+                                                                    });
                                                                 },
                                                             });
-                                                        },
-                                                    });
-                                                });
-                                            </script>
-                                                <div class="nk-widget-stream mt-10" id="stream-{{$k}}"></div>
-                                            <div id="video-{{$k}}" class="collapse">
-                                                <div class="responsive-embed responsive-embed-16x9">
-                                                    <iframe src="https://player.twitch.tv/?channel={{$channel[count($channel) - 1]}}&autoplay=false" frameborder="0" allowfullscreen="true" scrolling="no" height="378"></iframe>
-                                                </div>
-                                            </div>
+                                                        });
+                                                    </script>
+                                                    <div class="nk-widget-stream mt-10" id="stream-{{$k}}"></div>
+                                                    <div id="video-{{$k}}" class="collapse">
+                                                        <div class="responsive-embed responsive-embed-16x9">
+                                                            <iframe src="https://player.twitch.tv/?channel={{end($channel)}}&autoplay=false" frameborder="0" allowfullscreen="true" scrolling="no" height="378"></iframe>
+                                                        </div>
+                                                    </div>
+                                            @endif
+                                            @if(stripos($stream->link,'youtube') !== false)
+                                                    @php
+                                                        $channel = explode('/',$stream->link);
+                                                    @endphp
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $.ajax({
+                                                                type: "GET",
+                                                                url: "https://www.googleapis.com/youtube/v3/search?maxResults=1&part=snippet&channelId={{end($channel)}}&eventType=live&type=video&key=AIzaSyAOEkLY_mnud_KVyC-hM6ZmFitLHuyhe8Q",
+                                                                processData: false,
+                                                                dataType: "json",
+                                                                success: function (data) {
+                                                                    if (data.items.length > 0) {
+                                                                        const name = data.items[0].snippet.channelTitle
+                                                                        $.ajax({
+                                                                            type: "GET",
+                                                                            url: `https://www.googleapis.com/youtube/v3/videos?id=${data.items[0].id.videoId}&part=snippet,liveStreamingDetails&fields=items(id,snippet(title,liveBroadcastContent),liveStreamingDetails/concurrentViewers)&key=AIzaSyAOEkLY_mnud_KVyC-hM6ZmFitLHuyhe8Q`,
+                                                                            processData: false,
+                                                                            dataType: "json",
+                                                                            success: function (data) {
+                                                                                $('#stream-{{$k}}').html(
+                                                                                    `<span class="nk-widget-stream-status bg-success"></span>
+                                                                                                <div class="nk-widget-stream-name">
+                                                                                                <a href="#" data-toggle="collapse" data-target="#video-{{$k}}">${name}</a>
+                                                                                                </div>
+                                                                                                <span class="nk-widget-stream-count">${data.items[0].liveStreamingDetails.concurrentViewers} viewers</span>`
+                                                                                );
+                                                                                $('#play{{$k}}').html(`
+                                                                                                <iframe height="378" src="https://www.youtube.com/embed/${data.items[0].id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                                                            `)
+                                                                            }
+                                                                        })
+                                                                        console.log(data.items)
+                                                                    }
+                                                                },
+                                                                error: function () {
+                                                                    $.ajax({
+                                                                        type: "GET",
+                                                                        url: "https://www.googleapis.com/youtube/v3/search?maxResults=1&part=snippet&q={{end($channel)}}&eventType=live&type=video&key=AIzaSyAOEkLY_mnud_KVyC-hM6ZmFitLHuyhe8Q",
+                                                                        processData: false,
+                                                                        dataType: "json",
+                                                                        success: function (data) {
+                                                                            if (data.items.length > 0) {
+                                                                                if (data.items.length > 0) {
+                                                                                    const name = data.items[0].snippet.channelTitle
+                                                                                    $.ajax({
+                                                                                        type: "GET",
+                                                                                        url: `https://www.googleapis.com/youtube/v3/videos?id=${data.items[0].id.videoId}&part=snippet,liveStreamingDetails&fields=items(id,snippet(title,liveBroadcastContent),liveStreamingDetails/concurrentViewers)&key=AIzaSyAOEkLY_mnud_KVyC-hM6ZmFitLHuyhe8Q`,
+                                                                                        dataType: "json",
+                                                                                        success: function (data) {
+                                                                                            $('#stream-{{$k}}').html(
+                                                                                                `<span class="nk-widget-stream-status bg-success"></span>
+                                                                                                <div class="nk-widget-stream-name">
+                                                                                                <a href="#" data-toggle="collapse" data-target="#video-{{$k}}">${name}</a>
+                                                                                                </div>
+                                                                                                <span class="nk-widget-stream-count">${data.items[0].liveStreamingDetails.concurrentViewers} viewers</span>`
+                                                                                            );
+                                                                                            $('#play{{$k}}').html(`
+                                                                                                <iframe height="378" src="https://www.youtube.com/embed/${data.items[0].id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                                                            `)
+                                                                                        },
+                                                                                        error: function (data) {
+                                                                                            console.log(data)
+                                                                                        }
+                                                                                    })
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    })
+                                                                }
+                                                            })
+                                                        });
+                                                    </script>
+
+                                                    <div class="nk-widget-stream mt-10" id="stream-{{$k}}"></div>
+                                                    <div id="video-{{$k}}" class="collapse">
+                                                        <div class="responsive-embed responsive-embed-16x9" id="play{{$k}}">
+                                                        </div>
+                                                    </div>
+                                            @endif
                                         </div>
                                     @endforeach
                                 </div>

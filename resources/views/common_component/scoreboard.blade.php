@@ -15,7 +15,7 @@
                             $team_data = json_decode($val->match_data->team);
                             $score = json_decode($val->match_data->fin_score);
                             ?>
-                            <div class="nk-widget-match" style="padding: 5px 10px;">
+                            <div class="nk-widget-match" style="padding: 5px;">
                                 <a href="{{route('match_page',['id' => $val->match_data->id,'type' => $val->type])}}">
                         <span class="nk-widget-match-left">
                             <span class="nk-widget-match-teams">
