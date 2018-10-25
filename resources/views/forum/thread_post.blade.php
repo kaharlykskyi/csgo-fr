@@ -52,7 +52,6 @@
             <input type="hidden" value="{{$thread->id}}" name="thread_id">
             @csrf
             <textarea name="text_post" cols="30" rows="10" class="nk-summernote form-control" required>{{old('title')}}</textarea>
-            <small class="form-text text-info">start write with : if you wont use emojis. Example - :ra</small>
         @if ($errors->has('text_post'))
                 <small class="form-text text-danger">{{ $errors->first('text_post') }}</small>
             @endif

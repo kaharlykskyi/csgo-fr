@@ -45,7 +45,6 @@
             @csrf
             <div class="nk-gap-1"></div>
             <textarea name="massage" cols="30" rows="10" class="nk-summernote form-control"></textarea>
-            <small class="form-text text-info">start write with : if you wont use emojis. Example - :ra</small>
             <div class="nk-gap-1"></div>
             <button type="submit" class="nk-btn nk-btn-rounded nk-btn-color-white">
                 <span class="icon ion-paper-airplane"></span>
