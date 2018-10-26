@@ -13,6 +13,11 @@
                             <iframe src="https://player.twitch.tv/?channel={{$name}}&autoplay=true" frameborder="0" allowfullscreen="true" scrolling="no" height="500"></iframe>
                         @elseif($service === 'youtube')
                             <iframe height="500" src="https://www.youtube.com/embed/{{$id}}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        @elseif($service === 'facebook')
+                            @php
+                                $link = \Illuminate\Support\Facades\DB::table('streams')->where('id',$id)->first();
+                            @endphp
+                            <iframe src="https://www.facebook.com/plugins/video.php?href={{$link->link}}" height="350" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
                         @endif
                     </div>
                 </div>

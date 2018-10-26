@@ -70,23 +70,29 @@ trait StreamApi
                     ]);
 
                     $fb_live = explode('/',$stream->link);
+                    if(empty(end($fb_live))){
+                        unset($fb_live[count($fb_live) - 1]);
+                    }
 
                     $response = $fb->get(
-                        '/' . end($fb_live) . '?fields=id,embed_html,live_views',
+                        '/' . end($fb_live) . '?fields=embed_html,updated_time,from',
                         Config::get('app.access_token')
                     );
 
                     $graphNode = $response->getGraphNode();
                     $graphNode = json_decode($graphNode);
 
-                    $streams_output[$k] = [
-                        'type' => 'live',
-                        'link' => trim($stream->link),
-                        'views' => $graphNode->live_views,
-                        'channel_name' => trim($stream->name),
-                        'country' => DB::table('countrys')->where('country',$stream->country)->first(),
-                        'service' => 'facebook'
-                    ];
+                    if ((integer)((time() - strtotime($graphNode->updated_time)) / 60 / 60) < 15){
+                        $streams_output[$k] = [
+                            'type' => 'live',
+                            'link' => trim($stream->link),
+                            'views' => null,
+                            'channel_name' => trim($stream->name),
+                            'country' => DB::table('countrys')->where('country',$stream->country)->first(),
+                            'service' => 'facebook',
+                            'id' => $stream->id
+                        ];
+                    }
 
                 } catch (FacebookSDKException $e) {
                     if (Config::get('app.debug')){

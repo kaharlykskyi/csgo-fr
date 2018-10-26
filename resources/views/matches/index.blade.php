@@ -419,6 +419,26 @@
                                                         </div>
                                                     </div>
                                             @endif
+                                            @if(stripos($stream->link,'facebook') !== false)
+                                        {{--            <script>
+                                                        $(document).ready(function () {
+                                                            $.ajax({
+
+                                                            })
+                                                        })
+                                                    </script>--}}
+                                                    <div class="nk-widget-stream mt-10" id="stream-{{$k}}">
+                                                        <span class="nk-widget-stream-status bg-success"></span>
+                                                        <div class="nk-widget-stream-name">
+                                                            <a href="#" data-toggle="collapse" data-target="#video-{{$k}}">FB Live Stream</a>
+                                                        </div>
+                                                    </div>
+                                                    <div id="video-{{$k}}" class="collapse">
+                                                        <div class="responsive-embed responsive-embed-16x9">
+                                                            <iframe src="https://www.facebook.com/plugins/video.php?href={{$stream->link}}" height="350" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
+                                                        </div>
+                                                    </div>
+                                            @endif
                                         </div>
                                     @endforeach
                                 </div>
