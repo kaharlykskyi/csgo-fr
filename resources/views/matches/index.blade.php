@@ -53,16 +53,8 @@
 
                 @isset(Auth::user()->id)
                     @php
-                        $voting_flag = \Illuminate\Support\Facades\DB::table('voting_matches')->where([
-                                                        'user_id' => Auth::user()->id,
-                                                        'match_id' => $match_data->id,
-                                                        'team_id' => $team->team1->id
-                                                    ])->first();
-                        $voting_flag = \Illuminate\Support\Facades\DB::table('voting_matches')->where([
-                                                        'user_id' => Auth::user()->id,
-                                                        'match_id' => $match_data->id,
-                                                        'team_id' => $team->team2->id
-                                                    ])->first();
+                        $voting_flag = \Illuminate\Support\Facades\DB::table('voting_matches')->where(['user_id' => Auth::user()->id,'match_id' => $match_data->id])
+                            ->whereIn('team_id',[$team->team1->id,$team->team2->id])->first();
                     @endphp
                     @if(!isset($voting_flag))
                         <div class="col-12 mb-15 p-10 bg-dark-2" id="voting-block">
