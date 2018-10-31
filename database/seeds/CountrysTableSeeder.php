@@ -12,6 +12,7 @@ class CountrysTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('countrys')->insert(['country' => 'Turkey', 'flag' => 'tr.png']);
         DB::table('countrys')->insert(['country' => 'Afghanistan', 'flag' => 'af.png']);
         DB::table('countrys')->insert(['country' => 'Albania', 'flag' => 'al.png']);
         DB::table('countrys')->insert(['country' => 'Algeria', 'flag' => 'dz.png']);
@@ -36,6 +37,8 @@ class CountrysTableSeeder extends Seeder
         DB::table('countrys')->insert(['country' => 'Bosnia and Herzegovina', 'flag' => 'ba.png']);
         DB::table('countrys')->insert(['country' => 'Botswana', 'flag' => 'bw.png']);
         DB::table('countrys')->insert(['country' => 'Brazil', 'flag' => 'br.png']);
+        DB::table('countrys')->insert(['country' => 'International', 'flag' => 'inter.png']);
+        DB::table('countrys')->insert(['country' => 'Europe', 'flag' => 'eu.png']);
         DB::table('countrys')->insert(['country' => 'Brunei', 'flag' => 'bn.png']);
         DB::table('countrys')->insert(['country' => 'Bulgaria', 'flag' => 'bg.png']);
         DB::table('countrys')->insert(['country' => 'Burkina Faso', 'flag' => 'bf.png']);
@@ -187,7 +190,6 @@ class CountrysTableSeeder extends Seeder
         DB::table('countrys')->insert(['country' => 'Togo', 'flag' => 'tg.png']);
         DB::table('countrys')->insert(['country' => 'Tonga', 'flag' => 'to.png']);
         DB::table('countrys')->insert(['country' => 'Tunisia', 'flag' => 'tn.png']);
-        DB::table('countrys')->insert(['country' => 'Turkey', 'flag' => 'tr.png']);
         DB::table('countrys')->insert(['country' => 'Turkmenistan', 'flag' => 'tm.png']);
         DB::table('countrys')->insert(['country' => 'Tuvalu', 'flag' => 'tv.png']);
         DB::table('countrys')->insert(['country' => 'Uganda', 'flag' => 'ug.png']);

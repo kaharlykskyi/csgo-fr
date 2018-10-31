@@ -283,9 +283,60 @@ button.note-btn[aria-label="Picture"]{
     align-items: center;
 }
 
+.reverse-block{
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.match-info-wrapper{
+    position: absolute;
+    top: -12px;
+    right: -11px;
+    z-index: 100;
+}
+
+.match-info-wrapper span{
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,.6);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.match-info-wrapper__block{
+    position: absolute;
+    background: rgba(0,0,0,.8);
+    padding: 10px;
+    top: -35px;
+    left: -110px;
+    width: 250px;
+    display: none;
+}
+
+.match-info-wrapper span:hover .match-info-wrapper__block{
+    display: block;
+}
+
+.match-info-wrapper__block__team-name{
+    font-size: 15px;
+    margin: 0;
+}
+
+.match-info-wrapper__block__vote{
+    font-size: 11px;
+    color: #ccc;
+    margin: 0;
+}
+
+.match-info-wrapper__block__vote-percent{
+    margin: 0;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
-        max-width: 870px;
+        max-width: 1100px;
     }
 }
 

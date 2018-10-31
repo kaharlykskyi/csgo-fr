@@ -84,6 +84,13 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $countries = DB::table('countrys')->get();
+        foreach ($countries as $key => $country){
+            if ($country->country === 'Turkey'){
+                $a = $countries[0];
+                $countries[0] = $countries[$key];
+                $countries[$key] = $a;
+            }
+        }
         return view('auth.register',compact('countries'));
     }
 }

@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <?php
+    @php
         $last_forum = \Illuminate\Support\Facades\DB::table('topic_threads')
             ->join('forum_topics','topic_threads.topic_id', '=', 'forum_topics.id')
             ->select(['topic_threads.*','forum_topics.logo','forum_topics.id as id_topic'])
@@ -40,7 +40,7 @@
             ->orderByDesc('created_at')
             ->limit(10)
             ->get();
-    ?>
+    @endphp
     @isset($last_forum)
         <div class="nk-widget nk-widget-highlighted">
             <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> in Forums</span></h4>
@@ -69,9 +69,38 @@
         </div>
     @endisset
 
-    <?php
+    @php
+        $popular_topics = \Illuminate\Support\Facades\DB::select('SELECT `topic_threads`.*, (SELECT count(id) FROM `thread_posts` WHERE `topic_threads`.id = `thread_posts`.thread_id) count FROM `topic_threads` ORDER BY count DESC LIMIT 4;');
+    @endphp
+
+    @isset($popular_topics)
+        <div class="nk-widget nk-widget-highlighted">
+            <h4 class="nk-widget-title"><span><span class="text-main-1">Popular </span> Topics</span></h4>
+            <div class="nk-widget-content">
+                <div class="nk-widget-match p-5">
+                    @isset($popular_topics)
+                        @foreach($popular_topics as $item)
+                            <a href="{{route('thread_page',['id' => $item->topic_id, 'thread_id' => $item->id])}}">
+                                <div class="nk-widget-stream mt-2 mb-2 pr-35 pl-20">
+                                    <div class="nk-widget-stream-name">
+                                        @isset($item->title){{$item->title}}@endisset
+                                    </div>
+                                    <span class="nk-widget-stream-count" style="color: #7f8b92;">
+                                    {{$item->count}}
+                                        <span class="fa fa-comments ml-3"></span>
+                                </span>
+                                </div>
+                            </a>
+                        @endforeach
+                    @endisset
+                </div>
+            </div>
+        </div>
+    @endisset
+
+    @php
         $video = \Illuminate\Support\Facades\DB::table('video')->orderByDesc('created_at')->first();
-    ?>
+    @endphp
 
     @isset($video)
         <div class="nk-widget nk-widget-highlighted">
@@ -98,9 +127,9 @@
         </div>
     @endisset
 
-    <?php
+    @php
         $latest_img = \Illuminate\Support\Facades\DB::table('images')->orderByDesc('created_at')->limit(6)->get();
-    ?>
+    @endphp
 
     @isset($latest_img)
         <div class="nk-widget nk-widget-highlighted">

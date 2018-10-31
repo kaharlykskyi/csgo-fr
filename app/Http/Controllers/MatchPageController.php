@@ -22,6 +22,11 @@ class MatchPageController extends Controller
             'players_team2' => Player::where('team_id',$team_json->team_names2)->get()
         ];
 
+        $voting_data = (object)[
+            'team1' => DB::table('voting_matches')->where(['match_id' => $match_data->id,'team_id' => $team->team1->id])->count(),
+            'team2' => DB::table('voting_matches')->where(['match_id' => $match_data->id,'team_id' => $team->team2->id])->count()
+        ];
+
         $countrys = DB::table('countrys')->get();
 
         $comments = Comment::with('children')
@@ -58,7 +63,8 @@ class MatchPageController extends Controller
                 'type_match',
                 'tournament',
                 'team',
-                'teams'
+                'teams',
+                'voting_data'
             )
         )->with(['sort_match' => $this->selectMatch()]);
     }
@@ -88,5 +94,33 @@ class MatchPageController extends Controller
         DB::table('match_likes')->insert(['comment_id' => $request->id, 'user_id' => Auth::user()->id]);
 
         return $comment->like_count;
+    }
+
+    public function matchVoting(Request $request){
+        $data = $request->post();
+        $response_data = [
+            'team1' => 0,
+            'team2' => 0
+        ];
+        $a = DB::table('voting_matches')->where([
+            'user_id' => Auth::user()->id,
+            'match_id' => $data['match'],
+            'team_id' => $data['team']
+        ])->first();
+        if (!isset($a)){
+            DB::table('voting_matches')->insert([
+                'user_id' => Auth::user()->id,
+                'match_id' => $data['match'],
+                'team_id' => $data['team']
+            ]);
+
+            $response_data = (object)[
+                'team1' => DB::table('voting_matches')->where(['match_id' => $data['match'],'team_id' => $data['team']])->count(),
+                'team2' => DB::table('voting_matches')->where(['match_id' => $data['match'],'team_id' => $data['other_team']])->count(),
+            ];
+        }
+        return response()->json([
+            'request' => $response_data
+        ]);
     }
 }

@@ -56,6 +56,7 @@ Route::get('/matches/{id}/{type?}','MatchPageController@index')->name('match_pag
 Route::post('/match-comment', 'MatchPageController@writeComment')->name('match_comment');
 Route::post('/match-comment-like','MatchPageController@like')->name('match_comment_like')->middleware('auth');
 Route::get('/latest-matches','LatestMatchesController@index')->name('latest_matches');
+Route::post('/match-voting','MatchPageController@matchVoting')->name('match_voting')->middleware('auth');
 
 /*--------NEWS--------*/
 Route::get('/news/{id}','NewsPageController@index')->name('news_page');

@@ -15,6 +15,116 @@
 
             @endcomponent
 
+                <div class="col-12 mb-15">
+                    <div class="row">
+                        <div class="col-6 p-0">
+                            <div class="progress reverse-block">
+                                <div id="progress-bar-one" class="progress-bar bg-success" role="progressbar" style="width: {{(($voting_data->team1 + $voting_data->team2) != 0) ? $voting_data->team1/($voting_data->team1 + $voting_data->team2) * 100: 0}}%" aria-valuenow="{{(($voting_data->team1 + $voting_data->team2) != 0) ? $voting_data->team1/($voting_data->team1 + $voting_data->team2) * 100: 0}}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="match-info-wrapper">
+                                <span class="ion-information-circled">
+                                    <div class="match-info-wrapper__block">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p class="text-uppercase text-center h6">prognosis</p>
+                                            </div>
+                                            <div class="col-6" id="match-info-wrapper__block-one">
+                                                <p class="match-info-wrapper__block__team-name">{{$team->team1->name}}</p>
+                                                <p class="match-info-wrapper__block__vote">{{$voting_data->team1}} vote(s)</p>
+                                                <p class="match-info-wrapper__block__vote-percent">{{(($voting_data->team1 + $voting_data->team2) != 0) ? $voting_data->team1/($voting_data->team1 + $voting_data->team2) * 100: 0}} %</p>
+                                            </div>
+                                            <div class="col-6" id="match-info-wrapper__block-two">
+                                                <p class="match-info-wrapper__block__team-name text-right">{{$team->team2->name}}</p>
+                                                <p class="match-info-wrapper__block__vote text-right">{{$voting_data->team2}} vote(s)</p>
+                                                <p class="match-info-wrapper__block__vote-percent text-right">{{(($voting_data->team1 + $voting_data->team2) != 0) ? $voting_data->team2/($voting_data->team1 + $voting_data->team2) * 100: 0}} %</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-6 p-0">
+                            <div class="progress">
+                                <div id="progress-bar-two" class="progress-bar" role="progressbar" style="width: {{(($voting_data->team1 + $voting_data->team2) != 0) ? $voting_data->team2/($voting_data->team1 + $voting_data->team2) * 100: 0}}%" aria-valuenow="{{(($voting_data->team1 + $voting_data->team2) != 0) ? $voting_data->team2/($voting_data->team1 + $voting_data->team2) * 100: 0}}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @isset(Auth::user()->id)
+                    @php
+                        $voting_flag = \Illuminate\Support\Facades\DB::table('voting_matches')->where([
+                                                        'user_id' => Auth::user()->id,
+                                                        'match_id' => $match_data->id,
+                                                        'team_id' => $team->team1->id
+                                                    ])->first();
+                        $voting_flag = \Illuminate\Support\Facades\DB::table('voting_matches')->where([
+                                                        'user_id' => Auth::user()->id,
+                                                        'match_id' => $match_data->id,
+                                                        'team_id' => $team->team2->id
+                                                    ])->first();
+                    @endphp
+                    @if(!isset($voting_flag))
+                        <div class="col-12 mb-15 p-10 bg-dark-2" id="voting-block">
+                            <h5 class="text-center">Match Voting</h5>
+                            <div class="row mt-10">
+                                <div class="col-sm-6 mt-5">
+                                    <form id="voting1" action="{{route('match_voting')}}" method="post" class="form-horizontal">
+                                        <input name="match" type="hidden" value="{{$match_data->id}}">
+                                        <input name="team" type="hidden" value="{{$team->team1->id}}">
+                                        <input name="other_team" type="hidden" value="{{$team->team2->id}}">
+                                        @csrf
+                                        <button type="submit" class="nk-btn nk-btn-rounded text-uppercase nk-btn-color-dark-3 nk-btn-hover-color-info">
+                                            <span class="icon ion-paper-airplane"></span>
+                                            voting for {{$team->team1->name}}
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="col-sm-6 mt-5">
+                                    <form id="voting2" action="{{route('match_voting')}}" method="post" class="form-horizontal text-right">
+                                        <input name="match" type="hidden" value="{{$match_data->id}}">
+                                        <input name="team" type="hidden" value="{{$team->team2->id}}">
+                                        <input name="other_team" type="hidden" value="{{$team->team1->id}}">
+                                        @csrf
+                                        <button type="submit" class="nk-btn nk-btn-rounded text-uppercase nk-btn-color-dark-3 nk-btn-hover-color-info">
+                                            <span class="icon ion-paper-airplane"></span>
+                                            voting for {{$team->team2->name}}
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $('#voting1, #voting2').submit(function () {
+                                    $.ajax({
+                                        url: $(this).attr('action'),
+                                        type: 'POST',
+                                        data: $(this).serialize(),
+                                        success: function (data) {
+                                            console.log(data.request);
+                                            $('#voting-block').hide();
+                                            $('#progress-bar-one').css({
+                                                width: data.request.team1 / (data.request.team1 + data.request.team2) * 100 + '%'
+                                            }).attr('aria-valuenow',data.request.team1 / (data.request.team1 + data.request.team2) * 100);
+                                            $('#progress-bar-two').css({
+                                                width: data.request.team2 / (data.request.team1 + data.request.team2) * 100 + '%'
+                                            }).attr('aria-valuenow',data.request.team2 / (data.request.team1 + data.request.team2) * 100);
+                                            $('#match-info-wrapper__block-one .match-info-wrapper__block__vote').text(data.request.team1 + ' vote(s)');
+                                            $('#match-info-wrapper__block-two .match-info-wrapper__block__vote').text(data.request.team2 + ' vote(s)');
+                                            $('#match-info-wrapper__block-one .match-info-wrapper__block__vote-percent')
+                                                .text(data.request.team1 / (data.request.team1 + data.request.team2) * 100 + ' %');
+                                            $('#match-info-wrapper__block-two .match-info-wrapper__block__vote-percent')
+                                                .text(data.request.team2 / (data.request.team1 + data.request.team2) * 100 + ' %');
+                                        }
+                                    });
+                                    return false;
+                                })
+                            })
+                        </script>
+                    @endif
+                @endisset
+
             <div class="nk-match">
                 <div class="nk-match-team-left">
                     <a class="logo-team-block" href="{{route('team_page',$team->team1->name)}}">

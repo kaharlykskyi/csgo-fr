@@ -16,13 +16,22 @@ class DashboardController extends Controller
     }
 
     public function users(Request $request){
+        $user_sort_date = $request->user_sort_date;
         if ($request->isMethod('post')){
             $search = $request->search;
             $users = User::where('name','like',"%{$search}%")->paginate(40);
             return view('admin_area.users.index',compact('users','search'));
         }
-        $users = User::paginate(40);
-        return view('admin_area.users.index',compact('users'));
+        if (isset($user_sort_date)){
+            if ($user_sort_date == 'true'){
+                $users = User::orderBy('created_at', 'desc')->paginate(40);
+            } else {
+                $user_sort_date = null;
+            }
+        } else {
+            $users = User::paginate(40);
+        }
+        return view('admin_area.users.index',compact('users','user_sort_date'));
     }
 
     public function access(Request $request){

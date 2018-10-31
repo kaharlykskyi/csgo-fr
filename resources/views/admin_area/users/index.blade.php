@@ -29,6 +29,25 @@
                                     </div>
                                 @endisset
                             </div>
+                            <div class="col-12">
+                                <label class="switch switch-3d switch-primary m-l-30">
+                                    <input type="checkbox" id="sort_user" class="switch-input" @if(isset($user_sort_date)) checked="true" @endif>
+                                    <span class="switch-label"></span>
+                                    <span class="switch-handle"></span>
+                                </label>
+                                <span>sort by registration date</span>
+                            </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $('#sort_user').change(function () {
+                                        if ($(this).attr('checked') === undefined){
+                                            location.href = '{{route('admin.users')}}?user_sort_date=true';
+                                        } else{
+                                            location.href = '{{route('admin.users')}}';
+                                        }
+                                    })
+                                })
+                            </script>
                             <div class="table-responsive table-data">
                                 <table class="table">
                                     <thead>
