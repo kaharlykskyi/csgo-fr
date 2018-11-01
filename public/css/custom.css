@@ -334,6 +334,33 @@ button.note-btn[aria-label="Picture"]{
     margin: 0;
 }
 
+.form-voting{
+    position: absolute;
+    z-index: 100;
+    top: -11px;
+}
+
+.form-voting.first{
+    right: 25px;
+}
+
+.form-voting.second{
+    left: 25px;
+}
+
+.voting-button{
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: rgba(0,0,0,0.8);
+    font-size: 20px;
+}
+
+.voting-button:hover{
+    color: rgba(0,0,0,0.6);
+    text-shadow: 0 2px 2px 2px rgba(0,0,0,0.2);
+}
+
 #nav-tabContent .nk-widget-match-left{
     width: 89%;
 }

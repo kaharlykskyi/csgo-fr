@@ -80,9 +80,15 @@
                 <div class="nk-widget-match p-5">
                     @isset($popular_topics)
                         @foreach($popular_topics as $item)
+                            @php
+                                $thread = \Illuminate\Support\Facades\DB::table('forum_topics')->where('id',$item->topic_id)->first();
+                            @endphp
                             <a href="{{route('thread_page',['id' => $item->topic_id, 'thread_id' => $item->id])}}">
                                 <div class="nk-widget-stream mt-2 mb-2 pr-35 pl-20">
                                     <div class="nk-widget-stream-name">
+                                        @isset($thread->logo)
+                                            <span class="{{$thread->logo}} mr-10" style="position: absolute;top: 0;left: 0;"></span>
+                                        @endisset
                                         @isset($item->title){{$item->title}}@endisset
                                     </div>
                                     <span class="nk-widget-stream-count" style="color: #7f8b92;">

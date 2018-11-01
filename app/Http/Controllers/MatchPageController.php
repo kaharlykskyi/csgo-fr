@@ -114,10 +114,18 @@ class MatchPageController extends Controller
                 'team_id' => $data['team']
             ]);
 
-            $response_data = (object)[
-                'team1' => DB::table('voting_matches')->where(['match_id' => $data['match'],'team_id' => $data['team']])->count(),
-                'team2' => DB::table('voting_matches')->where(['match_id' => $data['match'],'team_id' => $data['other_team']])->count(),
-            ];
+            if ($data['form'] === 'first'){
+                $response_data = (object)[
+                    'team1' => DB::table('voting_matches')->where(['match_id' => $data['match'],'team_id' => $data['team']])->count(),
+                    'team2' => DB::table('voting_matches')->where(['match_id' => $data['match'],'team_id' => $data['other_team']])->count(),
+                ];
+            } else {
+                $response_data = (object)[
+                    'team2' => DB::table('voting_matches')->where(['match_id' => $data['match'],'team_id' => $data['team']])->count(),
+                    'team1' => DB::table('voting_matches')->where(['match_id' => $data['match'],'team_id' => $data['other_team']])->count(),
+                ];
+            }
+
         }
         return response()->json([
             'request' => $response_data
