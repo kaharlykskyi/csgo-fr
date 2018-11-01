@@ -295,7 +295,7 @@ button.note-btn[aria-label="Picture"]{
     position: absolute;
     top: -12px;
     right: -11px;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .match-info-wrapper span{
