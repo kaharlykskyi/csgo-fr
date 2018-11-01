@@ -337,7 +337,7 @@ button.note-btn[aria-label="Picture"]{
 .form-voting{
     position: absolute;
     z-index: 100;
-    top: -11px;
+    top: -5px;
 }
 
 .form-voting.first{
@@ -348,17 +348,27 @@ button.note-btn[aria-label="Picture"]{
     left: 25px;
 }
 
-.voting-button{
-    border: none;
+
+.voting-button {
+    background-color: #fff;
+    border: 0;
+    outline: 0;
+    font-size: 1rem;
+    box-shadow: 0 1px 14px rgba(204, 204, 204, 0.62);
+    transition: all 0.3s;
     cursor: pointer;
-    background: transparent;
-    color: rgba(0,0,0,0.8);
-    font-size: 20px;
+    line-height: 1;
+}
+.voting-button:hover {
+    box-shadow: 0 1px 14px rgba(0, 0, 0, 0.75)
 }
 
-.voting-button:hover{
-    color: rgba(0,0,0,0.6);
-    text-shadow: 0 2px 2px 2px rgba(0,0,0,0.2);
+.voting-button.first{
+    border-radius: 13px 0 0 13px;
+}
+
+.voting-button.second{
+    border-radius: 0 13px 13px 0;
 }
 
 #nav-tabContent .nk-widget-match-left{

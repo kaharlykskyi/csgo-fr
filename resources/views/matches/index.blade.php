@@ -25,14 +25,14 @@
                 <div class="col-12 mb-15">
                     <div class="row">
                         <div class="col-6 p-0">
-                            @if(!isset($voting_flag))
+                            @if(!isset($voting_flag) && isset(Auth::user()->id))
                                 <form id="voting1" action="{{route('match_voting')}}" method="post" class="form-voting first">
                                     <input name="match" type="hidden" value="{{$match_data->id}}">
                                     <input name="team" type="hidden" value="{{$team->team1->id}}">
                                     <input name="other_team" type="hidden" value="{{$team->team2->id}}">
                                     <input name="form" type="hidden" value="first">
                                     @csrf
-                                    <button type="submit" class="voting-button">
+                                    <button type="submit" class="voting-button first">
                                         +
                                     </button>
                                 </form>
@@ -63,14 +63,14 @@
                             </div>
                         </div>
                         <div class="col-6 p-0">
-                            @if(!isset($voting_flag))
+                            @if(!isset($voting_flag) && isset(Auth::user()->id))
                                 <form id="voting2" action="{{route('match_voting')}}" method="post" class="form-voting second">
                                     <input name="match" type="hidden" value="{{$match_data->id}}">
                                     <input name="team" type="hidden" value="{{$team->team2->id}}">
                                     <input name="other_team" type="hidden" value="{{$team->team1->id}}">
                                     <input name="form" type="hidden" value="second">
                                     @csrf
-                                    <button type="submit" class="voting-button">
+                                    <button type="submit" class="voting-button second">
                                         +
                                     </button>
                                 </form>
