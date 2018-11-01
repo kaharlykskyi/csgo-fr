@@ -19,7 +19,17 @@
                                 <a href="{{route('match_page',['id' => $val->match_data->id,'type' => $val->type])}}">
                         <span class="nk-widget-match-left">
                             <span class="nk-widget-match-teams">
-                                <span class="nk-widget-match-vs mr-10">
+                                <span class="nk-widget-match-team-logo mr-5">
+                                    @php
+                                        $tournament = \Illuminate\Support\Facades\DB::table('tournaments')->where('id',$val->match_data->tournament)->first();
+                                    @endphp
+                                    @isset($tournament)
+                                        <span class="nk-match-team-logo">
+                                            <img class="rounded" src="{{asset($tournament->tournament_logo)}}" alt="">
+                                        </span>
+                                    @endisset
+                                </span>
+                                <span class="nk-widget-match-vs mr-5">
                                     {{date('d/m',strtotime($val->match_data->match_day))}}
                                 </span>
                                 @isset($team_data)
@@ -44,11 +54,11 @@
                                     </span>
                                 @endisset
                                 @if($val->type == 'upcoming_matches')
-                                    <span class="nk-widget-match-vs ml-15">
+                                    <span class="nk-widget-match-vs ml-5">
                                     {{date('H:i',strtotime($val->match_data->match_day))}}
                                     </span>
                                 @elseif($val->type == 'live_match')
-                                    <span class="nk-widget-match-vs ml-15 text-warning">
+                                    <span class="nk-widget-match-vs ml-5 text-warning">
                                         {{__('LIVE!')}}
                                     </span>
                                 @elseif($val->type == 'latest_match')
@@ -64,16 +74,6 @@
                                         @endif ">{{$score[0]->score_team2}}</span>
                                     </span>
                                 @endif
-                                <span class="nk-widget-match-team-logo ml-15">
-                                    @php
-                                        $tournament = \Illuminate\Support\Facades\DB::table('tournaments')->where('id',$val->match_data->tournament)->first();
-                                    @endphp
-                                    @isset($tournament)
-                                        <span class="nk-match-team-logo">
-                                            <img class="rounded" src="{{asset($tournament->tournament_logo)}}" alt="">
-                                        </span>
-                                    @endisset
-                                </span>
                             </span>
                         </span>
                                     <span class="nk-widget-match-right">

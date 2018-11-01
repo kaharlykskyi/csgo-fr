@@ -334,6 +334,14 @@ button.note-btn[aria-label="Picture"]{
     margin: 0;
 }
 
+#nav-tabContent .nk-widget-match-left{
+    width: 89%;
+}
+
+#nav-tabContent .nk-widget-match-left .nk-widget-match-teams{
+    justify-content: flex-start;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 1100px;
@@ -355,6 +363,10 @@ button.note-btn[aria-label="Picture"]{
 
     .profile-button a{
         margin-bottom: 15px;
+    }
+
+    #nav-tabContent .nk-widget-match-left .nk-widget-match-teams{
+        justify-content: space-around;
     }
 }
 
