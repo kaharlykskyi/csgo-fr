@@ -1,30 +1,4 @@
 <footer class="nk-footer">
-
-    <div class="container">
-        <div class="nk-gap-3"></div>
-        <div class="row vertical-gap">
-            <div class="col-12">
-                <div class="nk-widget">
-                    <h4 class="nk-widget-title"><span class="text-main-1"> </span> </h4>
-                    <div class="nk-widget-content">
-                        <div class="row vertical-gap sm-gap">
-
-                            <div class="col-lg-6">
-
-                            </div>
-
-                            <div class="col-lg-6">
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="nk-gap-3"></div>
-    </div>
-
     <div class="nk-copyright">
         <div class="container">
             <div class="nk-copyright-left">

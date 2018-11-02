@@ -15,6 +15,11 @@
             <ul class="nk-contacts-icons">
 
                 <li>
+                    <span id="change-theme">
+                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                    </span>
+                </li>
+                <li>
                     <a href="#" data-toggle="modal" data-target="#modalSearch">
                         <span class="fa fa-search"></span>
                     </a>

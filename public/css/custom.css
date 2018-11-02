@@ -379,6 +379,10 @@ button.note-btn[aria-label="Picture"]{
     justify-content: flex-start;
 }
 
+#change-theme{
+    cursor: pointer;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 1100px;

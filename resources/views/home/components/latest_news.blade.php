@@ -16,10 +16,10 @@
         <div class="nano">
             <div class="nano-content">
 
-                @forelse($latest_news as $latest_new)
+                @foreach($latest_news as $latest_new)
 
-                    <a href="{{route('news_page',$latest_new->id)}}">
-                        <div class="nk-news-box-item">
+                    <div class="nk-news-box-item" data-link="{{route('news_page',$latest_new->id)}}">
+                        <a href="{{route('news_page',$latest_new->id)}}">
                             <div class="nk-news-box-item-img">
                                 @foreach($countrys as $country)
                                     @if($country->country == $latest_new->country_id)
@@ -28,19 +28,20 @@
                                 @endforeach
                             </div>
                             <div class="nk-news-box-item-title-wrapper">
-                                <h6 class="nk-news-box-item-title title-latest-home">@if(isset($latest_new->short_title)){{$latest_new->short_title}}@else{{$latest_new->title}}@endif</h6>
-                                <div class="nk-news-box-item-title-comment-wrapper">
-                                    <span class="fa fa-comments"></span>
-                                    <a href="#">
-                                        {{\Illuminate\Support\Facades\DB::table('news_comments')->where('news_id',$latest_new->id)->count()}}
-                                    </a>
-                                </div>
+                                <a href="{{route('news_page',$latest_new->id)}}">
+                                    <h6 class="nk-news-box-item-title title-latest-home">@if(isset($latest_new->short_title)){{$latest_new->short_title}}@else{{$latest_new->title}}@endif</h6>
+                                    <div class="nk-news-box-item-title-comment-wrapper">
+                                        <span class="fa fa-comments"></span>
+                                        <a href="#">
+                                            {{\Illuminate\Support\Facades\DB::table('news_comments')->where('news_id',$latest_new->id)->count()}}
+                                        </a>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
 
-                @empty
-                @endforelse
+                @endforeach
 
             </div>
         </div>
@@ -52,10 +53,11 @@
         <div class="nano">
             <div class="nano-content">
 
-                @forelse($latest_turnaments as $latest_turnament)
+                @foreach($latest_turnaments as $latest_turnament)
 
-                    <a href="{{route('tournament_page',$latest_turnament->id)}}">
-                        <div class="nk-news-box-item">
+
+                    <div class="nk-news-box-item" data-link="{{route('tournament_page',$latest_turnament->id)}}">
+                        <a href="{{route('tournament_page',$latest_turnament->id)}}">
                             <div class="nk-news-box-item-img mr-0">
                                 @foreach($countrys as $country)
                                     @if($country->country == $latest_turnament->country_id)
@@ -77,11 +79,9 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-
-                @empty
-                @endforelse
+                        </a>
+                    </div>
+                @endforeach
 
             </div>
         </div>
@@ -89,4 +89,12 @@
 </div>
 
 <div class="nk-gap-2"></div>
+
+<script>
+    $(document).ready(function () {
+        $('.nk-news-box-item').click(function () {
+            location.href = $(this).attr('data-link');
+        })
+    })
+</script>
 

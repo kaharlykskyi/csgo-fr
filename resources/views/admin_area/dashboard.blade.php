@@ -69,4 +69,14 @@
         </section>
         <!-- END STATISTIC-->
 
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a class="btn btn-success m-5"  href="{{route('admin.matches.create')}}">CREATE MATCH</a>
+                        <a class="btn btn-success m-5" href="{{route('admin.news.create')}}">CREATE NEWS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 @endsection

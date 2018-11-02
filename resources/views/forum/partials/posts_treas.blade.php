@@ -20,6 +20,9 @@
             @isset($users)
                 @foreach($users as $user)
                     @if($user->id == $post->user_id)
+                        @php
+                            $name = $user->name;
+                        @endphp
                         <a href="{{route('show_profile',$user->name)}}">
                             <img src="@if(isset($user->logo_user)){{asset('assets/images/user_avatar/'.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$user->name}}">
                         </a>
@@ -42,7 +45,7 @@
             <span class="nk-forum-topic-date">{{($post->edit === 'true') ?  __('Massage edit - ') . date('M d Y H:i',strtotime($post->updated_at)):''}}</span>
 
             <span class="nk-forum-action-btn">
-            <a href="#forum-reply" class="nk-anchor" onclick="addField({{$post->id}})"><span class="fa fa-reply"></span> Reply</a>
+            <a href="#forum-reply" class="nk-anchor" onclick="addField({{$post->id}},'{{$name}}')"><span class="fa fa-reply"></span> Reply</a>
         </span>
         </div>
     </li>

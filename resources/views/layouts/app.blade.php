@@ -72,6 +72,76 @@
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+    <script>
+        let theme = getCookie('theme');
+        if (theme === undefined){
+            setCookie('theme','dark',{
+                expires: '3600',
+                path: 'path=/'
+            });
+        }
+
+        if (theme === 'light'){
+            $('head').append(`<link id="theme-stylesheet" rel="stylesheet" href="{{asset('css/theme_ligth.css')}}">`);
+        }
+
+        $(document).ready(function () {
+            $('#change-theme').click(function () {
+                theme = getCookie('theme');
+                if (theme === 'dark'){
+                    setCookie('theme','light',{
+                        expires: '3600',
+                        path: 'path=/'
+                    });
+
+                    $('head').append(`<link id="theme-stylesheet" rel="stylesheet" href="{{asset('css/theme_ligth.css')}}">`);
+                } else {
+                    setCookie('theme','dark',{
+                        expires: '3600',
+                        path: 'path=/'
+                    });
+                    $('#theme-stylesheet').remove();
+                }
+            })
+        });
+
+        function getCookie(name) {
+            const matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+        function setCookie(name, value, options) {
+            options = options || {};
+
+            var expires = options.expires;
+
+            if (typeof expires == "number" && expires) {
+                var d = new Date();
+                d.setTime(d.getTime() + expires * 1000);
+                expires = options.expires = d;
+            }
+            if (expires && expires.toUTCString) {
+                options.expires = expires.toUTCString();
+            }
+
+            value = encodeURIComponent(value);
+
+            var updatedCookie = name + "=" + value;
+
+            for (var propName in options) {
+                updatedCookie += "; " + propName;
+                var propValue = options[propName];
+                if (propValue !== true) {
+                    updatedCookie += "=" + propValue;
+                }
+            }
+
+            document.cookie = updatedCookie;
+        }
+    </script>
+
     <script src="{{asset('js/jquery.bracket.min.js')}}"></script>
     <link href="{{asset('css/jquery.bracket.min.css')}}" rel="stylesheet" media="all">
 

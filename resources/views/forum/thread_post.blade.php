@@ -62,10 +62,14 @@
     </div>
 
     <script>
-        function addField(id) {
+        function addField(id,user) {
             $('#id-post-reply').html('<input type="hidden" value="'+id+'" name="parent_post">');
             var contentPost = $('#post-' + id + ' .nk-forum-topic-content').html();
-            $('#reply-post .note-editable.card-block').html('<blockquote>'+contentPost+'</blockquote><p><br></p>');
+            $('#reply-post .note-editable.card-block').html(`
+                <p>Reply  @<em>${user}</em></p>
+                <hr>
+                <blockquote>${contentPost}</blockquote><p><br></p>
+            `);
         }
 
         function editPost(idPost) {

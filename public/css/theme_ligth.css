@@ -1,0 +1,95 @@
+body{
+    background-color: rgba(23, 30, 34, 0.81);
+}
+
+body .text-white{
+    color: #000 !important;
+}
+
+body .nk-modal .modal-content,
+body .nk-copyright,
+body .nk-teammate-card{
+    background: #f0f0f0;
+}
+
+body .team-content, body .map-content {
+    background-color: #f0f0f0;
+    border: 1px solid #f0f0f0;
+}
+
+body .bg-dark-2, body .nk-forum > li {
+    background-color: #f0f8f9 !important;
+}
+
+body .nk-table {
+    color: #000;
+    border: 1px solid #f0f0f0;
+}
+
+body .nk-table tbody tr:nth-of-type(odd) {
+    background-color: #d6d5d5;
+}
+
+body .nk-social-links > li > *,
+body .nk-social-links > li > *:hover,
+body .nk-social-links > li > *:focus,
+body .nk-social-links > li > *:active,
+body .nk-social-links-2 > li > *,
+body .nk-social-links-2 > li > *:hover,
+body .nk-social-links-2 > li > *:focus,
+body .nk-social-links-2 > li > *:active,
+body .nk-social-links-3 > li > *,
+body .nk-social-links-3 > li > *:hover,
+body .nk-social-links-3 > li > *:focus,
+body .nk-social-links-3 > li > *:active{
+    color: #0b0e10 ;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6,
+body .form-control,
+body #flags-button,
+body .nk-navbar .nk-nav > li > a,
+body .nk-footer,
+body .nk-social-links-2 > li > *
+{
+    color: #0b0e10;
+}
+
+body .nk-widget-match .nk-widget-match-teams .nk-widget-match-vs,
+body .nk-widget-stream-name,
+body .nk-widget-stream-count{
+    color: #0b0e10;
+}
+
+body .nk-widget-highlighted .nk-widget-title::after{
+    background-color: #0b0e10;
+}
+
+body .nk-navbar,body .nk-navbar.nk-navbar-solid {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+body .nk-navbar.nk-navbar-fixed{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+body .nk-news-box,
+body .nk-widget-highlighted .nk-widget-content{
+    background-color: #f0f0f0;
+    border: 1px solid #b0b2b5;
+}
+
+body .nk-decorated-h-2::after,
+body .nk-decorated-h-2::before{
+    border-bottom-color: #f0f0f0;
+}
+
+body .nk-widget .nk-widget-match,
+body .nk-widget-highlighted .nk-widget-title,
+body .nk-widget-highlighted .nk-widget-title > span {
+    background-color: #f0f0f0;
+}
+
+body .nk-widget .nk-widget-match:nth-child(2n) {
+    background-color: #fff;
+}

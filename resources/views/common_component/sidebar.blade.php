@@ -11,9 +11,17 @@
     <div class="nk-widget nk-widget-highlighted">
         <h4 class="nk-widget-title"><span><span class="text-main-1">LIVE </span> STREAMS</span></h4>
         <div class="nk-widget-content">
+            @php
+                $stream_count = \Illuminate\Support\Facades\DB::table('settings')->where('name','=','count_streams')->select('value')->first();
+            @endphp
             <div class="nk-widget-match p-5">
                 @isset($streams)
-                    @foreach($streams as $stream)
+                    @foreach($streams as $k => $stream)
+                        @isset($stream_count)
+                            @if(($k + 1) > (int)$stream_count->value)
+                                @break
+                            @endif
+                        @endisset
                         <div class="nk-widget-stream">
                             <span class="nk-widget-stream-status @if($stream['type'] === 'live') {{__('bg-success')}} @else {{__('bg-danger')}} @endif"></span>
                             <div class="nk-widget-stream-name">
@@ -40,6 +48,7 @@
             ->orderByDesc('created_at')
             ->limit(10)
             ->get();
+        $count_latest_forum = \Illuminate\Support\Facades\DB::table('settings')->where('name','=','count_latest_forum')->select('value')->first();
     @endphp
     @isset($last_forum)
         <div class="nk-widget nk-widget-highlighted">
@@ -47,7 +56,12 @@
             <div class="nk-widget-content">
                 <div class="nk-widget-match p-5">
                     @isset($last_forum)
-                        @foreach($last_forum as $item)
+                        @foreach($last_forum as $k => $item)
+                            @isset($stream_count)
+                                @if(($k + 1) > (int)$count_latest_forum->value)
+                                    @break
+                                @endif
+                            @endisset
                             <a href="{{route('thread_page',['id' => $item->id_topic, 'thread_id' => $item->id])}}">
                                 <div class="nk-widget-stream mt-2 mb-2 pr-35 pl-20">
                                     <div class="nk-widget-stream-name">
@@ -71,6 +85,7 @@
 
     @php
         $popular_topics = \Illuminate\Support\Facades\DB::select('SELECT `topic_threads`.*, (SELECT count(id) FROM `thread_posts` WHERE `topic_threads`.id = `thread_posts`.thread_id) count FROM `topic_threads` ORDER BY count DESC LIMIT 4;');
+        $count_popular_topics = \Illuminate\Support\Facades\DB::table('settings')->where('name','=','count_popular_topic')->select('value')->first();
     @endphp
 
     @isset($popular_topics)
@@ -79,7 +94,12 @@
             <div class="nk-widget-content">
                 <div class="nk-widget-match p-5">
                     @isset($popular_topics)
-                        @foreach($popular_topics as $item)
+                        @foreach($popular_topics as $k => $item)
+                            @isset($stream_count)
+                                @if(($k + 1) > (int)$count_popular_topics->value)
+                                    @break
+                                @endif
+                            @endisset
                             @php
                                 $thread = \Illuminate\Support\Facades\DB::table('forum_topics')->where('id',$item->topic_id)->first();
                             @endphp
