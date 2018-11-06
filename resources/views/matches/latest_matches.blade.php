@@ -63,7 +63,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="3">
-                                {{$latest_match_notlimit->links()}}
+                                {{$latest_match_notlimit->links('vendor.pagination.custom')}}
                             </td>
                         </tr>
                     </tfoot>
