@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             DefaultAdminUserTableSeeder::class,
             SettingsTableSeeder::class,
             Settings2TableSeeder::class,
+            Settings3TableSeeder::class,
         ]);
     }
 }

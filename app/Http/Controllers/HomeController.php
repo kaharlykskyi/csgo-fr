@@ -36,10 +36,13 @@ class HomeController extends Controller
         //news tabbed
         $news_categories = NewsCategory::all();
         $news_tabbed = null;
+        $count_news_tabbed = DB::table('settings')->where('name','=','count_news_tabbed')->first();
         foreach ($news_categories as $news_category){
             $news_tabbed [] = (object)[
                 'category' => $news_category->name,
-                'news' => News::where('category_id',$news_category->id)->where('enabled','=','on')->limit(11)->get()
+                'news' => News::where('category_id',$news_category->id)->where('enabled','=','on')
+                    ->limit($count_news_tabbed->value)
+                    ->get()
             ];
         }
 

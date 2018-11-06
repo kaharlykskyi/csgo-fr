@@ -383,6 +383,12 @@ button.note-btn[aria-label="Picture"]{
     cursor: pointer;
 }
 
+body .nk-image-slider .nk-image-slider-content{
+    background: transparent;
+    left: 0;
+    top: 0;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 1100px;

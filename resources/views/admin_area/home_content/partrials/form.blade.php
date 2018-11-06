@@ -31,6 +31,18 @@
     </div>
 </div>
 
+<div class="row form-group mt-5">
+    <div class="col col-md-3">
+        <label for="title" class=" form-control-label">Link</label>
+    </div>
+    <div class="col-12 col-md-9">
+        <input type="text" id="title" value="@if(isset($bannerImage->id)){{$bannerImage->link}}@else{{old('link')}}@endif" name="link" placeholder="Banner Link" class="form-control">
+        @if ($errors->has('link'))
+            <small class="form-text text-danger">{{ $errors->first('link') }}</small>
+        @endif
+    </div>
+</div>
+
 <script>
     $('#image').filemanager('image');
 </script>

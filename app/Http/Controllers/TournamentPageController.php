@@ -76,7 +76,8 @@ class TournamentPageController extends Controller
     }
 
     public function allTournaments(){
-        $tournament = Tournament::orderByDesc('created_at')->paginate(30);
+        $count_tournament = DB::table('settings')->where('name','=','count_all_tournaments')->first();;
+        $tournament = Tournament::orderByDesc('created_at')->paginate($count_tournament->value);
 
         $streams = Stream::where('show_homepage','on')->get();
         $streams_output = $this->getStream($streams);

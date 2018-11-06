@@ -75,7 +75,8 @@ class NewsPageController extends Controller
     }
 
     public function allNews(){
-        $news = News::where('enabled','on')->orderByDesc('created_at')->paginate(30);
+        $count_news = DB::table('settings')->where('name','=','count_all_news')->first();;
+        $news = News::where('enabled','on')->orderByDesc('created_at')->paginate($count_news->value);
         $streams = Stream::where('show_homepage','on')->get();
         $streams_output = $this->getStream($streams);
         $teams = Team::all();
