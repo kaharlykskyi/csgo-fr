@@ -60,14 +60,13 @@
                             @endforeach
                         @endisset
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3">
-                                {{$latest_match_notlimit->links('vendor.pagination.custom')}}
-                            </td>
-                        </tr>
-                    </tfoot>
                 </table>
+
+            <div class="row mt-15">
+                <div class="col-12">
+                    {{$latest_match_notlimit->links('vendor.pagination.custom')}}
+                </div>
+            </div>
 
         </div>
         <div class="col-lg-4">
