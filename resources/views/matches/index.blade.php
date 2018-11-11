@@ -295,7 +295,7 @@
                     <p class="h4 m-t-5 m-b-5">Teams Photo</p>
                     <div class="row">
                         <div class="col-12">
-                            <p class="h5 mb-5">{{$team->team1->name}}</p>
+                            <img src="@if(isset($team->team1->logo)){{asset($team->team1->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$team->team1->name}}" class="pt-10 pb-10" style="width: 80px">
                         </div>
                         <table class="nk-table table-responsive">
                             <tbody>
@@ -327,7 +327,7 @@
                     <div class="nk-gap-2"></div>
                     <div class="row">
                         <div class="col-12">
-                            <p class="h5 mb-5">@isset($team->team2->name){{$team->team2->name}}@endisset</p>
+                            <img src="@if(isset($team->team2->logo)){{asset($team->team2->logo)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$team->team2->name}}" class="pt-10 pb-10" style="width: 80px">
                         </div>
                         <table class="nk-table table-responsive">
                             <tbody>

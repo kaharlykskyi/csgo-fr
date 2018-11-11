@@ -27,23 +27,20 @@
                             <img src="@if(isset($user->logo_user)){{asset('assets/images/user_avatar/'.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="{{$user->name}}">
                         </a>
                         <div class="nk-forum-topic-author-name" title="{{$user->name}}">
-                            <a href="{{route('show_profile',$user->name)}}">{{$user->name}}</a>
-                        </div>
-                        <div class="nk-forum-topic-author-role">{{$user->role}}</div>
-                        <div class="nk-forum-topic-author-since">
-                            Member since <br> {{date('M d Y',strtotime($user->created_at))}}
+                            <a class="@if($user->role === 'admin') text-danger @else text-success @endif" href="{{route('show_profile',$user->name)}}">{{$user->name}}</a>
                         </div>
                     @endif
                 @endforeach
             @endisset
         </div>
         <div class="nk-forum-topic-content">
+            <p>@isset($post->sequence_number) @if((integer)$post->sequence_number === 0) {{__('#first massage')}} @else {{__('#'. $post->sequence_number)}} @endif @endisset</p>
+            <hr>
             {!! $post->text_post !!}
-        </div>
-        <div class="nk-forum-topic-footer">
-            <span class="nk-forum-topic-date">{{date('M d Y H:i',strtotime($post->created_at))}}</span><br>
             <span class="nk-forum-topic-date">{{($post->edit === 'true') ?  __('Massage edit - ') . date('M d Y H:i',strtotime($post->updated_at)):''}}</span>
-
+        </div>
+        <div class="nk-forum-topic-footer pt-45">
+            <span class="nk-forum-topic-date">{{date('M d Y H:i',strtotime($post->created_at))}}</span><br>
             <span class="nk-forum-action-btn">
             <a href="#forum-reply" class="nk-anchor" onclick="addField({{$post->id}},'{{$name}}')"><span class="fa fa-reply"></span> Reply</a>
         </span>

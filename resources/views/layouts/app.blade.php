@@ -303,7 +303,7 @@ Additional Classes:
             ["para",["ul","ol","paragraph"]],
             ["table",["table"]],
             ["insert",["link","video","hr",'emoji']],
-            ["view",["codeview","help"]],
+            ["view",["codeview"]],
 
         ],
         height: 200

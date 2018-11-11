@@ -10,7 +10,8 @@ class ThreadPost extends Model
         'text_post',
         'thread_id',
         'user_id',
-        'parent_post'
+        'parent_post',
+        'sequence_number'
     ];
 
     public function children(){

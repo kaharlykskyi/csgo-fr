@@ -76,7 +76,8 @@ class ForumController extends Controller
                 $post_data = [
                     'text_post' => $thread->description,
                     'thread_id' => $thread->id,
-                    'user_id' => $thread->user_id
+                    'user_id' => $thread->user_id,
+                    'sequence_number' => 0
                 ];
                 $post = new ThreadPost();
                 $post->fill($post_data);
@@ -133,6 +134,8 @@ class ForumController extends Controller
             return back();
         }
 
+        $post = ThreadPost::where('thread_id',(integer)$data['thread_id'])->latest()->first();
+        $data['sequence_number'] = (int)$post->sequence_number + 1;
         $data['user_id'] = Auth::user()->id;
 
         $post = new ThreadPost();

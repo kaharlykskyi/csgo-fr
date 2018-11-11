@@ -80,49 +80,59 @@
             <div class="nk-teammate-card">
                 <div class="nk-teammate-card-photo">
                     <img src="@if(isset(Auth::user()->logo_user)){{asset('assets/images/user_avatar/' . Auth::user()->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="Faker">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td class="p-10">
+                                <em>name</em>
+                                <div class="text-white">{{Auth::user()->name}}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-10">
+                                <em>email</em>
+                                <div  class="text-white">{{Auth::user()->email}}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-10">
+                                <em>country</em>
+                                <div  class="text-white">{{Auth::user()->country_id}}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-10">
+                                <em>city</em>
+                                @isset(Auth::user()->city)
+                                    <div  class="text-white">{{Auth::user()->city}}</div>
+                                @endisset
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-10">
+                                <em>birthday</em>
+                                <div  class="text-white">{{date('M d Y',strtotime(Auth::user()->date_birth))}}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-10">
+                                <em>sex</em>
+                                <div  class="text-white">{{Auth::user()->sex}}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-10">
+                                <em>description</em>
+                                <div  class="text-white">{{Auth::user()->description}}</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <div class="nk-teammate-card-info" style="overflow: auto;">
                     <table>
                         <tbody>
-                            <tr>
-                                <td class="p-10">
-                                    <em>name</em>
-                                    <div class="text-white">{{Auth::user()->name}}</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="p-10">
-                                    <em>email</em>
-                                    <div  class="text-white">{{Auth::user()->email}}</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="p-10">
-                                    <em>country</em>
-                                    <div  class="text-white">{{Auth::user()->country_id}}</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="p-10">
-                                    <em>city</em>
-                                    @isset(Auth::user()->city)
-                                        <div  class="text-white">{{Auth::user()->city}}</div>
-                                    @endisset
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="p-10">
-                                    <em>birthday</em>
-                                    <div  class="text-white">{{date('M d Y',strtotime(Auth::user()->date_birth))}}</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="p-10">
-                                    <em>sex</em>
-                                    <div  class="text-white">{{Auth::user()->sex}}</div>
-                                </td>
-                            </tr>
                             <tr>
                                 <td class="p-l-0">
                                     <div class="col-12 p-0">
@@ -159,12 +169,6 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="p-10">
-                                    <em>description</em>
-                                    <div  class="text-white">{{Auth::user()->description}}</div>
                                 </td>
                             </tr>
                             <tr>
