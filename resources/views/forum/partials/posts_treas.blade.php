@@ -34,16 +34,21 @@
             @endisset
         </div>
         <div class="nk-forum-topic-content">
-            <p>@isset($post->sequence_number) @if((integer)$post->sequence_number === 0) {{__('#first massage')}} @else {{__('#'. $post->sequence_number)}} @endif @endisset</p>
-            <hr>
             {!! $post->text_post !!}
             <span class="nk-forum-topic-date">{{($post->edit === 'true') ?  __('Massage edit - ') . date('M d Y H:i',strtotime($post->updated_at)):''}}</span>
         </div>
         <div class="nk-forum-topic-footer pt-45">
-            <span class="nk-forum-topic-date">{{date('M d Y H:i',strtotime($post->created_at))}}</span><br>
-            <span class="nk-forum-action-btn">
-            <a href="#forum-reply" class="nk-anchor" onclick="addField({{$post->id}},'{{$name}}')"><span class="fa fa-reply"></span> Reply</a>
-        </span>
+            <div class="row">
+                <div class="col-sm-8">
+                    <p class="mb-2">@isset($post->sequence_number) @if((integer)$post->sequence_number === 0) {{__('#first massage')}} @else {{__('#'. $post->sequence_number.'reply')}} @endif @endisset</p>
+                    <span class="nk-forum-topic-date">{{date('M d Y H:i',strtotime($post->created_at))}}</span><br>
+                </div>
+                <div class="col-sm-4">
+                    <span class="nk-forum-action-btn">
+                        <a href="#forum-reply" class="nk-anchor" onclick="addField({{$post->id}},'{{$name}}')"><span class="fa fa-reply"></span> Reply</a>
+                    </span>
+                </div>
+            </div>
         </div>
     </li>
     @if(count($post->children) > 0)
