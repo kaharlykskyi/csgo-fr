@@ -86,8 +86,12 @@ class ProfileController extends Controller
         if ($request->isMethod('post')){
             $data = $request->except('_token');
 
+            Validator::extend('without_spaces', function($attr, $value){
+                return preg_match('/^\S*$/u', $value);
+            });
+
             $validate = Validator::make($data,[
-                'name' => 'required|string|max:255',
+                'name' => 'required|without_spaces|string|max:255',
                 'email' => 'required|string|email|max:255',
                 'city' => 'required|string',
                 'date_birth' => 'required|date',

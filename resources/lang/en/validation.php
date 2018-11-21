@@ -112,6 +112,7 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
+    'without_spaces'       => 'Con not use space in string. You can use "_"',
 
     /*
     |--------------------------------------------------------------------------
