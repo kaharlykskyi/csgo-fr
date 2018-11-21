@@ -3,10 +3,10 @@
         <tr>
             <td>
                 <div class="table-data__info">
-                    <h6>{{$user->name}}</h6>
+                    <h6> <a href="{{route('show_profile',$user->name)}}">{{$user->name}}</a></h6>
                     <span>
-                <a href="#">{{$user->email}}</a>
-            </span>
+                        <a href="{{route('show_profile',$user->name)}}">{{$user->email}}</a>
+                    </span>
                 </div>
             </td>
             <td>

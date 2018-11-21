@@ -49,7 +49,7 @@ class ChatController extends Controller
             return back();
         }
 
-        DB::table('chat_masseges')->where('user2',Auth::user()->id)->update(['seen2' => 1]);
+        DB::table('chat_masseges')->where([['user2',Auth::user()->id],['user',$user->id]])->update(['seen2' => 1]);
 
         $private_chat = ChatMassege::where([['user',Auth::user()->id],['user2',$user->id]])
             ->orWhere([['user2',Auth::user()->id],['user',$user->id]])->orderByDesc('created_at')->paginate(20);

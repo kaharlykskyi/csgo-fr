@@ -389,6 +389,21 @@ body .nk-image-slider .nk-image-slider-content{
     top: 0;
 }
 
+.chat-label-new{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+.chat-label-new .nk-badge{
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    align-items: center;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 1100px;

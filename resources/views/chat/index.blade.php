@@ -20,8 +20,14 @@
                 @if(isset($users))
                     @foreach($users as $user)
                         <div class="col-lg-12">
+                            @php
+                                $new = DB::table('chat_masseges')->where([['user2',Auth::user()->id],['user',$user->id]])->latest()->first();
+                            @endphp
                             <a href="{{route('send_massage',$user->name)}}" style="text-decoration: none !important;">
                                 <div class="nk-box-2 bg-dark-2 p-5 pl-15">
+                                    @if($new->seen2 === 0)
+                                        <div class="chat-label-new"><span class="nk-badge">new</span></div>
+                                    @endif
                                     Chat with
                                     <h4 class="m-0">{{$user->name}}</h4>
                                 </div>

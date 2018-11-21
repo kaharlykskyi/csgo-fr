@@ -41,7 +41,16 @@
                                 {{ __('Profile') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('all_chats') }}">
-                                {{ __('Chats') }}
+                                {{ __('Chats ') }}
+                                @php
+                                    $new_mass = DB::table('chat_masseges')->where([
+                                        ['user2',Auth::user()->id],
+                                        ['seen2',0]
+                                    ])->count();
+                                @endphp
+                                @if($new_mass !== 0)
+                                    <span class="nk-badge">{{$new_mass}}</span>
+                                @endif
                             </a>
                             @if(Auth::user()->role == 'admin')
                                 <a class="dropdown-item" href="{{route('admin.dashboard')}}">
