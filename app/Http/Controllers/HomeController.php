@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\{AppTreid\MatchSort, AppTreid\StreamApi, BannerImage, News, NewsCategory, Stream, Team};
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -67,5 +68,47 @@ class HomeController extends Controller
                 'banner'
             )
         )->with(['sort_match' => $this->selectMatch()]);
+    }
+
+    public function deleteComment(Request $request){
+        switch ($request->link){
+            case 'match_page':
+                DB::table('comments_match')->where('id', $request->id)->delete();
+                break;
+            case 'news_comment':
+                DB::table('news_comments')->where('id', $request->id)->delete();
+                break;
+            case 'tournament_page':
+                DB::table('tournament_comments')->where('id', $request->id)->delete();
+                break;
+        }
+
+        return back();
+    }
+
+    public function editComment(Request $request){
+        $data = $request->post();
+        switch ($data['type_page']){
+            case 'match_page':
+                DB::table('comments_match')->where([
+                    ['id',$data['id_comment']],
+                    ['user_id', $data['user_id']]
+                ])->update(['comment' => $data['comment']]);
+                break;
+            case 'news_comment':
+                DB::table('news_comments')->where([
+                    ['id',$data['id_comment']],
+                    ['user_id', $data['user_id']]
+                ])->update(['comment' => $data['comment']]);
+                break;
+            case 'tournament_page':
+                DB::table('tournament_comments')->where([
+                    ['id',$data['id_comment']],
+                    ['user_id', $data['user_id']]
+                ])->update(['comment' => $data['comment']]);
+                break;
+        }
+
+        return back();
     }
 }

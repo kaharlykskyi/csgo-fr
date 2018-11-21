@@ -517,13 +517,6 @@
                                                     </div>
                                             @endif
                                             @if(stripos($stream->link,'facebook') !== false)
-                                        {{--            <script>
-                                                        $(document).ready(function () {
-                                                            $.ajax({
-
-                                                            })
-                                                        })
-                                                    </script>--}}
                                                     <div class="nk-widget-stream mt-10" id="stream-{{$k}}">
                                                         <span class="nk-widget-stream-status bg-success"></span>
                                                         <div class="nk-widget-stream-name">

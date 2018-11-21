@@ -78,6 +78,9 @@ Route::get('/stream/{name}/{service}/{id?}',function ($name,$service,$id = null)
     return view('stream_page.index',compact('name','service','id'));
 })->name('stream_page');
 
+Route::get('/delete-comment/{id}','HomeController@deleteComment')->middleware(['auth','role'])->name('delete_comment');
+Route::post('/edit-comment','HomeController@editComment')->middleware(['auth'])->name('edit_comment');
+
 /*!!--------ADMIN--------!!*/
 Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','role']],function (){
     Route::get('/','DashboardController@index')->name('admin.dashboard');

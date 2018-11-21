@@ -19,6 +19,7 @@
         @if(isset(Auth::user()->id))
             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
         @endif
+        <div id="edit-block"></div>
         <div id="reply-block"></div>
         <input type="hidden" name="object_id" value="{{$object->id}}">
         <div class="nk-gap-1"></div>
@@ -39,6 +40,15 @@
             '</div>'+
             '<input type="text" class="form-control" value="'+name+'" aria-label="reply" aria-describedby="inputGroup-sizing-sm">'+
             '</div>');
+    }
+
+    function edit(id,link,type) {
+        $('#edit-block').html(`
+            <input type="hidden" name="id_comment" value="${id}">
+            <input type="hidden" name="type_page" value="${type}">
+        `);
+        $('#comment-form').attr('action',link);
+        $('#comment-form .note-editable.card-block').html($('#post-' + id + ' .comment-content').html());
     }
 </script>
 <!-- END: Reply -->
