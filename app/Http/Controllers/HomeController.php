@@ -75,7 +75,7 @@ class HomeController extends Controller
             case 'match_page':
                 DB::table('comments_match')->where('id', $request->id)->delete();
                 break;
-            case 'news_comment':
+            case 'news_page':
                 DB::table('news_comments')->where('id', $request->id)->delete();
                 break;
             case 'tournament_page':
@@ -95,7 +95,7 @@ class HomeController extends Controller
                     ['user_id', $data['user_id']]
                 ])->update(['comment' => $data['comment']]);
                 break;
-            case 'news_comment':
+            case 'news_page':
                 DB::table('news_comments')->where([
                     ['id',$data['id_comment']],
                     ['user_id', $data['user_id']]
