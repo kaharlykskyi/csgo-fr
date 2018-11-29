@@ -25,13 +25,14 @@
                     </a>
                 </li>
 
-                <li>
+
                 @guest
                         <a href="#" data-toggle="modal" data-target="#modalLogin">
                             <span class="fa fa-user"></span>
                         </a>
 
                 @else
+                    <li>
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
@@ -66,8 +67,38 @@
                                 @csrf
                             </form>
                         </div>
-                    @endguest
-                </li>
+                    </li>
+                    <li>
+                        <span class="nk-cart-toggle">
+                            <span class="fa fa-envelope-o"></span>
+                            <span class="nk-badge">{{$new_mass}}</span>
+                        </span>
+                        @php
+                            $mass_data = DB::table('chat_masseges')
+                                    ->where([['user2',Auth::user()->id],['seen2',0]])
+                                    ->join('users','chat_masseges.user','=','users.id')
+                                    ->select('users.name','chat_masseges.massage','chat_masseges.created_at')->get();
+                        @endphp
+                        <div class="nk-cart-dropdown">
+                            @isset($mass_data)
+                                @forelse($mass_data as $item)
+                                    <div class="nk-widget-post pl-10" onclick="location.href = '{{route('send_massage',$item->name)}}'" style="cursor:pointer;">
+                                        <h3 class="nk-post-title mb-0">
+                                            <a href="{{route('send_massage',$item->name)}}">{{strip_tags(str_limit($item->massage,50,' ...'))}}</a>
+                                        </h3>
+                                        <span class="nk-post-by">{{$item->name}}</span><span>{{$item->created_at}}</span>
+                                    </div>
+                                @empty
+                                    <div class="nk-widget-post pl-10">
+                                        <h3 class="nk-post-title">
+                                            <a href="#">{{__('No massages')}}</a>
+                                        </h3>
+                                    </div>
+                                @endforelse
+                            @endisset
+                        </div>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>

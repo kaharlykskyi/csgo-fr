@@ -254,14 +254,6 @@ button.note-btn[aria-label="Picture"]{
     border-bottom: none;
 }
 
-.card-header.note-toolbar .note-color .dropdown-menu .note-palette:first-child{
-    display: none;
-}
-
-.card-header.note-toolbar .note-color .dropdown-menu {
-    min-width: auto !important;
-}
-
 .post-edit-wrapper{
     position: absolute;
     right: 6px;

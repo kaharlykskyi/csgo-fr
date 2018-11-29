@@ -299,7 +299,7 @@ Additional Classes:
             ["style",["style"]],
             ["font",["bold","underline","clear"]],
             ["fontname",["fontname"]],
-            ["color",["color"]],
+            ["color",["foreColor","color"]],
             ["para",["ul","ol","paragraph"]],
             ["table",["table"]],
             ["insert",["link","video","hr",'emoji']],

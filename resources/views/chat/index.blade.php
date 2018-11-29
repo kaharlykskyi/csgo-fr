@@ -25,9 +25,11 @@
                             @endphp
                             <a href="{{route('send_massage',$user->name)}}" style="text-decoration: none !important;">
                                 <div class="nk-box-2 bg-dark-2 p-5 pl-15">
-                                    @if($new->seen2 === 0)
-                                        <div class="chat-label-new"><span class="nk-badge">new</span></div>
-                                    @endif
+                                    @isset($new)
+                                        @if($new->seen2 === 0)
+                                            <div class="chat-label-new"><span class="nk-badge">new</span></div>
+                                        @endif
+                                    @endisset
                                     Chat with
                                     <h4 class="m-0">{{$user->name}}</h4>
                                 </div>
