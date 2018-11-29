@@ -50,6 +50,7 @@
             <div class="nk-gap-1"></div>
             <div id="id-post-reply"></div>
             <input type="hidden" value="{{$thread->id}}" name="thread_id">
+            <input type="hidden" value="{{$thread->topic_id}}" name="topic_id">
             @csrf
             <textarea name="text_post" cols="30" rows="10" class="nk-summernote form-control" required>{{old('title')}}</textarea>
         @if ($errors->has('text_post'))

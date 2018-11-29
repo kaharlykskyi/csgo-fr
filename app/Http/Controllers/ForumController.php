@@ -106,6 +106,11 @@ class ForumController extends Controller
             }
         }
         $users = User::whereIn('id',$users_id)->get();
+        DB::table('forum_notification')->where([
+            ['topic_id',$request->id],
+            ['thread_id',$request->thread_id],
+            ['user_id',Auth::user()->id]
+        ])->update(['seen' => 'true']);
         return view('forum.thread_post', compact('thread','topic','posts','users'));
     }
 
@@ -140,7 +145,21 @@ class ForumController extends Controller
 
         $post = new ThreadPost();
         $post->fill($data);
-        $post->save();
+        if ($post->save()){
+            if (isset($data['parent_post'])){
+                $parent_post = DB::table('thread_posts')->where('id',$data['parent_post'])->first();
+                $user = User::where('id',$parent_post->user_id)->first();
+                DB::table('forum_notification')->insert([
+                    'topic_id' => $data['topic_id'],
+                    'thread_id' => $data['thread_id'],
+                    'user_id' => $user->id,
+                    'post_id' => $post->id,
+                    'seen' => 'false',
+                    'created_at' => \Illuminate\Support\Carbon::now(),
+                    'updated_at' => \Illuminate\Support\Carbon::now()
+                ]);
+            }
+        }
         return redirect()->back();
     }
 
