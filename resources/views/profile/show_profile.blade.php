@@ -23,9 +23,6 @@
             <div class="nk-teammate-card">
                 <div class="nk-teammate-card-photo">
                     <img src="@if(isset($user->logo_user)){{asset('assets/images/user_avatar/' . $user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="Faker">
-                </div>
-
-                <div class="nk-teammate-card-info">
                     <table>
                         <tbody>
                         <tr>
@@ -72,6 +69,13 @@
                                 <div  class="text-white">{{$user->description}}</div>
                             </td>
                         </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="nk-teammate-card-info">
+                    <table>
+                        <tbody>
                         <tr>
                             <td class="p-l-0">
                                 <div class="col-12 p-0">
