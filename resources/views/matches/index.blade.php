@@ -50,12 +50,12 @@
                                             <div class="col-6" id="match-info-wrapper__block-one">
                                                 <p class="match-info-wrapper__block__team-name">{{$team->team1->name}}</p>
                                                 <p class="match-info-wrapper__block__vote">{{$voting_data->team1}} vote(s)</p>
-                                                <p class="match-info-wrapper__block__vote-percent">{{(($voting_data->team1 + $voting_data->team2) != 0) ? $voting_data->team1/($voting_data->team1 + $voting_data->team2) * 100: 0}} %</p>
+                                                <p class="match-info-wrapper__block__vote-percent">{{(($voting_data->team1 + $voting_data->team2) != 0) ? (int)($voting_data->team1/($voting_data->team1 + $voting_data->team2) * 100): 0}} %</p>
                                             </div>
                                             <div class="col-6" id="match-info-wrapper__block-two">
                                                 <p class="match-info-wrapper__block__team-name text-right">{{$team->team2->name}}</p>
                                                 <p class="match-info-wrapper__block__vote text-right">{{$voting_data->team2}} vote(s)</p>
-                                                <p class="match-info-wrapper__block__vote-percent text-right">{{(($voting_data->team1 + $voting_data->team2) != 0) ? $voting_data->team2/($voting_data->team1 + $voting_data->team2) * 100: 0}} %</p>
+                                                <p class="match-info-wrapper__block__vote-percent text-right">{{(($voting_data->team1 + $voting_data->team2) != 0) ? (int)($voting_data->team2/($voting_data->team1 + $voting_data->team2) * 100): 0}} %</p>
                                             </div>
                                         </div>
                                     </div>
@@ -94,16 +94,16 @@
                                             $('#voting1, #voting2').hide();
                                             $('#progress-bar-one').css({
                                                 width: data.request.team1 / (data.request.team1 + data.request.team2) * 100 + '%'
-                                            }).attr('aria-valuenow',data.request.team1 / (data.request.team1 + data.request.team2) * 100);
+                                            }).attr('aria-valuenow',Math.round(data.request.team1 / (data.request.team1 + data.request.team2) * 100));
                                             $('#progress-bar-two').css({
                                                 width: data.request.team2 / (data.request.team1 + data.request.team2) * 100 + '%'
-                                            }).attr('aria-valuenow',data.request.team2 / (data.request.team1 + data.request.team2) * 100);
+                                            }).attr('aria-valuenow',Math.round(data.request.team2 / (data.request.team1 + data.request.team2) * 100));
                                             $('#match-info-wrapper__block-one .match-info-wrapper__block__vote').text(data.request.team1 + ' vote(s)');
                                             $('#match-info-wrapper__block-two .match-info-wrapper__block__vote').text(data.request.team2 + ' vote(s)');
                                             $('#match-info-wrapper__block-one .match-info-wrapper__block__vote-percent')
-                                                .text(data.request.team1 / (data.request.team1 + data.request.team2) * 100 + ' %');
+                                                .text(Math.round(data.request.team1 / (data.request.team1 + data.request.team2) * 100) + ' %');
                                             $('#match-info-wrapper__block-two .match-info-wrapper__block__vote-percent')
-                                                .text(data.request.team2 / (data.request.team1 + data.request.team2) * 100 + ' %');
+                                                .text(Math.round(data.request.team2 / (data.request.team1 + data.request.team2)* 100)  + ' %');
                                         }
                                     });
                                     return false;
