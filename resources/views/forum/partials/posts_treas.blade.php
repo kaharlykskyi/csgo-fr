@@ -51,11 +51,4 @@
             </div>
         </div>
     </li>
-    @if(count($post->children) > 0)
-        @include('forum.partials.posts_treas', [
-            'posts' => $post->children,
-            'children' => true,
-            'users' => $users
-        ])
-    @endif
 @endforeach

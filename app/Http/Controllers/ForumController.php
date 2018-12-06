@@ -95,15 +95,10 @@ class ForumController extends Controller
     public function threadPost(Request $request){
         $topic = ForumTopic::where('id',$request->id)->first();
         $thread = TopicThread::where('id',$request->thread_id)->first();
-        $posts = ThreadPost::with('children')->where('parent_post', null)->where('thread_id',$thread->id)->paginate(20);
+        $posts = ThreadPost::where('thread_id',$thread->id)->paginate(20);
         $users_id = [];
         foreach ($posts as $post){
             $users_id[] = $post->user_id;
-            if (isset($post->children)){
-                foreach ($post->children as $child){
-                    $users_id[] = $child->user_id;
-                }
-            }
         }
         $users = User::whereIn('id',$users_id)->get();
         DB::table('forum_notification')->where([

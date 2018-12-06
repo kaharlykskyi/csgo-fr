@@ -19,7 +19,8 @@
             <div class="row vertical-gap text-white">
                 @if(isset($users))
                     @foreach($users as $user)
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 pl-50">
+                            <a class="delete-chat" href="{{route('delete_chat',$user->id)}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             @php
                                 $new = DB::table('chat_masseges')->where([['user2',Auth::user()->id],['user',$user->id]])->latest()->first();
                             @endphp

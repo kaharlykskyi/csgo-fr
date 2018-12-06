@@ -386,6 +386,14 @@ body .nk-image-slider .nk-image-slider-content{
     top: 5px;
     right: 10px;
 }
+
+.delete-chat{
+    position: absolute;
+    top: 40px;
+    z-index: 100;
+    left: 20px;
+}
+
 .chat-label-new .nk-badge{
     color: #fff;
     width: 25px;

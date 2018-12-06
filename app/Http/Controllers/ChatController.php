@@ -56,4 +56,9 @@ class ChatController extends Controller
 
         return view('chat.private_chat', compact('user','pageTitle','private_chat'));
     }
+
+    public function deleteChat(Request $request){
+        DB::table('chat_masseges')->where([['user',$request->id],['user2',Auth::user()->id]])->delete();
+        return redirect()->back();
+    }
 }

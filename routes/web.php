@@ -20,6 +20,7 @@ Route::post('/search','SearchController@index')->name('search');
 Route::group(['prefix' => 'chat', 'middleware' => ['auth']], function (){
     Route::get('/','ChatController@index')->name('all_chats');
     Route::match(['get', 'post'],'/send-massage/{name}','ChatController@sendMassage')->name('send_massage');
+    Route::get('/delete-chat/{id}','ChatController@deleteChat')->name('delete_chat');
 });
 
 /*--------PROFILE--------*/
