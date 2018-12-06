@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\ForumCategory;
 use App\ForumTopic;
+use App\Mail\ForumNotification;
 use App\ThreadPost;
 use App\TopicThread;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ForumController extends Controller
@@ -153,6 +156,15 @@ class ForumController extends Controller
                     'created_at' => \Illuminate\Support\Carbon::now(),
                     'updated_at' => \Illuminate\Support\Carbon::now()
                 ]);
+
+                try{
+                    Mail::to($user->email)->send(new ForumNotification($data['topic_id'],$data['thread_id']));
+                }catch (\Exception $e){
+                    if (Config::get('app.debug')){
+                        dump($e->getMessage());
+                        die();
+                    }
+                }
             }
         }
         return redirect()->back();
