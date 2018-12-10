@@ -156,15 +156,6 @@ class ForumController extends Controller
                     'created_at' => \Illuminate\Support\Carbon::now(),
                     'updated_at' => \Illuminate\Support\Carbon::now()
                 ]);
-
-                try{
-                    Mail::to($user->email)->send(new ForumNotification($data['topic_id'],$data['thread_id']));
-                }catch (\Exception $e){
-                    if (Config::get('app.debug')){
-                        dump($e->getMessage());
-                        die();
-                    }
-                }
             }
         }
         return redirect()->back();

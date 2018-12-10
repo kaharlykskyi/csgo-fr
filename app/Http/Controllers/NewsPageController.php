@@ -37,6 +37,12 @@ class NewsPageController extends Controller
 
         $teams = Team::all();
 
+        DB::table('comments_notification')->where([
+            ['user_id',Auth::user()->id],
+            ['resource_id',$request->id],
+            ['link','news_page']
+        ])->update(['seen' => 'true']);
+
         return view('news.index', compact(
             'news',
             'streams_output',
@@ -53,7 +59,21 @@ class NewsPageController extends Controller
             $comment = new NewsComment();
             $data['news_id'] = $data['object_id'];
             $comment->fill($data);
-            $comment->save();
+            if($comment->save()){
+                if (isset($comment->parent_comment)){
+                    $parent_comment = DB::table('news_comments')->where('id',$comment->parent_comment)->first();
+
+                    DB::table('comments_notification')->insert([
+                        'user_id' => $parent_comment->user_id,
+                        'link' => 'news_page',
+                        'resource_id' => $comment->news_id,
+                        'seen' => 'false',
+                        'comment_id' => $comment->id,
+                        'created_at' => \Illuminate\Support\Carbon::now(),
+                        'updated_at' => \Illuminate\Support\Carbon::now()
+                    ]);
+                }
+            }
             return back();
         }
         return back()->with('status', 'You must be logged in');
