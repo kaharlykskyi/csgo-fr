@@ -2,6 +2,13 @@
     <!-- START: Comment -->
     <div class="nk-comment" @isset($child)style="margin-left: 30px;"@endisset id="post-{{$comment->id}}">
         <div class="nk-comment-meta">
+            @foreach($users as $user)
+                @if($user->id == $comment->user_id)
+                    <a href="{{route('show_profile',$user->name)}}">
+                        <img class="comment-logo" src="@if(isset($user->logo_user)){{asset('assets/images/user_avatar/'.$user->logo_user)}}@else{{asset('images/photo_not_available.png')}}@endif" alt="">
+                    </a>
+                @endif
+            @endforeach
             by
             @foreach($users as $user)
                 @if($user->id == $comment->user_id)

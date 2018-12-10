@@ -12,6 +12,12 @@ class TournamentPageController extends Controller
     use StreamApi, MatchSort;
 
     public function index(Request $request){
+        DB::table('comments_notification')->where([
+            ['user_id',Auth::user()->id],
+            ['resource_id',$request->id],
+            ['link','tournament_page']
+        ])->update(['seen' => 'true']);
+
         $tournament = Tournament::where('id', $request->id)->first();
         $streams = Stream::where('show_homepage','on')->get();
 
@@ -54,7 +60,21 @@ class TournamentPageController extends Controller
             $comment = new TournamentComment();
             $data['tournament_id'] = $data['object_id'];
             $comment->fill($data);
-            $comment->save();
+            if($comment->save()){
+                if (isset($comment->parent_comment)){
+                    $parent_comment = DB::table('tournament_comments')->where('id',$comment->parent_comment)->first();
+
+                    DB::table('comments_notification')->insert([
+                        'user_id' => $parent_comment->user_id,
+                        'link' => 'tournament_page',
+                        'resource_id' => $comment->tournament_id,
+                        'seen' => 'false',
+                        'comment_id' => $comment->id,
+                        'created_at' => \Illuminate\Support\Carbon::now(),
+                        'updated_at' => \Illuminate\Support\Carbon::now()
+                    ]);
+                }
+            }
             return back();
         }
         return back()->with('status', 'You must be logged in');

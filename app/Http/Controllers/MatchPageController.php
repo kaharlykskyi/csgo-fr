@@ -12,6 +12,11 @@ class MatchPageController extends Controller
     use StreamApi, MatchSort;
 
     public function index(Request $request){
+        DB::table('comments_notification')->where([
+            ['user_id',Auth::user()->id],
+            ['resource_id',$request->id],
+            ['link','match_page']
+        ])->update(['seen' => 'true']);
         $match_data = Match::where('id', $request->id)->first();
 
         $team_json = json_decode($match_data->team);
@@ -75,7 +80,21 @@ class MatchPageController extends Controller
             $comment = new Comment();
             $data['match_id'] = $data['object_id'];
             $comment->fill($data);
-            $comment->save();
+            if($comment->save()){
+                if (isset($comment->parent_comment)){
+                    $parent_comment = DB::table('comments_match')->where('id',$comment->parent_comment)->first();
+
+                    DB::table('comments_notification')->insert([
+                        'user_id' => $parent_comment->user_id,
+                        'link' => 'match_page',
+                        'resource_id' => $comment->match_id,
+                        'seen' => 'false',
+                        'comment_id' => $comment->id,
+                        'created_at' => \Illuminate\Support\Carbon::now(),
+                        'updated_at' => \Illuminate\Support\Carbon::now()
+                    ]);
+                }
+            }
             return back();
         }
         return back()->with('status', 'You must be logged in');
