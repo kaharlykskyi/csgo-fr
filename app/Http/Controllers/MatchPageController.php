@@ -12,6 +12,11 @@ class MatchPageController extends Controller
     use StreamApi, MatchSort;
 
     public function index(Request $request){
+        DB::table('comments_notification')->where([
+            ['user_id',Auth::user()->id],
+            ['resource_id',$request->id],
+            ['link','match_page']
+        ])->update(['seen' => 'true']);
         $match_data = Match::where('id', $request->id)->first();
 
         $team_json = json_decode($match_data->team);
@@ -52,12 +57,6 @@ class MatchPageController extends Controller
         $streams_output = $this->getStream($streams);
 
         $teams = Team::all();
-
-        DB::table('comments_notification')->where([
-            ['user_id',Auth::user()->id],
-            ['resource_id',$request->id],
-            ['link','match_page']
-        ])->update(['seen' => 'true']);
 
         return view('matches.index',compact(
                 'match_data',

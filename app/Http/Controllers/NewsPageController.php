@@ -12,6 +12,11 @@ class NewsPageController extends Controller
     use StreamApi, MatchSort;
 
     public function index(Request $request){
+        DB::table('comments_notification')->where([
+            ['user_id',Auth::user()->id],
+            ['resource_id',$request->id],
+            ['link','news_page']
+        ])->update(['seen' => 'true']);
         $news = News::where('id', $request->id)->first();
         DB::table('news')->where('id',$news->id)->update(['viewers_count' => $news->viewers_count = (int)$news->viewers_count + 1]);
         $streams = Stream::where('show_homepage','on')->get();
@@ -36,12 +41,6 @@ class NewsPageController extends Controller
         $streams_output = $this->getStream($streams);
 
         $teams = Team::all();
-
-        DB::table('comments_notification')->where([
-            ['user_id',Auth::user()->id],
-            ['resource_id',$request->id],
-            ['link','news_page']
-        ])->update(['seen' => 'true']);
 
         return view('news.index', compact(
             'news',
