@@ -12,11 +12,13 @@ class TournamentPageController extends Controller
     use StreamApi, MatchSort;
 
     public function index(Request $request){
-        DB::table('comments_notification')->where([
-            ['user_id',Auth::user()->id],
-            ['resource_id',$request->id],
-            ['link','tournament_page']
-        ])->update(['seen' => 'true']);
+        if(isset(Auth::user()->id)){
+            DB::table('comments_notification')->where([
+                ['user_id',Auth::user()->id],
+                ['resource_id',$request->id],
+                ['link','tournament_page']
+            ])->update(['seen' => 'true']);
+        }
 
         $tournament = Tournament::where('id', $request->id)->first();
         $streams = Stream::where('show_homepage','on')->get();
