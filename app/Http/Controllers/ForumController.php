@@ -104,11 +104,14 @@ class ForumController extends Controller
             $users_id[] = $post->user_id;
         }
         $users = User::whereIn('id',$users_id)->get();
-        DB::table('forum_notification')->where([
-            ['topic_id',$request->id],
-            ['thread_id',$request->thread_id],
-            ['user_id',Auth::user()->id]
-        ])->update(['seen' => 'true']);
+        if(isset(Auth::user()->id)){
+            DB::table('forum_notification')->where([
+                ['topic_id',$request->id],
+                ['thread_id',$request->thread_id],
+                ['user_id',Auth::user()->id]
+            ])->update(['seen' => 'true']);
+        }
+
         return view('forum.thread_post', compact('thread','topic','posts','users'));
     }
 

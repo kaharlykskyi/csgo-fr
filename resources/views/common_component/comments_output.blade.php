@@ -50,5 +50,47 @@
         $('#comment-form').attr('action',link);
         $('#comment-form .note-editable.card-block').html($('#post-' + id + ' .comment-content').html());
     }
+
+    document.body.scrollTop = 0;
+
+    window.scrolled = false;
+
+    var id = null;
+
+    $(document).one('ready scroll hashchange', function(e) {
+        if(window.scrolled != false || location.hash.length == 0) return;
+
+        e.preventDefault();
+
+        id = '#' + location.hash.substr(1);
+        var el = $(id);
+
+        if(el.size()>0)
+        {
+            $('body, html').animate({
+                scrollTop: el.offset().top
+            }, 3000);
+
+            window.scrolled = true;
+        }
+
+        $(id).css({
+            "box-shadow": "0 5px 20px 20px rgba(0,0,0,0.2)",
+            "padding": "10px 15px",
+            "border-radius": "20px",
+            "margin-top": "10px",
+        });
+    });
+
+    $(document).ready(function () {
+        $(id).hover(function () {
+            $(this).css({
+                "box-shadow": "none",
+                "padding": "20px 0 0",
+                "border-radius": "0",
+                "margin-top": "0",
+            });
+        });
+    })
 </script>
 <!-- END: Reply -->

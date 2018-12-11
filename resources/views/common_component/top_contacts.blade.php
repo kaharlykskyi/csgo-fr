@@ -138,10 +138,10 @@
                                           $text_comment = DB::table($table)->where('id',$item->comment_id)->first();
                                       @endphp
                                     @isset($text_comment)
-                                            <div class="nk-widget-post pl-10" onclick="location.href = '{{route($item->link,$item->resource_id)}}'" style="cursor:pointer;">
+                                            <div class="nk-widget-post pl-10" onclick="location.href = '{{route($item->link,$item->resource_id) .__('#post-' . $item->resource_id)}}'" style="cursor:pointer;">
                                                 <h3 class="nk-post-title mb-0">
 
-                                                    <a href="{{route($item->link,$item->resource_id)}}">{{strip_tags(str_limit($text_comment->comment,50,' ...'))}}</a>
+                                                    <a href="{{route($item->link,$item->resource_id)}}#{{__('post-' . $item->resource_id)}}">{{strip_tags(str_limit($text_comment->comment,50,' ...'))}}</a>
                                                 </h3>
                                                 <span class="nk-post-by">{{$item->name}}</span><span>{{$item->updated_at}}</span>
                                             </div>
