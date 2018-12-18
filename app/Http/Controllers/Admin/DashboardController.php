@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -37,19 +38,19 @@ class DashboardController extends Controller
     public function access(Request $request){
         if ($request->access != -1){
             DB::table('users')->where('id',$request->id)->update(['access' => $request->access]);
-        } elseif($request->access == -1) {
+        } elseif($request->access == -1 && Auth::user()->moderators === 'super_admin') {
             DB::table('users')->where('id',$request->id)->delete();
         }
         return 'Info updated';
     }
 
     public function moderators(Request $request){
-        if ($request->moderators == 'admin'){
+        if ($request->moderators == 'admin' && Auth::user()->moderators === 'super_admin'){
             DB::table('users')->where('id',$request->id)->update([
                 'moderators' => $request->moderators,
                 'role' => 'admin'
             ]);
-        } elseif ($request->moderators == 'user'){
+        } elseif ($request->moderators == 'user' && Auth::user()->moderators === 'super_admin'){
             DB::table('users')->where('id',$request->id)->update([
                 'moderators' => $request->moderators,
                 'role' => 'user'
