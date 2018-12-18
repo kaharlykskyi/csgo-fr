@@ -50,6 +50,11 @@
                     <div class="row vertical-gap sm-gap">
                         <div class="col-md-12">
                             <input type="file" class="form-control required" name="logo_user" placeholder="">
+                            @if ($errors->has('logo_user'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('logo_user') }}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
                     <div class="nk-gap"></div>

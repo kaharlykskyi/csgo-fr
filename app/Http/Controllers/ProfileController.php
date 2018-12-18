@@ -64,10 +64,18 @@ class ProfileController extends Controller
     }
 
     public function uploadAvatar(Request $request){
-
+        $data = $request->file();
+        $validate = Validator::make($data,[
+            'logo_user' => 'dimensions:max_width=120,ratio=1/1|between:0,500',
+        ]);
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->withErrors($validate);
+        }
         if($request->hasFile('logo_user')){
+            unlink(public_path() . '/assets/images/user_avatar/' . Auth::user()->logo_user);
             $file = $request->file('logo_user');
-            $logo_user = $file->getClientOriginalName();
+            $logo_user = time() . '_' .  $file->getClientOriginalName();
             $file->move(public_path() . '/assets/images/user_avatar/',$logo_user);
 
             DB::table('users')->where('id', Auth::user()->id)->update(['logo_user' => $logo_user]);

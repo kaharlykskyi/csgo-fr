@@ -414,6 +414,14 @@ body .nk-image-slider .nk-image-slider-content{
     border-radius: 50%;
 }
 
+.nk-teammate-card .nk-teammate-card-photo img {
+    width: auto !important;
+    height: auto !important;
+    margin: 10px auto;
+    display: block;
+    border-radius: 50%;
+}
+
 @media (min-width: 1200px) {
     .nk-main > .container {
         max-width: 1100px;
