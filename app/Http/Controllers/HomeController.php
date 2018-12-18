@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\{AppTreid\MatchSort, AppTreid\StreamApi, BannerImage, News, NewsCategory, Stream, Team};
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -73,14 +75,37 @@ class HomeController extends Controller
     public function deleteComment(Request $request){
         switch ($request->link){
             case 'match_page':
-                DB::table('comments_match')->where('id', $request->id)->delete();
+                $user = DB::table('comments_match')
+                    ->where('comments_match.id', $request->id)
+                    ->join('users','users.id','=','comments_match.user_id')
+                    ->select('users.moderators')->first();
+
+                if($user->moderators !== 'super_admin' || Auth::user()->moderators === 'super_admin'){
+                    DB::table('comments_match')->where('id', $request->id)->delete();
+                }
                 break;
             case 'news_page':
-                DB::table('news_comments')->where('id', $request->id)->delete();
+                $user = DB::table('news_comments')
+                    ->where('news_comments.id', $request->id)
+                    ->join('users','users.id','=','news_comments.user_id')
+                    ->select('users.moderators')->first();
+
+                if($user->moderators !== 'super_admin' || Auth::user()->moderators === 'super_admin'){
+                    DB::table('news_comments')->where('id', $request->id)->delete();
+                }
                 break;
             case 'tournament_page':
-                DB::table('tournament_comments')->where('id', $request->id)->delete();
+                $user = DB::table('tournament_comments')
+                    ->where('news_comments.id', $request->id)
+                    ->join('users','users.id','=','tournament_comments.user_id')
+                    ->select('users.moderators')->first();
+
+                if($user->moderators !== 'super_admin' || Auth::user()->moderators === 'super_admin') {
+                    DB::table('tournament_comments')->where('id', $request->id)->delete();
+                }
                 break;
+            default:
+                return back();
         }
 
         return back();
@@ -90,25 +115,91 @@ class HomeController extends Controller
         $data = $request->post();
         switch ($data['type_page']){
             case 'match_page':
-                DB::table('comments_match')->where([
-                    ['id',$data['id_comment']],
-                    ['user_id', $data['user_id']]
-                ])->update(['comment' => $data['comment']]);
+                $comment = DB::table('comments_match')->where('comments_match.id',$data['id_comment'])
+                    ->join('users','users.id','=','comments_match.user_id')
+                    ->select('users.moderators','comments_match.*')->first();;
+
+                if($comment->user_id === $data['user_id'] || ((Auth::user()->moderators === 'super_admin' || Auth::user()->moderators === 'admin') && $comment->moderators !== 'super_admin') ){
+                    DB::table('comments_match')
+                        ->where('id',$data['id_comment'])->update([
+                            'comment' => $data['comment'],
+                            'moder_id' => Auth::user()->id,
+                            'updated_at' => Carbon::now()
+                        ]);
+                }
                 break;
             case 'news_page':
-                DB::table('news_comments')->where([
-                    ['id',$data['id_comment']],
-                    ['user_id', $data['user_id']]
-                ])->update(['comment' => $data['comment']]);
+                $comment = DB::table('news_comments')->where('news_comments.id',$data['id_comment'])
+                    ->join('users','users.id','=','news_comments.user_id')
+                    ->select('users.moderators','news_comments.*')->first();
+
+                if($comment->user_id === $data['user_id'] || ((Auth::user()->moderators === 'super_admin' || Auth::user()->moderators === 'admin') && $comment->moderators !== 'super_admin') ){
+                    DB::table('news_comments')
+                        ->where('id',$data['id_comment'])->update([
+                            'comment' => $data['comment'],
+                            'moder_id' => Auth::user()->id,
+                            'updated_at' => Carbon::now()
+                        ]);
+                }
+
                 break;
             case 'tournament_page':
-                DB::table('tournament_comments')->where([
-                    ['id',$data['id_comment']],
-                    ['user_id', $data['user_id']]
-                ])->update(['comment' => $data['comment']]);
+                $comment = DB::table('tournament_comments')->where('tournament_comments.id',$data['id_comment'])
+                    ->join('users','users.id','=','tournament_comments.user_id')
+                    ->select('users.moderators','tournament_comments.*')->first();
+                if($comment->user_id === $data['user_id'] || ((Auth::user()->moderators === 'super_admin' || Auth::user()->moderators === 'admin') && $comment->moderators !== 'super_admin') ){
+                    DB::table('tournament_comments')
+                        ->where('id',$data['id_comment'])->update([
+                            'comment' => $data['comment'],
+                            'moder_id' => Auth::user()->id,
+                            'updated_at' => Carbon::now()
+                        ]);
+                }
                 break;
         }
 
         return back();
+    }
+
+    public function moderStatusComment(Request $request){
+        switch ($request->type){
+            case 'match_page':
+                $comment = DB::table('comments_match')->where('comments_match.id',$request->id)
+                    ->join('users','users.id','=','comments_match.user_id')
+                    ->select('users.moderators','comments_match.*')->first();
+
+                if(Auth::user()->moderators === 'super_admin' || ( Auth::user()->moderators === 'admin' && $comment->moderators !== 'super_admin')){
+                    DB::table('comments_match')
+                        ->where('id',$request->id)->update([
+                            'moder' => ($comment->moder === 'true') ? 'false': 'true'
+                        ]);
+                }
+                break;
+            case 'news_page':
+                $comment = DB::table('news_comments')->where('news_comments.id',$request->id)
+                    ->join('users','users.id','=','news_comments.user_id')
+                    ->select('users.moderators','news_comments.*')->first();
+
+                if(Auth::user()->moderators === 'super_admin' || ( Auth::user()->moderators === 'admin' && $comment->moderators !== 'super_admin')){
+                    DB::table('news_comments')
+                        ->where('id',$request->id)->update([
+                            'moder' => ($comment->moder === 'true') ? 'false': 'true'
+                        ]);
+                }
+
+                break;
+            case 'tournament_page':
+                $comment = DB::table('tournament_comments')->where('tournament_comments.id',$request->id)
+                    ->join('users','users.id','=','tournament_comments.user_id')
+                    ->select('users.moderators','tournament_comments.*')->first();
+
+                if(Auth::user()->moderators === 'super_admin' || ( Auth::user()->moderators === 'admin' && $comment->moderators !== 'super_admin')){
+                    DB::table('tournament_comments')
+                        ->where('id',$request->id)->update([
+                            'moder' => ($comment->moder === 'true') ? 'false': 'true'
+                        ]);
+                }
+                break;
+        }
     }
 }

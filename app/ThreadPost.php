@@ -11,7 +11,9 @@ class ThreadPost extends Model
         'thread_id',
         'user_id',
         'parent_post',
-        'sequence_number'
+        'sequence_number',
+        'moder',
+        'moder_id'
     ];
 
     public function children(){

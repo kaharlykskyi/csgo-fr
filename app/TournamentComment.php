@@ -11,7 +11,9 @@ class TournamentComment extends Model
         'user_id',
         'comment',
         'parent_comment',
-        'like_count'
+        'like_count',
+        'moder',
+        'moder_id'
     ];
 
     public function children(){

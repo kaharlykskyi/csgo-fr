@@ -51,6 +51,12 @@
         $('#comment-form .note-editable.card-block').html($('#post-' + id + ' .comment-content').html());
     }
 
+    function moderStatus(id,type){
+        $.get("{{route('moder_status_comment')}}" + '?id=' + id + '&type=' + type,function (data) {
+            console.log(data);
+        });
+    }
+
     document.body.scrollTop = 0;
 
     window.scrolled = false;

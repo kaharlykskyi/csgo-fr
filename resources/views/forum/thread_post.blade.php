@@ -78,6 +78,12 @@
             var contentPost = $('#post-' + idPost + ' .nk-forum-topic-content').html();
             $('#reply-post .note-editable.card-block').html(contentPost);
         }
+
+        function moderStatus(id){
+            $.get("{{route('moder_status_post')}}" + '?id=' + id,function (data) {
+                console.log(data);
+            });
+        }
     </script>
 
     <div class="nk-gap-2"></div>

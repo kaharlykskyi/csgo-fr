@@ -129,13 +129,18 @@ class ForumController extends Controller
         }
 
         if (isset($data['edit_id_post'])){
-            DB::table('thread_posts')->where('id', $data['edit_id_post'])
-                ->where('user_id', Auth::user()->id)
-                ->update([
-                    'text_post' => $data['text_post'],
-                    'edit' => 'true',
-                    'updated_at' => Carbon::now()
-                ]);
+            $post = DB::table('thread_posts')
+                ->where('thread_posts.id', $data['edit_id_post'])
+                ->join('users','users.id','=','thread_posts.user_id')
+                ->select('users.moderators','thread_posts.*')->first();
+            if (($post->user_id === Auth::user()->id && Auth::user()->role === 'admin') || $post->moderators !== 'super_admin'){
+                ThreadPost::where('id', $post->id)
+                    ->update([
+                        'text_post' => $data['text_post'],
+                        'edit' => 'true',
+                        'moder_id' => Auth::user()->id
+                    ]);
+            }
 
             return back();
         }
@@ -195,5 +200,18 @@ class ForumController extends Controller
     public function postDelete(Request $request){
         DB::table('thread_posts')->where('id',$request->id)->delete();
         return redirect()->back()->with('status','Post deleted');
+    }
+
+    public function moderStatusPost(Request $request){
+        $post = DB::table('thread_posts')->where('thread_posts.id',$request->id)
+            ->join('users','users.id','=','thread_posts.user_id')
+            ->select('users.moderators','thread_posts.*')->first();
+
+        if(Auth::user()->moderators === 'super_admin' || ( Auth::user()->moderators === 'admin' && $post->moderators !== 'super_admin')){
+            DB::table('thread_posts')
+                ->where('id',$request->id)->update([
+                    'moder' => ($post->moder === 'true') ? 'false': 'true'
+                ]);
+        }
     }
 }

@@ -44,6 +44,7 @@ Route::group(['prefix' => 'forum'], function (){
     Route::post('/create-post','ForumController@createPost')->name('create_post')->middleware('auth');
     Route::get('/thread-action/{id}/{action}','ForumController@threadAction')->name('thread_action')->middleware(['auth','role']);
     Route::get('/post-delete/{id}','ForumController@postDelete')->name('post_delete')->middleware(['auth','role']);
+    Route::get('/moder-status-post','ForumController@moderStatusPost')->middleware(['auth','role'])->name('moder_status_post');
 });
 
 /*--------GALLERY--------*/
@@ -81,6 +82,7 @@ Route::get('/stream/{name}/{service}/{id?}',function ($name,$service,$id = null)
 
 Route::get('/delete-comment/{id}','HomeController@deleteComment')->middleware(['auth','role'])->name('delete_comment');
 Route::post('/edit-comment','HomeController@editComment')->middleware(['auth'])->name('edit_comment');
+Route::get('/moder-status-comment','HomeController@moderStatusComment')->middleware(['auth','role'])->name('moder_status_comment');
 
 /*!!--------ADMIN--------!!*/
 Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','role']],function (){
